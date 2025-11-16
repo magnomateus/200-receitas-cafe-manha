@@ -4,11 +4,3 @@ node_modules/
 *.log
 dist/
 build/
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-.cache/
-temp/
-tmp/

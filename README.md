@@ -1,10 +1,10 @@
 # 200 Receitas de Café da Manhã
 
-Projeto de landing page para e-book de receitas de café da manhã.
+Projeto de landing page para divulgação de e-book com 200 receitas de café da manhã.
 
-## Descrição
+## Status do Projeto
 
-Este repositório contém o código-fonte da landing page de vendas do e-book "200 Receitas de Café da Manhã".
+🚧 Em desenvolvimento
 
 ## Tecnologias
 
@@ -12,14 +12,6 @@ Este repositório contém o código-fonte da landing page de vendas do e-book "2
 - CSS3
 - JavaScript
 
-## Estrutura do Projeto
+## Autor
 
-Em desenvolvimento...
-
-## Instalação
-
-Em breve...
-
-## Licença
-
-Todos os direitos reservados.
+Desenvolvido com ❤️
