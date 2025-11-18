@@ -3,434 +3,457 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="200 Receitas Práticas de Café da Manhã. Saudáveis, gostosas e rápidas. Transforme suas manhãs começando hoje.">
-    <title>200 Receitas de Café da Manhã - Práticas e Saudáveis</title>
-    <link rel="stylesheet" href="css/style.css">
+
+    <!-- SEO Meta Tags -->
+    <title>200 Receitas de Café da Manhã | E-book Completo</title>
+    <meta name="description" content="200 receitas práticas, saudáveis e deliciosas de café da manhã prontas em até 15 minutos. Com ingredientes acessíveis e passo a passo ilustrado.">
+    <meta name="keywords" content="receitas café da manhã, café da manhã saudável, receitas rápidas, café da manhã fit, ebook receitas">
+    <meta name="author" content="200 Receitas">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="200 Receitas de Café da Manhã">
+    <meta property="og:description" content="Transforme suas manhãs com 200 receitas práticas e deliciosas">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "200 Receitas de Café da Manhã",
+      "description": "E-book digital com 200 receitas práticas de café da manhã",
+      "offers": {
+        "@type": "Offer",
+        "price": "27.00",
+        "priceCurrency": "BRL",
+        "availability": "https://schema.org/InStock"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "5000"
+      }
+    }
+    </script>
 </head>
 <body>
 
-    <!-- SEÇÃO 1: HERO -->
-    <section class="hero">
+    <!-- SEÇÃO 1: HERO / TOPO -->
+    <section id="hero" class="hero-section">
         <div class="container">
-            <div class="hero-content">
-                <h1 class="headline">
-                    200 Receitas de Café da Manhã<br>
-                    Práticas, Saudáveis e <span class="highlight">Realmente Gostosas</span>
-                </h1>
-                
-                <p class="subheadline">
-                    Ingredientes simples que você encontra em qualquer mercado. 
-                    Prontas em 5 a 20 minutos. Testadas por mais de 3.000 famílias brasileiras.
-                </p>
-
-                <a href="#oferta" class="btn btn-primary btn-large">
-                    QUERO AS 200 RECEITAS
-                </a>
+            <div class="badge-social">
+                ✓ Mais de 5.000 famílias satisfeitas
             </div>
+
+            <h1 class="headline">
+                Cansado do Mesmo Café da Manhã Todos os Dias?<br>
+                <span class="highlight">200 Receitas Novas, Fáceis e Deliciosas</span><br>
+                Para Você Nunca Mais Repetir
+            </h1>
+
+            <p class="sub-headline">
+                Do básico ao sofisticado. Receitas testadas por milhares de famílias brasileiras,
+                com ingredientes que você encontra no mercado da esquina
+            </p>
+
+            <!-- Carrossel de Imagens -->
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <div class="carousel-item">
+                        <img src="images/receitas/panquecas.jpg" alt="Panquecas" loading="lazy">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/receitas/tapioca.jpg" alt="Tapioca" loading="lazy">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/receitas/omelete.jpg" alt="Omelete" loading="lazy">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/receitas/vitamina.jpg" alt="Vitamina" loading="lazy">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/receitas/pao-queijo.jpg" alt="Pão de Queijo" loading="lazy">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/receitas/acai.jpg" alt="Açaí" loading="lazy">
+                    </div>
+                    <!-- Duplicar para efeito infinito -->
+                    <div class="carousel-item">
+                        <img src="images/receitas/panquecas.jpg" alt="Panquecas" loading="lazy">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/receitas/tapioca.jpg" alt="Tapioca" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <a href="https://pay.cakto.com.br/nbh35by_655203" class="btn btn-primary btn-cta">QUERO AS 200 RECEITAS AGORA</a>
         </div>
     </section>
 
-    <!-- SEÇÃO 2: BENEFÍCIOS -->
-    <section class="beneficios">
+    <!-- SEÇÃO 2: O QUE VOCÊ VAI DESCOBRIR -->
+    <section id="beneficios" class="benefits-section">
         <div class="container">
-            <h2 class="section-title">O Que Você Recebe Hoje:</h2>
-            
+            <h2 class="section-title">
+                Veja o Que Você Vai <span class="highlight-orange">Descobrir Neste Guia Completo:</span>
+            </h2>
+
             <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-number">200</div>
-                    <h3>Receitas Variadas</h3>
-                    <p>Fit, proteicas, veganas, sem glúten, doces, salgadas e infantis</p>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🎯</div>
+                    <h3>200 Receitas Organizadas por Categoria</h3>
+                    <p>Fit, Proteicas, Doces, Salgadas, Veganas, Sem Glúten, Infantis e Clássicos Brasileiros</p>
                 </div>
 
-                <div class="benefit-card">
-                    <div class="benefit-number">5-20</div>
-                    <h3>Minutos de Preparo</h3>
-                    <p>Receitas pensadas para quem tem rotina corrida</p>
+                <div class="benefit-item">
+                    <div class="benefit-icon">⏱️</div>
+                    <h3>Todas Prontas em 5 a 20 Minutos</h3>
+                    <p>Perfeitas para a correria do dia a dia, sem complicação</p>
                 </div>
 
-                <div class="benefit-card">
-                    <div class="benefit-number">100%</div>
-                    <h3>Ingredientes Comuns</h3>
-                    <p>Nada de produtos caros ou difíceis de encontrar</p>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🛒</div>
+                    <h3>Ingredientes Fáceis de Encontrar</h3>
+                    <p>Nada de produtos caros ou importados. Tudo no supermercado da sua rua</p>
                 </div>
 
-                <div class="benefit-card">
-                    <div class="benefit-number">✓</div>
-                    <h3>Passo a Passo</h3>
-                    <p>Fotos e instruções claras, mesmo para iniciantes</p>
+                <div class="benefit-item">
+                    <div class="benefit-icon">📸</div>
+                    <h3>Passo a Passo com Fotos</h3>
+                    <p>Cada receita explicada de forma simples, mesmo para iniciantes</p>
                 </div>
 
-                <div class="benefit-card">
-                    <div class="benefit-number">📊</div>
-                    <h3>Info Nutricional</h3>
-                    <p>Calorias, proteínas e carboidratos de cada receita</p>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🥗</div>
+                    <h3>Informações Nutricionais Completas</h3>
+                    <p>Calorias, proteínas, carboidratos - saiba exatamente o que está comendo</p>
                 </div>
 
-                <div class="benefit-card">
-                    <div class="benefit-number">📱</div>
-                    <h3>Acesso Imediato</h3>
-                    <p>PDF + app mobile para levar na cozinha</p>
+                <div class="benefit-item">
+                    <div class="benefit-icon">👨‍👩‍👧‍👦</div>
+                    <h3>Receitas Para Toda a Família</h3>
+                    <p>Opções que agradam de criança a adultos</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">📱</div>
+                    <h3>Acesso Imediato Digital</h3>
+                    <p>Receba por email e WhatsApp, use no celular, tablet ou computador</p>
                 </div>
             </div>
 
-            <div class="cta-center">
-                <a href="#oferta" class="btn btn-secondary">
-                    GARANTIR ACESSO AGORA
-                </a>
-            </div>
+            <a href="https://pay.cakto.com.br/nbh35by_655203" class="btn btn-primary btn-cta">SIM, EU QUERO AS 200 RECEITAS!</a>
         </div>
     </section>
 
-    <!-- SEÇÃO 3: EXEMPLOS DE RECEITAS -->
-    <section class="exemplos">
+    <!-- SEÇÃO 3: VEJA O QUE VOCÊ VAI APRENDER -->
+    <section id="receitas" class="recipes-section">
         <div class="container">
-            <h2 class="section-title">Exemplos do Que Você Vai Preparar:</h2>
-            
-            <div class="receitas-grid">
-                <div class="receita-card">
-                    <div class="receita-image">
-                        <div class="receita-tag">FIT</div>
-                    </div>
-                    <h3>Panqueca Proteica 3 Ingredientes</h3>
-                    <div class="receita-info">
-                        <span>⏱️ 8 min</span>
-                        <span>🔥 240 kcal</span>
+            <h2 class="section-title white-text">
+                Veja Algumas das Receitas Que Você Vai Aprender:
+            </h2>
+
+            <div class="recipes-grid">
+                <div class="recipe-card">
+                    <img src="images/receitas/panquecas.jpg" alt="Panquecas Proteicas de Banana" class="lazy">
+                    <div class="recipe-card-content">
+                        <h3>Panquecas Proteicas de Banana</h3>
+                        <p class="recipe-info">⏱️ 10 minutos | 🔥 240 kcal | 🥚 3 ingredientes</p>
                     </div>
                 </div>
 
-                <div class="receita-card">
-                    <div class="receita-image">
-                        <div class="receita-tag">RÁPIDA</div>
-                    </div>
-                    <h3>Tapioca Recheada Fit</h3>
-                    <div class="receita-info">
-                        <span>⏱️ 5 min</span>
-                        <span>🔥 180 kcal</span>
+                <div class="recipe-card">
+                    <img src="images/receitas/tapioca.jpg" alt="Tapioca Recheada Fit" class="lazy">
+                    <div class="recipe-card-content">
+                        <h3>Tapioca Recheada Fit</h3>
+                        <p class="recipe-info">⏱️ 8 minutos | 🔥 180 kcal | 🌾 Sem glúten</p>
                     </div>
                 </div>
 
-                <div class="receita-card">
-                    <div class="receita-image">
-                        <div class="receita-tag">PROTEICA</div>
-                    </div>
-                    <h3>Omelete de Forno com Vegetais</h3>
-                    <div class="receita-info">
-                        <span>⏱️ 15 min</span>
-                        <span>🔥 195 kcal</span>
+                <div class="recipe-card">
+                    <img src="images/receitas/omelete.jpg" alt="Omelete de Forno com Legumes" class="lazy">
+                    <div class="recipe-card-content">
+                        <h3>Omelete de Forno com Legumes</h3>
+                        <p class="recipe-info">⏱️ 15 minutos | 🔥 195 kcal | 💪 Alto em proteínas</p>
                     </div>
                 </div>
 
-                <div class="receita-card">
-                    <div class="receita-image">
-                        <div class="receita-tag">DETOX</div>
-                    </div>
-                    <h3>Vitamina Verde Energizante</h3>
-                    <div class="receita-info">
-                        <span>⏱️ 5 min</span>
-                        <span>🔥 120 kcal</span>
+                <div class="recipe-card">
+                    <img src="images/receitas/vitamina.jpg" alt="Vitamina Verde Detox" class="lazy">
+                    <div class="recipe-card-content">
+                        <h3>Vitamina Verde Detox</h3>
+                        <p class="recipe-info">⏱️ 5 minutos | 🔥 120 kcal | 🥬 Super nutritiva</p>
                     </div>
                 </div>
 
-                <div class="receita-card">
-                    <div class="receita-image">
-                        <div class="receita-tag">SEM GLÚTEN</div>
-                    </div>
-                    <h3>Pão de Queijo Fit AirFryer</h3>
-                    <div class="receita-info">
-                        <span>⏱️ 12 min</span>
-                        <span>🔥 165 kcal</span>
+                <div class="recipe-card">
+                    <img src="images/receitas/pao-queijo.jpg" alt="Pão de Queijo Fit na AirFryer" class="lazy">
+                    <div class="recipe-card-content">
+                        <h3>Pão de Queijo Fit na AirFryer</h3>
+                        <p class="recipe-info">⏱️ 12 minutos | 🔥 165 kcal | 🧀 Sabor irresistível</p>
                     </div>
                 </div>
 
-                <div class="receita-card">
-                    <div class="receita-image">
-                        <div class="receita-tag">ENERGÉTICA</div>
-                    </div>
-                    <h3>Bowl de Açaí Caseiro</h3>
-                    <div class="receita-info">
-                        <span>⏱️ 7 min</span>
-                        <span>🔥 280 kcal</span>
+                <div class="recipe-card">
+                    <img src="images/receitas/acai.jpg" alt="Bowl de Açaí Caseiro" class="lazy">
+                    <div class="recipe-card-content">
+                        <h3>Bowl de Açaí Caseiro</h3>
+                        <p class="recipe-info">⏱️ 7 minutos | 🔥 280 kcal | 🍓 Cheio de energia</p>
                     </div>
                 </div>
 
-                <div class="receita-card">
-                    <div class="receita-image">
-                        <div class="receita-tag">PRÁTICA</div>
-                    </div>
-                    <h3>Overnight Oats com Frutas</h3>
-                    <div class="receita-info">
-                        <span>⏱️ 5 min</span>
-                        <span>🔥 220 kcal</span>
+                <div class="recipe-card">
+                    <img src="images/receitas/crepioca.jpg" alt="Crepioca Crocante 3 Ingredientes" class="lazy">
+                    <div class="recipe-card-content">
+                        <h3>Crepioca Crocante 3 Ingredientes</h3>
+                        <p class="recipe-info">⏱️ 6 minutos | 🔥 150 kcal | ⚡ Super rápida</p>
                     </div>
                 </div>
 
-                <div class="receita-card">
-                    <div class="receita-image">
-                        <div class="receita-tag">COMPLETA</div>
-                    </div>
-                    <h3>Sanduíche Natural Proteico</h3>
-                    <div class="receita-info">
-                        <span>⏱️ 10 min</span>
-                        <span>🔥 310 kcal</span>
+                <div class="recipe-card">
+                    <img src="images/receitas/overnight-oats.jpg" alt="Overnight Oats com Frutas" class="lazy">
+                    <div class="recipe-card-content">
+                        <h3>Overnight Oats com Frutas</h3>
+                        <p class="recipe-info">⏱️ 5 min (preparo) | 🔥 220 kcal | 🌙 Preparar na véspera</p>
                     </div>
                 </div>
 
-                <div class="receita-card">
-                    <div class="receita-image">
-                        <div class="receita-tag">VEGANA</div>
-                    </div>
-                    <h3>Mingau de Aveia com Canela</h3>
-                    <div class="receita-info">
-                        <span>⏱️ 6 min</span>
-                        <span>🔥 185 kcal</span>
+                <div class="recipe-card">
+                    <img src="images/receitas/sanduiche.jpg" alt="Sanduíche Natural Proteico" class="lazy">
+                    <div class="recipe-card-content">
+                        <h3>Sanduíche Natural Proteico</h3>
+                        <p class="recipe-info">⏱️ 10 minutos | 🔥 310 kcal | 🥪 Completo</p>
                     </div>
                 </div>
 
-                <div class="receita-card">
-                    <div class="receita-image">
-                        <div class="receita-tag">DOCE</div>
-                    </div>
-                    <h3>Crepioca de Banana com Mel</h3>
-                    <div class="receita-info">
-                        <span>⏱️ 8 min</span>
-                        <span>🔥 205 kcal</span>
+                <div class="recipe-card">
+                    <img src="images/receitas/bolo-caneca.jpg" alt="Bolo de Caneca de Chocolate" class="lazy">
+                    <div class="recipe-card-content">
+                        <h3>Bolo de Caneca de Chocolate</h3>
+                        <p class="recipe-info">⏱️ 3 minutos | 🔥 185 kcal | 🍫 Sobremesa express</p>
                     </div>
                 </div>
             </div>
 
-            <p class="receitas-total">+ 190 outras receitas esperando por você</p>
+            <p class="recipes-closing white-text">
+                + 190 outras receitas deliciosas esperando por você!
+            </p>
 
-            <div class="cta-center">
-                <a href="#oferta" class="btn btn-primary">
-                    QUERO TODAS AS RECEITAS
-                </a>
-            </div>
+            <a href="https://pay.cakto.com.br/nbh35by_655203" class="btn btn-secondary btn-cta">GARANTIR MINHA CÓPIA AGORA</a>
         </div>
     </section>
 
-    <!-- SEÇÃO 4: PARA QUEM É -->
-    <section class="para-quem">
+    <!-- SEÇÃO 4: PARA QUEM É ESTE E-BOOK -->
+    <section id="para-quem" class="target-section">
         <div class="container">
-            <h2 class="section-title">Este E-book é Para Você Se:</h2>
-            
-            <div class="problemas-grid">
-                <div class="problema-item">
-                    <div class="problema-icon">🔁</div>
-                    <p>Está cansado de comer sempre a mesma coisa no café da manhã</p>
+            <h2 class="section-title">
+                Este E-book é Perfeito Se Você:
+            </h2>
+
+            <div class="target-list">
+                <div class="target-item">
+                    <span class="check-icon">✓</span>
+                    <div class="target-content">
+                        <h3>Está cansado de comer sempre a mesma coisa no café da manhã</h3>
+                        <p>E quer variedade sem complicação</p>
+                    </div>
                 </div>
 
-                <div class="problema-item">
-                    <div class="problema-icon">⏰</div>
-                    <p>Tem pouco tempo pela manhã e precisa de receitas rápidas</p>
+                <div class="target-item">
+                    <span class="check-icon">✓</span>
+                    <div class="target-content">
+                        <h3>Quer emagrecer ou manter o peso de forma saudável</h3>
+                        <p>Sem passar fome ou comer sem gosto</p>
+                    </div>
                 </div>
 
-                <div class="problema-item">
-                    <div class="problema-icon">💪</div>
-                    <p>Quer emagrecer ou manter o peso sem passar fome</p>
+                <div class="target-item">
+                    <span class="check-icon">✓</span>
+                    <div class="target-content">
+                        <h3>Tem pouco tempo pela manhã</h3>
+                        <p>E precisa de opções rápidas mas nutritivas</p>
+                    </div>
                 </div>
 
-                <div class="problema-item">
-                    <div class="problema-icon">👨‍👩‍👧‍👦</div>
-                    <p>Precisa agradar toda a família com opções saudáveis</p>
+                <div class="target-item">
+                    <span class="check-icon">✓</span>
+                    <div class="target-content">
+                        <h3>Quer alimentar bem sua família</h3>
+                        <p>Com receitas que todos vão gostar</p>
+                    </div>
                 </div>
 
-                <div class="problema-item">
-                    <div class="problema-icon">📖</div>
-                    <p>Não sabe cozinhar muito bem e quer receitas fáceis</p>
+                <div class="target-item">
+                    <span class="check-icon">✓</span>
+                    <div class="target-content">
+                        <h3>Busca mais energia e disposição</h3>
+                        <p>Começando o dia com a alimentação certa</p>
+                    </div>
                 </div>
 
-                <div class="problema-item">
-                    <div class="problema-icon">⚡</div>
-                    <p>Busca mais energia e disposição começando bem o dia</p>
+                <div class="target-item">
+                    <span class="check-icon">✓</span>
+                    <div class="target-content">
+                        <h3>Não sabe cozinhar muito bem</h3>
+                        <p>E precisa de receitas fáceis e explicadas passo a passo</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SEÇÃO 5: BÔNUS -->
-    <section class="bonus">
+    <!-- SEÇÃO 5: BÔNUS EXCLUSIVOS -->
+    <section id="bonus" class="bonus-section">
         <div class="container">
-            <h2 class="section-title">Bônus Exclusivos Se Comprar Hoje:</h2>
-            
+            <h2 class="section-title white-text">
+                Compre Hoje e Ganhe 3 Bônus Especiais:
+            </h2>
+
             <div class="bonus-grid">
                 <div class="bonus-card">
                     <div class="bonus-badge">BÔNUS 1</div>
-                    <h3>Guia de Combinações Balanceadas</h3>
-                    <p>30 combinações prontas de café da manhã completo para cada necessidade: emagrecimento, ganho de massa, energia extra</p>
-                    <div class="bonus-valor">
-                        <span class="valor-original">R$ 27,00</span>
-                        <span class="valor-atual">GRÁTIS</span>
-                    </div>
+                    <h3>GUIA: 30 Combinações Perfeitas de Café da Manhã</h3>
+                    <p class="bonus-value">Valor: <span class="strikethrough">R$27,00</span></p>
+                    <p class="bonus-free">GRÁTIS HOJE!</p>
+                    <p class="bonus-description">
+                        Aprenda a montar cafés da manhã balanceados combinando
+                        as receitas do e-book
+                    </p>
                 </div>
 
                 <div class="bonus-card">
                     <div class="bonus-badge">BÔNUS 2</div>
-                    <h3>Lista de Compras Inteligente</h3>
-                    <p>Lista organizada por categoria com todos os ingredientes essenciais para você fazer compras rápidas e econômicas</p>
-                    <div class="bonus-valor">
-                        <span class="valor-original">R$ 17,00</span>
-                        <span class="valor-atual">GRÁTIS</span>
-                    </div>
+                    <h3>LISTA DE COMPRAS INTELIGENTE</h3>
+                    <p class="bonus-value">Valor: <span class="strikethrough">R$17,00</span></p>
+                    <p class="bonus-free">GRÁTIS HOJE!</p>
+                    <p class="bonus-description">
+                        Lista organizada por supermercado com todos os
+                        ingredientes essenciais
+                    </p>
                 </div>
 
                 <div class="bonus-card">
                     <div class="bonus-badge">BÔNUS 3</div>
-                    <h3>Meal Prep: Organize Sua Semana</h3>
-                    <p>Método passo a passo para preparar ingredientes com antecedência e economizar até 90 minutos por semana</p>
-                    <div class="bonus-valor">
-                        <span class="valor-original">R$ 19,00</span>
-                        <span class="valor-atual">GRÁTIS</span>
-                    </div>
+                    <h3>50 DICAS DE ORGANIZAÇÃO PARA MANHÃS SEM ESTRESSE</h3>
+                    <p class="bonus-value">Valor: <span class="strikethrough">R$19,00</span></p>
+                    <p class="bonus-free">GRÁTIS HOJE!</p>
+                    <p class="bonus-description">
+                        Truques práticos para preparar tudo com antecedência
+                        e economizar tempo
+                    </p>
                 </div>
             </div>
 
             <div class="bonus-total">
-                <p>Valor total dos bônus: <span class="destaque">R$ 63,00</span> - Seu hoje gratuitamente</p>
+                Valor Total dos Bônus: <span class="bonus-total-value">R$63,00 EM BÔNUS - GRÁTIS SE COMPRAR HOJE!</span>
             </div>
 
-            <div class="cta-center">
-                <a href="#oferta" class="btn btn-primary btn-large pulse">
-                    QUERO O E-BOOK + OS BÔNUS
-                </a>
-            </div>
+            <a href="https://pay.cakto.com.br/nbh35by_655203" class="btn btn-secondary btn-cta pulse">QUERO O E-BOOK + OS 3 BÔNUS!</a>
         </div>
     </section>
 
-    <!-- SEÇÃO 6: DEPOIMENTOS -->
-    <section class="depoimentos">
+    <!-- SEÇÃO 6: PROVA SOCIAL (DEPOIMENTOS) -->
+    <section id="depoimentos" class="testimonials-section">
         <div class="container">
-            <h2 class="section-title">O Que Dizem Quem Já Usa:</h2>
-            
-            <div class="depoimentos-grid">
-                <div class="depoimento-card">
-                    <div class="depoimento-estrelas">⭐⭐⭐⭐⭐</div>
-                    <p class="depoimento-texto">"Finalmente variei o café da manhã! Meus filhos adoraram as panquecas e eu perdi 6kg em 2 meses. Melhor investimento!"</p>
-                    <div class="depoimento-autor">
-                        <strong>Maria Fernanda</strong>
-                        <span>São Paulo, SP</span>
-                    </div>
-                </div>
+            <h2 class="section-title">
+                Veja o Que Dizem Quem Já Tem as Receitas:
+            </h2>
 
-                <div class="depoimento-card">
-                    <div class="depoimento-estrelas">⭐⭐⭐⭐⭐</div>
-                    <p class="depoimento-texto">"Sou péssima na cozinha mas consegui fazer todas! O passo a passo é muito claro. Economizo R$ 200/mês que gastava na padaria."</p>
-                    <div class="depoimento-autor">
-                        <strong>Ana Carolina</strong>
-                        <span>Rio de Janeiro, RJ</span>
-                    </div>
-                </div>
-
-                <div class="depoimento-card">
-                    <div class="depoimento-estrelas">⭐⭐⭐⭐⭐</div>
-                    <p class="depoimento-texto">"Tenho intolerância ao glúten e finalmente encontrei receitas deliciosas que posso comer. Minha energia triplicou!"</p>
-                    <div class="depoimento-autor">
-                        <strong>Patricia Oliveira</strong>
-                        <span>Curitiba, PR</span>
-                    </div>
-                </div>
-
-                <div class="depoimento-card">
-                    <div class="depoimento-estrelas">⭐⭐⭐⭐⭐</div>
-                    <p class="depoimento-texto">"Meu marido que pulava café da manhã agora acorda animado! As receitas são rápidas e realmente gostosas."</p>
-                    <div class="depoimento-autor">
-                        <strong>Fernanda Costa</strong>
-                        <span>Belo Horizonte, MG</span>
-                    </div>
-                </div>
-
-                <div class="depoimento-card">
-                    <div class="depoimento-estrelas">⭐⭐⭐⭐⭐</div>
-                    <p class="depoimento-texto">"Estava gastando muito tempo pensando no que fazer. Agora é só escolher uma das 200 e pronto! Simples assim."</p>
-                    <div class="depoimento-autor">
-                        <strong>Roberto Silva</strong>
-                        <span>Brasília, DF</span>
-                    </div>
-                </div>
-
-                <div class="depoimento-card">
-                    <div class="depoimento-estrelas">⭐⭐⭐⭐⭐</div>
-                    <p class="depoimento-texto">"Meus filhos pequenos comem tudo! Não sabia que era possível fazer café saudável que criança gosta. Aprovadíssimo!"</p>
-                    <div class="depoimento-autor">
-                        <strong>Juliana Mendes</strong>
-                        <span>Salvador, BA</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SEÇÃO 7: OFERTA -->
-    <section class="oferta" id="oferta">
-        <div class="container">
-            <div class="oferta-box">
-                <h2 class="oferta-title">200 Receitas de Café da Manhã</h2>
-                <p class="oferta-subtitle">+ 3 Bônus Exclusivos</p>
-
-                <div class="oferta-inclui">
-                    <h3>Você recebe hoje:</h3>
-                    <ul>
-                        <li>✓ E-book com 200 Receitas Completas</li>
-                        <li>✓ Informações Nutricionais de Cada Receita</li>
-                        <li>✓ Fotos e Passo a Passo Detalhado</li>
-                        <li>✓ Bônus 1: Guia de Combinações (R$ 27)</li>
-                        <li>✓ Bônus 2: Lista de Compras (R$ 17)</li>
-                        <li>✓ Bônus 3: Meal Prep (R$ 19)</li>
-                        <li>✓ Acesso Vitalício + Atualizações Grátis</li>
-                    </ul>
-                </div>
-
-                <div class="oferta-preco">
-                    <div class="preco-breakdown">
-                        <div class="preco-linha">
-                            <span>E-book 200 Receitas</span>
-                            <span>R$ 97,00</span>
-                        </div>
-                        <div class="preco-linha">
-                            <span>3 Bônus Exclusivos</span>
-                            <span>R$ 63,00</span>
-                        </div>
-                        <div class="preco-linha preco-total-riscado">
-                            <span>Valor Total</span>
-                            <span>R$ 160,00</span>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">
+                        "Finalmente consegui variar o café da manhã dos meus filhos!
+                        Eles adoraram as panquecas e o pão de queijo fit. Recomendo demais!"
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="images/avatares/avatar-1.jpg" alt="Maria Santos" class="testimonial-photo">
+                        <div class="testimonial-info">
+                            <strong>Maria Santos</strong>
+                            <span>São Paulo/SP</span>
                         </div>
                     </div>
+                </div>
 
-                    <div class="preco-oferta">
-                        <p class="preco-de">De <span>R$ 160,00</span> por apenas:</p>
-                        <div class="preco-principal">
-                            R$ 27,00
-                        </div>
-                        <p class="preco-parcelado">ou 3x de R$ 9,54 sem juros</p>
-                        <div class="preco-economia">
-                            <span>Você economiza R$ 133,00 (83% de desconto)</span>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">
+                        "Perdi 8kg em 3 meses só mudando meu café da manhã. As receitas
+                        são gostosas e fáceis de fazer. Melhor investimento!"
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="images/avatares/avatar-12.jpg" alt="João Pedro" class="testimonial-photo">
+                        <div class="testimonial-info">
+                            <strong>João Pedro</strong>
+                            <span>Rio de Janeiro/RJ</span>
                         </div>
                     </div>
+                </div>
 
-                    <div class="cta-oferta">
-                        <a href="https://pay.kiwify.com.br/SEULINK" class="btn btn-comprar btn-large pulse">
-                            GARANTIR MINHA CÓPIA AGORA
-                        </a>
-                        <p class="cta-seguranca">🔒 Compra 100% Segura • Acesso Imediato</p>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">
+                        "Sou péssima na cozinha mas consegui fazer todas as receitas!
+                        O passo a passo é muito claro. Mudou minha rotina!"
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="images/avatares/avatar-5.jpg" alt="Ana Carolina" class="testimonial-photo">
+                        <div class="testimonial-info">
+                            <strong>Ana Carolina</strong>
+                            <span>Belo Horizonte/MG</span>
+                        </div>
                     </div>
+                </div>
 
-                    <div class="urgencia">
-                        <p>⏰ Oferta válida apenas para os próximos</p>
-                        <div id="countdown" class="countdown">
-                            <div class="countdown-item">
-                                <span id="hours">00</span>
-                                <span>horas</span>
-                            </div>
-                            <div class="countdown-item">
-                                <span id="minutes">00</span>
-                                <span>min</span>
-                            </div>
-                            <div class="countdown-item">
-                                <span id="seconds">00</span>
-                                <span>seg</span>
-                            </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">
+                        "Economizei muito parando de comprar café da manhã na rua.
+                        As receitas custam centavos e são mais saudáveis!"
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="images/avatares/avatar-13.jpg" alt="Roberto Lima" class="testimonial-photo">
+                        <div class="testimonial-info">
+                            <strong>Roberto Lima</strong>
+                            <span>Curitiba/PR</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">
+                        "Meu marido que não gostava de café da manhã agora acorda animado
+                        pra comer! Todas as receitas são aprovadas aqui em casa."
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="images/avatares/avatar-9.jpg" alt="Fernanda Costa" class="testimonial-photo">
+                        <div class="testimonial-info">
+                            <strong>Fernanda Costa</strong>
+                            <span>Salvador/BA</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">
+                        "Tenho intolerância ao glúten e finalmente encontrei receitas
+                        deliciosas que posso comer sem preocupação. Amei!"
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="images/avatares/avatar-20.jpg" alt="Patricia Oliveira" class="testimonial-photo">
+                        <div class="testimonial-info">
+                            <strong>Patricia Oliveira</strong>
+                            <span>Brasília/DF</span>
                         </div>
                     </div>
                 </div>
@@ -438,164 +461,312 @@
         </div>
     </section>
 
-    <!-- SEÇÃO 8: GARANTIA -->
-    <section class="garantia">
+    <!-- SEÇÃO 7: OFERTA IRRESISTÍVEL (PREÇO) -->
+    <section id="oferta" class="offer-section">
         <div class="container">
-            <div class="garantia-box">
-                <div class="garantia-selo">
-                    <div class="selo-badge">7 DIAS</div>
-                    <h3>Garantia Incondicional</h3>
+            <h2 class="section-title white-text center">
+                200 RECEITAS DE CAFÉ DA MANHÃ + 3 BÔNUS EXCLUSIVOS
+            </h2>
+
+            <div class="price-breakdown">
+                <div class="price-item">
+                    <span>✓ E-book com 200 Receitas</span>
+                    <span>R$ 97,00</span>
                 </div>
-                <div class="garantia-texto">
-                    <h3>Experimente Sem Risco Por 7 Dias</h3>
-                    <p>Se você não ficar 100% satisfeito com as receitas, devolvemos seu dinheiro sem fazer perguntas. É simples: você só paga se gostar.</p>
-                    <p class="garantia-destaque">Você não tem nada a perder, apenas 200 receitas deliciosas a ganhar.</p>
+                <div class="price-item">
+                    <span>✓ Bônus 1: Combinações Perfeitas</span>
+                    <span>R$ 27,00</span>
+                </div>
+                <div class="price-item">
+                    <span>✓ Bônus 2: Lista de Compras</span>
+                    <span>R$ 17,00</span>
+                </div>
+                <div class="price-item">
+                    <span>✓ Bônus 3: 50 Dicas de Organização</span>
+                    <span>R$ 19,00</span>
+                </div>
+                <div class="price-divider"></div>
+                <div class="price-total">
+                    <span>VALOR TOTAL</span>
+                    <span>R$ 160,00</span>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- SEÇÃO 9: FAQ -->
-    <section class="faq">
-        <div class="container">
-            <h2 class="section-title">Perguntas Frequentes:</h2>
-            
-            <div class="faq-list">
-                <div class="faq-item">
-                    <button class="faq-question">
-                        As receitas são realmente fáceis de fazer?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Sim! Todas as receitas foram testadas por pessoas com diferentes níveis de habilidade. Se você consegue fritar um ovo, consegue fazer essas receitas. O passo a passo é claro e com fotos.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">
-                        Preciso de ingredientes caros ou difíceis de encontrar?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Não! Todos os ingredientes você encontra em qualquer supermercado. Nada de produtos importados ou caros. Priorizamos o que é acessível para o brasileiro.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">
-                        Quanto tempo leva para preparar cada receita?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Entre 5 e 20 minutos. A maioria fica pronta em menos de 15 minutos. Perfeitas para a correria do dia a dia.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">
-                        Tem receitas para quem quer emagrecer?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Sim! Há uma seção completa com receitas fit de baixas calorias. Todas com informações nutricionais detalhadas para você acompanhar sua dieta.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">
-                        Tem opções vegetarianas e veganas?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Com certeza! Há dezenas de opções vegetarianas e veganas, todas claramente identificadas no e-book.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">
-                        Como vou receber o e-book?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Você recebe o link de download por email imediatamente após a confirmação do pagamento. Pode acessar no celular, tablet ou computador.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">
-                        Posso imprimir as receitas?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Sim! O e-book é em PDF e você pode imprimir, salvar no celular ou acessar de qualquer dispositivo. É 100% seu.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">
-                        E se eu não gostar das receitas?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Você tem 7 dias de garantia incondicional. Se não ficar satisfeito, devolvemos seu dinheiro sem perguntas.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">
-                        Posso pagar parcelado?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Sim! Você pode parcelar em até 3x sem juros no cartão de crédito. Também aceitamos PIX e boleto.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">
-                        As receitas servem para a família toda?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Sim! As receitas são pensadas para agradar todos os paladares, de crianças a adultos. Há opções para todos os gostos.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SEÇÃO 10: CTA FINAL -->
-    <section class="cta-final">
-        <div class="container">
-            <h2>Não Deixe Para Amanhã O Que Pode Mudar Hoje</h2>
-            <p>Milhares de pessoas já transformaram suas manhãs. Sua vez é agora.</p>
-            
-            <div class="cta-final-beneficios">
-                <div>✓ 200 Receitas Completas</div>
-                <div>✓ R$ 63 em Bônus Grátis</div>
-                <div>✓ Garantia de 7 Dias</div>
-                <div>✓ Acesso Imediato</div>
+            <div class="final-price">
+                <p class="de-por">De <span class="old-price">R$160,00</span> por apenas:</p>
+                <p class="current-price">R$ 27,00</p>
+                <p class="installments">à vista ou 3x de R$9,00 sem juros</p>
             </div>
 
-            <a href="#oferta" class="btn btn-primary btn-large pulse">
-                SIM, QUERO TRANSFORMAR MEUS CAFÉS DA MANHÃ
+            <div class="discount-badge">83% DE DESCONTO</div>
+
+            <div class="urgency-alert">
+                <span class="urgency-icon">⏰</span>
+                ATENÇÃO: Esta oferta expira em 48 horas!
+            </div>
+
+            <div class="guarantee-box">
+                <div class="guarantee-icon">🛡️</div>
+                <div class="guarantee-content">
+                    <h3>GARANTIA INCONDICIONAL DE 7 DIAS</h3>
+                    <p>
+                        Se você não ficar 100% satisfeito com as receitas,
+                        devolvemos seu dinheiro sem perguntas. Simples assim!
+                    </p>
+                </div>
+            </div>
+
+            <a href="https://pay.cakto.com.br/nbh35by_655203" class="btn btn-urgent btn-cta-main pulse">
+                SIM! QUERO AS 200 RECEITAS COM 83% DE DESCONTO
             </a>
 
-            <p class="cta-final-seguranca">🔒 Pagamento 100% Seguro • Acesso Vitalício</p>
+            <div class="security-info">
+                <p>🔒 Compra 100% Segura e Protegida</p>
+                <p>📱 Acesso Imediato por Email e WhatsApp</p>
+            </div>
+
+            <p class="small-text">
+                Após a confirmação do pagamento, você receberá o acesso imediato
+                no seu email e WhatsApp. Pode usar no celular, tablet ou computador.
+            </p>
         </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- SEÇÃO 8: COMO VOCÊ VAI RECEBER -->
+    <section id="como-receber" class="how-section">
+        <div class="container">
+            <h2 class="section-title">
+                Como Funciona Após a Compra?
+            </h2>
+
+            <div class="steps-timeline">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">💳</div>
+                    <h3>COMPRA APROVADA</h3>
+                    <p>Pagamento 100% seguro por cartão, PIX ou boleto</p>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">📧</div>
+                    <h3>ACESSO IMEDIATO</h3>
+                    <p>Receba o link de download no email e WhatsApp em até 5 minutos</p>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">📱</div>
+                    <h3>BAIXE E COMECE</h3>
+                    <p>Acesse de qualquer dispositivo: celular, tablet ou computador</p>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">🍳</div>
+                    <h3>TRANSFORME SUAS MANHÃS</h3>
+                    <p>Comece a preparar receitas deliciosas ainda hoje!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 9: FAQ (PERGUNTAS FREQUENTES) -->
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <h2 class="section-title white-text">
+                Perguntas Frequentes:
+            </h2>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>❓ As receitas são realmente fáceis de fazer?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Sim! Todas as receitas foram testadas e aprovadas por pessoas com
+                            diferentes níveis de habilidade na cozinha. Se você consegue fritar
+                            um ovo, consegue fazer essas receitas.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>❓ Preciso de ingredientes caros ou difíceis de encontrar?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Não! Todas as receitas usam ingredientes que você encontra em qualquer
+                            supermercado. Nada de produtos importados ou caros.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>❓ Quanto tempo leva para preparar cada receita?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            A maioria das receitas fica pronta entre 5 e 20 minutos. Perfeitas
+                            para a correria do dia a dia!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>❓ Tem receitas para quem quer emagrecer?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Sim! O e-book inclui uma seção completa com receitas fit e com baixas
+                            calorias, todas com informações nutricionais detalhadas.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>❓ Tem opções vegetarianas e veganas?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Com certeza! Há dezenas de opções para vegetarianos e veganos,
+                            todas claramente identificadas.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>❓ Serve para fazer para a família toda?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Sim! As receitas são pensadas para agradar todos os paladares,
+                            de crianças a adultos. Muitas famílias já usam o e-book.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>❓ Como vou receber o e-book?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Você recebe o link de download por email e WhatsApp logo após a
+                            confirmação do pagamento. O acesso é imediato!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>❓ Posso imprimir as receitas?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Sim! Você pode imprimir, salvar no celular, ou acessar de qualquer
+                            dispositivo. O e-book é 100% seu.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>❓ E se eu não gostar das receitas?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Você tem 7 dias de garantia total. Se não ficar satisfeito,
+                            devolvemos seu dinheiro sem perguntas.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>❓ Posso pagar parcelado?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Sim! Você pode parcelar em até 3x sem juros no cartão de crédito.
+                            Também aceitamos PIX e boleto.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 10: ÚLTIMO CTA (URGÊNCIA FINAL) -->
+    <section id="final-cta" class="final-cta-section">
+        <div class="container">
+            <h2 class="section-title white-text center">
+                Não Perca Esta Oportunidade!
+            </h2>
+
+            <p class="final-copy">
+                Milhares de pessoas já transformaram suas manhãs com estas receitas.
+                Agora é a sua vez!
+            </p>
+
+            <div class="final-benefits">
+                <p>✅ 200 Receitas Práticas e Deliciosas</p>
+                <p>✅ Informações Nutricionais Completas</p>
+                <p>✅ Passo a Passo com Fotos</p>
+                <p>✅ 3 Bônus Exclusivos (R$63,00 de valor)</p>
+                <p>✅ Garantia de 7 Dias</p>
+                <p>✅ Acesso Vitalício</p>
+                <p>✅ Atualizações Gratuitas</p>
+            </div>
+
+            <p class="final-price-text">
+                Por apenas <strong>R$27,00</strong> (83% de desconto)
+            </p>
+
+            <div class="countdown-timer">
+                <p class="countdown-label">⏰ Esta oferta expira em:</p>
+                <div id="timer" class="timer-display">47:59:32</div>
+            </div>
+
+            <a href="https://pay.cakto.com.br/nbh35by_655203" class="btn btn-urgent btn-cta-final pulse">
+                GARANTIR MINHA CÓPIA COM DESCONTO AGORA!
+            </a>
+
+            <div class="final-security">
+                <p>🔒 Pagamento 100% Seguro</p>
+                <p>📱 Acesso Imediato</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <p>&copy; 2025 200 Receitas de Café da Manhã. Todos os direitos reservados.</p>
-            <p class="footer-links">
-                <a href="#" onclick="return false;">Política de Privacidade</a> | 
-                <a href="#" onclick="return false;">Termos de Uso</a>
-            </p>
+            <p>Este site não faz parte do Facebook ou do Facebook Inc. Além disso, este site NÃO é endossado pelo Facebook de forma alguma.</p>
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+    <!-- TODO: Adicionar Facebook Pixel -->
+    <!-- TODO: Adicionar Google Analytics -->
 </body>
 </html>
