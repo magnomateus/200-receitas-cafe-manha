@@ -260,32 +260,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     /* ======================================================================
-       9. OTIMIZAÇÕES DE PERFORMANCE
-       ====================================================================== */
-
-    // Pausar animações quando fora da viewport (economia de recursos)
-    if ('IntersectionObserver' in window) {
-        const carouselObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                const carousel = entry.target.querySelector('.carousel-track');
-                if (carousel) {
-                    if (entry.isIntersecting) {
-                        carousel.style.animationPlayState = 'running';
-                    } else {
-                        carousel.style.animationPlayState = 'paused';
-                    }
-                }
-            });
-        });
-
-        const carouselContainer = document.querySelector('.carousel-container');
-        if (carouselContainer) {
-            carouselObserver.observe(carouselContainer);
-        }
-    }
-
-    /* ======================================================================
-       10. DETECÇÃO DE DISPOSITIVO (para ajustes de UX)
+       9. DETECÇÃO DE DISPOSITIVO (para ajustes de UX)
        ====================================================================== */
 
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
