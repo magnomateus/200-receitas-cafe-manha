@@ -239,11 +239,11 @@ document.addEventListener('DOMContentLoaded', function() {
        8. TRACKING DE CONVERSÃO (Links de checkout)
        ====================================================================== */
 
-    const checkoutLinks = document.querySelectorAll('a[href*="pay.cakto.com.br"]');
+    const checkoutLinks = document.querySelectorAll('a[href*="pay.lowify.com.br"]');
     checkoutLinks.forEach(link => {
         link.addEventListener('click', function() {
             // Tracking de conversão
-            console.log('Checkout link clicked - Redirecionando para Cakto');
+            console.log('Checkout link clicked - Redirecionando para Lowify');
 
             // Quando configurar analytics, descomentar:
             // if (typeof gtag !== 'undefined') {
