@@ -302,42 +302,35 @@ p {
     background: var(--secondary-beige);
 }
 
-.benefits-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-lg);
-    margin-bottom: var(--space-lg);
+/* Benefits List - Clean & Direct */
+.benefits-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto var(--space-lg);
+    max-width: 700px;
 }
 
-.benefit-item {
-    background: white;
-    padding: var(--space-lg);
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease;
-}
-
-.benefit-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-}
-
-.benefit-icon {
-    font-size: 60px;
-    margin-bottom: var(--space-sm);
-}
-
-.benefit-item h3 {
-    font-size: 1.25rem;
-    margin-bottom: var(--space-sm);
+.benefit-list-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    font-size: 1.15rem;
     color: var(--text-dark);
+    font-weight: var(--weight-medium);
 }
 
-.benefit-item p {
-    font-size: 1rem;
-    color: var(--text-light);
-    margin-bottom: 0;
+.benefit-list-item:last-child {
+    border-bottom: none;
+}
+
+.benefit-list-item .benefit-icon {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    color: var(--primary-orange);
+    stroke-width: 3;
 }
 
 /* ==========================================================================
@@ -951,7 +944,6 @@ p {
         padding: 56px 0;
     }
 
-    .benefits-grid,
     .recipes-grid,
     .bonus-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1006,12 +998,21 @@ p {
         font-size: 1rem;
     }
 
-    .benefits-grid,
     .recipes-grid,
     .bonus-grid,
     .testimonials-grid,
     .steps-timeline {
         grid-template-columns: 1fr;
+    }
+
+    .benefit-list-item {
+        font-size: 1.05rem;
+        padding: 16px 0;
+    }
+
+    .benefit-list-item .benefit-icon {
+        width: 24px;
+        height: 24px;
     }
 
     .hero-images-showcase {
