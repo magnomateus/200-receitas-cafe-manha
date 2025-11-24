@@ -1124,6 +1124,44 @@ p {
         gap: var(--space-md);
     }
 
+    /* Otimização dos bonus-cards para mobile */
+    .bonus-card {
+        padding: var(--space-md);
+    }
+
+    .bonus-image {
+        max-width: 180px;
+        height: 150px;
+        margin-bottom: var(--space-sm);
+    }
+
+    .bonus-badge {
+        font-size: 0.75rem;
+        padding: 4px 12px;
+        margin-bottom: 12px;
+    }
+
+    .bonus-card h3 {
+        font-size: 1.1rem;
+        margin-bottom: 12px;
+        line-height: 1.25;
+    }
+
+    .bonus-value {
+        font-size: 0.95rem;
+        margin-bottom: 6px;
+    }
+
+    .bonus-free {
+        font-size: 1.25rem;
+        margin-bottom: 12px;
+    }
+
+    .bonus-description {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
     .steps-timeline {
         gap: var(--space-lg);
     }
@@ -1166,6 +1204,52 @@ p {
 
     .btn {
         padding: 14px 20px;
+        font-size: 0.95rem;
+    }
+
+    /* Otimização extra dos bonus-cards para mobile pequeno */
+    .bonus-card {
+        padding: 16px;
+    }
+
+    .bonus-image {
+        max-width: 150px;
+        height: 130px;
+        margin-bottom: 12px;
+    }
+
+    .bonus-badge {
+        font-size: 0.7rem;
+        padding: 3px 10px;
+        margin-bottom: 10px;
+    }
+
+    .bonus-card h3 {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+
+    .bonus-value {
+        font-size: 0.85rem;
+        margin-bottom: 4px;
+    }
+
+    .bonus-free {
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+    }
+
+    .bonus-description {
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+
+    .bonus-total {
+        font-size: 0.9rem;
+        padding: 12px;
+    }
+
+    .bonus-total-value {
         font-size: 0.95rem;
     }
 }
