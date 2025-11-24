@@ -517,9 +517,9 @@ p {
 
 .bonus-free {
     color: var(--primary-green);
-    font-size: 1.5rem;
+    font-size: inherit;
     font-weight: var(--weight-extrabold);
-    margin-bottom: var(--space-sm);
+    display: inline;
 }
 
 .bonus-description {
