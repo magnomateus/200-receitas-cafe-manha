@@ -56,42 +56,67 @@ document.addEventListener('DOMContentLoaded', function() {
     startCountdown();
 
     /* ======================================================================
+       1.4. DATA DE EXPIRAÇÃO DA OFERTA (ATUALIZA DIARIAMENTE)
+       ====================================================================== */
+
+    function setOfferExpirationDate() {
+        const offerDateElement = document.getElementById('offer-date');
+        if (!offerDateElement) return;
+
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+
+        const months = [
+            'JANEIRO', 'FEVEREIRO', 'MARÇO', 'ABRIL', 'MAIO', 'JUNHO',
+            'JULHO', 'AGOSTO', 'SETEMBRO', 'OUTUBRO', 'NOVEMBRO', 'DEZEMBRO'
+        ];
+
+        const day = tomorrow.getDate();
+        const month = months[tomorrow.getMonth()];
+
+        offerDateElement.textContent = `${day} DE ${month}`;
+    }
+
+    setOfferExpirationDate();
+
+    /* ======================================================================
        1.5. POPUP DE NOTIFICAÇÃO DE COMPRA
        ====================================================================== */
 
     function showPurchaseNotification() {
-        // Lista de nomes e cidades para randomizar
+        // Lista de nomes para randomizar
         const names = [
             'Maria Silva', 'João Santos', 'Ana Costa', 'Pedro Oliveira',
             'Juliana Souza', 'Carlos Ferreira', 'Fernanda Lima', 'Lucas Almeida',
             'Beatriz Rocha', 'Rafael Martins', 'Camila Barbosa', 'Thiago Ribeiro',
             'Patricia Gomes', 'Bruno Carvalho', 'Amanda Dias', 'Rodrigo Pereira',
-            'Gabriela Castro', 'Felipe Araujo', 'Larissa Fernandes', 'Marcos Mendes'
-        ];
-
-        const cities = [
-            'São Paulo - SP', 'Rio de Janeiro - RJ', 'Belo Horizonte - MG',
-            'Curitiba - PR', 'Porto Alegre - RS', 'Salvador - BA',
-            'Brasília - DF', 'Fortaleza - CE', 'Recife - PE',
-            'Manaus - AM', 'Goiânia - GO', 'Belém - PA',
-            'Campinas - SP', 'São Luís - MA', 'Natal - RN',
-            'João Pessoa - PB', 'Florianópolis - SC', 'Vitória - ES'
+            'Gabriela Castro', 'Felipe Araujo', 'Larissa Fernandes', 'Marcos Mendes',
+            'Ronaldo Costa', 'Adriana Nunes', 'Ricardo Lima', 'Tatiana Sousa'
         ];
 
         // Selecionar aleatoriamente
         const randomName = names[Math.floor(Math.random() * names.length)];
-        const randomCity = cities[Math.floor(Math.random() * cities.length)];
         const randomMinutes = Math.floor(Math.random() * 10) + 1; // 1 a 10 minutos
+
+        // Mensagens variadas
+        const messages = [
+            `<strong>${randomName}</strong> acabou de comprar no PIX!`,
+            `<strong>${randomName}</strong> comprou no PIX há ${randomMinutes} minuto${randomMinutes > 1 ? 's' : ''}!`,
+            `<strong>${randomName}</strong> acabou de adquirir no PIX!`,
+            `<strong>${randomName}</strong> comprou via PIX agora!`
+        ];
+
+        const randomMessage = messages[Math.floor(Math.random() * messages.length)];
 
         // Criar elemento do popup
         const notification = document.createElement('div');
         notification.className = 'purchase-notification';
         notification.innerHTML = `
             <div class="notification-content">
-                <div class="notification-icon">🔔</div>
+                <div class="notification-icon">💳</div>
                 <div class="notification-text">
-                    <strong>${randomName}</strong> de <strong>${randomCity}</strong><br>
-                    acabou de adquirir o e-book!
+                    ${randomMessage}
                 </div>
                 <button class="notification-close">×</button>
             </div>
