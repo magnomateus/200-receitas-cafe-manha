@@ -191,21 +191,9 @@ p {
     color: var(--text-white);
 }
 
-.btn-primary:hover {
-    background: rgb(39, 154, 60);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(44, 172, 67, 0.3);
-}
-
 .btn-secondary {
     background: var(--primary-orange);
     color: var(--text-white);
-}
-
-.btn-secondary:hover {
-    background: rgb(235, 87, 33);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
 }
 
 .btn-urgent {
@@ -216,10 +204,25 @@ p {
     font-weight: var(--weight-bold);
 }
 
-.btn-urgent:hover {
-    background: rgb(211, 56, 40);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(231, 76, 60, 0.4);
+/* Hover effects para botões apenas em desktop (não-touch) */
+@media (hover: hover) and (pointer: fine) {
+    .btn-primary:hover {
+        background: rgb(39, 154, 60);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(44, 172, 67, 0.3);
+    }
+
+    .btn-secondary:hover {
+        background: rgb(235, 87, 33);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+    }
+
+    .btn-urgent:hover {
+        background: rgb(211, 56, 40);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(231, 76, 60, 0.4);
+    }
 }
 
 .btn-cta, .btn-cta-main, .btn-cta-final {
@@ -357,9 +360,12 @@ p {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.recipe-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+/* Hover effects apenas em desktop (não-touch) */
+@media (hover: hover) and (pointer: fine) {
+    .recipe-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
 }
 
 .recipe-card img {
@@ -464,9 +470,11 @@ p {
     transition: transform 0.3s ease;
 }
 
-.bonus-card:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.15);
+@media (hover: hover) and (pointer: fine) {
+    .bonus-card:hover {
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.15);
+    }
 }
 
 .bonus-badge {
@@ -819,8 +827,10 @@ p {
     transition: background 0.3s ease;
 }
 
-.faq-question:hover {
-    background: rgba(255, 255, 255, 0.1);
+@media (hover: hover) and (pointer: fine) {
+    .faq-question:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
 }
 
 .faq-toggle {
@@ -927,6 +937,66 @@ p {
 .footer p {
     margin-bottom: var(--space-xs);
     font-size: var(--small-size);
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE - DESKTOP EXTRA LARGE (> 1600px)
+   ========================================================================== */
+
+@media (min-width: 1601px) {
+    :root {
+        --container-width: 1500px;
+        --h1-size: 4.5rem;
+        --h2-size: 3.25rem;
+        --h3-size: 2.25rem;
+    }
+
+    .recipes-grid {
+        grid-template-columns: repeat(5, 1fr);
+        max-width: 1400px;
+        margin: 0 auto var(--space-lg);
+    }
+
+    .hero-images-showcase {
+        max-width: 700px;
+    }
+
+    .current-price {
+        font-size: 5.5rem;
+    }
+
+    .timer-display {
+        font-size: 4rem;
+    }
+
+    section {
+        padding: calc(var(--space-xl) * 1.5) 0;
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE - DESKTOP GRANDE (1200px - 1600px)
+   ========================================================================== */
+
+@media (min-width: 1200px) and (max-width: 1600px) {
+    .recipes-grid,
+    .bonus-grid {
+        max-width: 1100px;
+        margin: 0 auto var(--space-lg);
+    }
+
+    .hero-images-showcase {
+        max-width: 550px;
+    }
+
+    .testimonials-grid {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .steps-timeline {
+        max-width: 1100px;
+    }
 }
 
 /* ==========================================================================
