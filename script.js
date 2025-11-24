@@ -18,8 +18,8 @@ document.addEventListener('DOMContentLoaded', function() {
         let endTime = localStorage.getItem('countdownEndTime');
 
         if (!endTime) {
-            // Se não existe, criar novo countdown de 48 horas
-            endTime = new Date().getTime() + (48 * 60 * 60 * 1000);
+            // Se não existe, criar novo countdown de 15 minutos
+            endTime = new Date().getTime() + (15 * 60 * 1000);
             localStorage.setItem('countdownEndTime', endTime);
         }
 
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (distance < 0) {
                 // Se o tempo acabou, reiniciar
-                endTime = new Date().getTime() + (48 * 60 * 60 * 1000);
+                endTime = new Date().getTime() + (15 * 60 * 1000);
                 localStorage.setItem('countdownEndTime', endTime);
                 return;
             }
@@ -54,6 +54,79 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     startCountdown();
+
+    /* ======================================================================
+       1.5. POPUP DE NOTIFICAÇÃO DE COMPRA
+       ====================================================================== */
+
+    function showPurchaseNotification() {
+        // Lista de nomes e cidades para randomizar
+        const names = [
+            'Maria Silva', 'João Santos', 'Ana Costa', 'Pedro Oliveira',
+            'Juliana Souza', 'Carlos Ferreira', 'Fernanda Lima', 'Lucas Almeida',
+            'Beatriz Rocha', 'Rafael Martins', 'Camila Barbosa', 'Thiago Ribeiro',
+            'Patricia Gomes', 'Bruno Carvalho', 'Amanda Dias', 'Rodrigo Pereira',
+            'Gabriela Castro', 'Felipe Araujo', 'Larissa Fernandes', 'Marcos Mendes'
+        ];
+
+        const cities = [
+            'São Paulo - SP', 'Rio de Janeiro - RJ', 'Belo Horizonte - MG',
+            'Curitiba - PR', 'Porto Alegre - RS', 'Salvador - BA',
+            'Brasília - DF', 'Fortaleza - CE', 'Recife - PE',
+            'Manaus - AM', 'Goiânia - GO', 'Belém - PA',
+            'Campinas - SP', 'São Luís - MA', 'Natal - RN',
+            'João Pessoa - PB', 'Florianópolis - SC', 'Vitória - ES'
+        ];
+
+        // Selecionar aleatoriamente
+        const randomName = names[Math.floor(Math.random() * names.length)];
+        const randomCity = cities[Math.floor(Math.random() * cities.length)];
+        const randomMinutes = Math.floor(Math.random() * 10) + 1; // 1 a 10 minutos
+
+        // Criar elemento do popup
+        const notification = document.createElement('div');
+        notification.className = 'purchase-notification';
+        notification.innerHTML = `
+            <div class="notification-content">
+                <div class="notification-icon">🔔</div>
+                <div class="notification-text">
+                    <strong>${randomName}</strong> de <strong>${randomCity}</strong><br>
+                    acabou de adquirir o e-book!
+                </div>
+                <button class="notification-close">×</button>
+            </div>
+        `;
+
+        // Adicionar ao body
+        document.body.appendChild(notification);
+
+        // Mostrar com animação
+        setTimeout(() => {
+            notification.classList.add('show');
+        }, 100);
+
+        // Remover automaticamente após 5 segundos
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => {
+                notification.remove();
+            }, 300);
+        }, 5000);
+
+        // Permitir fechar manualmente
+        notification.querySelector('.notification-close').addEventListener('click', () => {
+            notification.classList.remove('show');
+            setTimeout(() => {
+                notification.remove();
+            }, 300);
+        });
+    }
+
+    // Mostrar primeira notificação após 5 segundos
+    setTimeout(showPurchaseNotification, 5000);
+
+    // Repetir a cada 10 segundos
+    setInterval(showPurchaseNotification, 10000);
 
     /* ======================================================================
        2. FAQ ACCORDION

@@ -1435,3 +1435,96 @@ img.lazy {
 img.lazy.loaded {
     opacity: 1;
 }
+
+/* ==========================================================================
+   POPUP DE NOTIFICAÇÃO DE COMPRA
+   ========================================================================== */
+
+.purchase-notification {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 9999;
+    max-width: 350px;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all 0.3s ease;
+}
+
+.purchase-notification.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.notification-content {
+    background: white;
+    border-left: 4px solid var(--primary-green);
+    border-radius: 8px;
+    padding: 16px 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+}
+
+.notification-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.notification-text {
+    flex: 1;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text-dark);
+}
+
+.notification-text strong {
+    color: var(--primary-green);
+    font-weight: var(--weight-bold);
+}
+
+.notification-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    color: var(--text-light);
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+}
+
+.notification-close:hover {
+    color: var(--text-dark);
+}
+
+/* Mobile - ajustar posição do popup */
+@media (max-width: 768px) {
+    .purchase-notification {
+        left: 10px;
+        right: 10px;
+        max-width: calc(100% - 20px);
+    }
+
+    .notification-content {
+        padding: 14px 16px;
+    }
+
+    .notification-text {
+        font-size: 13px;
+    }
+
+    .notification-icon {
+        font-size: 20px;
+    }
+}
