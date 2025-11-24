@@ -7,20 +7,25 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     /* ======================================================================
-       1. CONTADOR REGRESSIVO (48 horas)
+       1. CONTADOR REGRESSIVO (15 minutos)
        ====================================================================== */
 
     function startCountdown() {
         const timerDisplay = document.getElementById('timer');
         if (!timerDisplay) return;
 
+        // FORÇAR 15 minutos - limpar localStorage antigo
+        const FIFTEEN_MINUTES = 15 * 60 * 1000;
+
         // Verificar se já existe um tempo salvo no localStorage
         let endTime = localStorage.getItem('countdownEndTime');
 
-        if (!endTime) {
-            // Se não existe, criar novo countdown de 15 minutos
-            endTime = new Date().getTime() + (15 * 60 * 1000);
+        // Se não existe OU se é maior que 15 minutos (limpeza de valores antigos de 48h)
+        if (!endTime || (parseInt(endTime) - new Date().getTime()) > FIFTEEN_MINUTES) {
+            // Criar novo countdown de 15 minutos
+            endTime = new Date().getTime() + FIFTEEN_MINUTES;
             localStorage.setItem('countdownEndTime', endTime);
+            console.log('Countdown resetado para 15 minutos');
         }
 
         function updateTimer() {
@@ -29,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (distance < 0) {
                 // Se o tempo acabou, reiniciar
-                endTime = new Date().getTime() + (15 * 60 * 1000);
+                endTime = new Date().getTime() + FIFTEEN_MINUTES;
                 localStorage.setItem('countdownEndTime', endTime);
                 return;
             }
