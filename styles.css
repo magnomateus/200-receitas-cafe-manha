@@ -542,7 +542,54 @@ p {
 }
 
 /* ==========================================================================
-   SEÇÃO 6: DEPOIMENTOS
+   SEÇÃO 6: VANTAGENS
+   ========================================================================== */
+
+.advantages-section {
+    background: var(--secondary-beige);
+    padding: var(--space-lg) 0;
+}
+
+.advantages-section .section-title {
+    margin-bottom: var(--space-lg);
+}
+
+.highlight-dark {
+    color: var(--text-dark);
+    font-weight: var(--weight-extrabold);
+}
+
+.advantages-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto var(--space-lg);
+    max-width: 600px;
+}
+
+.advantage-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-sm) 0;
+    font-size: 1.125rem;
+    color: var(--text-dark);
+}
+
+.advantage-icon {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    stroke: var(--primary-green);
+    stroke-width: 2.5;
+}
+
+.advantage-item span {
+    flex: 1;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   SEÇÃO 7: DEPOIMENTOS
    ========================================================================== */
 
 .testimonials-section {
@@ -1165,6 +1212,22 @@ p {
         line-height: 1.5;
     }
 
+    /* Vantagens - Mobile */
+    .advantages-list {
+        max-width: 100%;
+    }
+
+    .advantage-item {
+        font-size: 1rem;
+        gap: var(--space-sm);
+        padding: var(--space-xs) 0;
+    }
+
+    .advantage-icon {
+        width: 28px;
+        height: 28px;
+    }
+
     .steps-timeline {
         gap: var(--space-lg);
     }
@@ -1246,6 +1309,17 @@ p {
     .bonus-description {
         font-size: 0.85rem;
         line-height: 1.4;
+    }
+
+    /* Vantagens - Mobile pequeno */
+    .advantage-item {
+        font-size: 0.95rem;
+        gap: 12px;
+    }
+
+    .advantage-icon {
+        width: 24px;
+        height: 24px;
     }
 
     .bonus-total {
