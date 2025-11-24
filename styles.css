@@ -516,7 +516,7 @@ p {
 }
 
 .bonus-free {
-    color: var(--secondary-yellow);
+    color: var(--primary-green);
     font-size: 1.5rem;
     font-weight: var(--weight-extrabold);
     margin-bottom: var(--space-sm);
@@ -1129,9 +1129,10 @@ p {
         padding: var(--space-md);
     }
 
+    /* Manter tamanho original das imagens */
     .bonus-image {
-        max-width: 180px;
-        height: 150px;
+        max-width: 250px;
+        height: 200px;
         margin-bottom: var(--space-sm);
     }
 
@@ -1212,9 +1213,10 @@ p {
         padding: 16px;
     }
 
+    /* Manter tamanho original das imagens em mobile pequeno também */
     .bonus-image {
-        max-width: 150px;
-        height: 130px;
+        max-width: 250px;
+        height: 200px;
         margin-bottom: 12px;
     }
 
