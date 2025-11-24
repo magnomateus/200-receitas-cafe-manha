@@ -178,7 +178,7 @@ p {
     font-weight: var(--weight-semibold);
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    border-radius: 8px;
+    border-radius: 50px;
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
