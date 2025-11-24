@@ -61,7 +61,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function setOfferExpirationDate() {
         const offerDateElement = document.getElementById('offer-date');
-        if (!offerDateElement) return;
+
+        if (!offerDateElement) {
+            console.error('Elemento offer-date não encontrado');
+            return;
+        }
 
         const today = new Date();
         const tomorrow = new Date(today);
@@ -75,7 +79,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const day = tomorrow.getDate();
         const month = months[tomorrow.getMonth()];
 
-        offerDateElement.textContent = `${day} DE ${month}`;
+        const dateText = `${day} DE ${month}`;
+        offerDateElement.textContent = dateText;
+
+        console.log('Data da oferta definida:', dateText);
     }
 
     setOfferExpirationDate();
