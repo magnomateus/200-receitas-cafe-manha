@@ -1745,6 +1745,13 @@ img.lazy.loaded {
     color: var(--primary-green);
 }
 
+.headline-bonus {
+    color: var(--primary-gold);
+    display: block;
+    font-size: 1.1em;
+    margin-top: var(--space-xs);
+}
+
 /* Target Section - Verde Natal */
 .target-section {
     background: var(--primary-green);
