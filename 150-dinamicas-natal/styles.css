@@ -48,15 +48,16 @@ button {
    ========================================================================== */
 
 :root {
-    /* Cores Primárias */
-    --primary-orange: rgb(255, 107, 53);
-    --primary-green: rgb(44, 172, 67);
-    --primary-dark: rgb(89, 93, 66);
+    /* Cores Primárias - TEMA NATAL */
+    --primary-red: rgb(196, 30, 58);
+    --primary-green: rgb(22, 80, 22);
+    --primary-gold: rgb(244, 196, 48);
+    --primary-dark: rgb(22, 80, 22);
 
-    /* Cores Secundárias */
-    --secondary-beige: rgb(255, 247, 231);
-    --secondary-cream: rgb(253, 245, 229);
-    --secondary-yellow: rgb(247, 184, 1);
+    /* Cores Secundárias - TEMA NATAL */
+    --secondary-cream: rgb(255, 254, 247);
+    --secondary-light-green: rgb(45, 106, 45);
+    --secondary-light-gold: rgb(255, 215, 0);
 
     /* Cores de Texto */
     --text-dark: rgb(44, 62, 80);
@@ -1452,4 +1453,367 @@ img.lazy {
 
 img.lazy.loaded {
     opacity: 1;
+}
+
+/* ==========================================================================
+   ESTILOS ESPECÍFICOS - DINÂMICAS DE NATAL
+   ========================================================================== */
+
+/* Faixa de Urgência */
+.urgency-bar {
+    background: var(--primary-red);
+    color: white;
+    padding: 12px 0;
+    text-align: center;
+    font-weight: var(--weight-bold);
+    font-size: 1rem;
+}
+
+.timer-inline {
+    color: var(--primary-gold);
+    font-family: var(--font-heading);
+    font-weight: var(--weight-extrabold);
+    font-size: 1.1rem;
+}
+
+/* Guarantees */
+.guarantees {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+    flex-wrap: wrap;
+}
+
+.guarantees span {
+    font-size: 0.95rem;
+    font-weight: var(--weight-medium);
+}
+
+/* Highlight Gold */
+.highlight-gold {
+    color: var(--primary-gold);
+}
+
+/* Content Section */
+.content-section {
+    background: var(--secondary-cream);
+    padding: var(--space-xl) 0;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+    margin-bottom: var(--space-lg);
+}
+
+.content-card {
+    background: white;
+    padding: var(--space-lg);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.content-icon {
+    font-size: 4rem;
+    margin-bottom: var(--space-md);
+}
+
+.content-card h3 {
+    color: var(--primary-green);
+    font-size: 1.25rem;
+    margin-bottom: var(--space-md);
+}
+
+.content-card ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.content-card ul li {
+    padding: 8px 0;
+    font-size: 1rem;
+    color: var(--text-medium);
+}
+
+/* Target List */
+.target-list {
+    list-style: none;
+    padding: 0;
+    max-width: 800px;
+    margin: 0 auto var(--space-xl);
+    font-size: 1.125rem;
+    line-height: 1.8;
+}
+
+.target-list li {
+    padding: 12px 0;
+    color: white;
+}
+
+/* Pillars Grid */
+.pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+    margin-bottom: var(--space-lg);
+}
+
+.pillar-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: var(--space-lg);
+    border-radius: 12px;
+    text-align: center;
+    color: white;
+}
+
+.pillar-icon {
+    font-size: 4rem;
+    margin-bottom: var(--space-md);
+}
+
+.pillar-card h3 {
+    color: var(--primary-gold);
+    margin-bottom: var(--space-sm);
+}
+
+.pillar-card p {
+    color: white;
+    line-height: 1.6;
+}
+
+/* Bonus Icon */
+.bonus-icon {
+    font-size: 4rem;
+    margin: var(--space-md) 0;
+}
+
+.bonus-total-value {
+    color: var(--primary-gold);
+    font-size: 1.75rem;
+}
+
+/* Countdown Timer Box */
+.countdown-timer-box {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+}
+
+.countdown-timer-box .countdown-label {
+    font-size: 1.25rem;
+    color: white;
+    margin-bottom: var(--space-sm);
+}
+
+.countdown-timer-box .timer-display {
+    font-size: 3rem;
+    font-weight: var(--weight-extrabold);
+    color: var(--primary-gold);
+    font-family: var(--font-heading);
+}
+
+/* Offer Includes */
+.offer-includes {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-lg) 0;
+    text-align: left;
+}
+
+.offer-includes li {
+    padding: 8px 0;
+    font-size: 1.1rem;
+    color: white;
+    font-weight: var(--weight-medium);
+}
+
+.offer-security {
+    text-align: center;
+    color: white;
+    opacity: 0.9;
+    margin-top: var(--space-md);
+    font-size: 0.95rem;
+}
+
+.price-parcel {
+    color: white;
+    font-size: 1.125rem;
+    margin-top: var(--space-sm);
+    opacity: 0.9;
+}
+
+/* Testimonials Grid */
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+}
+
+.testimonial-card {
+    background: white;
+    padding: var(--space-lg);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-stars {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-sm);
+    color: var(--primary-gold);
+}
+
+.testimonial-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-medium);
+    margin-bottom: var(--space-md);
+    font-style: italic;
+}
+
+.testimonial-author {
+    display: flex;
+    flex-direction: column;
+}
+
+.testimonial-author strong {
+    font-size: 1rem;
+    color: var(--text-dark);
+    font-weight: var(--weight-bold);
+}
+
+.testimonial-author span {
+    font-size: var(--small-size);
+    color: var(--text-light);
+}
+
+/* Guarantee Section */
+.guarantee-section {
+    background: var(--primary-green);
+    color: white;
+    text-align: center;
+    padding: var(--space-xxl) 0;
+}
+
+.guarantee-badge {
+    font-size: 5rem;
+    margin-bottom: var(--space-md);
+}
+
+.guarantee-text {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.125rem;
+    line-height: 1.8;
+}
+
+/* Ajustes de cores para botões natalinos */
+.btn-primary {
+    background: var(--primary-green);
+}
+
+.btn-primary:hover {
+    background: var(--secondary-light-green);
+}
+
+.btn-secondary {
+    background: var(--primary-red);
+}
+
+.btn-secondary:hover {
+    background: rgb(176, 20, 48);
+}
+
+.btn-cta-main {
+    background: var(--primary-gold);
+    color: var(--primary-dark);
+    font-weight: var(--weight-extrabold);
+}
+
+.btn-cta-main:hover {
+    background: var(--secondary-light-gold);
+}
+
+/* Hero Section - Natal */
+.hero-section {
+    background: linear-gradient(135deg, rgb(255, 250, 245) 0%, rgb(255, 245, 235) 100%);
+}
+
+.headline {
+    color: var(--primary-green);
+}
+
+/* Target Section - Verde Natal */
+.target-section {
+    background: var(--primary-green);
+}
+
+/* Bonus Section - Verde Escuro */
+.bonus-section {
+    background: var(--primary-dark);
+}
+
+/* Offer Section - Verde Escuro */
+.offer-section {
+    background: var(--primary-dark);
+    padding: var(--space-xxl) 0;
+}
+
+.offer-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Testimonials Section - Creme */
+.testimonials-section {
+    background: var(--secondary-cream);
+}
+
+/* FAQ Section - Creme */
+.faq-section {
+    background: var(--secondary-cream);
+    color: var(--text-dark);
+}
+
+.faq-item {
+    background: white;
+}
+
+.faq-question {
+    color: var(--text-dark);
+}
+
+.faq-answer p {
+    color: var(--text-medium);
+}
+
+/* Final CTA - Vermelho Natal */
+.final-cta-section {
+    background: linear-gradient(135deg, var(--primary-red) 0%, rgb(176, 20, 48) 100%);
+}
+
+/* Mobile Responsivo */
+@media (max-width: 768px) {
+    .content-grid,
+    .pillars-grid,
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .guarantees {
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+
+    .urgency-bar {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    .timer-inline {
+        display: block;
+        margin-top: 4px;
+    }
 }
