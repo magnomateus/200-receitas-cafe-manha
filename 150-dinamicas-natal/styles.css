@@ -1817,3 +1817,49 @@ img.lazy.loaded {
         margin-top: 4px;
     }
 }
+
+/* ==========================================================================
+   VSL - VIDEO SALES LETTER (YouTube Shorts - Vertical)
+   ========================================================================== */
+
+.vsl-container {
+    max-width: 400px;
+    margin: var(--space-lg) auto;
+}
+
+.vsl-wrapper {
+    position: relative;
+    padding-bottom: 177.78%; /* Aspect ratio 9:16 para Shorts (vertical) */
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.vsl-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+}
+
+/* Mobile - Ajustar tamanho do vídeo */
+@media (max-width: 768px) {
+    .vsl-container {
+        max-width: 100%;
+        padding: 0 20px;
+    }
+
+    .vsl-wrapper {
+        max-width: 350px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .vsl-wrapper {
+        max-width: 280px;
+    }
+}
