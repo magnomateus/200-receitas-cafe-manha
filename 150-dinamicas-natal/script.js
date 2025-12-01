@@ -7,11 +7,36 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     /* ======================================================================
-       1. CONTADOR REGRESSIVO (15 minutos)
+       1. DATA ATUAL (auto-atualização diária)
+       ====================================================================== */
+
+    function setCurrentDate() {
+        const dateElement = document.getElementById('current-date');
+
+        if (dateElement) {
+            const today = new Date();
+            const day = today.getDate();
+            const monthNames = [
+                'JANEIRO', 'FEVEREIRO', 'MARÇO', 'ABRIL', 'MAIO', 'JUNHO',
+                'JULHO', 'AGOSTO', 'SETEMBRO', 'OUTUBRO', 'NOVEMBRO', 'DEZEMBRO'
+            ];
+            const month = monthNames[today.getMonth()];
+
+            const formattedDate = `${day} DE ${month}`;
+            dateElement.textContent = formattedDate;
+
+            console.log('Data da oferta definida:', formattedDate);
+        }
+    }
+
+    setCurrentDate();
+
+    /* ======================================================================
+       2. CONTADOR REGRESSIVO (15 minutos) - Usado em outras seções
        ====================================================================== */
 
     function startCountdown() {
-        const timers = ['timer', 'timer-main', 'timer-final'];
+        const timers = ['timer-main', 'timer-final'];
 
         // FORÇAR 15 minutos - limpar localStorage antigo
         const FIFTEEN_MINUTES = 15 * 60 * 1000;
@@ -66,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
     startCountdown();
 
     /* ======================================================================
-       2. FAQ ACCORDION
+       3. FAQ ACCORDION
        ====================================================================== */
 
     const faqQuestions = document.querySelectorAll('.faq-question');
@@ -89,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     /* ======================================================================
-       3. SMOOTH SCROLL PARA ÂNCORAS
+       4. SMOOTH SCROLL PARA ÂNCORAS
        ====================================================================== */
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -112,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     /* ======================================================================
-       4. TRACKING DE EVENTOS (preparado para analytics)
+       5. TRACKING DE EVENTOS (preparado para analytics)
        ====================================================================== */
 
     function trackCTAClick(ctaName) {
@@ -129,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     /* ======================================================================
-       5. CONSOLE LOG DE BOAS-VINDAS
+       6. CONSOLE LOG DE BOAS-VINDAS
        ====================================================================== */
 
     console.log(
@@ -141,6 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
         'font-size: 14px; color: #C41E3A;'
     );
     console.log('Funcionalidades ativas:');
+    console.log('✅ Data atual auto-atualização');
     console.log('✅ Contador regressivo (15 minutos)');
     console.log('✅ FAQ Accordion');
     console.log('✅ Smooth scroll');
