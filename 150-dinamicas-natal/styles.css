@@ -1973,7 +1973,7 @@ img.lazy.loaded {
 
 .premium-cover {
     width: 100%;
-    max-width: 250px;
+    max-width: 350px;
     height: auto;
     object-fit: contain;
     margin: 0 auto var(--space-md);
@@ -2223,7 +2223,7 @@ img.lazy.loaded {
     }
 
     .premium-cover {
-        max-width: 200px;
+        max-width: 280px;
     }
 
     .price-value {
