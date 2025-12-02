@@ -1820,23 +1820,251 @@ img.lazy.loaded {
 }
 
 /* Guarantee Section */
+/* ==========================================================================
+   SEÇÃO 8: GARANTIA - REDESIGN COMPLETO
+   ========================================================================== */
+
 .guarantee-section {
-    background: var(--primary-green);
-    color: white;
-    text-align: center;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
     padding: var(--space-xxl) 0;
 }
 
-.guarantee-badge {
-    font-size: 5rem;
-    margin-bottom: var(--space-md);
+.guarantee-section .section-title {
+    text-align: center;
+    margin-bottom: var(--space-xl);
 }
 
-.guarantee-text {
-    max-width: 700px;
+.guarantee-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--space-xl);
+    align-items: center;
+    max-width: 1000px;
     margin: 0 auto;
-    font-size: 1.125rem;
-    line-height: 1.8;
+    background: white;
+    padding: var(--space-xl);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.guarantee-badge-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.guarantee-badge {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(135deg, var(--primary-green), var(--secondary-light-green));
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 15px 35px rgba(22, 80, 22, 0.3);
+    border: 8px solid var(--primary-gold);
+}
+
+.guarantee-badge::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(135deg, var(--primary-gold), var(--secondary-light-gold));
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0.3;
+    animation: pulse-badge 2s ease-in-out infinite;
+}
+
+@keyframes pulse-badge {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.5;
+    }
+}
+
+.badge-icon {
+    font-size: 3.5rem;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.badge-days {
+    font-size: 3.5rem;
+    font-weight: var(--weight-extrabold);
+    color: white;
+    font-family: var(--font-heading);
+    line-height: 1;
+}
+
+.badge-text {
+    font-size: 1.25rem;
+    font-weight: var(--weight-bold);
+    color: var(--primary-gold);
+    letter-spacing: 2px;
+    margin-top: 4px;
+}
+
+.guarantee-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.guarantee-title {
+    font-size: 1.75rem;
+    font-weight: var(--weight-extrabold);
+    color: var(--primary-green);
+    font-family: var(--font-heading);
+    margin-bottom: var(--space-sm);
+}
+
+.guarantee-features {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.guarantee-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.guarantee-feature:hover {
+    background: #e9ecef;
+    transform: translateX(5px);
+}
+
+.feature-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.guarantee-feature p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--text-dark);
+}
+
+.guarantee-feature strong {
+    color: var(--primary-green);
+    font-weight: var(--weight-bold);
+}
+
+.guarantee-highlight {
+    background: linear-gradient(135deg, var(--primary-gold), var(--secondary-light-gold));
+    padding: var(--space-md);
+    border-radius: 12px;
+    text-align: center;
+    margin-top: var(--space-sm);
+}
+
+.guarantee-highlight p {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--text-dark);
+    font-weight: var(--weight-bold);
+}
+
+/* Responsivo - Tablet */
+@media (max-width: 768px) {
+    .guarantee-content {
+        grid-template-columns: 1fr;
+        padding: var(--space-lg);
+        gap: var(--space-lg);
+    }
+
+    .guarantee-badge {
+        width: 180px;
+        height: 180px;
+    }
+
+    .badge-icon {
+        font-size: 3rem;
+    }
+
+    .badge-days {
+        font-size: 3rem;
+    }
+
+    .badge-text {
+        font-size: 1.125rem;
+    }
+
+    .guarantee-title {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .guarantee-features {
+        gap: 12px;
+    }
+}
+
+/* Responsivo - Mobile */
+@media (max-width: 480px) {
+    .guarantee-section {
+        padding: var(--space-xl) 0;
+    }
+
+    .guarantee-content {
+        padding: var(--space-md);
+        gap: var(--space-md);
+    }
+
+    .guarantee-badge {
+        width: 150px;
+        height: 150px;
+        border: 6px solid var(--primary-gold);
+    }
+
+    .badge-icon {
+        font-size: 2.5rem;
+    }
+
+    .badge-days {
+        font-size: 2.5rem;
+    }
+
+    .badge-text {
+        font-size: 1rem;
+    }
+
+    .guarantee-title {
+        font-size: 1.25rem;
+    }
+
+    .guarantee-feature {
+        padding: 10px;
+    }
+
+    .feature-icon {
+        font-size: 1.25rem;
+    }
+
+    .guarantee-feature p {
+        font-size: 0.9rem;
+    }
+
+    .guarantee-highlight p {
+        font-size: 1.125rem;
+    }
 }
 
 /* Ajustes de cores para botões natalinos */
