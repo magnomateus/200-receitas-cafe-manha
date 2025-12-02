@@ -1978,8 +1978,17 @@ img.lazy.loaded {
     font-size: 1.75rem;
     color: var(--text-dark);
     font-weight: var(--weight-extrabold);
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-sm);
     text-transform: uppercase;
+}
+
+.premium-subtitle {
+    font-size: 1rem;
+    color: var(--primary-gold);
+    font-weight: var(--weight-extrabold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: var(--space-md);
 }
 
 .plan-price {
@@ -2010,6 +2019,23 @@ img.lazy.loaded {
     font-weight: var(--weight-semibold);
 }
 
+.price-payment-highlight {
+    display: block;
+    font-size: 1.125rem;
+    color: var(--text-dark);
+    font-weight: var(--weight-bold);
+    margin-bottom: 4px;
+}
+
+.price-subtext {
+    display: block;
+    font-size: 0.95rem;
+    color: var(--primary-green);
+    font-weight: var(--weight-extrabold);
+    text-transform: uppercase;
+    margin-top: 8px;
+}
+
 .plan-features {
     list-style: none;
     padding: 0;
@@ -2027,6 +2053,42 @@ img.lazy.loaded {
 
 .plan-features li:last-child {
     border-bottom: none;
+}
+
+.bonus-value-tag {
+    color: var(--primary-green);
+    font-size: 0.875rem;
+    font-weight: var(--weight-bold);
+    display: inline-block;
+    margin-left: 4px;
+}
+
+.value-box {
+    background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+    border: 2px solid var(--primary-gold);
+    border-radius: 8px;
+    padding: var(--space-md);
+    margin-bottom: var(--space-md);
+    text-align: center;
+}
+
+.value-box-text {
+    font-size: 1rem;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+}
+
+.value-strikethrough {
+    text-decoration: line-through;
+    color: var(--text-medium);
+    font-weight: var(--weight-semibold);
+}
+
+.value-box-highlight {
+    font-size: 1.25rem;
+    color: var(--primary-green);
+    font-weight: var(--weight-extrabold);
+    margin: 0;
 }
 
 .btn-plan,
@@ -2188,6 +2250,34 @@ img.lazy.loaded {
 
     .guarantee-text {
         font-size: 0.85rem;
+    }
+
+    .price-payment-highlight {
+        font-size: 1rem;
+    }
+
+    .price-subtext {
+        font-size: 0.85rem;
+    }
+
+    .value-box {
+        padding: var(--space-sm);
+    }
+
+    .value-box-text {
+        font-size: 0.9rem;
+    }
+
+    .value-box-highlight {
+        font-size: 1.1rem;
+    }
+
+    .bonus-value-tag {
+        font-size: 0.75rem;
+    }
+
+    .premium-subtitle {
+        font-size: 0.9rem;
     }
 }
 
