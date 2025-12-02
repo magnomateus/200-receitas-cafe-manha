@@ -1895,7 +1895,7 @@ img.lazy.loaded {
 /* Offer Section - Cream Background */
 .offer-section {
     background: var(--secondary-cream);
-    padding: var(--space-xxl) 0;
+    padding: var(--space-lg) 0 var(--space-xxl) 0;
 }
 
 .offer-section .section-title {
