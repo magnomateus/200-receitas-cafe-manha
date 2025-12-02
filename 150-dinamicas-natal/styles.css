@@ -151,6 +151,10 @@ p {
     color: var(--text-dark);
 }
 
+.section-title-large {
+    font-size: 3.5rem;
+}
+
 .section-title.white-text {
     color: var(--text-white);
 }
@@ -1870,6 +1874,10 @@ img.lazy.loaded {
     .pillars-grid,
     .testimonials-grid {
         grid-template-columns: 1fr;
+    }
+
+    .section-title-large {
+        font-size: 2rem;
     }
 
     .guarantees {
