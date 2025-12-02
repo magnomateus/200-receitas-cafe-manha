@@ -1848,15 +1848,150 @@ img.lazy.loaded {
     background: var(--secondary-cream);
 }
 
-/* Offer Section - Verde Escuro */
+/* Offer Section - Cream Background */
 .offer-section {
-    background: var(--primary-dark);
+    background: var(--secondary-cream);
     padding: var(--space-xxl) 0;
 }
 
-.offer-card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 2px solid rgba(255, 255, 255, 0.1);
+.offer-section .section-title {
+    color: var(--text-dark);
+    margin-bottom: var(--space-lg);
+}
+
+/* Pricing Grid - 2 Cards Side by Side */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.pricing-card {
+    background: #f5f5f5;
+    border-radius: 12px;
+    padding: var(--space-lg);
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.pricing-card:hover {
+    transform: translateY(-5px);
+}
+
+.pricing-card-premium {
+    border: 3px solid var(--primary-gold);
+}
+
+.premium-badge {
+    background: var(--primary-gold);
+    color: var(--text-dark);
+    font-weight: var(--weight-extrabold);
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    display: inline-block;
+    margin-bottom: var(--space-md);
+    text-transform: uppercase;
+}
+
+.premium-cover {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    object-fit: contain;
+    margin: 0 auto var(--space-md);
+    display: block;
+    border-radius: 12px;
+}
+
+.plan-name {
+    font-size: 1.75rem;
+    color: var(--text-dark);
+    font-weight: var(--weight-extrabold);
+    margin-bottom: var(--space-md);
+    text-transform: uppercase;
+}
+
+.plan-price {
+    margin-bottom: var(--space-lg);
+}
+
+.price-from-small {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--text-medium);
+    margin-bottom: 4px;
+    text-decoration: line-through;
+}
+
+.price-value {
+    display: block;
+    font-size: 3rem;
+    color: var(--primary-green);
+    font-weight: var(--weight-extrabold);
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.price-payment {
+    display: block;
+    font-size: 1rem;
+    color: var(--text-medium);
+    font-weight: var(--weight-semibold);
+}
+
+.plan-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-lg);
+    text-align: left;
+}
+
+.plan-features li {
+    padding: var(--space-sm) 0;
+    font-size: 1rem;
+    color: var(--text-dark);
+    line-height: 1.6;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.plan-features li:last-child {
+    border-bottom: none;
+}
+
+.btn-plan,
+.btn-plan-premium {
+    width: 100%;
+    padding: var(--space-md) var(--space-lg);
+    font-size: 1.125rem;
+    font-weight: var(--weight-extrabold);
+    text-transform: uppercase;
+    border-radius: 8px;
+    margin-bottom: var(--space-md);
+}
+
+.btn-plan {
+    background: var(--primary-green);
+    color: white;
+    border: none;
+}
+
+.btn-plan:hover {
+    background: #0f3d0f;
+}
+
+.btn-plan-premium {
+    background: var(--primary-gold);
+    color: var(--text-dark);
+    border: none;
+}
+
+.btn-plan-premium:hover {
+    background: #e0b020;
 }
 
 /* Testimonials Section - Creme */
@@ -1892,7 +2027,8 @@ img.lazy.loaded {
     .content-grid,
     .content-two-blocks,
     .pillars-grid,
-    .testimonials-grid {
+    .testimonials-grid,
+    .pricing-grid {
         grid-template-columns: 1fr;
     }
 
@@ -1925,6 +2061,14 @@ img.lazy.loaded {
         display: inline;
         font-size: 0.75rem;
         white-space: nowrap;
+    }
+
+    .premium-cover {
+        max-width: 200px;
+    }
+
+    .price-value {
+        font-size: 2.5rem;
     }
 }
 
