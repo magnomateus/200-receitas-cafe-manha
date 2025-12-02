@@ -1437,6 +1437,12 @@ p {
         font-size: 0.95rem;
     }
 
+    .bonus-free-large {
+        font-size: 1.5rem;
+        display: block;
+        margin-top: 4px;
+    }
+
     /* Final CTA Title - Mobile pequeno */
     .final-big-title {
         font-size: 1.85rem;
@@ -1667,6 +1673,13 @@ img.lazy.loaded {
 .bonus-total-value {
     color: var(--primary-gold);
     font-size: 1.75rem;
+}
+
+.bonus-free-large {
+    color: var(--primary-green);
+    font-size: 2rem;
+    font-weight: var(--weight-extrabold);
+    text-transform: uppercase;
 }
 
 /* Countdown Timer Box */
