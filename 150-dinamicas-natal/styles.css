@@ -1006,8 +1006,9 @@ p {
 }
 
 .countdown-label {
-    font-size: 1.25rem;
+    font-size: 1.75rem;
     margin-bottom: var(--space-sm);
+    font-weight: var(--weight-bold);
 }
 
 .timer-display {
