@@ -1728,7 +1728,7 @@ img.lazy.loaded {
 /* Countdown Timer Box */
 .countdown-timer-box {
     text-align: center;
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-lg);
 }
 
 .countdown-timer-box .countdown-label {
@@ -1900,8 +1900,21 @@ img.lazy.loaded {
 
 .offer-section .section-title {
     color: var(--text-dark);
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-xl);
     font-size: 2.5rem;
+    text-align: center;
+    padding: var(--space-md) 0;
+    position: relative;
+}
+
+.offer-section .section-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: var(--primary-red);
+    margin: var(--space-sm) auto 0;
+    border-radius: 2px;
 }
 
 .offer-section .highlight-gold {
