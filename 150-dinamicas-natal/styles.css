@@ -455,8 +455,8 @@ p {
    ========================================================================== */
 
 .bonus-section {
-    background: var(--primary-dark);
-    color: var(--text-white);
+    background: var(--secondary-cream);
+    color: var(--text-dark);
 }
 
 .bonus-grid {
@@ -467,18 +467,19 @@ p {
 }
 
 .bonus-card {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--primary-red);
     padding: var(--space-lg);
     border-radius: 12px;
     text-align: center;
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    border: none;
     transition: transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
 @media (hover: hover) and (pointer: fine) {
     .bonus-card:hover {
         transform: translateY(-5px);
-        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
     }
 }
 
@@ -505,10 +506,14 @@ p {
 
 .bonus-card h3 {
     font-size: 2rem;
-    color: var(--text-white);
+    color: white;
     margin-bottom: var(--space-sm);
     line-height: 1.2;
     font-weight: var(--weight-extrabold);
+}
+
+.bonus-card p {
+    color: white;
 }
 
 .bonus-value {
@@ -540,6 +545,7 @@ p {
     font-size: 1.5rem;
     font-weight: var(--weight-bold);
     margin-bottom: var(--space-lg);
+    color: var(--text-dark);
 }
 
 .bonus-total-value {
@@ -1824,9 +1830,9 @@ img.lazy.loaded {
     background: var(--primary-green);
 }
 
-/* Bonus Section - Verde Escuro */
+/* Bonus Section - Cream Background */
 .bonus-section {
-    background: var(--primary-dark);
+    background: var(--secondary-cream);
 }
 
 /* Offer Section - Verde Escuro */
