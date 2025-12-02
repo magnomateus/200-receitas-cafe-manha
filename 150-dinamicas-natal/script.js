@@ -32,34 +32,26 @@ document.addEventListener('DOMContentLoaded', function() {
     setCurrentDate();
 
     /* ======================================================================
-       2. CONTADOR REGRESSIVO (15 minutos) - Usado em outras seções
+       2. CONTADOR REGRESSIVO (Até o final do dia)
        ====================================================================== */
 
     function startCountdown() {
         const timers = ['timer-main', 'timer-final'];
 
-        // FORÇAR 15 minutos - limpar localStorage antigo
-        const FIFTEEN_MINUTES = 15 * 60 * 1000;
-
-        // Verificar se já existe um tempo salvo no localStorage
-        let endTime = localStorage.getItem('countdownEndTime_Natal');
-
-        // Se não existe OU se é maior que 15 minutos (limpeza de valores antigos)
-        if (!endTime || (parseInt(endTime) - new Date().getTime()) > FIFTEEN_MINUTES) {
-            // Criar novo countdown de 15 minutos
-            endTime = new Date().getTime() + FIFTEEN_MINUTES;
-            localStorage.setItem('countdownEndTime_Natal', endTime);
-            console.log('Countdown resetado para 15 minutos');
-        }
-
         function updateTimer() {
-            const now = new Date().getTime();
-            const distance = endTime - now;
+            const now = new Date();
+
+            // Calcular o final do dia (23:59:59)
+            const endOfDay = new Date();
+            endOfDay.setHours(23, 59, 59, 999);
+
+            const distance = endOfDay.getTime() - now.getTime();
 
             if (distance < 0) {
-                // Se o tempo acabou, reiniciar
-                endTime = new Date().getTime() + FIFTEEN_MINUTES;
-                localStorage.setItem('countdownEndTime_Natal', endTime);
+                // Se passou da meia-noite, resetar para o próximo dia
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                tomorrow.setHours(23, 59, 59, 999);
                 return;
             }
 
@@ -167,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
     );
     console.log('Funcionalidades ativas:');
     console.log('✅ Data atual auto-atualização');
-    console.log('✅ Contador regressivo (15 minutos)');
+    console.log('✅ Contador regressivo (até o final do dia)');
     console.log('✅ FAQ Accordion');
     console.log('✅ Smooth scroll');
     console.log('🎅 Feliz Natal!');
