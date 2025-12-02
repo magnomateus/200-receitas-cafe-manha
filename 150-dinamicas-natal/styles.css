@@ -1748,7 +1748,7 @@ img.lazy.loaded {
 .headline-bonus {
     color: var(--primary-gold);
     display: block;
-    font-size: 1.1em;
+    font-size: 0.75em;
     margin-top: var(--space-xs);
 }
 
@@ -1815,13 +1815,12 @@ img.lazy.loaded {
     }
 
     .urgency-bar {
-        font-size: 0.9rem;
-        padding: 10px;
+        font-size: 0.75rem;
+        padding: 10px 5px;
     }
 
     .timer-inline {
-        display: block;
-        margin-top: 4px;
+        display: inline;
     }
 }
 
