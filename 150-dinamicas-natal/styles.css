@@ -1685,19 +1685,20 @@ img.lazy.loaded {
 /* Countdown Timer Box */
 .countdown-timer-box {
     text-align: center;
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-xl);
 }
 
 .countdown-timer-box .countdown-label {
     font-size: 1.25rem;
-    color: white;
+    color: var(--text-dark);
     margin-bottom: var(--space-sm);
+    font-weight: var(--weight-bold);
 }
 
 .countdown-timer-box .timer-display {
     font-size: 3rem;
     font-weight: var(--weight-extrabold);
-    color: var(--primary-gold);
+    color: var(--primary-red);
     font-family: var(--font-heading);
 }
 
@@ -1718,7 +1719,7 @@ img.lazy.loaded {
 
 .offer-security {
     text-align: center;
-    color: white;
+    color: var(--text-medium);
     opacity: 0.9;
     margin-top: var(--space-md);
     font-size: 0.95rem;
@@ -1884,6 +1885,12 @@ img.lazy.loaded {
 
 .pricing-card-premium {
     border: 3px solid var(--primary-gold);
+    transform: scale(1.05);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.pricing-card-premium:hover {
+    transform: scale(1.08);
 }
 
 .premium-badge {
@@ -1896,6 +1903,22 @@ img.lazy.loaded {
     display: inline-block;
     margin-bottom: var(--space-md);
     text-transform: uppercase;
+}
+
+.savings-badge {
+    background: var(--primary-red);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-bottom: var(--space-md);
+    display: inline-block;
+}
+
+.savings-text {
+    font-size: 1.25rem;
+    font-weight: var(--weight-extrabold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .premium-cover {
@@ -2069,6 +2092,18 @@ img.lazy.loaded {
 
     .price-value {
         font-size: 2.5rem;
+    }
+
+    .pricing-card-premium {
+        transform: scale(1);
+    }
+
+    .pricing-card-premium:hover {
+        transform: translateY(-5px);
+    }
+
+    .savings-text {
+        font-size: 1rem;
     }
 }
 
