@@ -1555,6 +1555,34 @@ img.lazy.loaded {
     color: var(--text-medium);
 }
 
+/* Content List - Simple Layout */
+.content-list {
+    list-style: none;
+    padding: 0;
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: var(--space-xl);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.content-list li {
+    padding: var(--space-md) 0;
+    font-size: 1.125rem;
+    color: var(--text-medium);
+    line-height: 1.6;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.content-list li:last-child {
+    border-bottom: none;
+}
+
+.content-list strong {
+    color: var(--primary-green);
+}
+
 /* Target List */
 .target-list {
     list-style: none;
