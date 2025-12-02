@@ -2273,6 +2273,9 @@ img.lazy.loaded {
 .testimonial-item .testimonial-stars {
     font-size: 1.25rem;
     margin-bottom: var(--space-sm);
+    color: #FFD700;
+    filter: grayscale(0);
+    -webkit-text-stroke: 0;
 }
 
 .testimonial-item .testimonial-text {
