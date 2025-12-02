@@ -2518,21 +2518,22 @@ img.lazy.loaded {
 
 /* FAQ Section - Creme */
 .faq-section {
-    background: var(--primary-green);
-    color: var(--text-white);
+    background: var(--secondary-cream);
+    color: var(--text-dark);
 }
 
 .faq-item {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: white;
+    border: 2px solid #e0e0e0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .faq-question {
-    color: var(--text-white);
+    color: var(--text-dark);
 }
 
 .faq-answer p {
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--text-medium);
 }
 
 /* Final CTA - Vermelho Natal */
