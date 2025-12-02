@@ -1513,6 +1513,7 @@ img.lazy.loaded {
 /* Highlight Gold */
 .highlight-gold {
     color: var(--primary-gold);
+    white-space: nowrap;
 }
 
 /* Content Section */
