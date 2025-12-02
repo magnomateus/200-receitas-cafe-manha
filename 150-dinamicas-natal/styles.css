@@ -1463,10 +1463,16 @@ img.lazy.loaded {
 .urgency-bar {
     background: var(--primary-red);
     color: white;
-    padding: 12px 0;
+    padding: 12px 15px;
     text-align: center;
     font-weight: var(--weight-bold);
     font-size: 1rem;
+    line-height: 1.4;
+}
+
+.urgency-bar .container {
+    max-width: 100%;
+    padding: 0 10px;
 }
 
 .timer-inline {
@@ -1474,6 +1480,7 @@ img.lazy.loaded {
     font-family: var(--font-heading);
     font-weight: var(--weight-extrabold);
     font-size: 1.1rem;
+    white-space: nowrap;
 }
 
 /* Guarantees */
@@ -1815,12 +1822,48 @@ img.lazy.loaded {
     }
 
     .urgency-bar {
-        font-size: 0.75rem;
-        padding: 10px 5px;
+        font-size: 0.7rem;
+        padding: 8px 5px;
+        line-height: 1.3;
+    }
+
+    .urgency-bar strong {
+        display: block;
+        margin-bottom: 2px;
+        font-size: 0.65rem;
     }
 
     .timer-inline {
-        display: inline;
+        display: inline-block;
+        font-size: 0.85rem;
+    }
+}
+
+/* Mobile Extra Small */
+@media (max-width: 480px) {
+    .urgency-bar {
+        font-size: 0.65rem;
+        padding: 6px 3px;
+    }
+
+    .urgency-bar strong {
+        font-size: 0.6rem;
+    }
+
+    .timer-inline {
+        font-size: 0.75rem;
+    }
+}
+
+/* Tablet - Tamanhos intermediários */
+@media (min-width: 481px) and (max-width: 768px) {
+    .urgency-bar {
+        font-size: 0.85rem;
+        padding: 10px 8px;
+    }
+
+    .timer-inline {
+        font-size: 0.95rem;
     }
 }
 
