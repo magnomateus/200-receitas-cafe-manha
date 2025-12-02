@@ -496,10 +496,9 @@ p {
 
 .bonus-image {
     width: 100%;
-    max-width: 250px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 8px;
+    max-width: 200px;
+    height: auto;
+    object-fit: contain;
     margin: 0 auto var(--space-md);
     display: block;
 }
@@ -1221,10 +1220,10 @@ p {
         padding: var(--space-md);
     }
 
-    /* Manter tamanho original das imagens */
+    /* Ajustar imagens no mobile */
     .bonus-image {
-        max-width: 250px;
-        height: 200px;
+        max-width: 180px;
+        height: auto;
         margin-bottom: var(--space-sm);
     }
 
@@ -1358,10 +1357,10 @@ p {
         padding: 16px;
     }
 
-    /* Manter tamanho original das imagens em mobile pequeno também */
+    /* Ajustar imagens em mobile pequeno */
     .bonus-image {
-        max-width: 250px;
-        height: 200px;
+        max-width: 150px;
+        height: auto;
         margin-bottom: 12px;
     }
 
