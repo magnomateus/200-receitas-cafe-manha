@@ -1901,6 +1901,12 @@ img.lazy.loaded {
 .offer-section .section-title {
     color: var(--text-dark);
     margin-bottom: var(--space-lg);
+    font-size: 2.5rem;
+}
+
+.offer-section .highlight-gold {
+    color: var(--primary-red);
+    font-size: 2.8rem;
 }
 
 /* Pricing Grid - 2 Cards Side by Side */
@@ -1913,13 +1919,14 @@ img.lazy.loaded {
 }
 
 .pricing-card {
-    background: #f5f5f5;
+    background: white;
     border-radius: 12px;
     padding: var(--space-lg);
     text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease;
     position: relative;
+    border: 2px solid #e0e0e0;
 }
 
 .pricing-card:hover {
@@ -2278,6 +2285,14 @@ img.lazy.loaded {
 
     .premium-subtitle {
         font-size: 0.9rem;
+    }
+
+    .offer-section .section-title {
+        font-size: 1.75rem;
+    }
+
+    .offer-section .highlight-gold {
+        font-size: 2rem;
     }
 }
 
