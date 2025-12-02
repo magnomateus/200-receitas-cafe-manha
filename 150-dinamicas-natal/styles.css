@@ -1555,31 +1555,49 @@ img.lazy.loaded {
     color: var(--text-medium);
 }
 
-/* Content List - Simple Layout */
-.content-list {
-    list-style: none;
-    padding: 0;
-    max-width: 800px;
+/* Content Two Blocks Layout */
+.content-two-blocks {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+    max-width: 1000px;
     margin: 0 auto;
+}
+
+.content-block {
     background: white;
     padding: var(--space-xl);
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.content-list li {
-    padding: var(--space-md) 0;
-    font-size: 1.125rem;
+.content-block-icon {
+    font-size: 3.5rem;
+    text-align: center;
+    margin-bottom: var(--space-md);
+}
+
+.content-block h3 {
+    color: var(--primary-green);
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: var(--space-lg);
+    font-weight: var(--weight-extrabold);
+}
+
+.content-block ul {
+    list-style: none;
+    padding: 0;
+}
+
+.content-block ul li {
+    padding: var(--space-sm) 0;
+    font-size: 1.0625rem;
     color: var(--text-medium);
     line-height: 1.6;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.content-list li:last-child {
-    border-bottom: none;
-}
-
-.content-list strong {
+.content-block strong {
     color: var(--primary-green);
 }
 
@@ -1848,6 +1866,7 @@ img.lazy.loaded {
 /* Mobile Responsivo */
 @media (max-width: 768px) {
     .content-grid,
+    .content-two-blocks,
     .pillars-grid,
     .testimonials-grid {
         grid-template-columns: 1fr;
