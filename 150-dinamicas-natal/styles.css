@@ -1012,7 +1012,7 @@ p {
 }
 
 .timer-display {
-    font-size: 3rem;
+    font-size: 4rem;
     font-weight: var(--weight-extrabold);
     color: var(--secondary-yellow);
     font-family: var(--font-heading);
