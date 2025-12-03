@@ -2541,6 +2541,9 @@ img.lazy.loaded {
     background: var(--primary-green);
     color: white;
     border: none;
+    cursor: pointer;
+    width: 100%;
+    text-decoration: none;
 }
 
 .btn-plan:hover {
