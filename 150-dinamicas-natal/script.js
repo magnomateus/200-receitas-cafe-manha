@@ -153,18 +153,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const popupOffer = document.getElementById('popup-offer');
     const popupClose = document.getElementById('popup-close');
 
+    console.log('Popup Elements:', {
+        btnBasicPlan: btnBasicPlan,
+        popupOffer: popupOffer,
+        popupClose: popupClose
+    });
+
     // Abrir popup ao clicar no botão do Plano Básico
-    if (btnBasicPlan) {
+    if (btnBasicPlan && popupOffer) {
         btnBasicPlan.addEventListener('click', function(e) {
             e.preventDefault();
+            console.log('Botão Plano Básico clicado!');
             popupOffer.classList.add('active');
             document.body.style.overflow = 'hidden'; // Previne scroll
+            console.log('Popup aberto');
         });
+    } else {
+        console.error('Elementos do popup não encontrados!');
     }
 
     // Fechar popup ao clicar no X
-    if (popupClose) {
+    if (popupClose && popupOffer) {
         popupClose.addEventListener('click', function() {
+            console.log('Botão fechar clicado');
             popupOffer.classList.remove('active');
             document.body.style.overflow = ''; // Restaura scroll
         });
@@ -174,6 +185,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (popupOffer) {
         popupOffer.addEventListener('click', function(e) {
             if (e.target === popupOffer) {
+                console.log('Clicou fora do popup');
                 popupOffer.classList.remove('active');
                 document.body.style.overflow = ''; // Restaura scroll
             }
