@@ -146,6 +146,41 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     /* ======================================================================
+       5. POPUP OFERTA EXCLUSIVA
+       ====================================================================== */
+
+    const btnBasicPlan = document.getElementById('btn-basic-plan');
+    const popupOffer = document.getElementById('popup-offer');
+    const popupClose = document.getElementById('popup-close');
+
+    // Abrir popup ao clicar no botão do Plano Básico
+    if (btnBasicPlan) {
+        btnBasicPlan.addEventListener('click', function(e) {
+            e.preventDefault();
+            popupOffer.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Previne scroll
+        });
+    }
+
+    // Fechar popup ao clicar no X
+    if (popupClose) {
+        popupClose.addEventListener('click', function() {
+            popupOffer.classList.remove('active');
+            document.body.style.overflow = ''; // Restaura scroll
+        });
+    }
+
+    // Fechar popup ao clicar fora do conteúdo
+    if (popupOffer) {
+        popupOffer.addEventListener('click', function(e) {
+            if (e.target === popupOffer) {
+                popupOffer.classList.remove('active');
+                document.body.style.overflow = ''; // Restaura scroll
+            }
+        });
+    }
+
+    /* ======================================================================
        6. CONSOLE LOG DE BOAS-VINDAS
        ====================================================================== */
 
@@ -162,6 +197,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('✅ Contador regressivo (até o final do dia)');
     console.log('✅ FAQ Accordion');
     console.log('✅ Smooth scroll');
+    console.log('✅ Popup Oferta Exclusiva');
     console.log('🎅 Feliz Natal!');
 
 });
