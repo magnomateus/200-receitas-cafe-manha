@@ -149,45 +149,65 @@ document.addEventListener('DOMContentLoaded', function() {
        5. POPUP OFERTA EXCLUSIVA
        ====================================================================== */
 
+    // Função para abrir popup
+    function openPopup() {
+        const popupOffer = document.getElementById('popup-offer');
+        if (popupOffer) {
+            console.log('Abrindo popup...');
+            popupOffer.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            console.log('Popup aberto com sucesso!');
+        } else {
+            console.error('popup-offer não encontrado!');
+        }
+    }
+
+    // Função para fechar popup
+    function closePopup() {
+        const popupOffer = document.getElementById('popup-offer');
+        if (popupOffer) {
+            console.log('Fechando popup...');
+            popupOffer.style.display = 'none';
+            document.body.style.overflow = '';
+            console.log('Popup fechado com sucesso!');
+        }
+    }
+
+    // Configurar botão do Plano Básico
     const btnBasicPlan = document.getElementById('btn-basic-plan');
-    const popupOffer = document.getElementById('popup-offer');
-    const popupClose = document.getElementById('popup-close');
-
-    console.log('Popup Elements:', {
-        btnBasicPlan: btnBasicPlan,
-        popupOffer: popupOffer,
-        popupClose: popupClose
-    });
-
-    // Abrir popup ao clicar no botão do Plano Básico
-    if (btnBasicPlan && popupOffer) {
+    if (btnBasicPlan) {
+        console.log('Botão Plano Básico encontrado!');
         btnBasicPlan.addEventListener('click', function(e) {
             e.preventDefault();
-            console.log('Botão Plano Básico clicado!');
-            popupOffer.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Previne scroll
-            console.log('Popup aberto');
+            e.stopPropagation();
+            console.log('Clique no botão detectado!');
+            openPopup();
         });
     } else {
-        console.error('Elementos do popup não encontrados!');
+        console.error('btn-basic-plan não encontrado!');
     }
 
-    // Fechar popup ao clicar no X
-    if (popupClose && popupOffer) {
-        popupClose.addEventListener('click', function() {
-            console.log('Botão fechar clicado');
-            popupOffer.classList.remove('active');
-            document.body.style.overflow = ''; // Restaura scroll
+    // Configurar botão de fechar (X)
+    const popupClose = document.getElementById('popup-close');
+    if (popupClose) {
+        console.log('Botão fechar encontrado!');
+        popupClose.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Botão X clicado!');
+            closePopup();
         });
+    } else {
+        console.error('popup-close não encontrado!');
     }
 
-    // Fechar popup ao clicar fora do conteúdo
-    if (popupOffer) {
-        popupOffer.addEventListener('click', function(e) {
-            if (e.target === popupOffer) {
-                console.log('Clicou fora do popup');
-                popupOffer.classList.remove('active');
-                document.body.style.overflow = ''; // Restaura scroll
+    // Fechar ao clicar fora do popup
+    const popupOverlay = document.getElementById('popup-offer');
+    if (popupOverlay) {
+        popupOverlay.addEventListener('click', function(e) {
+            if (e.target === popupOverlay) {
+                console.log('Clicou fora do conteúdo!');
+                closePopup();
             }
         });
     }
