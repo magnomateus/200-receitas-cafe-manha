@@ -213,7 +213,23 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     /* ======================================================================
-       6. CONSOLE LOG DE BOAS-VINDAS
+       6. REMOVER # DA URL
+       ====================================================================== */
+
+    // Remove o # da URL automaticamente
+    if (window.location.hash === '#') {
+        history.replaceState(null, null, window.location.pathname + window.location.search);
+    }
+
+    // Previne que o # apareça ao clicar em links vazios
+    window.addEventListener('hashchange', function() {
+        if (window.location.hash === '#') {
+            history.replaceState(null, null, window.location.pathname + window.location.search);
+        }
+    });
+
+    /* ======================================================================
+       7. CONSOLE LOG DE BOAS-VINDAS
        ====================================================================== */
 
     console.log(
@@ -230,6 +246,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('✅ FAQ Accordion');
     console.log('✅ Smooth scroll');
     console.log('✅ Popup Oferta Exclusiva');
+    console.log('✅ URL limpa (sem # no final)');
     console.log('🎅 Feliz Natal!');
 
 });
