@@ -2890,17 +2890,30 @@ img.lazy.loaded {
     margin: var(--space-lg) auto;
 }
 
-.vsl-container > div {
-    border-radius: 12px;
+.vimeo-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* Aspect ratio 16:9 */
+    height: 0;
     overflow: hidden;
+    border-radius: 16px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
     background: #000;
+}
+
+.vimeo-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 16px;
 }
 
 .vsl-video {
     width: 100%;
     height: auto;
-    border-radius: 12px;
+    border-radius: 16px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
     background: #000;
     display: block;
