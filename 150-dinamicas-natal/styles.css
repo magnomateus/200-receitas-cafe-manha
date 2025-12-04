@@ -2886,8 +2886,15 @@ img.lazy.loaded {
    ========================================================================== */
 
 .vsl-container {
-    max-width: 400px;
+    max-width: 800px;
     margin: var(--space-lg) auto;
+}
+
+.vsl-container > div {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    background: #000;
 }
 
 .vsl-video {
@@ -2906,6 +2913,11 @@ img.lazy.loaded {
         padding: 0 20px;
     }
 
+    .vsl-container > div {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
     .vsl-video {
         max-width: 350px;
         margin: 0 auto;
@@ -2913,6 +2925,10 @@ img.lazy.loaded {
 }
 
 @media (max-width: 480px) {
+    .vsl-container > div {
+        max-width: 100%;
+    }
+
     .vsl-video {
         max-width: 280px;
     }
