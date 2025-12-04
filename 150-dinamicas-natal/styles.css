@@ -2886,13 +2886,13 @@ img.lazy.loaded {
    ========================================================================== */
 
 .vsl-container {
-    max-width: 800px;
+    max-width: 450px;
     margin: var(--space-lg) auto;
 }
 
 .vimeo-wrapper {
     position: relative;
-    padding-bottom: 56.25%; /* Aspect ratio 16:9 */
+    padding-bottom: 177.78%; /* Aspect ratio 9:16 (vertical) */
     height: 0;
     overflow: hidden;
     border-radius: 16px;
@@ -2919,16 +2919,11 @@ img.lazy.loaded {
     display: block;
 }
 
-/* Mobile - Ajustar tamanho do vídeo */
+/* Mobile - Ajustar tamanho do vídeo vertical */
 @media (max-width: 768px) {
     .vsl-container {
-        max-width: 100%;
+        max-width: 400px;
         padding: 0 20px;
-    }
-
-    .vsl-container > div {
-        max-width: 600px;
-        margin: 0 auto;
     }
 
     .vsl-video {
@@ -2938,8 +2933,8 @@ img.lazy.loaded {
 }
 
 @media (max-width: 480px) {
-    .vsl-container > div {
-        max-width: 100%;
+    .vsl-container {
+        max-width: 320px;
     }
 
     .vsl-video {
