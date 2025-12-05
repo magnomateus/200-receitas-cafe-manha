@@ -229,23 +229,23 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     /* ======================================================================
-       7. FORÇAR REDIRECIONAMENTO DO CTA FINAL PARA #OFERTA
+       7. FORÇAR REDIRECIONAMENTO DO CTA FINAL PARA #PLANO-PREMIUM
        ====================================================================== */
 
     // Prevenir que scripts externos (como Utmify) modifiquem o botão CTA final
     const btnCtaFinal = document.querySelector('.btn-cta-final');
     if (btnCtaFinal) {
         // Forçar href correto
-        btnCtaFinal.setAttribute('href', '#oferta');
+        btnCtaFinal.setAttribute('href', '#plano-premium');
 
         // Observar mudanças no atributo href
         const observer = new MutationObserver(function(mutations) {
             mutations.forEach(function(mutation) {
                 if (mutation.type === 'attributes' && mutation.attributeName === 'href') {
                     const currentHref = btnCtaFinal.getAttribute('href');
-                    if (currentHref !== '#oferta') {
-                        btnCtaFinal.setAttribute('href', '#oferta');
-                        console.log('CTA Final href restaurado para #oferta');
+                    if (currentHref !== '#plano-premium') {
+                        btnCtaFinal.setAttribute('href', '#plano-premium');
+                        console.log('CTA Final href restaurado para #plano-premium');
                     }
                 }
             });
@@ -256,7 +256,7 @@ document.addEventListener('DOMContentLoaded', function() {
             attributeFilter: ['href']
         });
 
-        console.log('✅ CTA Final protegido - sempre redirecionará para #oferta');
+        console.log('✅ CTA Final protegido - sempre redirecionará para #plano-premium');
     }
 
     /* ======================================================================
@@ -278,7 +278,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('✅ Smooth scroll');
     console.log('✅ Popup Oferta Exclusiva');
     console.log('✅ URL limpa (sem # no final)');
-    console.log('✅ CTA Final protegido para #oferta');
+    console.log('✅ CTA Final protegido para #plano-premium');
     console.log('🎅 Feliz Natal!');
 
 });
