@@ -1672,6 +1672,12 @@ img.lazy.loaded {
     white-space: nowrap;
 }
 
+/* Highlight Red */
+.highlight-red {
+    color: var(--primary-red);
+    font-weight: 700;
+}
+
 /* Content Section */
 .content-section {
     background: var(--secondary-cream);
