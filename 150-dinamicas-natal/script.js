@@ -229,7 +229,38 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     /* ======================================================================
-       7. CONSOLE LOG DE BOAS-VINDAS
+       7. FORÇAR REDIRECIONAMENTO DO CTA FINAL PARA #OFFER
+       ====================================================================== */
+
+    // Prevenir que scripts externos (como Utmify) modifiquem o botão CTA final
+    const btnCtaFinal = document.querySelector('.btn-cta-final');
+    if (btnCtaFinal) {
+        // Forçar href correto
+        btnCtaFinal.setAttribute('href', '#offer');
+
+        // Observar mudanças no atributo href
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'href') {
+                    const currentHref = btnCtaFinal.getAttribute('href');
+                    if (currentHref !== '#offer') {
+                        btnCtaFinal.setAttribute('href', '#offer');
+                        console.log('CTA Final href restaurado para #offer');
+                    }
+                }
+            });
+        });
+
+        observer.observe(btnCtaFinal, {
+            attributes: true,
+            attributeFilter: ['href']
+        });
+
+        console.log('✅ CTA Final protegido - sempre redirecionará para #offer');
+    }
+
+    /* ======================================================================
+       8. CONSOLE LOG DE BOAS-VINDAS
        ====================================================================== */
 
     console.log(
@@ -247,6 +278,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('✅ Smooth scroll');
     console.log('✅ Popup Oferta Exclusiva');
     console.log('✅ URL limpa (sem # no final)');
+    console.log('✅ CTA Final protegido para #offer');
     console.log('🎅 Feliz Natal!');
 
 });
