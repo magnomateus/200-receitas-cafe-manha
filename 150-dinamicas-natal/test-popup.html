@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 500px;
+        }
+
+        .popup-close {
+            background: red;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .btn-test {
+            background: green;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Teste do Popup</h1>
+    <button id="btn-basic-plan" class="btn-test">CLIQUE AQUI PARA TESTAR</button>
+
+    <div id="popup-offer" class="popup-overlay">
+        <div class="popup-content">
+            <button id="popup-close" class="popup-close">X FECHAR</button>
+            <h2>OFERTA EXCLUSIVA</h2>
+            <p>Popup funcionando!</p>
+            <p style="font-size: 48px; color: green;">R$ 14,90</p>
+        </div>
+    </div>
+
+    <script>
+        console.log('Script carregando...');
+
+        const btn = document.getElementById('btn-basic-plan');
+        const popup = document.getElementById('popup-offer');
+        const closeBtn = document.getElementById('popup-close');
+
+        console.log('Botão:', btn);
+        console.log('Popup:', popup);
+        console.log('Fechar:', closeBtn);
+
+        if (btn) {
+            btn.addEventListener('click', function() {
+                console.log('CLICOU NO BOTÃO!');
+                if (popup) {
+                    popup.style.display = 'flex';
+                    console.log('Popup aberto!');
+                }
+            });
+        }
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function() {
+                console.log('CLICOU EM FECHAR!');
+                if (popup) {
+                    popup.style.display = 'none';
+                    console.log('Popup fechado!');
+                }
+            });
+        }
+
+        if (popup) {
+            popup.addEventListener('click', function(e) {
+                if (e.target === popup) {
+                    popup.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -2490,6 +2490,18 @@ img.lazy.loaded {
     border-bottom: none;
 }
 
+.bonus-highlight {
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+    color: var(--primary-red) !important;
+    padding: var(--space-md) 0 !important;
+    text-align: center !important;
+    border: 2px dashed var(--primary-gold) !important;
+    border-radius: 8px;
+    background: rgba(244, 196, 48, 0.1);
+    margin-top: var(--space-sm) !important;
+}
+
 .bonus-value-tag {
     color: var(--primary-green);
     font-size: 0.875rem;
