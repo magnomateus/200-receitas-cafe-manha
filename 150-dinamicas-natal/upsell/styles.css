@@ -8,10 +8,26 @@
     box-sizing: border-box;
 }
 
+:root {
+    /* Cores Primárias - TEMA NATAL */
+    --primary-red: rgb(196, 30, 58);
+    --primary-green: rgb(22, 80, 22);
+    --primary-gold: rgb(244, 196, 48);
+
+    /* Cores Secundárias */
+    --secondary-cream: rgb(255, 254, 247);
+    --secondary-light-green: rgb(45, 106, 45);
+    --secondary-light-gold: rgb(255, 215, 0);
+
+    /* Tipografia */
+    --font-heading: 'Montserrat', 'Poppins', sans-serif;
+    --font-body: 'Open Sans', 'Roboto', sans-serif;
+}
+
 body {
-    font-family: 'Open Sans', sans-serif;
-    background: linear-gradient(135deg, #0d3b0d 0%, #1a5c1a 50%, #0d3b0d 100%);
-    color: #fff;
+    font-family: var(--font-body);
+    background: var(--secondary-cream);
+    color: rgb(44, 62, 80);
     line-height: 1.6;
 }
 
@@ -27,38 +43,14 @@ body {
     padding: 40px 0;
 }
 
-/* Urgency Badge */
-.urgency-badge {
-    background: linear-gradient(135deg, #C41E3A, #8B1A2E);
-    color: #fff;
-    text-align: center;
-    padding: 15px;
-    font-weight: 800;
-    font-size: 18px;
-    letter-spacing: 1px;
-    margin-bottom: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(196, 30, 58, 0.4);
-    animation: pulse-glow 2s ease-in-out infinite;
-}
-
-@keyframes pulse-glow {
-    0%, 100% {
-        box-shadow: 0 4px 15px rgba(196, 30, 58, 0.4);
-    }
-    50% {
-        box-shadow: 0 4px 25px rgba(196, 30, 58, 0.7);
-    }
-}
-
 /* Headlines */
 .headline {
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--font-heading);
     font-size: 3rem;
     font-weight: 800;
     text-align: center;
     margin-bottom: 20px;
-    color: #FFD700;
+    color: var(--primary-red);
     text-transform: uppercase;
     line-height: 1.2;
 }
@@ -67,11 +59,11 @@ body {
     font-size: 1.5rem;
     text-align: center;
     margin-bottom: 40px;
-    color: #fff;
+    color: var(--primary-green);
 }
 
 .sub-headline strong {
-    color: #FFD700;
+    color: var(--primary-red);
 }
 
 /* VSL Container */
@@ -115,41 +107,43 @@ body {
 
 /* Countdown */
 .countdown-box {
-    background: rgba(255, 215, 0, 0.1);
-    border: 2px solid #FFD700;
+    background: white;
+    border: 3px solid var(--primary-red);
     border-radius: 12px;
     padding: 20px;
     text-align: center;
     margin: 40px auto;
     max-width: 400px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .countdown-label {
     font-size: 1.25rem;
     font-weight: 600;
     margin-bottom: 10px;
+    color: var(--primary-green);
 }
 
 .countdown-display {
     font-size: 3.5rem;
     font-weight: 800;
-    font-family: 'Montserrat', sans-serif;
-    color: #FFD700;
+    font-family: var(--font-heading);
+    color: var(--primary-red);
 }
 
 /* Offer Box */
 .offer-box {
-    background: linear-gradient(135deg, #1a4d1a, #0d3b0d);
-    border: 3px solid #FFD700;
+    background: white;
+    border: 4px solid var(--primary-green);
     border-radius: 20px;
     padding: 40px;
     margin: 40px auto;
-    box-shadow: 0 15px 50px rgba(255, 215, 0, 0.3);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
 }
 
 .offer-badge {
-    background: linear-gradient(135deg, #FFD700, #FFA500);
-    color: #000;
+    background: linear-gradient(135deg, var(--primary-red), rgb(139, 26, 46));
+    color: white;
     font-weight: 800;
     font-size: 1.25rem;
     text-align: center;
@@ -161,12 +155,12 @@ body {
 }
 
 .offer-title {
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--font-heading);
     font-size: 2.5rem;
     font-weight: 800;
     text-align: center;
     margin-bottom: 30px;
-    color: #FFD700;
+    color: var(--primary-green);
 }
 
 /* Price Box */
@@ -174,13 +168,15 @@ body {
     text-align: center;
     margin: 30px 0;
     padding: 30px;
-    background: rgba(255, 215, 0, 0.05);
+    background: var(--secondary-cream);
     border-radius: 12px;
+    border: 2px dashed var(--primary-gold);
 }
 
 .price-label {
     font-size: 1.25rem;
     margin-bottom: 10px;
+    color: var(--primary-green);
 }
 
 .price-old {
@@ -192,15 +188,15 @@ body {
 .price-current {
     font-size: 4rem;
     font-weight: 800;
-    font-family: 'Montserrat', sans-serif;
-    color: #FFD700;
+    font-family: var(--font-heading);
+    color: var(--primary-red);
     line-height: 1;
     margin: 20px 0;
 }
 
 .price-installment {
     font-size: 1.25rem;
-    color: #ccc;
+    color: var(--primary-green);
 }
 
 /* Benefits */
@@ -211,7 +207,8 @@ body {
 .benefits h3 {
     font-size: 1.5rem;
     margin-bottom: 20px;
-    color: #FFD700;
+    color: var(--primary-green);
+    font-family: var(--font-heading);
 }
 
 .benefits ul {
@@ -221,17 +218,18 @@ body {
 .benefits li {
     font-size: 1.125rem;
     padding: 12px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(22, 80, 22, 0.1);
+    color: rgb(44, 62, 80);
 }
 
 /* CTA Button */
 .btn-cta {
     display: block;
-    background: linear-gradient(135deg, #C41E3A, #8B1A2E);
-    color: #fff;
+    background: linear-gradient(135deg, var(--primary-red), rgb(139, 26, 46));
+    color: white;
     font-size: 1.75rem;
     font-weight: 800;
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--font-heading);
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
@@ -244,7 +242,7 @@ body {
 }
 
 .btn-cta:hover {
-    background: linear-gradient(135deg, #8B1A2E, #6B1423);
+    background: linear-gradient(135deg, rgb(139, 26, 46), rgb(107, 20, 35));
     transform: translateY(-3px);
     box-shadow: 0 15px 40px rgba(196, 30, 58, 0.6);
 }
@@ -266,7 +264,7 @@ body {
     text-align: center;
     margin-top: 20px;
     font-size: 1rem;
-    color: #ccc;
+    color: var(--primary-green);
 }
 
 /* No Thanks */
@@ -283,7 +281,7 @@ body {
 }
 
 .btn-decline:hover {
-    color: #fff;
+    color: var(--primary-red);
 }
 
 /* Responsive */
