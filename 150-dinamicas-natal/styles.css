@@ -2502,9 +2502,9 @@ img.lazy.loaded {
 
 .bonus-highlight .bonus-arrow {
     display: block;
-    font-size: 2rem;
+    font-size: 3rem;
     margin-top: 8px;
-    color: var(--primary-gold);
+    color: var(--primary-red);
     animation: bounce-arrow 1.5s ease-in-out infinite;
 }
 
