@@ -189,7 +189,7 @@ body {
     font-size: 4rem;
     font-weight: 800;
     font-family: var(--font-heading);
-    color: var(--primary-red);
+    color: var(--primary-green);
     line-height: 1;
     margin: 20px 0;
 }
@@ -220,6 +220,19 @@ body {
     padding: 12px 0;
     border-bottom: 1px solid rgba(22, 80, 22, 0.1);
     color: rgb(44, 62, 80);
+}
+
+.benefits li::first-line {
+    font-weight: 600;
+}
+
+.benefits li:before {
+    content: '';
+}
+
+.benefits li {
+    position: relative;
+    padding-left: 0;
 }
 
 /* CTA Button */
