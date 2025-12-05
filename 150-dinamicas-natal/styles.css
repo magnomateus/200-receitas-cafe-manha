@@ -2496,10 +2496,25 @@ img.lazy.loaded {
     color: var(--primary-red) !important;
     padding: var(--space-md) 0 !important;
     text-align: center !important;
-    border: 2px dashed var(--primary-gold) !important;
-    border-radius: 8px;
-    background: rgba(244, 196, 48, 0.1);
     margin-top: var(--space-sm) !important;
+    border-bottom: none !important;
+}
+
+.bonus-highlight .bonus-arrow {
+    display: block;
+    font-size: 2rem;
+    margin-top: 8px;
+    color: var(--primary-gold);
+    animation: bounce-arrow 1.5s ease-in-out infinite;
+}
+
+@keyframes bounce-arrow {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(8px);
+    }
 }
 
 .bonus-value-tag {
