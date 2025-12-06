@@ -5,43 +5,11 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     /* ======================================================================
-       PREVENIR SAÍDA DA PÁGINA
+       EXIT INTENT DESABILITADO
        ====================================================================== */
 
-    let userHasInteracted = false;
-    let allowExit = false; // Flag para permitir saída quando clicar no CTA
-
-    // Detectar interação do usuário
-    document.addEventListener('click', function() {
-        userHasInteracted = true;
-    });
-
-    // Alerta ao tentar sair
-    window.addEventListener('beforeunload', function(e) {
-        if (userHasInteracted && !allowExit) {
-            e.preventDefault();
-            e.returnValue = '';
-            return '';
-        }
-    });
-
-    // Permitir saída ao clicar no CTA ou no link "Não obrigado"
-    const ctaButton = document.getElementById('cta-button');
-    const declineLink = document.querySelector('.btn-decline');
-
-    if (ctaButton) {
-        ctaButton.addEventListener('click', function() {
-            allowExit = true;
-            console.log('✅ Saída permitida - redirecionando para checkout');
-        });
-    }
-
-    if (declineLink) {
-        declineLink.addEventListener('click', function() {
-            allowExit = true;
-            console.log('✅ Saída permitida - redirecionando para página de obrigado');
-        });
-    }
+    // Exit intent foi removido para melhor experiência do usuário
+    console.log('✅ Exit intent desabilitado - navegação livre');
 
     /* ======================================================================
        MOSTRAR CTA APÓS TEMPO DE VÍDEO
@@ -52,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const iframe = document.querySelector('.vimeo-wrapper iframe');
     const progressFill = document.getElementById('progress-fill');
+    const ctaButton = document.getElementById('cta-button');
 
     if (iframe && ctaButton) {
         // Fallback: Mostrar botão após 30 segundos mesmo se o vídeo não carregar
@@ -120,6 +89,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
     console.log('%cUPSELL PAGE 🎁', 'font-size: 20px; font-weight: bold; color: #165016;');
     console.log('%cPágina carregada!', 'font-size: 14px; color: #C41E3A;');
-    console.log('✅ Exit intent ativo');
 
 });
