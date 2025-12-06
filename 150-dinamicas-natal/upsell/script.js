@@ -25,6 +25,38 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     /* ======================================================================
+       MOSTRAR CTA APÓS TEMPO DE VÍDEO
+       ====================================================================== */
+
+    // Configuração: tempo em segundos para mostrar o botão
+    const TEMPO_PARA_MOSTRAR_CTA = 60; // 60 segundos = 1 minuto
+
+    const iframe = document.querySelector('.vimeo-wrapper iframe');
+    const ctaButton = document.getElementById('cta-button');
+
+    if (iframe && ctaButton) {
+        // Inicializar player do Vimeo
+        const player = new Vimeo.Player(iframe);
+
+        // Monitorar o tempo do vídeo
+        player.on('timeupdate', function(data) {
+            // data.seconds contém o tempo atual do vídeo em segundos
+            if (data.seconds >= TEMPO_PARA_MOSTRAR_CTA) {
+                // Mostrar o botão com animação
+                ctaButton.style.display = 'block';
+                ctaButton.style.animation = 'fadeIn 0.5s ease-in';
+
+                console.log('✅ CTA Button revelado após ' + TEMPO_PARA_MOSTRAR_CTA + ' segundos de vídeo!');
+
+                // Remover o listener após mostrar o botão (otimização)
+                player.off('timeupdate');
+            }
+        });
+
+        console.log('✅ Controle de CTA por tempo de vídeo ativo (' + TEMPO_PARA_MOSTRAR_CTA + 's)');
+    }
+
+    /* ======================================================================
        CONSOLE LOG
        ====================================================================== */
 
