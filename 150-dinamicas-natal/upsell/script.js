@@ -67,11 +67,31 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
 
+            // Função para calcular progresso com easing (rápido no início, lento no fim)
+            function calculateEasedProgress(currentTime, duration) {
+                // Progresso real (0 a 1)
+                let realProgress = currentTime / duration;
+
+                // Aplicar easing: rápido no início (80% da barra), lento no final (20% restante)
+                let easedProgress;
+
+                if (realProgress <= 0.5) {
+                    // Primeiros 50% do vídeo = 80% da barra (muito rápido)
+                    easedProgress = realProgress * 1.6; // 0.5 * 1.6 = 0.8
+                } else {
+                    // Últimos 50% do vídeo = 20% restante da barra (bem lento)
+                    easedProgress = 0.8 + ((realProgress - 0.5) * 0.4); // 0.8 + (0.5 * 0.4) = 1.0
+                }
+
+                return easedProgress * 100; // Converter para porcentagem
+            }
+
             // Monitorar o tempo do vídeo
             player.on('timeupdate', function(data) {
                 // Atualizar barra de progresso customizada
                 if (videoDuration > 0 && progressFill) {
-                    let progress = (data.seconds / videoDuration) * 100;
+                    // Usar progresso com easing
+                    let progress = calculateEasedProgress(data.seconds, videoDuration);
 
                     // Garantir que não ultrapasse 100%
                     if (progress > 100) progress = 100;
@@ -80,7 +100,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     // Log a cada 10 segundos para não poluir o console
                     if (Math.floor(data.seconds) % 10 === 0) {
-                        console.log('📊 Progresso: ' + progress.toFixed(2) + '% | Tempo: ' + data.seconds.toFixed(0) + 's / ' + videoDuration.toFixed(0) + 's');
+                        let realProgress = (data.seconds / videoDuration) * 100;
+                        console.log('📊 Progresso Real: ' + realProgress.toFixed(2) + '% | Barra Visual: ' + progress.toFixed(2) + '% | Tempo: ' + data.seconds.toFixed(0) + 's / ' + videoDuration.toFixed(0) + 's');
                     }
                 }
 
