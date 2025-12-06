@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
        ====================================================================== */
 
     let userHasInteracted = false;
+    let allowExit = false; // Flag para permitir saída quando clicar no CTA
 
     // Detectar interação do usuário
     document.addEventListener('click', function() {
@@ -17,12 +18,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Alerta ao tentar sair
     window.addEventListener('beforeunload', function(e) {
-        if (userHasInteracted) {
+        if (userHasInteracted && !allowExit) {
             e.preventDefault();
             e.returnValue = '';
             return '';
         }
     });
+
+    // Permitir saída ao clicar no CTA ou no link "Não obrigado"
+    const ctaButton = document.getElementById('cta-button');
+    const declineLink = document.querySelector('.btn-decline');
+
+    if (ctaButton) {
+        ctaButton.addEventListener('click', function() {
+            allowExit = true;
+            console.log('✅ Saída permitida - redirecionando para checkout');
+        });
+    }
+
+    if (declineLink) {
+        declineLink.addEventListener('click', function() {
+            allowExit = true;
+            console.log('✅ Saída permitida - redirecionando para página de obrigado');
+        });
+    }
 
     /* ======================================================================
        MOSTRAR CTA APÓS TEMPO DE VÍDEO
