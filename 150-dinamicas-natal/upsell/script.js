@@ -67,20 +67,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
 
-            // Função para calcular progresso com easing (MUITO rápido no início, lento no fim)
+            // Função para calcular progresso com easing (EXTREMAMENTE rápido no início, lento no fim)
             function calculateEasedProgress(currentTime, duration) {
                 // Progresso real (0 a 1)
                 let realProgress = currentTime / duration;
 
-                // Aplicar easing: SUPER rápido no início (85% da barra), muito lento no final (15% restante)
+                // Aplicar easing: EXTREMAMENTE rápido no início (90% da barra), lentíssimo no final (10% restante)
                 let easedProgress;
 
-                if (realProgress <= 0.4) {
-                    // Primeiros 40% do vídeo = 85% da barra (SUPER RÁPIDO!)
-                    easedProgress = realProgress * 2.125; // 0.4 * 2.125 = 0.85
+                if (realProgress <= 0.3) {
+                    // Primeiros 30% do vídeo = 90% da barra (EXTREMAMENTE RÁPIDO! 🚀)
+                    easedProgress = realProgress * 3.0; // 0.3 * 3.0 = 0.90
                 } else {
-                    // Últimos 60% do vídeo = 15% restante da barra (BEM LENTO)
-                    easedProgress = 0.85 + ((realProgress - 0.4) * 0.25); // 0.85 + (0.6 * 0.25) = 1.0
+                    // Últimos 70% do vídeo = 10% restante da barra (SUPER LENTO 🐌)
+                    easedProgress = 0.90 + ((realProgress - 0.3) * 0.143); // 0.90 + (0.7 * 0.143) ≈ 1.0
                 }
 
                 return easedProgress * 100; // Converter para porcentagem
