@@ -51,28 +51,40 @@ document.addEventListener('DOMContentLoaded', function() {
     const TEMPO_PARA_MOSTRAR_CTA = 30; // 30 segundos
 
     const iframe = document.querySelector('.vimeo-wrapper iframe');
-    const ctaButton = document.getElementById('cta-button');
 
     if (iframe && ctaButton) {
-        // Inicializar player do Vimeo
-        const player = new Vimeo.Player(iframe);
-
-        // Monitorar o tempo do vídeo
-        player.on('timeupdate', function(data) {
-            // data.seconds contém o tempo atual do vídeo em segundos
-            if (data.seconds >= TEMPO_PARA_MOSTRAR_CTA) {
-                // Mostrar o botão com animação
+        // Fallback: Mostrar botão após 30 segundos mesmo se o vídeo não carregar
+        setTimeout(function() {
+            if (ctaButton.style.display === 'none') {
                 ctaButton.style.display = 'block';
                 ctaButton.style.animation = 'fadeIn 0.5s ease-in';
-
-                console.log('✅ CTA Button revelado após ' + TEMPO_PARA_MOSTRAR_CTA + ' segundos de vídeo!');
-
-                // Remover o listener após mostrar o botão (otimização)
-                player.off('timeupdate');
+                console.log('✅ CTA Button revelado via fallback timer');
             }
-        });
+        }, TEMPO_PARA_MOSTRAR_CTA * 1000);
 
-        console.log('✅ Controle de CTA por tempo de vídeo ativo (' + TEMPO_PARA_MOSTRAR_CTA + 's)');
+        // Tentar usar API do Vimeo
+        try {
+            const player = new Vimeo.Player(iframe);
+
+            // Monitorar o tempo do vídeo
+            player.on('timeupdate', function(data) {
+                // data.seconds contém o tempo atual do vídeo em segundos
+                if (data.seconds >= TEMPO_PARA_MOSTRAR_CTA) {
+                    // Mostrar o botão com animação
+                    ctaButton.style.display = 'block';
+                    ctaButton.style.animation = 'fadeIn 0.5s ease-in';
+
+                    console.log('✅ CTA Button revelado após ' + TEMPO_PARA_MOSTRAR_CTA + ' segundos de vídeo!');
+
+                    // Remover o listener após mostrar o botão (otimização)
+                    player.off('timeupdate');
+                }
+            });
+
+            console.log('✅ Controle de CTA por tempo de vídeo ativo (' + TEMPO_PARA_MOSTRAR_CTA + 's)');
+        } catch (error) {
+            console.log('⚠️ Erro ao inicializar player Vimeo, usando fallback timer');
+        }
     }
 
     /* ======================================================================
