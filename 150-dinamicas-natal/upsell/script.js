@@ -64,7 +64,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Tentar usar API do Vimeo
         try {
-            const player = new Vimeo.Player(iframe);
+            const player = new Vimeo.Player(iframe, {
+                outro: 'nothing'
+            });
 
             // Monitorar o tempo do vídeo
             player.on('timeupdate', function(data) {
@@ -79,6 +81,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Remover o listener após mostrar o botão (otimização)
                     player.off('timeupdate');
                 }
+            });
+
+            // Quando o vídeo terminar, pausar para evitar outro
+            player.on('ended', function() {
+                console.log('✅ Vídeo finalizado - pausando para evitar outro');
+                player.pause();
             });
 
             console.log('✅ Controle de CTA por tempo de vídeo ativo (' + TEMPO_PARA_MOSTRAR_CTA + 's)');

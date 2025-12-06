@@ -93,6 +93,18 @@ body {
     border: none;
 }
 
+/* Esconder elementos de outro/sugestões do Vimeo */
+.vimeo-wrapper iframe::after,
+.vimeo-wrapper .vp-outro,
+.vimeo-wrapper .vp-sidedock,
+.vimeo-wrapper [data-name="outro"],
+.vimeo-wrapper [class*="outro"],
+.vimeo-wrapper [class*="sidedock"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
 .video-placeholder {
     position: absolute;
     top: 0;
