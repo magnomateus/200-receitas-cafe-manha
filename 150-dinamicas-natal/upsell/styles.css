@@ -93,16 +93,37 @@ body {
     border: none;
 }
 
-/* Esconder elementos de outro/sugestões do Vimeo */
+/* Esconder elementos de outro/sugestões do Vimeo e barra original */
 .vimeo-wrapper iframe::after,
 .vimeo-wrapper .vp-outro,
 .vimeo-wrapper .vp-sidedock,
 .vimeo-wrapper [data-name="outro"],
 .vimeo-wrapper [class*="outro"],
-.vimeo-wrapper [class*="sidedock"] {
+.vimeo-wrapper [class*="sidedock"],
+.vimeo-wrapper .vp-controls-wrapper,
+.vimeo-wrapper .vp-progress {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
+}
+
+/* Barra de progresso customizada */
+.custom-progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.3);
+    z-index: 10;
+    cursor: pointer;
+}
+
+.custom-progress-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-red), var(--primary-gold));
+    transition: width 0.3s ease;
 }
 
 .video-placeholder {

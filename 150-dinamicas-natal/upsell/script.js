@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const TEMPO_PARA_MOSTRAR_CTA = 30; // 30 segundos
 
     const iframe = document.querySelector('.vimeo-wrapper iframe');
+    const progressFill = document.getElementById('progress-fill');
 
     if (iframe && ctaButton) {
         // Fallback: Mostrar botão após 30 segundos mesmo se o vídeo não carregar
@@ -68,8 +69,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 outro: 'nothing'
             });
 
+            // Variável para armazenar a duração do vídeo
+            let videoDuration = 0;
+
+            // Obter duração do vídeo
+            player.getDuration().then(function(duration) {
+                videoDuration = duration;
+                console.log('📹 Duração do vídeo: ' + duration + ' segundos');
+            });
+
             // Monitorar o tempo do vídeo
             player.on('timeupdate', function(data) {
+                // Atualizar barra de progresso customizada
+                if (videoDuration > 0 && progressFill) {
+                    const progress = (data.seconds / videoDuration) * 100;
+                    progressFill.style.width = progress + '%';
+                }
+
                 // data.seconds contém o tempo atual do vídeo em segundos
                 if (data.seconds >= TEMPO_PARA_MOSTRAR_CTA) {
                     // Mostrar o botão com animação
@@ -86,6 +102,9 @@ document.addEventListener('DOMContentLoaded', function() {
             // Quando o vídeo terminar, pausar para evitar outro
             player.on('ended', function() {
                 console.log('✅ Vídeo finalizado - pausando para evitar outro');
+                if (progressFill) {
+                    progressFill.style.width = '100%';
+                }
                 player.pause();
             });
 
