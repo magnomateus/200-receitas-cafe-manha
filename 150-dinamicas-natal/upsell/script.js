@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const iframe = document.querySelector('.vimeo-wrapper iframe');
     const progressFill = document.getElementById('progress-fill');
     const ctaButton = document.getElementById('cta-button');
+    const playOverlay = document.getElementById('play-overlay');
 
     if (iframe && ctaButton) {
         // Fallback: Mostrar botão após 30 segundos mesmo se o vídeo não carregar
@@ -46,6 +47,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 videoDuration = duration;
                 console.log('📹 Duração do vídeo: ' + duration + ' segundos');
             });
+
+            // Botão de play overlay - iniciar vídeo com som
+            if (playOverlay) {
+                playOverlay.addEventListener('click', function() {
+                    player.play().then(function() {
+                        playOverlay.classList.add('hidden');
+                        console.log('✅ Vídeo iniciado com som');
+                    });
+                });
+
+                // Esconder overlay quando o vídeo começar a tocar
+                player.on('play', function() {
+                    if (playOverlay) {
+                        playOverlay.classList.add('hidden');
+                    }
+                });
+            }
 
             // Monitorar o tempo do vídeo
             player.on('timeupdate', function(data) {
