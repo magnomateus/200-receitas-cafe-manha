@@ -116,14 +116,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
 
-            // Quando o vídeo terminar, pausar para evitar outro
+            // Quando o vídeo terminar, pausar e resetar para evitar outro
             player.on('ended', function() {
                 console.log('✅ Vídeo finalizado - forçando barra para 100%');
                 if (progressFill) {
                     progressFill.style.width = '100%';
                     console.log('📊 Barra de progresso: 100% (vídeo completo)');
                 }
+
+                // Parar o vídeo e voltar para o início para evitar outro
                 player.pause();
+                player.setCurrentTime(0).then(function() {
+                    console.log('🔄 Vídeo resetado para o início');
+                }).catch(function(error) {
+                    console.log('⚠️ Erro ao resetar vídeo:', error);
+                });
             });
 
             console.log('✅ Controle de CTA por tempo de vídeo ativo (' + TEMPO_PARA_MOSTRAR_CTA + 's)');
