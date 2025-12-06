@@ -52,6 +52,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const iframe = document.querySelector('.vimeo-wrapper iframe');
     const progressFill = document.getElementById('progress-fill');
+    const playPauseBtn = document.getElementById('play-pause-btn');
+    const playIcon = playPauseBtn ? playPauseBtn.querySelector('.play-icon') : null;
+    const pauseIcon = playPauseBtn ? playPauseBtn.querySelector('.pause-icon') : null;
 
     if (iframe && ctaButton) {
         // Fallback: Mostrar botão após 30 segundos mesmo se o vídeo não carregar
@@ -99,11 +102,51 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
 
+            // Botão Play/Pause
+            if (playPauseBtn) {
+                playPauseBtn.addEventListener('click', function() {
+                    player.getPaused().then(function(paused) {
+                        if (paused) {
+                            player.play();
+                            if (playIcon && pauseIcon) {
+                                playIcon.style.display = 'none';
+                                pauseIcon.style.display = 'inline';
+                            }
+                        } else {
+                            player.pause();
+                            if (playIcon && pauseIcon) {
+                                playIcon.style.display = 'inline';
+                                pauseIcon.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+
+                // Atualizar ícone quando o vídeo tocar/pausar
+                player.on('play', function() {
+                    if (playIcon && pauseIcon) {
+                        playIcon.style.display = 'none';
+                        pauseIcon.style.display = 'inline';
+                    }
+                });
+
+                player.on('pause', function() {
+                    if (playIcon && pauseIcon) {
+                        playIcon.style.display = 'inline';
+                        pauseIcon.style.display = 'none';
+                    }
+                });
+            }
+
             // Quando o vídeo terminar, pausar para evitar outro
             player.on('ended', function() {
                 console.log('✅ Vídeo finalizado - pausando para evitar outro');
                 if (progressFill) {
                     progressFill.style.width = '100%';
+                }
+                if (playIcon && pauseIcon) {
+                    playIcon.style.display = 'inline';
+                    pauseIcon.style.display = 'none';
                 }
                 player.pause();
             });
