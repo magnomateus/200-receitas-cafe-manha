@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
        ====================================================================== */
 
     // Configuração: tempo em segundos para mostrar o botão
-    const TEMPO_PARA_MOSTRAR_CTA = 60; // 60 segundos = 1 minuto
+    const TEMPO_PARA_MOSTRAR_CTA = 30; // 30 segundos
 
     const iframe = document.querySelector('.vimeo-wrapper iframe');
     const ctaButton = document.getElementById('cta-button');
