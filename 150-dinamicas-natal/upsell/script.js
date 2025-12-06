@@ -45,7 +45,9 @@ document.addEventListener('DOMContentLoaded', function() {
             // Obter duração do vídeo
             player.getDuration().then(function(duration) {
                 videoDuration = duration;
-                console.log('📹 Duração do vídeo: ' + duration + ' segundos');
+                console.log('📹 Duração total do vídeo: ' + duration + ' segundos (' + (duration / 60).toFixed(2) + ' minutos)');
+            }).catch(function(error) {
+                console.error('❌ Erro ao obter duração:', error);
             });
 
             // Botão de play overlay - iniciar vídeo com som
@@ -69,9 +71,17 @@ document.addEventListener('DOMContentLoaded', function() {
             player.on('timeupdate', function(data) {
                 // Atualizar barra de progresso customizada
                 if (videoDuration > 0 && progressFill) {
-                    const progress = (data.seconds / videoDuration) * 100;
+                    let progress = (data.seconds / videoDuration) * 100;
+
+                    // Garantir que não ultrapasse 100%
+                    if (progress > 100) progress = 100;
+
                     progressFill.style.width = progress + '%';
-                    console.log('📊 Progresso: ' + progress.toFixed(2) + '% | Tempo: ' + data.seconds.toFixed(0) + 's / ' + videoDuration.toFixed(0) + 's');
+
+                    // Log a cada 10 segundos para não poluir o console
+                    if (Math.floor(data.seconds) % 10 === 0) {
+                        console.log('📊 Progresso: ' + progress.toFixed(2) + '% | Tempo: ' + data.seconds.toFixed(0) + 's / ' + videoDuration.toFixed(0) + 's');
+                    }
                 }
 
                 // data.seconds contém o tempo atual do vídeo em segundos
@@ -87,9 +97,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Quando o vídeo terminar, pausar para evitar outro
             player.on('ended', function() {
-                console.log('✅ Vídeo finalizado - pausando para evitar outro');
+                console.log('✅ Vídeo finalizado - forçando barra para 100%');
                 if (progressFill) {
                     progressFill.style.width = '100%';
+                    console.log('📊 Barra de progresso: 100% (vídeo completo)');
                 }
                 player.pause();
             });
