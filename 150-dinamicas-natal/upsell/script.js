@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
        ====================================================================== */
 
     // Configuração: tempo em segundos para mostrar o botão
-    const TEMPO_PARA_MOSTRAR_CTA = 30; // 30 segundos
+    const TEMPO_PARA_MOSTRAR_CTA = 100; // 100 segundos = 1 minuto e 40 segundos
 
     const iframe = document.querySelector('.vimeo-wrapper iframe');
     const progressFill = document.getElementById('progress-fill');
