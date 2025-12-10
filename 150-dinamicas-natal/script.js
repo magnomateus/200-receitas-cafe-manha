@@ -279,6 +279,41 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('✅ Popup Oferta Exclusiva');
     console.log('✅ URL limpa (sem # no final)');
     console.log('✅ CTA Final protegido para #plano-premium');
+    console.log('✅ Back redirect ativo');
     console.log('🎅 Feliz Natal!');
+
+    /* ======================================================================
+       9. BACK REDIRECT - Redireciona para página de downsell ao clicar em voltar
+       ====================================================================== */
+
+    function initBackRedirect() {
+        // URL da página de downsell (back redirect)
+        const backRedirectUrl = 'back-redirect/';
+
+        // Verificar se já veio do back redirect (evitar loop)
+        const cameFromBackRedirect = sessionStorage.getItem('came_from_back_redirect');
+        if (cameFromBackRedirect) {
+            console.log('Usuário veio do back redirect, não redirecionar novamente');
+            return;
+        }
+
+        // Adicionar estados ao histórico para interceptar o botão voltar
+        for (let i = 0; i < 3; i++) {
+            history.pushState({ page: 'main' }, '', window.location.href);
+        }
+
+        // Interceptar o evento popstate (quando o usuário clica em voltar)
+        window.addEventListener('popstate', function(event) {
+            // Marcar que o redirect foi acionado
+            sessionStorage.setItem('back_redirect_triggered', 'true');
+
+            // Redirecionar para a página de downsell
+            window.location.href = backRedirectUrl;
+        });
+
+        console.log('🎄 Back redirect configurado para:', backRedirectUrl);
+    }
+
+    initBackRedirect();
 
 });
