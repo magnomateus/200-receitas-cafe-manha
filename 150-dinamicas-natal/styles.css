@@ -235,6 +235,10 @@ p {
     max-width: 600px;
     margin: var(--space-md) auto;
     display: block;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    white-space: normal;
+    line-height: 1.3;
 }
 
 /* Animação Pulse */
@@ -1330,10 +1334,13 @@ p {
         line-height: 1.4;
     }
 
-    .btn-cta {
+    .btn-cta,
+    .btn-cta-main,
+    .btn-cta-final {
         width: 100%;
         padding: 16px 24px;
         font-size: 1rem;
+        max-width: 100%;
     }
 
     .recipes-grid,
@@ -1588,9 +1595,12 @@ p {
         font-size: 1.75rem;
     }
 
-    .btn-cta-main {
-        font-size: 1rem;
-        padding: 16px;
+    .btn-cta-main,
+    .btn-cta,
+    .btn-cta-final {
+        font-size: 0.95rem;
+        padding: 14px 16px;
+        max-width: 100%;
     }
 
     .bonus-total {
