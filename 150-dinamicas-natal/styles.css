@@ -1146,16 +1146,24 @@ p {
 }
 
 .popup-basic-link {
-    display: block;
+    display: inline-block;
     margin-top: var(--space-md);
+    padding: 12px 30px;
+    font-family: var(--font-heading);
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.6);
-    text-decoration: underline;
-    transition: color 0.3s ease;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
 }
 
 .popup-basic-link:hover {
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 1);
+    border-color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 /* Responsivo - Mobile */
