@@ -260,33 +260,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     /* ======================================================================
-       9. EFEITO RETRO - GLITCH TEXT (opcional)
-       ====================================================================== */
-
-    // Adiciona efeito glitch aleatorio ao titulo
-    const headline = document.querySelector('.headline');
-    if (headline) {
-        setInterval(() => {
-            if (Math.random() > 0.95) {
-                headline.style.textShadow = '2px 0 var(--primary-cyan), -2px 0 var(--primary-magenta)';
-                setTimeout(() => {
-                    headline.style.textShadow = '0 0 20px rgba(255, 255, 255, 0.3)';
-                }, 100);
-            }
-        }, 500);
-    }
-
-    /* ======================================================================
-       10. CONSOLE LOG DE BOAS-VINDAS
+       9. CONSOLE LOG DE BOAS-VINDAS
        ====================================================================== */
 
     console.log(
-        '%cJOGOS RETRO',
-        'font-family: "Press Start 2P", monospace; font-size: 20px; color: #00FFFF; text-shadow: 2px 2px #FF00FF;'
+        '%cPack de Jogos para Celular',
+        'font-size: 20px; font-weight: bold; color: #DC2626;'
     );
     console.log(
         '%cLanding Page carregada com sucesso!',
-        'font-size: 14px; color: #39FF14;'
+        'font-size: 14px; color: #22C55E;'
     );
     console.log('Funcionalidades ativas:');
     console.log('✅ Data atual auto-atualizacao');
@@ -296,7 +279,6 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('✅ Popup Oferta Exclusiva');
     console.log('✅ URL limpa (sem # no final)');
     console.log('✅ CTA Final protegido para #plano-premium');
-    console.log('✅ Efeito glitch no titulo');
-    console.log('🎮 PRESS START!');
+    console.log('📱 +100 Jogos no seu celular!');
 
 });

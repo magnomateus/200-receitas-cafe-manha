@@ -44,35 +44,34 @@ button {
 }
 
 /* ==========================================================================
-   CSS VARIABLES (Design System - Tema Retro)
+   CSS VARIABLES (Design System - Tema Gamer Moderno)
    ========================================================================== */
 
 :root {
-    /* Cores Primárias - TEMA RETRO/NEON */
-    --primary-purple: rgb(138, 43, 226);
-    --primary-cyan: rgb(0, 255, 255);
-    --primary-magenta: rgb(255, 0, 255);
-    --primary-dark: rgb(10, 10, 30);
+    /* Cores Primárias - TEMA GAMER */
+    --primary-red: rgb(220, 38, 38);
+    --primary-orange: rgb(255, 140, 0);
+    --primary-gold: rgb(255, 193, 7);
+    --primary-dark: rgb(15, 15, 20);
 
-    /* Cores Secundárias - NEON */
-    --secondary-dark-blue: rgb(20, 20, 60);
-    --secondary-neon-green: rgb(57, 255, 20);
-    --secondary-neon-pink: rgb(255, 105, 180);
-    --secondary-neon-yellow: rgb(255, 255, 0);
+    /* Cores Secundárias */
+    --secondary-dark-gray: rgb(25, 25, 35);
+    --secondary-blue: rgb(30, 64, 175);
+    --secondary-light-red: rgb(239, 68, 68);
+    --secondary-amber: rgb(245, 158, 11);
 
     /* Cores de Texto */
-    --text-dark: rgb(10, 10, 30);
-    --text-medium: rgb(200, 200, 220);
-    --text-light: rgb(150, 150, 180);
+    --text-dark: rgb(15, 15, 20);
+    --text-medium: rgb(200, 200, 210);
+    --text-light: rgb(140, 140, 160);
     --text-white: rgb(255, 255, 255);
 
     /* Cores de Acao */
-    --success-green: rgb(57, 255, 20);
-    --danger-red: rgb(255, 50, 50);
-    --warning-yellow: rgb(255, 255, 0);
+    --success-green: rgb(34, 197, 94);
+    --danger-red: rgb(220, 38, 38);
+    --warning-yellow: rgb(255, 193, 7);
 
     /* Tipografia */
-    --font-retro: 'Press Start 2P', cursive;
     --font-heading: 'Montserrat', 'Poppins', sans-serif;
     --font-body: 'Open Sans', 'Roboto', sans-serif;
 
@@ -166,8 +165,8 @@ p {
 }
 
 .highlight-neon {
-    color: var(--primary-cyan);
-    text-shadow: 0 0 10px var(--primary-cyan), 0 0 20px var(--primary-cyan), 0 0 30px var(--primary-cyan);
+    color: var(--primary-orange);
+    text-shadow: 0 0 10px var(--primary-orange), 0 0 20px rgba(255, 140, 0, 0.5);
 }
 
 /* ==========================================================================
@@ -191,27 +190,27 @@ p {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--primary-purple), var(--primary-magenta));
+    background: linear-gradient(135deg, var(--primary-red), var(--secondary-light-red));
     color: var(--text-white);
-    box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+    box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
 }
 
 .btn-secondary {
-    background: linear-gradient(135deg, var(--primary-cyan), var(--secondary-neon-green));
+    background: linear-gradient(135deg, var(--primary-orange), var(--primary-gold));
     color: var(--text-dark);
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    box-shadow: 0 4px 15px rgba(255, 140, 0, 0.4);
 }
 
 /* Hover effects para botoes apenas em desktop (nao-touch) */
 @media (hover: hover) and (pointer: fine) {
     .btn-primary:hover {
         transform: translateY(-2px);
-        box-shadow: 0 0 30px rgba(138, 43, 226, 0.8), 0 0 60px rgba(255, 0, 255, 0.4);
+        box-shadow: 0 8px 25px rgba(220, 38, 38, 0.6);
     }
 
     .btn-secondary:hover {
         transform: translateY(-2px);
-        box-shadow: 0 0 30px rgba(0, 255, 255, 0.8), 0 0 60px rgba(57, 255, 20, 0.4);
+        box-shadow: 0 8px 25px rgba(255, 140, 0, 0.6);
     }
 }
 
@@ -245,7 +244,7 @@ p {
    ========================================================================== */
 
 .urgency-bar {
-    background: linear-gradient(90deg, var(--primary-purple), var(--primary-magenta), var(--primary-purple));
+    background: linear-gradient(90deg, var(--primary-red), var(--secondary-light-red), var(--primary-red));
     background-size: 200% 100%;
     animation: gradientMove 3s ease infinite;
     color: white;
@@ -273,13 +272,12 @@ p {
 }
 
 .timer-inline {
-    color: var(--secondary-neon-yellow);
-    font-family: var(--font-retro);
+    color: var(--primary-gold);
+    font-family: var(--font-heading);
     font-weight: var(--weight-extrabold);
     font-size: 0.875rem;
     white-space: nowrap;
     display: inline;
-    text-shadow: 0 0 10px var(--secondary-neon-yellow);
 }
 
 /* ==========================================================================
@@ -287,14 +285,14 @@ p {
    ========================================================================== */
 
 .hero-section {
-    background: linear-gradient(180deg, var(--primary-dark) 0%, var(--secondary-dark-blue) 100%);
+    background: linear-gradient(180deg, var(--primary-dark) 0%, var(--secondary-dark-gray) 100%);
     padding: var(--space-xxl) 0;
     text-align: center;
     position: relative;
     overflow: hidden;
 }
 
-/* Grid de fundo estilo arcade */
+/* Efeito sutil de fundo */
 .hero-section::before {
     content: '';
     position: absolute;
@@ -302,35 +300,23 @@ p {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image:
-        linear-gradient(rgba(138, 43, 226, 0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(138, 43, 226, 0.1) 1px, transparent 1px);
-    background-size: 50px 50px;
+    background: radial-gradient(ellipse at center, rgba(220, 38, 38, 0.1) 0%, transparent 70%);
     pointer-events: none;
 }
 
 .retro-badge {
     display: inline-block;
-    background: var(--primary-dark);
-    border: 2px solid var(--primary-cyan);
-    color: var(--primary-cyan);
+    background: linear-gradient(135deg, var(--primary-red), var(--secondary-light-red));
+    color: var(--text-white);
     padding: var(--space-xs) var(--space-md);
-    border-radius: 4px;
-    font-family: var(--font-retro);
-    font-size: 0.75rem;
+    border-radius: 50px;
+    font-family: var(--font-heading);
+    font-size: 0.875rem;
+    font-weight: var(--weight-bold);
     margin-bottom: var(--space-md);
-    text-shadow: 0 0 10px var(--primary-cyan);
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-    animation: blink 1.5s ease-in-out infinite;
-}
-
-@keyframes blink {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.7;
-    }
+    box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .headline {
@@ -345,11 +331,11 @@ p {
 }
 
 .headline-bonus {
-    color: var(--primary-cyan);
+    color: var(--primary-orange);
     display: block;
     font-size: 0.6em;
     margin-top: var(--space-xs);
-    text-shadow: 0 0 20px var(--primary-cyan), 0 0 40px var(--primary-cyan);
+    text-shadow: 0 0 20px rgba(255, 140, 0, 0.5);
 }
 
 .sub-headline {
@@ -375,17 +361,13 @@ p {
     width: 100%;
     height: auto;
     border-radius: 16px;
-    box-shadow:
-        0 0 40px rgba(138, 43, 226, 0.4),
-        0 0 80px rgba(0, 255, 255, 0.2);
-    border: 3px solid var(--primary-cyan);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    border: 3px solid var(--primary-red);
     transition: all 0.3s ease;
 }
 
 .hero-image:hover {
-    box-shadow:
-        0 0 60px rgba(138, 43, 226, 0.6),
-        0 0 100px rgba(0, 255, 255, 0.4);
+    box-shadow: 0 15px 50px rgba(220, 38, 38, 0.3);
     transform: scale(1.02);
 }
 
@@ -410,7 +392,7 @@ p {
    ========================================================================== */
 
 .content-section {
-    background: var(--secondary-dark-blue);
+    background: var(--secondary-dark-gray);
     padding: var(--space-xl) 0;
 }
 
@@ -422,11 +404,11 @@ p {
 }
 
 .content-block {
-    background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(20, 20, 60, 0.8));
-    border: 2px solid var(--primary-purple);
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(25, 25, 35, 0.9));
+    border: 2px solid var(--primary-red);
     padding: var(--space-lg);
     border-radius: 12px;
-    box-shadow: 0 0 30px rgba(138, 43, 226, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     width: 100%;
 }
 
@@ -437,12 +419,11 @@ p {
 }
 
 .content-block h3 {
-    color: var(--primary-cyan);
+    color: var(--primary-orange);
     font-size: 1.5rem;
     text-align: center;
     margin-bottom: var(--space-lg);
     font-weight: var(--weight-extrabold);
-    text-shadow: 0 0 10px var(--primary-cyan);
 }
 
 .content-block ul {
@@ -455,7 +436,7 @@ p {
     font-size: 1.0625rem;
     color: var(--text-medium);
     line-height: 1.6;
-    border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+    border-bottom: 1px solid rgba(220, 38, 38, 0.2);
 }
 
 .content-block ul li:last-child {
@@ -467,7 +448,7 @@ p {
    ========================================================================== */
 
 .target-section {
-    background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-dark) 100%);
+    background: linear-gradient(135deg, var(--secondary-dark-gray) 0%, var(--primary-dark) 100%);
     padding: var(--space-xxl) 0;
 }
 
@@ -479,8 +460,8 @@ p {
 }
 
 .pillar-card {
-    background: rgba(0, 0, 0, 0.3);
-    border: 2px solid var(--primary-cyan);
+    background: rgba(220, 38, 38, 0.1);
+    border: 2px solid var(--primary-red);
     padding: var(--space-lg);
     border-radius: 12px;
     text-align: center;
@@ -490,7 +471,7 @@ p {
 
 .pillar-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+    box-shadow: 0 8px 30px rgba(220, 38, 38, 0.3);
 }
 
 .pillar-icon {
@@ -499,10 +480,9 @@ p {
 }
 
 .pillar-card h3 {
-    color: var(--primary-cyan);
+    color: var(--primary-orange);
     margin-bottom: var(--space-sm);
     font-size: 1.25rem;
-    text-shadow: 0 0 10px var(--primary-cyan);
 }
 
 .pillar-card p {
@@ -515,7 +495,7 @@ p {
    ========================================================================== */
 
 .bonus-section {
-    background: var(--secondary-dark-blue);
+    background: var(--primary-dark);
     padding: var(--space-xxl) 0;
 }
 
@@ -527,8 +507,8 @@ p {
 }
 
 .bonus-card {
-    background: linear-gradient(135deg, rgba(255, 0, 255, 0.1), rgba(20, 20, 60, 0.8));
-    border: 2px solid var(--primary-magenta);
+    background: linear-gradient(135deg, rgba(255, 140, 0, 0.1), rgba(25, 25, 35, 0.9));
+    border: 2px solid var(--primary-orange);
     padding: var(--space-lg);
     border-radius: 12px;
     text-align: center;
@@ -537,7 +517,7 @@ p {
 
 .bonus-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 0 30px rgba(255, 0, 255, 0.4);
+    box-shadow: 0 8px 30px rgba(255, 140, 0, 0.3);
 }
 
 .bonus-icon {
@@ -570,9 +550,8 @@ p {
 }
 
 .bonus-free {
-    color: var(--secondary-neon-green);
+    color: var(--success-green);
     font-weight: var(--weight-extrabold);
-    text-shadow: 0 0 10px var(--secondary-neon-green);
 }
 
 .bonus-total {
@@ -584,33 +563,30 @@ p {
 }
 
 .bonus-total-value {
-    color: var(--secondary-neon-yellow);
-    text-shadow: 0 0 10px var(--secondary-neon-yellow);
+    color: var(--primary-gold);
 }
 
 .bonus-free-large {
-    color: var(--secondary-neon-green);
+    color: var(--success-green);
     font-size: 1.75rem;
     font-weight: var(--weight-extrabold);
-    text-shadow: 0 0 15px var(--secondary-neon-green);
 }
 
 .bonus-highlight {
     font-size: 1.25rem !important;
     font-weight: 700 !important;
-    color: var(--primary-magenta) !important;
+    color: var(--primary-orange) !important;
     padding: var(--space-md) 0 !important;
     text-align: center !important;
     margin-top: var(--space-sm) !important;
     border-bottom: none !important;
-    text-shadow: 0 0 10px var(--primary-magenta);
 }
 
 .bonus-arrow {
     display: block;
     font-size: 2rem;
     margin-top: 8px;
-    color: var(--primary-magenta);
+    color: var(--primary-orange);
     animation: bounce-arrow 1.5s ease-in-out infinite;
 }
 
@@ -628,7 +604,7 @@ p {
    ========================================================================== */
 
 .offer-section {
-    background: linear-gradient(180deg, var(--primary-dark) 0%, var(--secondary-dark-blue) 100%);
+    background: linear-gradient(180deg, var(--secondary-dark-gray) 0%, var(--primary-dark) 100%);
     padding: var(--space-xxl) 0;
 }
 
@@ -646,11 +622,10 @@ p {
 
 .countdown-timer-box .timer-display,
 .timer-display {
-    font-family: var(--font-retro);
+    font-family: var(--font-heading);
     font-size: 2.5rem;
     font-weight: var(--weight-extrabold);
-    color: var(--secondary-neon-yellow);
-    text-shadow: 0 0 20px var(--secondary-neon-yellow), 0 0 40px var(--secondary-neon-yellow);
+    color: var(--primary-gold);
 }
 
 .pricing-grid {
@@ -662,8 +637,8 @@ p {
 }
 
 .pricing-card {
-    background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(20, 20, 60, 0.9));
-    border: 2px solid var(--primary-purple);
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(25, 25, 35, 0.95));
+    border: 2px solid rgba(220, 38, 38, 0.5);
     border-radius: 12px;
     padding: var(--space-lg);
     text-align: center;
@@ -673,32 +648,32 @@ p {
 
 .pricing-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 0 30px rgba(138, 43, 226, 0.5);
+    box-shadow: 0 8px 30px rgba(220, 38, 38, 0.3);
 }
 
 .pricing-card-premium {
-    border: 3px solid var(--primary-cyan);
+    border: 3px solid var(--primary-orange);
     transform: scale(1.05);
-    box-shadow: 0 0 40px rgba(0, 255, 255, 0.3);
+    box-shadow: 0 8px 40px rgba(255, 140, 0, 0.2);
 }
 
 .pricing-card-premium:hover {
     transform: scale(1.08);
-    box-shadow: 0 0 50px rgba(0, 255, 255, 0.5);
+    box-shadow: 0 12px 50px rgba(255, 140, 0, 0.3);
 }
 
 .ribbon {
     position: absolute;
     top: 20px;
     right: -5px;
-    background: linear-gradient(135deg, var(--primary-cyan), var(--secondary-neon-green));
-    color: var(--text-dark);
+    background: linear-gradient(135deg, var(--primary-red), var(--secondary-light-red));
+    color: var(--text-white);
     padding: 8px 20px;
     font-size: 0.75rem;
     font-weight: var(--weight-extrabold);
     text-transform: uppercase;
     letter-spacing: 1px;
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
     z-index: 10;
 }
 
@@ -725,11 +700,10 @@ p {
 .price-value {
     display: block;
     font-size: 3rem;
-    color: var(--secondary-neon-green);
+    color: var(--success-green);
     font-weight: var(--weight-extrabold);
     line-height: 1;
     margin-bottom: 8px;
-    text-shadow: 0 0 20px var(--secondary-neon-green);
 }
 
 .price-payment {
@@ -750,11 +724,10 @@ p {
 .price-subtext {
     display: block;
     font-size: 0.95rem;
-    color: var(--primary-cyan);
+    color: var(--primary-orange);
     font-weight: var(--weight-extrabold);
     text-transform: uppercase;
     margin-top: 8px;
-    text-shadow: 0 0 10px var(--primary-cyan);
 }
 
 .plan-features {
@@ -769,7 +742,7 @@ p {
     font-size: 1rem;
     color: var(--text-medium);
     line-height: 1.6;
-    border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .plan-features li:last-child {
@@ -790,23 +763,23 @@ p {
 }
 
 .btn-plan {
-    background: linear-gradient(135deg, var(--primary-purple), var(--primary-magenta));
+    background: linear-gradient(135deg, var(--primary-red), var(--secondary-light-red));
     color: white;
-    box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+    box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
 }
 
 .btn-plan:hover {
-    box-shadow: 0 0 30px rgba(138, 43, 226, 0.8);
+    box-shadow: 0 8px 25px rgba(220, 38, 38, 0.6);
 }
 
 .btn-plan-premium {
-    background: linear-gradient(135deg, var(--primary-cyan), var(--secondary-neon-green));
+    background: linear-gradient(135deg, var(--primary-orange), var(--primary-gold));
     color: var(--text-dark);
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    box-shadow: 0 4px 15px rgba(255, 140, 0, 0.4);
 }
 
 .btn-plan-premium:hover {
-    box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+    box-shadow: 0 8px 25px rgba(255, 140, 0, 0.6);
 }
 
 .offer-security {
@@ -820,7 +793,7 @@ p {
    ========================================================================== */
 
 .testimonials-section {
-    background: var(--secondary-dark-blue);
+    background: var(--secondary-dark-gray);
     padding: var(--space-xxl) 0;
 }
 
@@ -841,8 +814,8 @@ p {
 }
 
 .testimonial-item {
-    background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(20, 20, 60, 0.8));
-    border: 2px solid var(--primary-purple);
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(25, 25, 35, 0.9));
+    border: 2px solid rgba(220, 38, 38, 0.3);
     border-radius: 12px;
     padding: var(--space-lg);
 }
@@ -858,7 +831,7 @@ p {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--primary-purple), var(--primary-magenta));
+    background: linear-gradient(135deg, var(--primary-red), var(--primary-orange));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -887,8 +860,7 @@ p {
 .testimonial-stars {
     font-size: 1.25rem;
     margin-bottom: var(--space-sm);
-    color: var(--secondary-neon-yellow);
-    text-shadow: 0 0 10px var(--secondary-neon-yellow);
+    color: var(--primary-gold);
 }
 
 .testimonial-text {
@@ -914,8 +886,8 @@ p {
 }
 
 .faq-item {
-    background: rgba(138, 43, 226, 0.1);
-    border: 2px solid var(--primary-purple);
+    background: rgba(220, 38, 38, 0.05);
+    border: 2px solid rgba(220, 38, 38, 0.3);
     margin-bottom: var(--space-sm);
     border-radius: 8px;
     overflow: hidden;
@@ -939,7 +911,7 @@ p {
 
 @media (hover: hover) and (pointer: fine) {
     .faq-question:hover {
-        background: rgba(138, 43, 226, 0.2);
+        background: rgba(220, 38, 38, 0.1);
     }
 }
 
@@ -947,7 +919,7 @@ p {
     font-size: 1.5rem;
     font-weight: var(--weight-bold);
     transition: transform 0.3s ease;
-    color: var(--primary-cyan);
+    color: var(--primary-orange);
 }
 
 .faq-item.open .faq-toggle {
@@ -976,7 +948,7 @@ p {
    ========================================================================== */
 
 .guarantee-section {
-    background: var(--secondary-dark-blue);
+    background: var(--primary-dark);
     padding: var(--space-xxl) 0;
 }
 
@@ -987,11 +959,11 @@ p {
     align-items: center;
     max-width: 1000px;
     margin: 0 auto;
-    background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(20, 20, 60, 0.8));
-    border: 2px solid var(--primary-cyan);
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(25, 25, 35, 0.9));
+    border: 2px solid var(--primary-orange);
     padding: var(--space-xl);
     border-radius: 20px;
-    box-shadow: 0 0 40px rgba(0, 255, 255, 0.2);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
 }
 
 .guarantee-badge-wrapper {
@@ -1004,14 +976,14 @@ p {
     position: relative;
     width: 200px;
     height: 200px;
-    background: linear-gradient(135deg, var(--primary-purple), var(--primary-magenta));
+    background: linear-gradient(135deg, var(--primary-red), var(--primary-orange));
     border-radius: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 40px rgba(138, 43, 226, 0.5);
-    border: 4px solid var(--primary-cyan);
+    box-shadow: 0 8px 40px rgba(220, 38, 38, 0.4);
+    border: 4px solid var(--primary-gold);
 }
 
 .badge-icon {
@@ -1021,18 +993,17 @@ p {
 }
 
 .badge-days {
-    font-family: var(--font-retro);
+    font-family: var(--font-heading);
     font-size: 3rem;
     font-weight: var(--weight-extrabold);
     color: white;
     line-height: 1;
-    text-shadow: 0 0 20px var(--primary-cyan);
 }
 
 .badge-text {
     font-size: 1rem;
     font-weight: var(--weight-bold);
-    color: var(--primary-cyan);
+    color: var(--primary-gold);
     letter-spacing: 2px;
     margin-top: 4px;
 }
@@ -1046,9 +1017,8 @@ p {
 .guarantee-title {
     font-size: 1.75rem;
     font-weight: var(--weight-extrabold);
-    color: var(--primary-cyan);
+    color: var(--primary-orange);
     margin-bottom: var(--space-sm);
-    text-shadow: 0 0 10px var(--primary-cyan);
 }
 
 .guarantee-features {
@@ -1062,9 +1032,9 @@ p {
     align-items: flex-start;
     gap: 12px;
     padding: 12px;
-    background: rgba(0, 255, 255, 0.1);
+    background: rgba(255, 140, 0, 0.1);
     border-radius: 10px;
-    border: 1px solid rgba(0, 255, 255, 0.3);
+    border: 1px solid rgba(255, 140, 0, 0.3);
 }
 
 .feature-icon {
@@ -1081,12 +1051,12 @@ p {
 }
 
 .guarantee-feature strong {
-    color: var(--primary-cyan);
+    color: var(--primary-orange);
     font-weight: var(--weight-bold);
 }
 
 .guarantee-highlight {
-    background: linear-gradient(135deg, var(--primary-cyan), var(--secondary-neon-green));
+    background: linear-gradient(135deg, var(--primary-orange), var(--primary-gold));
     padding: var(--space-md);
     border-radius: 12px;
     text-align: center;
@@ -1105,7 +1075,7 @@ p {
    ========================================================================== */
 
 .final-cta-section {
-    background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-dark) 100%);
+    background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-dark) 100%);
     padding: var(--space-xxl) 0;
     text-align: center;
     position: relative;
@@ -1119,10 +1089,7 @@ p {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image:
-        linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
-    background-size: 30px 30px;
+    background: radial-gradient(ellipse at center, rgba(255, 140, 0, 0.1) 0%, transparent 70%);
     pointer-events: none;
 }
 
@@ -1153,9 +1120,8 @@ p {
 }
 
 .final-price-text strong {
-    color: var(--secondary-neon-green);
+    color: var(--primary-gold);
     font-size: 2rem;
-    text-shadow: 0 0 20px var(--secondary-neon-green);
 }
 
 .countdown-timer {
@@ -1214,8 +1180,8 @@ p {
 }
 
 .popup-content {
-    background: linear-gradient(135deg, var(--secondary-dark-blue), var(--primary-dark));
-    border: 3px solid var(--primary-cyan);
+    background: linear-gradient(135deg, var(--secondary-dark-gray), var(--primary-dark));
+    border: 3px solid var(--primary-orange);
     border-radius: 20px;
     padding: var(--space-xl);
     max-width: 500px;
@@ -1223,7 +1189,7 @@ p {
     text-align: center;
     position: relative;
     animation: slideUp 0.3s ease;
-    box-shadow: 0 0 60px rgba(0, 255, 255, 0.3);
+    box-shadow: 0 8px 60px rgba(0, 0, 0, 0.5);
 }
 
 @keyframes slideUp {
@@ -1251,17 +1217,16 @@ p {
 }
 
 .popup-close:hover {
-    color: var(--primary-cyan);
+    color: var(--primary-orange);
 }
 
 .popup-title {
-    font-family: var(--font-retro);
+    font-family: var(--font-heading);
     font-size: 1.5rem;
     font-weight: var(--weight-extrabold);
-    color: var(--primary-cyan);
+    color: var(--primary-orange);
     margin: 0 0 var(--space-md) 0;
     text-transform: uppercase;
-    text-shadow: 0 0 20px var(--primary-cyan);
 }
 
 .popup-text {
@@ -1271,18 +1236,17 @@ p {
 }
 
 .popup-price {
-    font-family: var(--font-retro);
+    font-family: var(--font-heading);
     font-size: 2.5rem;
     font-weight: var(--weight-extrabold);
-    color: var(--secondary-neon-green);
+    color: var(--success-green);
     margin: var(--space-md) 0;
     line-height: 1;
-    text-shadow: 0 0 20px var(--secondary-neon-green);
 }
 
 .btn-popup-cta {
     display: inline-block;
-    background: linear-gradient(135deg, var(--primary-cyan), var(--secondary-neon-green));
+    background: linear-gradient(135deg, var(--primary-orange), var(--primary-gold));
     color: var(--text-dark);
     font-size: 1.25rem;
     font-weight: var(--weight-extrabold);
@@ -1290,14 +1254,14 @@ p {
     padding: 20px 40px;
     border-radius: 8px;
     border: none;
-    box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+    box-shadow: 0 4px 20px rgba(255, 140, 0, 0.4);
     transition: all 0.3s ease;
     margin-top: var(--space-md);
     cursor: pointer;
 }
 
 .btn-popup-cta:hover {
-    box-shadow: 0 0 50px rgba(0, 255, 255, 0.8);
+    box-shadow: 0 8px 30px rgba(255, 140, 0, 0.6);
     transform: translateY(-3px);
 }
 
@@ -1326,7 +1290,7 @@ p {
 
 .footer {
     background: var(--primary-dark);
-    border-top: 1px solid var(--primary-purple);
+    border-top: 1px solid rgba(220, 38, 38, 0.3);
     color: var(--text-light);
     text-align: center;
     padding: var(--space-lg) 0;
