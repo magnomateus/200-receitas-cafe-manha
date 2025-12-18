@@ -305,7 +305,7 @@ p {
 }
 
 .headline {
-    font-size: 4rem;
+    font-size: clamp(1.4rem, 5vw, 4rem);
     margin-bottom: var(--space-md);
     line-height: 1.1;
     font-weight: var(--weight-extrabold);
@@ -313,14 +313,15 @@ p {
     text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
     position: relative;
     z-index: 1;
+    white-space: nowrap;
 }
 
 .headline-bonus {
     color: var(--primary-orange);
-    display: block;
+    display: inline;
     font-size: 0.6em;
-    margin-top: var(--space-xs);
     text-shadow: 0 0 20px rgba(255, 140, 0, 0.5);
+    white-space: nowrap;
 }
 
 .hero-subtitle {
@@ -1313,9 +1314,6 @@ p {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .headline {
-        font-size: 3rem;
-    }
 }
 
 @media (max-width: 768px) {
@@ -1332,11 +1330,6 @@ p {
 
     .hero-section {
         padding: var(--space-lg) 0;
-    }
-
-    .headline {
-        font-size: 2.5rem;
-        line-height: 1.2;
     }
 
     .hero-subtitle {
@@ -1414,14 +1407,6 @@ p {
 @media (max-width: 480px) {
     .hero-section {
         padding: var(--space-md) 0;
-    }
-
-    .headline {
-        font-size: 2rem;
-    }
-
-    .headline-bonus {
-        font-size: 0.5em;
     }
 
     .hero-subtitle {
