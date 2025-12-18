@@ -21,8 +21,8 @@ body {
     font-family: 'Open Sans', 'Roboto', sans-serif;
     font-size: 1.125rem;
     line-height: 1.6;
-    color: rgb(255, 255, 255);
-    background-color: rgb(10, 10, 30);
+    color: rgb(51, 51, 51);
+    background-color: rgb(245, 245, 240);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -52,18 +52,23 @@ button {
     --primary-red: rgb(220, 38, 38);
     --primary-orange: rgb(255, 140, 0);
     --primary-gold: rgb(255, 193, 7);
-    --primary-dark: rgb(15, 15, 20);
+    --primary-dark: rgb(35, 35, 45);
 
     /* Cores Secundárias */
-    --secondary-dark-gray: rgb(25, 25, 35);
+    --secondary-dark-gray: rgb(45, 45, 55);
     --secondary-blue: rgb(30, 64, 175);
     --secondary-light-red: rgb(239, 68, 68);
     --secondary-amber: rgb(245, 158, 11);
 
+    /* Cores de Fundo Claras */
+    --bg-light: rgb(245, 245, 240);
+    --bg-white: rgb(255, 255, 255);
+    --bg-cream: rgb(250, 248, 245);
+
     /* Cores de Texto */
-    --text-dark: rgb(15, 15, 20);
-    --text-medium: rgb(200, 200, 210);
-    --text-light: rgb(140, 140, 160);
+    --text-dark: rgb(35, 35, 45);
+    --text-medium: rgb(80, 80, 90);
+    --text-light: rgb(120, 120, 130);
     --text-white: rgb(255, 255, 255);
 
     /* Cores de Acao */
@@ -149,7 +154,7 @@ p {
 .section-title {
     text-align: center;
     margin-bottom: var(--space-lg);
-    color: var(--text-white);
+    color: var(--text-dark);
 }
 
 .section-title-large {
@@ -165,8 +170,7 @@ p {
 }
 
 .highlight-neon {
-    color: var(--primary-orange);
-    text-shadow: 0 0 10px var(--primary-orange), 0 0 20px rgba(255, 140, 0, 0.5);
+    color: var(--primary-red);
 }
 
 /* ==========================================================================
@@ -285,23 +289,11 @@ p {
    ========================================================================== */
 
 .hero-section {
-    background: linear-gradient(180deg, var(--primary-dark) 0%, var(--secondary-dark-gray) 100%);
+    background: var(--bg-light);
     padding: var(--space-xxl) 0;
     text-align: center;
     position: relative;
     overflow: hidden;
-}
-
-/* Efeito sutil de fundo */
-.hero-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(ellipse at center, rgba(220, 38, 38, 0.1) 0%, transparent 70%);
-    pointer-events: none;
 }
 
 .headline {
@@ -309,25 +301,23 @@ p {
     margin-bottom: var(--space-md);
     line-height: 1.1;
     font-weight: var(--weight-extrabold);
-    color: var(--text-white);
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    color: var(--text-dark);
     position: relative;
     z-index: 1;
 }
 
 .headline-bonus {
-    color: var(--primary-orange);
+    color: var(--primary-red);
     display: block;
     font-size: 0.6em;
     margin-top: var(--space-xs);
-    text-shadow: 0 0 20px rgba(255, 140, 0, 0.5);
 }
 
 .sub-headline {
     font-size: 1.3rem;
     color: var(--text-medium);
     max-width: 700px;
-    margin: 0 auto var(--space-lg);
+    margin: var(--space-md) auto var(--space-lg);
     line-height: 1.5;
     font-weight: var(--weight-medium);
     position: relative;
@@ -365,7 +355,7 @@ p {
 .guarantees span {
     font-size: 0.95rem;
     font-weight: var(--weight-medium);
-    color: var(--text-medium);
+    color: var(--text-dark);
 }
 
 /* ==========================================================================
@@ -373,7 +363,7 @@ p {
    ========================================================================== */
 
 .content-section {
-    background: var(--secondary-dark-gray);
+    background: var(--bg-white);
     padding: var(--space-xl) 0;
 }
 
@@ -385,11 +375,11 @@ p {
 }
 
 .content-block {
-    background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(25, 25, 35, 0.9));
+    background: var(--bg-cream);
     border: 2px solid var(--primary-red);
     padding: var(--space-lg);
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     width: 100%;
 }
 
@@ -400,7 +390,7 @@ p {
 }
 
 .content-block h3 {
-    color: var(--primary-orange);
+    color: var(--primary-red);
     font-size: 1.5rem;
     text-align: center;
     margin-bottom: var(--space-lg);
@@ -415,7 +405,7 @@ p {
 .content-block ul li {
     padding: var(--space-sm) 0;
     font-size: 1.0625rem;
-    color: var(--text-medium);
+    color: var(--text-dark);
     line-height: 1.6;
     border-bottom: 1px solid rgba(220, 38, 38, 0.2);
 }
@@ -429,7 +419,7 @@ p {
    ========================================================================== */
 
 .target-section {
-    background: linear-gradient(135deg, var(--secondary-dark-gray) 0%, var(--primary-dark) 100%);
+    background: var(--bg-light);
     padding: var(--space-xxl) 0;
 }
 
@@ -441,18 +431,19 @@ p {
 }
 
 .pillar-card {
-    background: rgba(220, 38, 38, 0.1);
+    background: var(--bg-white);
     border: 2px solid var(--primary-red);
     padding: var(--space-lg);
     border-radius: 12px;
     text-align: center;
-    color: white;
+    color: var(--text-dark);
     transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
 .pillar-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 30px rgba(220, 38, 38, 0.3);
+    box-shadow: 0 8px 30px rgba(220, 38, 38, 0.2);
 }
 
 .pillar-icon {
@@ -461,7 +452,7 @@ p {
 }
 
 .pillar-card h3 {
-    color: var(--primary-orange);
+    color: var(--primary-red);
     margin-bottom: var(--space-sm);
     font-size: 1.25rem;
 }
@@ -476,7 +467,7 @@ p {
    ========================================================================== */
 
 .bonus-section {
-    background: var(--primary-dark);
+    background: var(--bg-white);
     padding: var(--space-xxl) 0;
 }
 
@@ -488,17 +479,18 @@ p {
 }
 
 .bonus-card {
-    background: linear-gradient(135deg, rgba(255, 140, 0, 0.1), rgba(25, 25, 35, 0.9));
+    background: var(--bg-cream);
     border: 2px solid var(--primary-orange);
     padding: var(--space-lg);
     border-radius: 12px;
     text-align: center;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
 .bonus-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 30px rgba(255, 140, 0, 0.3);
+    box-shadow: 0 8px 30px rgba(255, 140, 0, 0.2);
 }
 
 .bonus-icon {
@@ -508,7 +500,7 @@ p {
 
 .bonus-card h3 {
     font-size: 1.5rem;
-    color: var(--text-white);
+    color: var(--text-dark);
     margin-bottom: var(--space-sm);
     line-height: 1.2;
     font-weight: var(--weight-extrabold);
@@ -517,6 +509,10 @@ p {
 .bonus-card p {
     color: var(--text-medium);
     line-height: 1.6;
+}
+
+.bonus-total {
+    color: var(--text-dark);
 }
 
 .bonus-value {
@@ -535,16 +531,16 @@ p {
     font-weight: var(--weight-extrabold);
 }
 
-.bonus-total {
+.bonus-total-text {
     text-align: center;
     font-size: 1.5rem;
     font-weight: var(--weight-bold);
     margin-bottom: var(--space-lg);
-    color: var(--text-white);
+    color: var(--text-dark);
 }
 
 .bonus-total-value {
-    color: var(--primary-gold);
+    color: var(--primary-orange);
 }
 
 .bonus-free-large {
@@ -585,7 +581,7 @@ p {
    ========================================================================== */
 
 .offer-section {
-    background: linear-gradient(180deg, var(--secondary-dark-gray) 0%, var(--primary-dark) 100%);
+    background: var(--bg-light);
     padding: var(--space-xxl) 0;
 }
 
@@ -596,7 +592,7 @@ p {
 
 .countdown-timer-box .countdown-label {
     font-size: 1.25rem;
-    color: var(--text-white);
+    color: var(--text-dark);
     margin-bottom: var(--space-sm);
     font-weight: var(--weight-bold);
 }
@@ -606,7 +602,7 @@ p {
     font-family: var(--font-heading);
     font-size: 2.5rem;
     font-weight: var(--weight-extrabold);
-    color: var(--primary-gold);
+    color: var(--primary-red);
 }
 
 .pricing-grid {
@@ -618,29 +614,30 @@ p {
 }
 
 .pricing-card {
-    background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(25, 25, 35, 0.95));
-    border: 2px solid rgba(220, 38, 38, 0.5);
+    background: var(--bg-white);
+    border: 2px solid rgba(220, 38, 38, 0.3);
     border-radius: 12px;
     padding: var(--space-lg);
     text-align: center;
     position: relative;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
 .pricing-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 30px rgba(220, 38, 38, 0.3);
+    box-shadow: 0 8px 30px rgba(220, 38, 38, 0.15);
 }
 
 .pricing-card-premium {
-    border: 3px solid var(--primary-orange);
+    border: 3px solid var(--primary-red);
     transform: scale(1.05);
-    box-shadow: 0 8px 40px rgba(255, 140, 0, 0.2);
+    box-shadow: 0 8px 40px rgba(220, 38, 38, 0.15);
 }
 
 .pricing-card-premium:hover {
     transform: scale(1.08);
-    box-shadow: 0 12px 50px rgba(255, 140, 0, 0.3);
+    box-shadow: 0 12px 50px rgba(220, 38, 38, 0.2);
 }
 
 .ribbon {
@@ -660,7 +657,7 @@ p {
 
 .plan-name {
     font-size: 1.75rem;
-    color: var(--text-white);
+    color: var(--text-dark);
     font-weight: var(--weight-extrabold);
     margin-bottom: var(--space-md);
     text-transform: uppercase;
@@ -697,7 +694,7 @@ p {
 .price-payment-highlight {
     display: block;
     font-size: 1.125rem;
-    color: var(--text-white);
+    color: var(--text-dark);
     font-weight: var(--weight-bold);
     margin-bottom: 4px;
 }
@@ -705,7 +702,7 @@ p {
 .price-subtext {
     display: block;
     font-size: 0.95rem;
-    color: var(--primary-orange);
+    color: var(--primary-red);
     font-weight: var(--weight-extrabold);
     text-transform: uppercase;
     margin-top: 8px;
@@ -721,9 +718,9 @@ p {
 .plan-features li {
     padding: var(--space-sm) 0;
     font-size: 1rem;
-    color: var(--text-medium);
+    color: var(--text-dark);
     line-height: 1.6;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .plan-features li:last-child {
@@ -774,14 +771,14 @@ p {
    ========================================================================== */
 
 .testimonials-section {
-    background: var(--secondary-dark-gray);
+    background: var(--bg-white);
     padding: var(--space-xxl) 0;
 }
 
 .section-title-testimonials {
     font-size: 2.5rem;
     font-weight: var(--weight-extrabold);
-    color: var(--text-white);
+    color: var(--text-dark);
     text-align: center;
     margin-bottom: var(--space-xl);
 }
@@ -795,10 +792,11 @@ p {
 }
 
 .testimonial-item {
-    background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(25, 25, 35, 0.9));
-    border: 2px solid rgba(220, 38, 38, 0.3);
+    background: var(--bg-cream);
+    border: 2px solid rgba(220, 38, 38, 0.2);
     border-radius: 12px;
     padding: var(--space-lg);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 .testimonial-header {
@@ -828,13 +826,13 @@ p {
 .testimonial-name {
     font-size: 1.125rem;
     font-weight: var(--weight-bold);
-    color: var(--text-white);
+    color: var(--text-dark);
     margin: 0;
 }
 
 .testimonial-role {
     font-size: 0.9rem;
-    color: var(--text-light);
+    color: var(--text-medium);
     margin: 0;
 }
 
@@ -847,7 +845,7 @@ p {
 .testimonial-text {
     font-size: 1rem;
     line-height: 1.6;
-    color: var(--text-medium);
+    color: var(--text-dark);
     font-style: italic;
     margin: 0;
 }
@@ -857,7 +855,7 @@ p {
    ========================================================================== */
 
 .faq-section {
-    background: var(--primary-dark);
+    background: var(--bg-light);
     padding: var(--space-xxl) 0;
 }
 
@@ -867,11 +865,12 @@ p {
 }
 
 .faq-item {
-    background: rgba(220, 38, 38, 0.05);
-    border: 2px solid rgba(220, 38, 38, 0.3);
+    background: var(--bg-white);
+    border: 2px solid rgba(220, 38, 38, 0.2);
     margin-bottom: var(--space-sm);
     border-radius: 8px;
     overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .faq-question {
@@ -882,7 +881,7 @@ p {
     padding: var(--space-md);
     background: transparent;
     border: none;
-    color: var(--text-white);
+    color: var(--text-dark);
     font-size: 1.125rem;
     font-weight: var(--weight-semibold);
     text-align: left;
@@ -892,7 +891,7 @@ p {
 
 @media (hover: hover) and (pointer: fine) {
     .faq-question:hover {
-        background: rgba(220, 38, 38, 0.1);
+        background: rgba(220, 38, 38, 0.05);
     }
 }
 
@@ -919,7 +918,7 @@ p {
 }
 
 .faq-answer p {
-    color: var(--text-medium);
+    color: var(--text-dark);
     line-height: 1.6;
     margin: 0;
 }
@@ -929,7 +928,7 @@ p {
    ========================================================================== */
 
 .guarantee-section {
-    background: var(--primary-dark);
+    background: var(--bg-white);
     padding: var(--space-xxl) 0;
 }
 
@@ -940,11 +939,11 @@ p {
     align-items: center;
     max-width: 1000px;
     margin: 0 auto;
-    background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(25, 25, 35, 0.9));
-    border: 2px solid var(--primary-orange);
+    background: var(--bg-cream);
+    border: 2px solid var(--primary-red);
     padding: var(--space-xl);
     border-radius: 20px;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
 }
 
 .guarantee-badge-wrapper {
@@ -1013,9 +1012,9 @@ p {
     align-items: flex-start;
     gap: 12px;
     padding: 12px;
-    background: rgba(255, 140, 0, 0.1);
+    background: var(--bg-white);
     border-radius: 10px;
-    border: 1px solid rgba(255, 140, 0, 0.3);
+    border: 1px solid rgba(220, 38, 38, 0.2);
 }
 
 .feature-icon {
@@ -1028,11 +1027,11 @@ p {
     margin: 0;
     font-size: 1rem;
     line-height: 1.5;
-    color: var(--text-medium);
+    color: var(--text-dark);
 }
 
 .guarantee-feature strong {
-    color: var(--primary-orange);
+    color: var(--primary-red);
     font-weight: var(--weight-bold);
 }
 
@@ -1056,22 +1055,11 @@ p {
    ========================================================================== */
 
 .final-cta-section {
-    background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-dark) 100%);
+    background: linear-gradient(135deg, var(--primary-red) 0%, rgb(180, 30, 30) 100%);
     padding: var(--space-xxl) 0;
     text-align: center;
     position: relative;
     overflow: hidden;
-}
-
-.final-cta-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(ellipse at center, rgba(255, 140, 0, 0.1) 0%, transparent 70%);
-    pointer-events: none;
 }
 
 .final-big-title {
@@ -1103,6 +1091,10 @@ p {
 .final-price-text strong {
     color: var(--primary-gold);
     font-size: 2rem;
+}
+
+.final-cta-section .timer-display {
+    color: var(--primary-gold);
 }
 
 .countdown-timer {
@@ -1161,8 +1153,8 @@ p {
 }
 
 .popup-content {
-    background: linear-gradient(135deg, var(--secondary-dark-gray), var(--primary-dark));
-    border: 3px solid var(--primary-orange);
+    background: var(--bg-white);
+    border: 3px solid var(--primary-red);
     border-radius: 20px;
     padding: var(--space-xl);
     max-width: 500px;
@@ -1170,7 +1162,7 @@ p {
     text-align: center;
     position: relative;
     animation: slideUp 0.3s ease;
-    box-shadow: 0 8px 60px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 8px 60px rgba(0, 0, 0, 0.3);
 }
 
 @keyframes slideUp {
@@ -1198,21 +1190,21 @@ p {
 }
 
 .popup-close:hover {
-    color: var(--primary-orange);
+    color: var(--primary-red);
 }
 
 .popup-title {
     font-family: var(--font-heading);
     font-size: 1.5rem;
     font-weight: var(--weight-extrabold);
-    color: var(--primary-orange);
+    color: var(--primary-red);
     margin: 0 0 var(--space-md) 0;
     text-transform: uppercase;
 }
 
 .popup-text {
     font-size: 1.25rem;
-    color: var(--text-white);
+    color: var(--text-dark);
     margin: 0 0 var(--space-sm) 0;
 }
 
@@ -1227,22 +1219,22 @@ p {
 
 .btn-popup-cta {
     display: inline-block;
-    background: linear-gradient(135deg, var(--primary-orange), var(--primary-gold));
-    color: var(--text-dark);
+    background: linear-gradient(135deg, var(--primary-red), var(--secondary-light-red));
+    color: var(--text-white);
     font-size: 1.25rem;
     font-weight: var(--weight-extrabold);
     text-transform: uppercase;
     padding: 20px 40px;
     border-radius: 8px;
     border: none;
-    box-shadow: 0 4px 20px rgba(255, 140, 0, 0.4);
+    box-shadow: 0 4px 20px rgba(220, 38, 38, 0.4);
     transition: all 0.3s ease;
     margin-top: var(--space-md);
     cursor: pointer;
 }
 
 .btn-popup-cta:hover {
-    box-shadow: 0 8px 30px rgba(255, 140, 0, 0.6);
+    box-shadow: 0 8px 30px rgba(220, 38, 38, 0.6);
     transform: translateY(-3px);
 }
 
