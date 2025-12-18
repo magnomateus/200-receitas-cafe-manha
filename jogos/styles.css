@@ -610,54 +610,53 @@ p {
 
 .bonus-section {
     background: var(--primary-dark);
-    padding: var(--space-lg) 0;
+    padding: var(--space-xxl) 0;
 }
 
 .bonus-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-md);
-    margin-bottom: var(--space-sm);
+    gap: var(--space-lg);
+    margin-bottom: var(--space-lg);
 }
 
 .bonus-card {
     background: linear-gradient(135deg, rgba(255, 140, 0, 0.1), rgba(25, 25, 35, 0.9));
     border: 2px solid var(--primary-orange);
-    padding: var(--space-md);
-    border-radius: 10px;
+    padding: var(--space-lg);
+    border-radius: 12px;
     text-align: center;
     transition: all 0.3s ease;
 }
 
 .bonus-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(255, 140, 0, 0.3);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(255, 140, 0, 0.3);
 }
 
 .bonus-icon {
-    font-size: 2.5rem;
-    margin-bottom: var(--space-sm);
+    font-size: 4rem;
+    margin-bottom: var(--space-md);
 }
 
 .bonus-image {
     width: 100%;
-    max-width: 200px;
+    max-width: 280px;
     height: auto;
-    margin: 0 auto var(--space-sm);
+    margin: 0 auto var(--space-md);
 }
 
 .bonus-card h3 {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     color: var(--text-white);
-    margin-bottom: var(--space-xs);
+    margin-bottom: var(--space-sm);
     line-height: 1.2;
     font-weight: var(--weight-extrabold);
 }
 
 .bonus-card p {
     color: var(--text-medium);
-    line-height: 1.4;
-    font-size: 0.9rem;
+    line-height: 1.6;
 }
 
 .bonus-value {
