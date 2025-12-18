@@ -841,7 +841,7 @@ p {
     position: relative;
     width: 100%;
     max-width: 450px;
-    margin: 0 auto var(--space-md);
+    margin: 25px auto var(--space-md);
 }
 
 .premium-cover {
