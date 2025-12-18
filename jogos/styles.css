@@ -395,8 +395,12 @@ p {
 .games-showcase-section {
     background: var(--secondary-dark-gray);
     padding: var(--space-xl) 0;
-    padding-bottom: 0;
+    padding-bottom: var(--space-md);
     text-align: center;
+}
+
+.games-showcase-section .btn-cta {
+    margin-bottom: 0;
 }
 
 .games-grid {
@@ -502,7 +506,7 @@ p {
 .compatibility-section {
     background: var(--secondary-dark-gray);
     padding: var(--space-xl) 0;
-    padding-top: var(--space-md);
+    padding-top: 0;
 }
 
 .compatibility-content {
