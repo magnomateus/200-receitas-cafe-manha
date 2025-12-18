@@ -296,8 +296,12 @@ function moveCarousel(direction) {
 
     if (slides.length === 0) return;
 
-    slides[currentSlide].classList.remove('active');
-    dots[currentSlide].classList.remove('active');
+    const previousSlide = currentSlide;
+
+    // Adiciona classe de saída no slide atual
+    slides[previousSlide].classList.add('exit');
+    slides[previousSlide].classList.remove('active');
+    dots[previousSlide].classList.remove('active');
 
     currentSlide += direction;
 
@@ -307,23 +311,36 @@ function moveCarousel(direction) {
         currentSlide = slides.length - 1;
     }
 
+    // Ativa o próximo slide
     slides[currentSlide].classList.add('active');
     dots[currentSlide].classList.add('active');
+
+    // Remove classe de saída após a transição
+    setTimeout(function() {
+        slides[previousSlide].classList.remove('exit');
+    }, 500);
 }
 
 function goToSlide(index) {
     const slides = document.querySelectorAll('.carousel-slide');
     const dots = document.querySelectorAll('.carousel-dot');
 
-    if (slides.length === 0) return;
+    if (slides.length === 0 || index === currentSlide) return;
 
-    slides[currentSlide].classList.remove('active');
-    dots[currentSlide].classList.remove('active');
+    const previousSlide = currentSlide;
+
+    slides[previousSlide].classList.add('exit');
+    slides[previousSlide].classList.remove('active');
+    dots[previousSlide].classList.remove('active');
 
     currentSlide = index;
 
     slides[currentSlide].classList.add('active');
     dots[currentSlide].classList.add('active');
+
+    setTimeout(function() {
+        slides[previousSlide].classList.remove('exit');
+    }, 500);
 }
 
 // Auto-play do carrossel (troca a cada 3 segundos)
