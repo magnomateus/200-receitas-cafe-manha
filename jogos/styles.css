@@ -643,7 +643,7 @@ p {
     width: 100%;
     max-width: 280px;
     height: auto;
-    margin: 0 auto 4px;
+    margin: 0 auto 0;
 }
 
 .bonus-card h3 {
