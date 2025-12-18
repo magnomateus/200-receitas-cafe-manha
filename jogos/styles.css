@@ -657,8 +657,8 @@ p {
 }
 
 .bonus-title-normal {
-    -webkit-text-stroke: none;
-    text-shadow: none;
+    -webkit-text-stroke: unset;
+    text-shadow: unset;
     color: var(--text-white);
 }
 
