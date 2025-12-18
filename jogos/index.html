@@ -283,9 +283,21 @@
         <div class="container">
             <h2 class="section-title-testimonials">O Que Dizem Nossos Clientes</h2>
 
-            <div class="testimonials-gallery">
-                <img src="images/prova-social-1.jpg" alt="Depoimentos de clientes" class="social-proof-img">
-                <img src="images/prova-social-2.jpg" alt="Depoimentos de clientes" class="social-proof-img">
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <div class="carousel-slide active">
+                        <img src="images/prova-social-1.jpg" alt="Depoimentos de clientes" class="social-proof-img">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="images/prova-social-2.jpg" alt="Depoimentos de clientes" class="social-proof-img">
+                    </div>
+                </div>
+                <button class="carousel-btn carousel-btn-prev" onclick="moveCarousel(-1)">&#10094;</button>
+                <button class="carousel-btn carousel-btn-next" onclick="moveCarousel(1)">&#10095;</button>
+                <div class="carousel-dots">
+                    <span class="carousel-dot active" onclick="goToSlide(0)"></span>
+                    <span class="carousel-dot" onclick="goToSlide(1)"></span>
+                </div>
             </div>
         </div>
     </section>

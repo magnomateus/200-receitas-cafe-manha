@@ -279,6 +279,54 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('✅ Popup Oferta Exclusiva');
     console.log('✅ URL limpa (sem # no final)');
     console.log('✅ CTA Final protegido para #plano-premium');
+    console.log('✅ Carrossel de Provas Sociais');
     console.log('📱 +100 Jogos no seu celular!');
 
 });
+
+/* ==========================================================================
+   10. CARROSSEL DE PROVAS SOCIAIS
+   ========================================================================== */
+
+let currentSlide = 0;
+
+function moveCarousel(direction) {
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.carousel-dot');
+
+    if (slides.length === 0) return;
+
+    slides[currentSlide].classList.remove('active');
+    dots[currentSlide].classList.remove('active');
+
+    currentSlide += direction;
+
+    if (currentSlide >= slides.length) {
+        currentSlide = 0;
+    } else if (currentSlide < 0) {
+        currentSlide = slides.length - 1;
+    }
+
+    slides[currentSlide].classList.add('active');
+    dots[currentSlide].classList.add('active');
+}
+
+function goToSlide(index) {
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.carousel-dot');
+
+    if (slides.length === 0) return;
+
+    slides[currentSlide].classList.remove('active');
+    dots[currentSlide].classList.remove('active');
+
+    currentSlide = index;
+
+    slides[currentSlide].classList.add('active');
+    dots[currentSlide].classList.add('active');
+}
+
+// Auto-play do carrossel (troca a cada 5 segundos)
+setInterval(function() {
+    moveCarousel(1);
+}, 5000);
