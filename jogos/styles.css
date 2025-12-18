@@ -500,9 +500,9 @@ p {
    ========================================================================== */
 
 .compatibility-section {
-    background: linear-gradient(135deg, var(--secondary-dark-gray) 0%, var(--primary-dark) 100%);
+    background: var(--secondary-dark-gray);
     padding: var(--space-xl) 0;
-    margin-top: 0;
+    padding-top: var(--space-md);
 }
 
 .compatibility-content {
