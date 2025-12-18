@@ -647,6 +647,14 @@ p {
     border-radius: 12px;
 }
 
+.bonus-image-spaced {
+    margin-bottom: 20px;
+}
+
+.bonus-image-tight {
+    margin-bottom: -5px;
+}
+
 .bonus-card h3 {
     font-size: 1.5rem;
     color: #ffffff;
