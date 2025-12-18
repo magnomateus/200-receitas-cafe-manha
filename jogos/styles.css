@@ -305,7 +305,7 @@ p {
 }
 
 .headline {
-    font-size: clamp(2rem, 7vw, 5rem);
+    font-size: clamp(1.4rem, 7vw, 5rem);
     margin-bottom: var(--space-md);
     line-height: 1.2;
     font-weight: var(--weight-extrabold);
@@ -313,6 +313,7 @@ p {
     text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
     position: relative;
     z-index: 1;
+    white-space: nowrap;
 }
 
 .headline-bonus {
