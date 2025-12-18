@@ -307,21 +307,20 @@ p {
 .headline {
     font-size: clamp(1.4rem, 5vw, 4rem);
     margin-bottom: var(--space-md);
-    line-height: 1.1;
+    line-height: 1.2;
     font-weight: var(--weight-extrabold);
     color: var(--text-white);
     text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
     position: relative;
     z-index: 1;
-    white-space: nowrap;
 }
 
 .headline-bonus {
     color: var(--primary-orange);
-    display: inline;
-    font-size: 0.6em;
+    display: block;
+    font-size: 0.5em;
+    margin-top: var(--space-xs);
     text-shadow: 0 0 20px rgba(255, 140, 0, 0.5);
-    white-space: nowrap;
 }
 
 .hero-subtitle {
