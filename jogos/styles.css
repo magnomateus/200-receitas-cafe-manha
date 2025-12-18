@@ -506,7 +506,7 @@ p {
 .compatibility-section {
     background: var(--secondary-dark-gray);
     padding: var(--space-xl) 0;
-    padding-top: 0;
+    padding-top: var(--space-lg);
 }
 
 .compatibility-content {
