@@ -636,7 +636,7 @@ p {
 
 .bonus-icon {
     font-size: 4rem;
-    margin-bottom: var(--space-md);
+    margin-bottom: 8px;
 }
 
 .bonus-image {
