@@ -323,6 +323,16 @@ p {
     text-shadow: 0 0 20px rgba(255, 140, 0, 0.5);
 }
 
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: var(--text-white);
+    max-width: 800px;
+    margin: 0 auto var(--space-md);
+    line-height: 1.4;
+    font-weight: var(--weight-semibold);
+    text-align: center;
+}
+
 .sub-headline {
     font-size: 1.3rem;
     color: var(--text-medium);
@@ -1329,6 +1339,10 @@ p {
         line-height: 1.2;
     }
 
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
     .sub-headline {
         font-size: 1.1rem;
     }
@@ -1408,6 +1422,10 @@ p {
 
     .headline-bonus {
         font-size: 0.5em;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
     }
 
     .sub-headline {
