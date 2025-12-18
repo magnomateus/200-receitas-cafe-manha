@@ -799,7 +799,7 @@ p {
     background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(25, 25, 35, 0.95));
     border: 2px solid rgba(220, 38, 38, 0.5);
     border-radius: 12px;
-    padding: var(--space-lg);
+    padding: var(--space-md);
     text-align: center;
     position: relative;
     transition: all 0.3s ease;
@@ -861,7 +861,7 @@ p {
 }
 
 .plan-price {
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-md);
 }
 
 .price-from-small {
@@ -908,15 +908,15 @@ p {
 .plan-features {
     list-style: none;
     padding: 0;
-    margin: 0 0 var(--space-lg);
+    margin: 0 0 var(--space-md);
     text-align: left;
 }
 
 .plan-features li {
-    padding: var(--space-sm) 0;
+    padding: 8px 0;
     font-size: 1rem;
     color: var(--text-medium);
-    line-height: 1.6;
+    line-height: 1.5;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -968,8 +968,8 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: var(--space-md);
-    padding-top: var(--space-sm);
+    margin-top: var(--space-sm);
+    padding-top: 0;
 }
 
 .arrow-text {
