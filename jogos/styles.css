@@ -648,11 +648,12 @@ p {
 
 .bonus-card h3 {
     font-size: 1.5rem;
-    color: #00d4ff;
+    color: #ffffff;
     margin-bottom: var(--space-sm);
     line-height: 1.2;
     font-weight: var(--weight-extrabold);
-    text-shadow: 0 0 10px #00d4ff, 0 0 20px #00d4ff, 0 0 30px rgba(0, 212, 255, 0.5);
+    -webkit-text-stroke: 1px #00d4ff;
+    text-shadow: 0 0 8px #00d4ff, 0 0 15px rgba(0, 212, 255, 0.6);
 }
 
 .bonus-card p {
