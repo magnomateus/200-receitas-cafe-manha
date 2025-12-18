@@ -326,7 +326,7 @@ function goToSlide(index) {
     dots[currentSlide].classList.add('active');
 }
 
-// Auto-play do carrossel (troca a cada 5 segundos)
+// Auto-play do carrossel (troca a cada 3 segundos)
 setInterval(function() {
     moveCarousel(1);
-}, 5000);
+}, 3000);
