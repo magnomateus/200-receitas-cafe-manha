@@ -962,6 +962,42 @@ p {
     font-size: 0.9rem;
 }
 
+/* Arrow pointing to Premium Plan */
+.arrow-to-premium {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: var(--space-md);
+    padding-top: var(--space-sm);
+}
+
+.arrow-text {
+    font-size: 0.9rem;
+    font-weight: var(--weight-bold);
+    color: var(--primary-orange);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.arrow-down-animated {
+    color: var(--primary-orange);
+    animation: bounce-arrow 1.5s ease-in-out infinite;
+}
+
+.arrow-down-animated svg {
+    filter: drop-shadow(0 0 8px rgba(255, 140, 0, 0.6));
+}
+
+@keyframes bounce-arrow {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+}
+
 /* ==========================================================================
    SECAO 6: DEPOIMENTOS
    ========================================================================== */
