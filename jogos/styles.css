@@ -852,7 +852,7 @@ p {
 }
 
 .plan-name {
-    font-size: clamp(1.3rem, 5vw, 2.25rem);
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
     color: var(--text-white);
     font-weight: var(--weight-extrabold);
     margin-bottom: var(--space-md);
