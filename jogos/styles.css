@@ -674,7 +674,7 @@ p {
 .bonus-card h3.bonus-title-retro {
     -webkit-text-stroke: unset;
     text-shadow: none;
-    color: var(--primary-orange);
+    color: #FFD700;
 }
 
 .bonus-card p {
