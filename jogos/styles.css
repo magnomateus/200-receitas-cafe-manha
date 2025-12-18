@@ -305,7 +305,7 @@ p {
 }
 
 .headline {
-    font-size: clamp(1.4rem, 5vw, 4rem);
+    font-size: clamp(2rem, 7vw, 5rem);
     margin-bottom: var(--space-md);
     line-height: 1.2;
     font-weight: var(--weight-extrabold);
