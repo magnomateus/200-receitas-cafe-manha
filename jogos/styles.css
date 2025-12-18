@@ -634,11 +634,6 @@ p {
     box-shadow: 0 8px 30px rgba(255, 140, 0, 0.3);
 }
 
-.bonus-card-no-border {
-    border: none;
-    background: transparent;
-}
-
 .bonus-icon {
     font-size: 4rem;
     margin-bottom: var(--space-md);
