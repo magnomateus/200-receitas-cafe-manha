@@ -808,7 +808,7 @@ p {
 }
 
 .plan-name {
-    font-size: 1.75rem;
+    font-size: 2.25rem;
     color: var(--text-white);
     font-weight: var(--weight-extrabold);
     margin-bottom: var(--space-md);
