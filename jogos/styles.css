@@ -718,8 +718,9 @@ p {
    ========================================================================== */
 
 .offer-section {
-    background: linear-gradient(180deg, var(--secondary-dark-gray) 0%, var(--primary-dark) 100%);
-    padding: var(--space-xxl) 0;
+    background: var(--secondary-dark-gray);
+    padding: var(--space-xl) 0;
+    padding-top: var(--space-lg);
 }
 
 .countdown-timer-box {
