@@ -165,8 +165,8 @@ p {
 }
 
 .highlight-neon {
-    color: var(--secondary-light-red);
-    text-shadow: 0 0 10px var(--primary-red), 0 0 20px rgba(220, 38, 38, 0.5);
+    color: var(--primary-orange);
+    text-shadow: 0 0 10px var(--primary-orange), 0 0 20px rgba(255, 140, 0, 0.5);
 }
 
 /* ==========================================================================
