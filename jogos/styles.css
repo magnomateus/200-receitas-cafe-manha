@@ -672,9 +672,9 @@ p {
 }
 
 .bonus-card h3.bonus-title-retro {
-    -webkit-text-stroke: 1px #ff4444;
-    text-shadow: 0 0 8px #ff4444, 0 0 15px rgba(255, 68, 68, 0.6);
-    color: #ffffff;
+    -webkit-text-stroke: unset;
+    text-shadow: none;
+    color: var(--primary-orange);
 }
 
 .bonus-card p {
