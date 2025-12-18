@@ -852,11 +852,12 @@ p {
 }
 
 .plan-name {
-    font-size: 2.25rem;
+    font-size: clamp(1.3rem, 5vw, 2.25rem);
     color: var(--text-white);
     font-weight: var(--weight-extrabold);
     margin-bottom: var(--space-md);
     text-transform: uppercase;
+    white-space: nowrap;
 }
 
 .plan-price {
