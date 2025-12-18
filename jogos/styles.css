@@ -165,8 +165,8 @@ p {
 }
 
 .highlight-neon {
-    color: var(--primary-orange);
-    text-shadow: 0 0 10px var(--primary-orange), 0 0 20px rgba(255, 140, 0, 0.5);
+    color: var(--secondary-light-red);
+    text-shadow: 0 0 10px var(--primary-red), 0 0 20px rgba(220, 38, 38, 0.5);
 }
 
 /* ==========================================================================
@@ -324,13 +324,14 @@ p {
 }
 
 .hero-subtitle {
-    font-size: 1.5rem;
-    color: var(--text-white);
-    max-width: 800px;
-    margin: 0 auto var(--space-md);
-    line-height: 1.4;
-    font-weight: var(--weight-semibold);
+    font-size: 1.4rem;
+    color: var(--text-medium);
+    max-width: 600px;
+    margin: 0 auto var(--space-sm);
+    line-height: 1.5;
+    font-weight: var(--weight-medium);
     text-align: center;
+    letter-spacing: 0.5px;
 }
 
 .sub-headline {
