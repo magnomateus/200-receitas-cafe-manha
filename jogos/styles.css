@@ -728,7 +728,7 @@ p {
 }
 
 .countdown-timer-box .countdown-label {
-    font-size: 1.25rem;
+    font-size: 1.75rem;
     color: var(--text-white);
     margin-bottom: var(--space-sm);
     font-weight: var(--weight-bold);
