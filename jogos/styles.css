@@ -777,16 +777,19 @@ p {
     box-shadow: 0 12px 50px rgba(255, 140, 0, 0.3);
 }
 
-.plan-cover {
-    margin: -30px -30px 20px -30px;
-    border-radius: 12px 12px 0 0;
-    overflow: hidden;
+.premium-image-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto var(--space-md);
 }
 
-.plan-cover img {
+.premium-cover {
     width: 100%;
     height: auto;
+    object-fit: contain;
     display: block;
+    border-radius: 12px;
 }
 
 .ribbon {
@@ -1488,6 +1491,10 @@ p {
 
     .pricing-card-premium:hover {
         transform: translateY(-5px);
+    }
+
+    .premium-image-wrapper {
+        max-width: 320px;
     }
 
     .btn-cta,
