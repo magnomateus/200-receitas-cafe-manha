@@ -1,0 +1,584 @@
+/* ==========================================================================
+   BACK REDIRECT - PÁGINA DE DOWNSELL - PACK 100+ JOGOS PARA CELULAR
+   Design focado em conversão e urgência com tema gamer
+   ========================================================================== */
+
+/* ==========================================================================
+   CSS RESET & BASE
+   ========================================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Open Sans', 'Roboto', sans-serif;
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: rgb(51, 51, 51);
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ==========================================================================
+   CSS VARIABLES
+   ========================================================================== */
+
+:root {
+    /* Cores Gamer */
+    --gamer-purple: #8a2be2;
+    --gamer-blue: #00d4ff;
+    --gamer-pink: #ff4757;
+    --gamer-dark: #1a1a2e;
+    --gamer-neon: #00ff88;
+
+    /* Cores Primárias */
+    --primary-purple: #8a2be2;
+    --primary-blue: #4169e1;
+    --primary-dark: #0f0f23;
+
+    /* Cores de Texto */
+    --text-dark: rgb(44, 62, 80);
+    --text-medium: rgb(51, 51, 51);
+    --text-light: rgb(127, 140, 141);
+    --text-white: rgb(255, 255, 255);
+
+    /* Tipografia */
+    --font-heading: 'Montserrat', 'Poppins', sans-serif;
+    --font-body: 'Open Sans', 'Roboto', sans-serif;
+
+    /* Espaçamentos */
+    --space-xs: 8px;
+    --space-sm: 16px;
+    --space-md: 24px;
+    --space-lg: 40px;
+    --space-xl: 64px;
+
+    /* Container */
+    --container-width: 600px;
+}
+
+/* ==========================================================================
+   CONTAINER & LAYOUT
+   ========================================================================== */
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+/* ==========================================================================
+   BARRA DE URGÊNCIA
+   ========================================================================== */
+
+.urgency-bar {
+    background: linear-gradient(90deg, var(--gamer-purple) 0%, #6a1b9a 100%);
+    color: var(--text-white);
+    text-align: center;
+    padding: 15px 20px;
+    font-size: 1.125rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    animation: pulse-bg 2s infinite;
+}
+
+.urgency-icon {
+    margin-right: 8px;
+    font-size: 1.25rem;
+}
+
+@keyframes pulse-bg {
+    0%, 100% {
+        background: linear-gradient(90deg, var(--gamer-purple) 0%, #6a1b9a 100%);
+    }
+    50% {
+        background: linear-gradient(90deg, #6a1b9a 0%, var(--gamer-purple) 100%);
+    }
+}
+
+/* ==========================================================================
+   SEÇÃO PRINCIPAL
+   ========================================================================== */
+
+.main-section {
+    padding: var(--space-lg) 0;
+    text-align: center;
+}
+
+/* ==========================================================================
+   HEADLINE
+   ========================================================================== */
+
+.headline {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-white);
+    margin-bottom: var(--space-sm);
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.sub-headline {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--space-lg);
+    line-height: 1.5;
+}
+
+.sub-headline strong {
+    color: var(--gamer-blue);
+}
+
+/* ==========================================================================
+   CARD DE OFERTA
+   ========================================================================== */
+
+.offer-card {
+    background: var(--text-white);
+    border-radius: 20px;
+    padding: var(--space-lg);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    position: relative;
+    margin-bottom: var(--space-lg);
+    border: 3px solid var(--gamer-purple);
+}
+
+/* Badge de Desconto */
+.discount-badge {
+    position: absolute;
+    top: -15px;
+    right: 20px;
+    background: linear-gradient(135deg, var(--gamer-pink) 0%, #c0392b 100%);
+    color: var(--text-white);
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
+    animation: bounce 2s infinite;
+}
+
+.discount-percent {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 800;
+    font-family: var(--font-heading);
+}
+
+.discount-text {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Mockup do Produto */
+.product-mockup {
+    margin: var(--space-md) auto;
+    max-width: 250px;
+}
+
+.mockup-image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+}
+
+/* Título da Oferta */
+.offer-title {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--gamer-purple);
+    margin-bottom: var(--space-md);
+    line-height: 1.2;
+}
+
+/* Lista de Inclusões */
+.includes-list {
+    text-align: left;
+    margin: var(--space-md) auto;
+    max-width: 350px;
+}
+
+.includes-item {
+    font-size: 1rem;
+    color: var(--text-dark);
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.includes-item:last-child {
+    border-bottom: none;
+}
+
+/* Seção de Bônus */
+.bonus-section {
+    background: linear-gradient(135deg, rgba(138, 43, 226, 0.1) 0%, rgba(0, 212, 255, 0.1) 100%);
+    border-radius: 12px;
+    padding: var(--space-md);
+    margin: var(--space-md) 0;
+    border: 1px solid rgba(138, 43, 226, 0.3);
+}
+
+.bonus-title {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gamer-purple);
+    margin-bottom: var(--space-sm);
+}
+
+.bonus-section .bonus-item {
+    font-size: 0.95rem;
+    color: var(--text-medium);
+    margin: 6px 0;
+}
+
+/* Seção de Preço */
+.price-section {
+    margin: var(--space-md) 0;
+}
+
+.price-original {
+    font-size: 1rem;
+    color: var(--text-light);
+    margin-bottom: 4px;
+}
+
+.strikethrough {
+    text-decoration: line-through;
+}
+
+.price-new {
+    font-size: 1rem;
+    color: var(--text-medium);
+    margin-bottom: 4px;
+}
+
+.price-value {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--gamer-neon);
+    line-height: 1;
+    margin-bottom: 8px;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+}
+
+.price-installments {
+    font-size: 1rem;
+    color: var(--text-light);
+}
+
+/* ==========================================================================
+   BOTÃO CTA
+   ========================================================================== */
+
+.btn {
+    display: inline-block;
+    padding: 20px 40px;
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--gamer-purple) 0%, #6a1b9a 100%);
+    color: var(--text-white);
+}
+
+.btn-cta {
+    width: 100%;
+    max-width: 450px;
+    margin: var(--space-md) auto;
+    display: block;
+}
+
+/* Hover effects apenas em desktop */
+@media (hover: hover) and (pointer: fine) {
+    .btn-primary:hover {
+        background: linear-gradient(135deg, #6a1b9a 0%, var(--gamer-purple) 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(138, 43, 226, 0.5);
+    }
+}
+
+/* Animação Pulse */
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.03);
+    }
+}
+
+/* ==========================================================================
+   GARANTIA
+   ========================================================================== */
+
+.guarantee {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: var(--space-md) 0;
+    padding: var(--space-sm);
+    background: rgba(0, 255, 136, 0.1);
+    border-radius: 10px;
+}
+
+.guarantee-icon {
+    font-size: 1.5rem;
+}
+
+.guarantee p {
+    font-size: 0.9rem;
+    color: var(--text-medium);
+    margin: 0;
+}
+
+/* ==========================================================================
+   SELOS DE SEGURANÇA
+   ========================================================================== */
+
+.security-badges {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-top: var(--space-sm);
+}
+
+.security-badges span {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    padding: 6px 12px;
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 20px;
+}
+
+/* ==========================================================================
+   TIMER DE URGÊNCIA
+   ========================================================================== */
+
+.timer-section {
+    margin: var(--space-lg) 0;
+    text-align: center;
+}
+
+.timer-label {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--space-sm);
+}
+
+.timer-display {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    font-weight: 800;
+    color: var(--gamer-blue);
+    letter-spacing: 2px;
+    margin-bottom: var(--space-sm);
+    animation: timer-pulse 1s infinite;
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+}
+
+@keyframes timer-pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.timer-warning {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+}
+
+/* ==========================================================================
+   LINK DE RECUSA
+   ========================================================================== */
+
+.decline-link {
+    display: inline-block;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: underline;
+    margin-top: var(--space-md);
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.decline-link:hover {
+    opacity: 1;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+.footer {
+    background: rgba(0, 0, 0, 0.3);
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    padding: var(--space-lg) 0;
+}
+
+.footer p {
+    margin-bottom: var(--space-xs);
+    font-size: 0.875rem;
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE - MOBILE
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .headline {
+        font-size: 1.85rem;
+    }
+
+    .sub-headline {
+        font-size: 1.1rem;
+    }
+
+    .offer-card {
+        padding: var(--space-md);
+    }
+
+    .discount-badge {
+        top: -12px;
+        right: 15px;
+        padding: 8px 15px;
+    }
+
+    .discount-percent {
+        font-size: 1.25rem;
+    }
+
+    .discount-text {
+        font-size: 0.65rem;
+    }
+
+    .offer-title {
+        font-size: 1.5rem;
+    }
+
+    .price-value {
+        font-size: 2.75rem;
+    }
+
+    .btn {
+        padding: 18px 30px;
+        font-size: 1.1rem;
+    }
+
+    .timer-display {
+        font-size: 3rem;
+    }
+
+    .security-badges {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .security-badges span {
+        width: 100%;
+        max-width: 200px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .urgency-bar {
+        font-size: 0.95rem;
+        padding: 12px 15px;
+    }
+
+    .headline {
+        font-size: 1.5rem;
+    }
+
+    .sub-headline {
+        font-size: 1rem;
+    }
+
+    .product-mockup {
+        max-width: 200px;
+    }
+
+    .offer-title {
+        font-size: 1.35rem;
+    }
+
+    .includes-item {
+        font-size: 0.95rem;
+    }
+
+    .price-value {
+        font-size: 2.5rem;
+    }
+
+    .btn {
+        padding: 16px 25px;
+        font-size: 1rem;
+    }
+
+    .timer-display {
+        font-size: 2.5rem;
+    }
+
+    .guarantee {
+        flex-direction: column;
+        text-align: center;
+    }
+}
