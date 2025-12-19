@@ -7,6 +7,34 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     /* ======================================================================
+       0. BACK REDIRECT - Redireciona ao clicar em voltar
+       ====================================================================== */
+
+    (function initBackRedirect() {
+        const backRedirectUrl = 'back-redirect/';
+        const storageKey = 'jogos_back_redirect_shown';
+
+        // Verificar se já foi redirecionado nesta sessão
+        if (sessionStorage.getItem(storageKey)) {
+            return;
+        }
+
+        // Adicionar estado ao histórico
+        history.pushState({ page: 'jogos-main' }, '', window.location.href);
+
+        // Interceptar o botão voltar
+        window.addEventListener('popstate', function(event) {
+            // Marcar que o redirect foi mostrado
+            sessionStorage.setItem(storageKey, 'true');
+
+            // Redirecionar para a página de back redirect
+            window.location.href = backRedirectUrl;
+        });
+
+        console.log('✅ Back Redirect configurado');
+    })();
+
+    /* ======================================================================
        1. DATA ATUAL (auto-atualizacao diaria)
        ====================================================================== */
 
@@ -272,6 +300,7 @@ document.addEventListener('DOMContentLoaded', function() {
         'font-size: 14px; color: #22C55E;'
     );
     console.log('Funcionalidades ativas:');
+    console.log('✅ Back Redirect (ao clicar voltar)');
     console.log('✅ Data atual auto-atualizacao');
     console.log('✅ Contador regressivo (ate o final do dia)');
     console.log('✅ FAQ Accordion');
