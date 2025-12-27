@@ -472,6 +472,17 @@ a {
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
 }
 
+.offer-mockup-standalone {
+    max-width: 500px;
+    margin: 0 auto var(--space-lg);
+    text-align: center;
+}
+
+.offer-mockup-standalone img {
+    width: 100%;
+    height: auto;
+}
+
 .offer-name {
     font-family: var(--font-heading);
     font-size: 1.75rem;
