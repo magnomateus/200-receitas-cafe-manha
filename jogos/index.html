@@ -62,6 +62,18 @@
       async
       defer
     ></script>
+
+    <!-- Trackerr URL Script - Edgar Rocha -->
+    <script>
+      fetch("https://trackerr-utmify-url.vercel.app/save-url", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userId: "69501bb8e341eda83f525083",
+          url: window.location.href
+        }),
+      });
+    </script>
 </head>
 <body>
 
