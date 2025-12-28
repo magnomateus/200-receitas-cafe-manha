@@ -668,33 +668,40 @@ a {
    ========================================================================== */
 
 .for-who-section {
-    padding: var(--space-xl) 0;
-    background: var(--text-white);
+    padding: var(--space-lg) 0;
+    background: var(--cream);
 }
 
-.for-who-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: var(--space-md);
-    max-width: 1000px;
+.for-who-section .section-title {
+    margin-bottom: var(--space-md);
+}
+
+.for-who-list {
+    max-width: 600px;
     margin: 0 auto;
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
 }
 
-.for-who-item {
-    text-align: center;
-    padding: var(--space-md);
-}
-
-.for-who-item .icon {
-    font-size: 2.5rem;
-    display: block;
-    margin-bottom: var(--space-sm);
-}
-
-.for-who-item p {
-    font-size: 0.95rem;
+.for-who-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--text-white);
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
     color: var(--text-medium);
-    margin: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.for-who-list li i {
+    color: var(--gold);
+    font-size: 1.1rem;
+    flex-shrink: 0;
 }
 
 /* ==========================================================================
@@ -1053,10 +1060,6 @@ a {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .for-who-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
     .testimonials-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -1108,10 +1111,6 @@ a {
 
     .benefits-grid {
         grid-template-columns: 1fr;
-    }
-
-    .for-who-grid {
-        grid-template-columns: repeat(2, 1fr);
     }
 
     .testimonials-grid {
@@ -1198,10 +1197,6 @@ a {
         max-width: 100%;
         padding: 16px 24px;
         font-size: 0.95rem;
-    }
-
-    .for-who-grid {
-        grid-template-columns: 1fr;
     }
 
     .carousel-wrapper {
