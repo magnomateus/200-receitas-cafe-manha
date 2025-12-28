@@ -128,7 +128,7 @@ a {
 
 .hero-title {
     font-family: var(--font-heading);
-    font-size: 3.25rem;
+    font-size: var(--h1-size);
     font-weight: 700;
     color: var(--text-dark);
     line-height: 1.3;
