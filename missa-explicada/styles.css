@@ -664,47 +664,6 @@ a {
 }
 
 /* ==========================================================================
-   FOR WHO SECTION
-   ========================================================================== */
-
-.for-who-section {
-    padding: var(--space-lg) 0;
-    background: var(--cream);
-}
-
-.for-who-section .section-title {
-    margin-bottom: var(--space-md);
-}
-
-.for-who-list {
-    max-width: 600px;
-    margin: 0 auto;
-    list-style: none;
-    padding: 0;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
-}
-
-.for-who-list li {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: var(--text-white);
-    padding: 14px 20px;
-    border-radius: 8px;
-    font-size: 1rem;
-    color: var(--text-medium);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.for-who-list li i {
-    color: var(--gold);
-    font-size: 1.1rem;
-    flex-shrink: 0;
-}
-
-/* ==========================================================================
    TESTIMONIALS SECTION
    ========================================================================== */
 
