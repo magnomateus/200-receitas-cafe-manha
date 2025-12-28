@@ -253,7 +253,7 @@ a {
 }
 
 /* ==========================================================================
-   PREVIEW SECTION (Mockup Interno)
+   PREVIEW SECTION (Carrossel de Mockup Interno)
    ========================================================================== */
 
 .preview-section {
@@ -269,31 +269,101 @@ a {
     margin-bottom: var(--space-lg);
 }
 
-.preview-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-md);
-    max-width: 1000px;
+/* Carrossel Container */
+.carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    max-width: 900px;
     margin: 0 auto;
 }
 
-.preview-item {
-    background: var(--text-white);
+.carousel-wrapper {
+    flex: 1;
+    overflow: hidden;
     border-radius: 12px;
-    padding: var(--space-sm);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: grab;
 }
 
-.preview-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+.carousel-wrapper:active {
+    cursor: grabbing;
 }
 
-.preview-item img {
+.carousel-track {
+    display: flex;
+    transition: transform 0.4s ease;
+    will-change: transform;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    padding: 0 var(--space-sm);
+    box-sizing: border-box;
+}
+
+.carousel-slide img {
     width: 100%;
     height: auto;
-    border-radius: 8px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Botões de Navegação */
+.carousel-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: var(--wine);
+    color: var(--text-white);
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-btn:hover {
+    background: var(--gold);
+    transform: scale(1.1);
+}
+
+.carousel-btn:active {
+    transform: scale(0.95);
+}
+
+/* Indicadores (Dots) */
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: var(--space-md);
+}
+
+.carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--wine);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.carousel-dot:hover {
+    background: var(--gold-light);
+    border-color: var(--gold);
+}
+
+.carousel-dot.active {
+    background: var(--wine);
+    transform: scale(1.2);
 }
 
 /* ==========================================================================
@@ -779,8 +849,8 @@ a {
    ========================================================================== */
 
 @media (max-width: 992px) {
-    .preview-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .carousel-container {
+        max-width: 700px;
     }
 
     .benefits-grid {
@@ -934,9 +1004,14 @@ a {
         grid-template-columns: 1fr;
     }
 
-    .preview-grid {
-        grid-template-columns: 1fr;
-        max-width: 300px;
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .carousel-container {
+        gap: var(--space-xs);
     }
 
     .btn {

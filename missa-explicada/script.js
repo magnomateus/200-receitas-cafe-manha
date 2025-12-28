@@ -93,7 +93,128 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     /* ======================================================================
-       4. SMOOTH SCROLL PARA ÂNCORAS
+       4. CARROSSEL DE PREVIEW
+       ====================================================================== */
+
+    function initCarousel() {
+        const track = document.querySelector('.carousel-track');
+        const slides = document.querySelectorAll('.carousel-slide');
+        const prevBtn = document.querySelector('.carousel-prev');
+        const nextBtn = document.querySelector('.carousel-next');
+        const dots = document.querySelectorAll('.carousel-dot');
+        const wrapper = document.querySelector('.carousel-wrapper');
+
+        if (!track || slides.length === 0) return;
+
+        let currentIndex = 0;
+        let isDragging = false;
+        let startPos = 0;
+        let currentTranslate = 0;
+        let prevTranslate = 0;
+
+        // Atualizar posição do slide
+        function goToSlide(index) {
+            if (index < 0) index = slides.length - 1;
+            if (index >= slides.length) index = 0;
+
+            currentIndex = index;
+            currentTranslate = -currentIndex * 100;
+            prevTranslate = currentTranslate;
+            track.style.transform = `translateX(${currentTranslate}%)`;
+
+            // Atualizar dots
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentIndex);
+            });
+        }
+
+        // Navegação por botões
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
+        }
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+        }
+
+        // Navegação por dots
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const slideIndex = parseInt(dot.dataset.slide);
+                goToSlide(slideIndex);
+            });
+        });
+
+        // Drag/Touch handlers
+        function getPositionX(event) {
+            return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+        }
+
+        function dragStart(event) {
+            isDragging = true;
+            startPos = getPositionX(event);
+            track.style.transition = 'none';
+            wrapper.style.cursor = 'grabbing';
+        }
+
+        function drag(event) {
+            if (!isDragging) return;
+
+            const currentPosition = getPositionX(event);
+            const diff = currentPosition - startPos;
+            const slideWidth = wrapper.offsetWidth;
+            const percentMoved = (diff / slideWidth) * 100;
+
+            currentTranslate = prevTranslate + percentMoved;
+            track.style.transform = `translateX(${currentTranslate}%)`;
+        }
+
+        function dragEnd() {
+            if (!isDragging) return;
+
+            isDragging = false;
+            track.style.transition = 'transform 0.4s ease';
+            wrapper.style.cursor = 'grab';
+
+            const movedBy = currentTranslate - prevTranslate;
+
+            // Se arrastou mais de 20%, muda de slide
+            if (movedBy < -20) {
+                goToSlide(currentIndex + 1);
+            } else if (movedBy > 20) {
+                goToSlide(currentIndex - 1);
+            } else {
+                goToSlide(currentIndex);
+            }
+        }
+
+        // Mouse events
+        wrapper.addEventListener('mousedown', dragStart);
+        wrapper.addEventListener('mousemove', drag);
+        wrapper.addEventListener('mouseup', dragEnd);
+        wrapper.addEventListener('mouseleave', dragEnd);
+
+        // Touch events
+        wrapper.addEventListener('touchstart', dragStart, { passive: true });
+        wrapper.addEventListener('touchmove', drag, { passive: true });
+        wrapper.addEventListener('touchend', dragEnd);
+
+        // Prevenir seleção de texto durante drag
+        wrapper.addEventListener('dragstart', e => e.preventDefault());
+
+        // Navegação por teclado
+        wrapper.setAttribute('tabindex', '0');
+        wrapper.addEventListener('keydown', e => {
+            if (e.key === 'ArrowLeft') goToSlide(currentIndex - 1);
+            if (e.key === 'ArrowRight') goToSlide(currentIndex + 1);
+        });
+
+        console.log('✅ Carrossel de preview inicializado');
+    }
+
+    initCarousel();
+
+    /* ======================================================================
+       5. SMOOTH SCROLL PARA ÂNCORAS
        ====================================================================== */
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -115,7 +236,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     /* ======================================================================
-       5. TRACKING DE EVENTOS (preparado para analytics)
+       6. TRACKING DE EVENTOS (preparado para analytics)
        ====================================================================== */
 
     function trackCTAClick(ctaName) {
@@ -136,7 +257,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     /* ======================================================================
-       6. CONSOLE LOG DE BOAS-VINDAS
+       7. CONSOLE LOG DE BOAS-VINDAS
        ====================================================================== */
 
     console.log(
@@ -151,6 +272,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('✅ Data atual auto-atualização');
     console.log('✅ Contador regressivo (até o final do dia)');
     console.log('✅ FAQ Accordion');
+    console.log('✅ Carrossel de preview (drag/swipe)');
     console.log('✅ Smooth scroll');
     console.log('✅ Tracking de CTAs');
     console.log('✝️ Que Deus abençoe!');

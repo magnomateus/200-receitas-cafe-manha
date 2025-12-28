@@ -108,21 +108,36 @@
     <section class="preview-section">
         <div class="container">
             <h2 class="section-title">Veja o Que Você Vai Receber</h2>
-            <p class="preview-subtitle">Confira algumas páginas do ebook</p>
+            <p class="preview-subtitle">Arraste para ver mais páginas</p>
 
-            <div class="preview-grid">
-                <div class="preview-item">
-                    <img src="images/mockup-interno-1.png" alt="Página interna do ebook Missa Explicada">
+            <div class="carousel-container">
+                <button class="carousel-btn carousel-prev" aria-label="Anterior">❮</button>
+
+                <div class="carousel-wrapper">
+                    <div class="carousel-track">
+                        <div class="carousel-slide">
+                            <img src="images/mockup-interno-1.png" alt="Página 1 do ebook Missa Explicada">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/mockup-interno-2.png" alt="Página 2 do ebook Missa Explicada">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/mockup-interno-3.png" alt="Página 3 do ebook Missa Explicada">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/mockup-interno-4.png" alt="Página 4 do ebook Missa Explicada">
+                        </div>
+                    </div>
                 </div>
-                <div class="preview-item">
-                    <img src="images/mockup-interno-2.png" alt="Página interna do ebook Missa Explicada">
-                </div>
-                <div class="preview-item">
-                    <img src="images/mockup-interno-3.png" alt="Página interna do ebook Missa Explicada">
-                </div>
-                <div class="preview-item">
-                    <img src="images/mockup-interno-4.png" alt="Página interna do ebook Missa Explicada">
-                </div>
+
+                <button class="carousel-btn carousel-next" aria-label="Próximo">❯</button>
+            </div>
+
+            <div class="carousel-dots">
+                <button class="carousel-dot active" data-slide="0" aria-label="Página 1"></button>
+                <button class="carousel-dot" data-slide="1" aria-label="Página 2"></button>
+                <button class="carousel-dot" data-slide="2" aria-label="Página 3"></button>
+                <button class="carousel-dot" data-slide="3" aria-label="Página 4"></button>
             </div>
         </div>
     </section>
