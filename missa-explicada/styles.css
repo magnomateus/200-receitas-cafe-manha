@@ -145,7 +145,7 @@ a {
     font-size: 1.25rem;
     color: var(--text-medium);
     max-width: 700px;
-    margin: 0 auto var(--space-lg);
+    margin: -16px auto var(--space-lg);
     line-height: 1.8;
 }
 
