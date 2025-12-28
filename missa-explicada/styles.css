@@ -511,14 +511,16 @@ a {
 }
 
 .bonus-section .section-title {
-    color: var(--gold-light);
+    color: var(--text-white);
+    font-size: 2.2rem;
+    line-height: 1.3;
 }
 
-.bonus-subtitle {
-    font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.9);
-    margin-top: calc(-1 * var(--space-md));
-    margin-bottom: var(--space-lg);
+.bonus-section .section-title .highlight-gold {
+    color: var(--gold-light);
+    display: block;
+    font-size: 2.5rem;
+    margin-top: 8px;
 }
 
 .bonus-grid {
