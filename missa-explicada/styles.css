@@ -521,6 +521,19 @@ a {
     display: block;
     font-size: 2.5rem;
     margin-top: 8px;
+    white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+    .bonus-section .section-title .highlight-gold {
+        font-size: 1.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .bonus-section .section-title .highlight-gold {
+        font-size: 1.4rem;
+    }
 }
 
 .bonus-grid {
