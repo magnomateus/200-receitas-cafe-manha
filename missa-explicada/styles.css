@@ -785,9 +785,12 @@ a {
     background: linear-gradient(135deg, var(--cream) 0%, var(--cream-dark) 100%);
 }
 
+.offer-section .section-title {
+    margin-bottom: 8px;
+}
+
 .offer-timer {
     text-align: center;
-    margin-top: -20px;
     margin-bottom: var(--space-md);
 }
 
