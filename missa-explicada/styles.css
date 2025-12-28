@@ -595,21 +595,12 @@ a {
     white-space: nowrap;
 }
 
-.bonus-image-placeholder {
-    width: 80px;
-    height: 100px;
+.bonus-image {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
     margin: var(--space-md) auto var(--space-sm);
-    background: linear-gradient(135deg, var(--cream) 0%, var(--cream-dark) 100%);
     border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid var(--gold);
-}
-
-.bonus-image-placeholder i {
-    font-size: 2rem;
-    color: var(--wine);
 }
 
 .bonus-card h4 {
