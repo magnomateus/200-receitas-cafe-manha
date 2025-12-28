@@ -425,7 +425,14 @@ a {
 }
 
 .learn-section .section-title {
-    font-size: 2.5rem;
+    font-size: 2rem;
+    white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+    .learn-section .section-title {
+        font-size: 1.4rem;
+    }
 }
 
 .learn-list {
