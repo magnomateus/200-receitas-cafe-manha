@@ -109,6 +109,7 @@ a {
     padding: 12px 20px;
     font-size: 1rem;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .urgency-icon {
@@ -797,6 +798,11 @@ a {
     :root {
         --h1-size: 1.65rem;
         --h2-size: 1.5rem;
+    }
+
+    .urgency-bar {
+        font-size: 0.75rem;
+        padding: 10px 10px;
     }
 
     .hero-image {
