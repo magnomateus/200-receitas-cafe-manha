@@ -463,6 +463,19 @@ a {
 
 .learn-section .section-title {
     font-size: 2rem;
+    white-space: nowrap;
+}
+
+@media (max-width: 500px) {
+    .learn-section .section-title {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .learn-section .section-title {
+        font-size: 1.3rem;
+    }
 }
 
 .learn-list {
