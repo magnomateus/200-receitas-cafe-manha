@@ -791,16 +791,11 @@ a {
 }
 
 .offer-timer .timer-display {
-    display: inline-block;
     font-family: var(--font-heading);
     font-size: 2.5rem;
     font-weight: 800;
     color: var(--wine);
-    background: var(--text-white);
-    padding: 12px 30px;
-    border-radius: 8px;
     letter-spacing: 3px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .offer-card {
