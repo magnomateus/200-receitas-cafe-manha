@@ -716,6 +716,54 @@ a {
 }
 
 /* ==========================================================================
+   GUARANTEE SECTION
+   ========================================================================== */
+
+.guarantee-section {
+    padding: var(--space-xl) 0;
+    background: var(--cream);
+}
+
+.guarantee-content {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    background: var(--text-white);
+    padding: var(--space-lg);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 2px solid var(--gold);
+}
+
+.guarantee-icon-large {
+    font-size: 4rem;
+    color: var(--gold);
+    margin-bottom: var(--space-md);
+}
+
+.guarantee-title {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--wine);
+    margin-bottom: var(--space-sm);
+}
+
+.guarantee-description {
+    font-size: 1rem;
+    color: var(--text-medium);
+    line-height: 1.7;
+    margin-bottom: var(--space-md);
+}
+
+.guarantee-highlight {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gold-dark);
+    margin: 0;
+}
+
+/* ==========================================================================
    OFFER SECTION
    ========================================================================== */
 
