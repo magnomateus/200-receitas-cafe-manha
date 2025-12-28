@@ -422,7 +422,7 @@ a {
    ========================================================================== */
 
 .learn-section {
-    padding: var(--space-sm) 0 var(--space-xl);
+    padding: 0 0 var(--space-xl);
     background: var(--cream);
 }
 
