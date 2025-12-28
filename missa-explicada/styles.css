@@ -261,6 +261,11 @@ a {
     background: var(--cream-dark);
 }
 
+.preview-section .container {
+    max-width: 100%;
+    padding: 0;
+}
+
 .preview-subtitle {
     font-size: 1.15rem;
     color: var(--text-medium);
@@ -282,7 +287,7 @@ a {
 
 .carousel-wrapper {
     flex: 1;
-    max-width: 900px;
+    max-width: 1000px;
     overflow: hidden;
     border-radius: 12px;
     cursor: grab;
@@ -852,7 +857,7 @@ a {
 
 @media (max-width: 992px) {
     .carousel-wrapper {
-        max-width: 700px;
+        max-width: 90%;
     }
 
     .benefits-grid {
@@ -905,7 +910,7 @@ a {
     }
 
     .carousel-wrapper {
-        max-width: 600px;
+        max-width: 95%;
     }
 
     .problem-grid {
