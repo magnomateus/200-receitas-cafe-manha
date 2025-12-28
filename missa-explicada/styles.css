@@ -807,7 +807,7 @@ a {
 
     .hero-image {
         max-width: 100%;
-        margin: 0 auto var(--space-sm);
+        margin: 0 auto var(--space-xs);
     }
 
     .offer-mockup-standalone {
