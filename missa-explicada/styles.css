@@ -266,14 +266,6 @@ a {
     padding: 0;
 }
 
-.preview-subtitle {
-    font-size: 1.15rem;
-    color: var(--text-medium);
-    text-align: center;
-    margin-top: calc(-1 * var(--space-md));
-    margin-bottom: var(--space-lg);
-}
-
 /* Carrossel Container */
 .carousel-container {
     display: flex;
@@ -287,7 +279,7 @@ a {
 
 .carousel-wrapper {
     flex: 1;
-    max-width: 1000px;
+    max-width: 1400px;
     overflow: hidden;
     border-radius: 12px;
     cursor: grab;
