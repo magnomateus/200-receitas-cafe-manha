@@ -812,23 +812,11 @@ a {
 }
 
 .offer-mockup {
-    max-width: 200px;
-    margin: var(--space-md) auto;
+    max-width: 350px;
+    margin: 0 auto var(--space-md);
 }
 
 .offer-mockup img {
-    width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-}
-
-.offer-mockup-standalone {
-    max-width: 700px;
-    margin: 0 auto var(--space-lg);
-    text-align: center;
-}
-
-.offer-mockup-standalone img {
     width: 100%;
     height: auto;
 }
@@ -1125,10 +1113,6 @@ a {
         padding: 0 var(--space-sm);
     }
 
-    .offer-mockup-standalone {
-        max-width: 500px;
-    }
-
     .carousel-wrapper {
         max-width: 95%;
     }
@@ -1208,10 +1192,6 @@ a {
         max-width: 100%;
         margin: 0 auto;
         padding: 0;
-    }
-
-    .offer-mockup-standalone {
-        max-width: 100%;
     }
 
     .hero-subtitle {
