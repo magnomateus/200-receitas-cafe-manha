@@ -279,7 +279,7 @@ a {
 
 .carousel-wrapper {
     flex: 1;
-    max-width: 1400px;
+    max-width: 1800px;
     overflow: hidden;
     border-radius: 12px;
     cursor: grab;
