@@ -572,9 +572,9 @@ a {
 
 .bonus-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-md);
-    max-width: 1200px;
+    max-width: 700px;
     margin: 0 auto;
 }
 
@@ -652,11 +652,6 @@ a {
     font-size: 0.8rem;
 }
 
-@media (max-width: 992px) {
-    .bonus-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
 
 @media (max-width: 700px) {
     .bonus-grid {
