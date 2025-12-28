@@ -151,7 +151,7 @@ a {
 
 .hero-image {
     max-width: 700px;
-    margin: 0 auto var(--space-sm);
+    margin: 0 auto var(--space-xs);
 }
 
 .mockup-img {
