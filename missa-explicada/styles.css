@@ -420,8 +420,12 @@ a {
    ========================================================================== */
 
 .learn-section {
-    padding: var(--space-md) 0 var(--space-xl);
+    padding: var(--space-sm) 0 var(--space-xl);
     background: var(--cream);
+}
+
+.learn-section .section-title {
+    font-size: 2.5rem;
 }
 
 .learn-list {
