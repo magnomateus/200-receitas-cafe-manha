@@ -35,7 +35,8 @@ document.addEventListener('DOMContentLoaded', function() {
        ====================================================================== */
 
     function startCountdown() {
-        const timerElement = document.getElementById('timer-main');
+        const timerMain = document.getElementById('timer-main');
+        const timerOffer = document.getElementById('timer-offer');
 
         function updateTimer() {
             const now = new Date();
@@ -45,7 +46,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const distance = endOfDay.getTime() - now.getTime();
 
             if (distance < 0) {
-                if (timerElement) timerElement.textContent = '00:00:00';
+                if (timerMain) timerMain.textContent = '00:00:00';
+                if (timerOffer) timerOffer.textContent = '00:00:00';
                 return;
             }
 
@@ -58,8 +60,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 String(minutes).padStart(2, '0') + ':' +
                 String(seconds).padStart(2, '0');
 
-            if (timerElement) {
-                timerElement.textContent = formattedTime;
+            if (timerMain) {
+                timerMain.textContent = formattedTime;
+            }
+            if (timerOffer) {
+                timerOffer.textContent = formattedTime;
             }
         }
 
