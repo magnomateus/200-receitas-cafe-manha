@@ -666,8 +666,29 @@ a {
 
 @media (max-width: 450px) {
     .bonus-grid {
-        grid-template-columns: 1fr;
-        max-width: 280px;
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 100%;
+        gap: 8px;
+    }
+
+    .bonus-card {
+        padding: 8px;
+    }
+
+    .bonus-image {
+        max-width: 80px;
+    }
+
+    .bonus-card h4 {
+        font-size: 0.8rem;
+    }
+
+    .bonus-desc {
+        font-size: 0.65rem;
+    }
+
+    .bonus-price {
+        font-size: 0.7rem;
     }
 }
 
