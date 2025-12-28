@@ -310,32 +310,6 @@ a {
     user-select: none;
 }
 
-/* Botões de Navegação */
-.carousel-btn {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: none;
-    background: var(--wine);
-    color: var(--text-white);
-    font-size: 1.25rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.carousel-btn:hover {
-    background: var(--gold);
-    transform: scale(1.1);
-}
-
-.carousel-btn:active {
-    transform: scale(0.95);
-}
-
 /* Indicadores (Dots) */
 .carousel-dots {
     display: flex;
@@ -1005,17 +979,6 @@ a {
 
     .for-who-grid {
         grid-template-columns: 1fr;
-    }
-
-    .carousel-btn {
-        width: 36px;
-        height: 36px;
-        font-size: 0.9rem;
-    }
-
-    .carousel-container {
-        gap: 6px;
-        padding: 0 var(--space-xs);
     }
 
     .carousel-wrapper {
