@@ -694,7 +694,6 @@ a {
     border-radius: 50%;
     object-fit: cover;
     margin: 0 auto var(--space-sm);
-    border: 3px solid var(--gold);
 }
 
 .testimonial-stars {
