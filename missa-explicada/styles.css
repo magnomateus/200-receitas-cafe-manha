@@ -688,6 +688,15 @@ a {
     text-align: center;
 }
 
+.testimonial-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto var(--space-sm);
+    border: 3px solid var(--gold);
+}
+
 .testimonial-stars {
     font-size: 1.25rem;
     margin-bottom: var(--space-sm);
