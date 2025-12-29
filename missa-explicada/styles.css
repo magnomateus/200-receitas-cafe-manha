@@ -901,7 +901,7 @@ a {
 
 .price-current {
     font-family: var(--font-heading);
-    font-size: 3.5rem;
+    font-size: 4.5rem;
     font-weight: 800;
     color: var(--gold-dark);
     line-height: 1;
@@ -1159,7 +1159,7 @@ a {
     }
 
     .price-current {
-        font-size: 2.75rem;
+        font-size: 3.5rem;
     }
 
     .timer-display {
