@@ -207,7 +207,6 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Botao Plano Basico encontrado!');
         btnBasicPlan.addEventListener('click', function(e) {
             e.preventDefault();
-            e.stopPropagation();
             console.log('Clique no botao detectado!');
             openPopup();
         });
@@ -257,38 +256,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     /* ======================================================================
-       8. FORCAR REDIRECIONAMENTO DO CTA FINAL PARA #PLANO-PREMIUM
-       ====================================================================== */
-
-    // Prevenir que scripts externos (como Utmify) modifiquem o botao CTA final
-    const btnCtaFinal = document.querySelector('.btn-cta-final');
-    if (btnCtaFinal) {
-        // Forcar href correto
-        btnCtaFinal.setAttribute('href', '#plano-premium');
-
-        // Observar mudancas no atributo href
-        const observer = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
-                if (mutation.type === 'attributes' && mutation.attributeName === 'href') {
-                    const currentHref = btnCtaFinal.getAttribute('href');
-                    if (currentHref !== '#plano-premium') {
-                        btnCtaFinal.setAttribute('href', '#plano-premium');
-                        console.log('CTA Final href restaurado para #plano-premium');
-                    }
-                }
-            });
-        });
-
-        observer.observe(btnCtaFinal, {
-            attributes: true,
-            attributeFilter: ['href']
-        });
-
-        console.log('CTA Final protegido - sempre redirecionara para #plano-premium');
-    }
-
-    /* ======================================================================
-       9. CONSOLE LOG DE BOAS-VINDAS
+       8. CONSOLE LOG DE BOAS-VINDAS
        ====================================================================== */
 
     console.log(
@@ -307,7 +275,6 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('✅ Smooth scroll');
     console.log('✅ Popup Oferta Exclusiva');
     console.log('✅ URL limpa (sem # no final)');
-    console.log('✅ CTA Final protegido para #plano-premium');
     console.log('✅ Carrossel de Provas Sociais');
     console.log('📱 +100 Jogos no seu celular!');
 
