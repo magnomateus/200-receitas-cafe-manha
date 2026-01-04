@@ -47,22 +47,6 @@
     <!-- Utmify Pixel -->
     <script>
       window.pixelId = "6958b405764bfe8069e763ed";
-
-      // Limpa dados antigos se pixelId mudou
-      (function() {
-        try {
-          var storedLead = localStorage.getItem('utmify_lead');
-          if (storedLead) {
-            var lead = JSON.parse(storedLead);
-            if (lead.pixelId && lead.pixelId !== window.pixelId) {
-              localStorage.removeItem('utmify_lead');
-              localStorage.removeItem('utmify_session');
-              console.log('Utmify: Dados antigos limpos (pixelId incompatível)');
-            }
-          }
-        } catch(e) {}
-      })();
-
       var a = document.createElement("script");
       a.setAttribute("async", "");
       a.setAttribute("defer", "");
