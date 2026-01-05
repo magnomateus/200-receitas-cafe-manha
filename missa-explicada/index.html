@@ -50,7 +50,7 @@
       defer
     ></script>
 
-    <!-- Meta Pixel Code -->
+    <!-- Meta Pixel V1 - ANTIGO (Para Campanha B - Backup) -->
     <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -65,6 +65,15 @@
     </script>
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=1565024444810092&ev=PageView&noscript=1"
+    /></noscript>
+    
+    <!-- Meta Pixel V2 - NOVO (Para Campanha A - Principal) -->
+    <script>
+    fbq('init', '734214805980646');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=734214805980646&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Meta Pixel Code -->
 </head>
@@ -430,14 +439,37 @@
     <!-- JavaScript -->
     <script src="script.js"></script>
 
-    <!-- Meta Pixel InitiateCheckout -->
+    <!-- Meta Pixel InitiateCheckout (Dispara em AMBOS os pixels V1 e V2) -->
+    <!-- Proteção contra cliques duplicados -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
+        let checkoutClicked = false;
+        let lastClickTime = 0;
+        
         document.querySelectorAll('a[href*="ggcheckout.com"]').forEach(function(link) {
-            link.addEventListener('click', function() {
-                if (typeof fbq !== 'undefined') {
-                    fbq('track', 'InitiateCheckout');
-                    console.log('Meta Pixel: InitiateCheckout disparado');
+            link.addEventListener('click', function(e) {
+                const currentTime = Date.now();
+                const timeSinceLastClick = currentTime - lastClickTime;
+                
+                // Só dispara se:
+                // 1. Nunca foi clicado OU
+                // 2. Passou mais de 3 segundos desde o último clique
+                if (!checkoutClicked || timeSinceLastClick > 3000) {
+                    if (typeof fbq !== 'undefined') {
+                        fbq('track', 'InitiateCheckout');
+                        console.log('✅ Meta Pixel: InitiateCheckout disparado em ambos os pixels (V1 e V2)');
+                        
+                        checkoutClicked = true;
+                        lastClickTime = currentTime;
+                        
+                        // Reseta após 10 segundos (caso o usuário volte)
+                        setTimeout(function() {
+                            checkoutClicked = false;
+                            console.log('🔄 Proteção resetada - novo IC pode ser disparado');
+                        }, 10000);
+                    }
+                } else {
+                    console.log('⚠️ Clique duplicado bloqueado - aguarde ' + Math.ceil((3000 - timeSinceLastClick) / 1000) + 's');
                 }
             });
         });
