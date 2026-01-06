@@ -793,7 +793,8 @@ a {
 }
 
 .guarantee-badge-img {
-    width: 350px;
+    width: 450px;
+    max-width: 90%;
     height: auto;
     margin: 0 auto var(--space-md);
     display: block;
@@ -822,7 +823,8 @@ a {
     }
 
     .guarantee-badge-img {
-        width: 130px;
+        width: 280px;
+        max-width: 90%;
     }
 
     .guarantee-description {
