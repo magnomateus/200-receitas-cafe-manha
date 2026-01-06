@@ -757,16 +757,17 @@ a {
     max-width: 650px;
     margin: 0 auto;
     text-align: center;
-    background: linear-gradient(135deg, #fef2f2 0%, #fce8e8 100%);
+    background: var(--text-white);
     padding: var(--space-xl) var(--space-lg);
-    border-radius: 24px;
-    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 2px solid var(--gold);
 }
 
 .guarantee-main-title {
     font-family: var(--font-heading);
-    font-size: 2.2rem;
-    font-weight: 800;
+    font-size: 1.75rem;
+    font-weight: 700;
     color: var(--wine);
     line-height: 1.2;
     margin-bottom: var(--space-sm);
@@ -778,8 +779,9 @@ a {
     margin-bottom: var(--space-md);
 }
 
-.guarantee-subtitle strong {
+.green-text {
     color: #16a34a;
+    font-weight: 700;
 }
 
 .guarantee-shield {
@@ -796,41 +798,23 @@ a {
 .guarantee-description {
     font-size: 1rem;
     color: var(--text-medium);
-    line-height: 1.8;
+    line-height: 1.7;
     margin-bottom: var(--space-md);
-    max-width: 550px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.guarantee-description strong {
-    color: var(--text-dark);
 }
 
 .guarantee-calm {
-    font-size: 0.95rem;
-    color: var(--text-light);
-    margin-bottom: var(--space-md);
-    font-style: italic;
-}
-
-.guarantee-final {
     font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--text-dark);
+    color: var(--gold-dark);
     margin: 0;
-    padding-top: var(--space-sm);
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 600px) {
     .guarantee-card {
         padding: var(--space-lg) var(--space-md);
-        border-radius: 16px;
     }
 
     .guarantee-main-title {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
     }
 
     .guarantee-badge-img {
@@ -841,7 +825,7 @@ a {
         font-size: 0.95rem;
     }
 
-    .guarantee-final {
+    .guarantee-calm {
         font-size: 1rem;
     }
 }
