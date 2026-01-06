@@ -207,6 +207,17 @@ a {
     animation: pulse 2s infinite;
 }
 
+/* CTA Inline (após seções) */
+.cta-section-inline {
+    text-align: center;
+    margin-top: var(--space-lg);
+    padding-top: var(--space-md);
+}
+
+.cta-bonus {
+    margin-top: var(--space-lg);
+}
+
 @keyframes pulse {
     0%, 100% {
         transform: scale(1);
