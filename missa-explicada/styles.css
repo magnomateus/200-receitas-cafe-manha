@@ -773,7 +773,7 @@ a {
     margin-bottom: var(--space-sm);
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    -webkit-text-stroke: 0.5px var(--wine);
+    -webkit-text-stroke: 1.2px var(--wine);
     paint-order: stroke fill;
 }
 
