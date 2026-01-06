@@ -951,6 +951,52 @@ a {
     margin-top: var(--space-md);
 }
 
+/* Garantia integrada no offer-card */
+.offer-guarantee {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+    padding: var(--space-md);
+    background: linear-gradient(135deg, rgba(114, 47, 55, 0.05) 0%, rgba(201, 162, 39, 0.1) 100%);
+    border-radius: 12px;
+    border: 1px solid var(--gold);
+}
+
+.offer-guarantee-img {
+    width: 80px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+.offer-guarantee-text {
+    font-size: 0.9rem;
+    color: var(--text-medium);
+    margin: 0;
+    text-align: left;
+    line-height: 1.5;
+}
+
+.offer-guarantee-text strong {
+    color: var(--wine);
+    font-size: 0.95rem;
+}
+
+@media (max-width: 480px) {
+    .offer-guarantee {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .offer-guarantee-img {
+        width: 70px;
+    }
+
+    .offer-guarantee-text {
+        text-align: center;
+    }
+}
+
 /* ==========================================================================
    FAQ SECTION
    ========================================================================== */
