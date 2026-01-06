@@ -770,6 +770,12 @@ a {
     margin-bottom: var(--space-md);
 }
 
+.guarantee-badge-img {
+    width: 120px;
+    height: auto;
+    margin-bottom: var(--space-md);
+}
+
 .guarantee-title {
     font-family: var(--font-heading);
     font-size: 1.75rem;
