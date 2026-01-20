@@ -795,6 +795,11 @@ p {
     margin: 0 auto;
 }
 
+.pricing-grid.pricing-single {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+}
+
 .pricing-card {
     background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(25, 25, 35, 0.95));
     border: 2px solid rgba(220, 38, 38, 0.5);
