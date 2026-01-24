@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Missa Explicada | Sua Área de Downloads</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lora', Georgia, serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .header-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: #d4af37;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: #ccc;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Welcome Message */
+        .welcome-box {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.05));
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .welcome-box h2 {
+            font-family: 'Cinzel', serif;
+            color: #d4af37;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .welcome-box p {
+            color: #ddd;
+            line-height: 1.7;
+        }
+
+        /* Downloads Section */
+        .downloads-section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: #d4af37;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+            margin: 15px auto 0;
+        }
+
+        /* Download Cards */
+        .downloads-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .download-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 12px;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .download-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(212, 175, 55, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .download-card.main-product {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05));
+            border: 2px solid rgba(212, 175, 55, 0.4);
+        }
+
+        .download-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #d4af37, #b8962e);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            flex-shrink: 0;
+        }
+
+        .download-info {
+            flex: 1;
+        }
+
+        .download-info h3 {
+            font-family: 'Cinzel', serif;
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .download-info p {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #d4af37, #b8962e);
+            color: #1a1a2e;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-family: 'Lora', serif;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .download-btn:hover {
+            background: linear-gradient(135deg, #e5c349, #d4af37);
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Bonus Section */
+        .bonus-section {
+            margin-top: 50px;
+        }
+
+        .bonus-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #d4af37, #b8962e);
+            color: #1a1a2e;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        /* Support Section */
+        .support-section {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .support-section h3 {
+            font-family: 'Cinzel', serif;
+            color: #d4af37;
+            margin-bottom: 15px;
+        }
+
+        .support-section p {
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #25D366;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            background: #20bd5a;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .download-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .download-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-icon">&#9769;</div>
+            <h1>Missa Explicada</h1>
+            <p>Sua Area Exclusiva de Downloads</p>
+        </header>
+
+        <!-- Welcome -->
+        <div class="welcome-box">
+            <h2>Parabens pela sua aquisicao!</h2>
+            <p>Agradecemos por confiar em nosso material. Abaixo voce encontra todos os seus downloads disponiveis. Que este conteudo ilumine sua jornada de fe!</p>
+        </div>
+
+        <!-- Main Downloads -->
+        <section class="downloads-section">
+            <h2 class="section-title">Seu Ebook Principal</h2>
+
+            <div class="downloads-grid">
+                <div class="download-card main-product">
+                    <div class="download-icon">&#128214;</div>
+                    <div class="download-info">
+                        <h3>Missa Explicada - Ebook Completo</h3>
+                        <p>Guia completo com explicacoes detalhadas de cada momento da Santa Missa</p>
+                    </div>
+                    <a href="pdfs/MISSA EXPLICADA.pdf" class="download-btn" download>
+                        <span>&#8681;</span> Baixar PDF
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bonus Downloads -->
+        <section class="downloads-section bonus-section">
+            <h2 class="section-title">Seus Bonus Exclusivos</h2>
+
+            <div class="downloads-grid">
+                <div class="download-card">
+                    <div class="download-icon">&#128220;</div>
+                    <div class="download-info">
+                        <span class="bonus-badge">BONUS 1</span>
+                        <h3>Guia da Confissao</h3>
+                        <p>Um guia completo para viver o Sacramento da Reconciliacao</p>
+                    </div>
+                    <a href="pdfs/BÔNUS Guia_da_Confissao.pdf" class="download-btn" download>
+                        <span>&#8681;</span> Baixar PDF
+                    </a>
+                </div>
+
+                <div class="download-card">
+                    <div class="download-icon">&#128216;</div>
+                    <div class="download-info">
+                        <span class="bonus-badge">BONUS 2</span>
+                        <h3>Antigo e Novo Testamento na Missa</h3>
+                        <p>Entenda a conexao entre as Escrituras e a Liturgia</p>
+                    </div>
+                    <a href="pdfs/BÔNUS Antigo_e_Novo_Testamento_na_Missa.pdf" class="download-btn" download>
+                        <span>&#8681;</span> Baixar PDF
+                    </a>
+                </div>
+
+                <div class="download-card">
+                    <div class="download-icon">&#9884;</div>
+                    <div class="download-info">
+                        <span class="bonus-badge">BONUS 3</span>
+                        <h3>As Oracoes Eucaristicas Explicadas</h3>
+                        <p>Compreenda o coracao da celebracao eucaristica</p>
+                    </div>
+                    <a href="pdfs/BÔNUS As_Oracoes_Eucaristicas_Explicadas.pdf" class="download-btn" download>
+                        <span>&#8681;</span> Baixar PDF
+                    </a>
+                </div>
+
+                <div class="download-card">
+                    <div class="download-icon">&#128591;</div>
+                    <div class="download-info">
+                        <span class="bonus-badge">BONUS 4</span>
+                        <h3>Posturas e Gestos na Missa</h3>
+                        <p>O significado de cada gesto liturgico</p>
+                    </div>
+                    <a href="pdfs/BÔNUS Posturas_e_Gestos_na_Missa.pdf" class="download-btn" download>
+                        <span>&#8681;</span> Baixar PDF
+                    </a>
+                </div>
+
+                <div class="download-card">
+                    <div class="download-icon">&#128724;</div>
+                    <div class="download-info">
+                        <span class="bonus-badge">BONUS 5</span>
+                        <h3>O Valor do Silencio</h3>
+                        <p>A importancia do silencio na vida espiritual e na Missa</p>
+                    </div>
+                    <a href="pdfs/BÔNUS O_Valor_do_Silencio.pdf" class="download-btn" download>
+                        <span>&#8681;</span> Baixar PDF
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Support -->
+        <section class="support-section">
+            <h3>Precisa de Ajuda?</h3>
+            <p>Se tiver qualquer duvida ou dificuldade para baixar seus arquivos, entre em contato conosco!</p>
+            <a href="https://wa.me/556294350583" class="whatsapp-btn" target="_blank">
+                <span>&#128172;</span> Falar no WhatsApp
+            </a>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 Missa Explicada. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+</body>
+</html>
