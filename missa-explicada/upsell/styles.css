@@ -9,14 +9,14 @@
 }
 
 :root {
-    /* Cores Primárias - TEMA CATÓLICO */
-    --primary-purple: rgb(102, 51, 153);
-    --primary-gold: rgb(212, 175, 55);
-    --primary-dark: rgb(44, 44, 44);
+    /* Cores Primárias - TEMA MISSA EXPLICADA (igual página principal) */
+    --primary-burgundy: hsl(0, 60%, 30%);
+    --primary-burgundy-light: hsl(0, 60%, 35%);
+    --primary-gold: hsl(42, 85%, 50%);
+    --primary-dark: hsl(25, 30%, 20%);
 
     /* Cores Secundárias */
-    --secondary-cream: rgb(255, 253, 245);
-    --secondary-light-purple: rgb(138, 92, 184);
+    --secondary-cream: hsl(34, 33%, 93%);
     --secondary-white: rgb(255, 255, 255);
 
     /* Tipografia */
@@ -51,7 +51,7 @@ body {
     text-align: center;
     margin-bottom: 30px;
     margin-top: 20px;
-    color: var(--primary-purple);
+    color: var(--primary-burgundy);
     text-transform: uppercase;
     line-height: 1.1;
     letter-spacing: -1px;
@@ -65,7 +65,7 @@ body {
 }
 
 .sub-headline strong {
-    color: var(--primary-purple);
+    color: var(--primary-burgundy);
 }
 
 /* VSL Container */
@@ -80,7 +80,7 @@ body {
     height: 0;
     overflow: hidden;
     border-radius: 16px;
-    box-shadow: 0 10px 40px rgba(102, 51, 153, 0.3);
+    box-shadow: 0 10px 40px rgba(122, 31, 31, 0.3);
     background: #000;
 }
 
@@ -113,7 +113,7 @@ body {
 }
 
 .play-overlay-btn {
-    background: var(--primary-purple);
+    background: var(--primary-burgundy);
     border: 4px solid var(--primary-gold);
     border-radius: 50%;
     width: 100px;
@@ -127,7 +127,7 @@ body {
 }
 
 .play-overlay-btn:hover {
-    background: var(--secondary-light-purple);
+    background: var(--primary-burgundy-light);
     transform: scale(1.1);
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
 }
@@ -161,7 +161,7 @@ body {
 /* CTA Button */
 .btn-cta {
     display: block;
-    background: linear-gradient(135deg, var(--primary-purple), var(--secondary-light-purple));
+    background: linear-gradient(135deg, var(--primary-burgundy), var(--primary-burgundy-light));
     color: white;
     font-size: 1.75rem;
     font-weight: 800;
@@ -173,14 +173,14 @@ body {
     border-radius: 50px;
     margin: 30px auto;
     max-width: 600px;
-    box-shadow: 0 10px 30px rgba(102, 51, 153, 0.4);
+    box-shadow: 0 10px 30px rgba(122, 31, 31, 0.4);
     transition: all 0.3s ease;
 }
 
 .btn-cta:hover {
-    background: linear-gradient(135deg, var(--secondary-light-purple), var(--primary-purple));
+    background: linear-gradient(135deg, var(--primary-burgundy-light), var(--primary-burgundy));
     transform: translateY(-3px);
-    box-shadow: 0 15px 40px rgba(102, 51, 153, 0.6);
+    box-shadow: 0 15px 40px rgba(122, 31, 31, 0.6);
 }
 
 .pulse {
@@ -205,23 +205,6 @@ body {
         opacity: 1;
         transform: translateY(0);
     }
-}
-
-/* No Thanks */
-.no-thanks {
-    text-align: center;
-    margin: 40px 0;
-}
-
-.btn-decline {
-    color: #999;
-    font-size: 1rem;
-    text-decoration: underline;
-    transition: color 0.3s ease;
-}
-
-.btn-decline:hover {
-    color: var(--primary-purple);
 }
 
 /* Responsive */

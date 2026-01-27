@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const iframe = document.querySelector('.vimeo-wrapper iframe');
     const progressFill = document.getElementById('progress-fill');
     const ctaButton = document.getElementById('cta-button');
-    const noThanks = document.getElementById('no-thanks');
     const playOverlay = document.getElementById('play-overlay');
 
     if (iframe && ctaButton) {
@@ -23,10 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (ctaButton.style.display === 'none') {
                 ctaButton.style.display = 'block';
                 ctaButton.style.animation = 'fadeIn 0.5s ease-in';
-                if (noThanks) {
-                    noThanks.style.display = 'block';
-                    noThanks.style.animation = 'fadeIn 0.5s ease-in';
-                }
                 console.log('✅ CTA Button revelado via fallback timer');
             }
         }, TEMPO_PARA_MOSTRAR_CTA * 1000);
@@ -90,10 +85,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (ctaButton.style.display !== 'block') {
                         ctaButton.style.display = 'block';
                         ctaButton.style.animation = 'fadeIn 0.5s ease-in';
-                        if (noThanks) {
-                            noThanks.style.display = 'block';
-                            noThanks.style.animation = 'fadeIn 0.5s ease-in';
-                        }
                         console.log('✅ CTA Button revelado após ' + TEMPO_PARA_MOSTRAR_CTA + ' segundos');
                     }
                 }
