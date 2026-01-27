@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(function() {
             if (ctaButton.style.display === 'none') {
                 ctaButton.style.display = 'block';
-                ctaButton.style.animation = 'fadeIn 0.5s ease-in';
+                ctaButton.style.animation = 'fadeIn 0.5s ease-in, pulse-btn 2s ease-in-out 0.5s infinite';
                 console.log('✅ CTA Button revelado via fallback timer');
             }
         }, TEMPO_PARA_MOSTRAR_CTA * 1000);
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (data.seconds >= TEMPO_PARA_MOSTRAR_CTA) {
                     if (ctaButton.style.display !== 'block') {
                         ctaButton.style.display = 'block';
-                        ctaButton.style.animation = 'fadeIn 0.5s ease-in';
+                        ctaButton.style.animation = 'fadeIn 0.5s ease-in, pulse-btn 2s ease-in-out 0.5s infinite';
                         console.log('✅ CTA Button revelado após ' + TEMPO_PARA_MOSTRAR_CTA + ' segundos');
                     }
                 }
