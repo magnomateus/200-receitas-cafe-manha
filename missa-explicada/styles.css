@@ -341,6 +341,19 @@ a {
     transform: scale(1.2);
 }
 
+/* Preview CTA */
+.preview-cta {
+    text-align: center;
+    margin-top: var(--space-lg);
+    padding: 0 var(--space-md);
+}
+
+.preview-cta .btn {
+    display: inline-block;
+    max-width: 400px;
+    width: 100%;
+}
+
 /* Bonus Hint */
 .bonus-hint {
     display: flex;
@@ -764,10 +777,11 @@ a {
     border: 2px solid var(--gold);
 }
 
-.guarantee-icon-large {
-    font-size: 4rem;
-    color: var(--gold);
+.guarantee-badge {
+    width: 120px;
+    height: auto;
     margin-bottom: var(--space-md);
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
 }
 
 .guarantee-title {
@@ -1070,22 +1084,85 @@ a {
    ========================================================================== */
 
 .footer {
-    background: var(--text-dark);
-    color: rgba(255, 255, 255, 0.7);
+    background: #4A3030;
+    color: rgba(255, 255, 255, 0.9);
     text-align: center;
-    padding: var(--space-lg) 0;
+    padding: 2.5rem 1rem;
 }
 
-.footer p {
-    margin-bottom: var(--space-xs);
-    font-size: 0.9rem;
-}
-
-.disclaimer {
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.5);
-    max-width: 600px;
+.footer-container {
+    max-width: 672px;
     margin: 0 auto;
+}
+
+.footer-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.footer-icon {
+    font-size: 1.5rem;
+}
+
+.footer-title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin: 0;
+}
+
+.footer-subtitle {
+    color: white;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+}
+
+.footer-instagram {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #9333ea 0%, #ec4899 100%);
+    color: white;
+    font-weight: 600;
+    padding: 1.5rem 2rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+}
+
+.footer-instagram:hover {
+    background: linear-gradient(135deg, #7e22ce 0%, #db2777 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(147, 51, 234, 0.3);
+}
+
+.footer-instagram i {
+    font-size: 1.25rem;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    padding-top: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.footer-copyright {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.875rem;
+    margin-bottom: 0.75rem;
+}
+
+.footer-disclaimer {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.875rem;
+    max-width: 448px;
+    margin: 0 auto;
+    line-height: 1.5;
 }
 
 /* ==========================================================================
