@@ -195,11 +195,21 @@ a {
     max-width: 450px;
 }
 
+.btn-cta-main {
+    background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%) !important;
+    box-shadow: 0 4px 15px rgba(46, 125, 50, 0.4) !important;
+}
+
 @media (hover: hover) and (pointer: fine) {
     .btn-primary:hover {
         background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 100%);
         transform: translateY(-2px);
         box-shadow: 0 8px 25px rgba(201, 162, 39, 0.5);
+    }
+
+    .btn-cta-main:hover {
+        background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%) !important;
+        box-shadow: 0 8px 25px rgba(46, 125, 50, 0.5) !important;
     }
 }
 
@@ -933,9 +943,9 @@ a {
 
 .price-current {
     font-family: 'Montserrat', sans-serif;
-    font-size: 4.5rem;
+    font-size: 3.5rem;
     font-weight: 900;
-    color: var(--gold-dark);
+    color: #2e7d32;
     line-height: 1;
     margin: var(--space-xs) 0;
 }
@@ -1230,7 +1240,7 @@ a {
     }
 
     .price-current {
-        font-size: 3.5rem;
+        font-size: 2.75rem;
     }
 
     .timer-display {

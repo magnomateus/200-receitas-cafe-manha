@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const today = new Date();
             const day = today.getDate();
             const monthNames = [
-                'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-                'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+                'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+                'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
             ];
             const month = monthNames[today.getMonth()];
 
