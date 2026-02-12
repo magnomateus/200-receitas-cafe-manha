@@ -196,8 +196,8 @@ a {
 }
 
 .btn-cta-main {
-    background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%) !important;
-    box-shadow: 0 4px 15px rgba(46, 125, 50, 0.4) !important;
+    background: linear-gradient(135deg, #43a047 0%, #2e7d32 100%) !important;
+    box-shadow: 0 4px 15px rgba(67, 160, 71, 0.4) !important;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -208,8 +208,8 @@ a {
     }
 
     .btn-cta-main:hover {
-        background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%) !important;
-        box-shadow: 0 8px 25px rgba(46, 125, 50, 0.5) !important;
+        background: linear-gradient(135deg, #2e7d32 0%, #43a047 100%) !important;
+        box-shadow: 0 8px 25px rgba(67, 160, 71, 0.5) !important;
     }
 }
 
@@ -885,15 +885,11 @@ a {
 .offer-mockup {
     max-width: 450px;
     margin: 0 auto 0;
-    overflow: hidden;
 }
 
 .offer-mockup img {
-    width: 140%;
-    max-width: none;
+    width: 100%;
     height: auto;
-    margin-left: -20%;
-    margin-right: -20%;
 }
 
 .offer-name {
