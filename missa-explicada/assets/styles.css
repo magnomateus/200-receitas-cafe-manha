@@ -877,13 +877,17 @@ a {
 }
 
 .offer-mockup {
-    max-width: 350px;
+    max-width: 450px;
     margin: 0 auto 0;
+    overflow: hidden;
 }
 
 .offer-mockup img {
-    width: 100%;
+    width: 140%;
+    max-width: none;
     height: auto;
+    margin-left: -20%;
+    margin-right: -20%;
 }
 
 .offer-name {
