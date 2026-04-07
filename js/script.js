@@ -22,44 +22,43 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // CONTADOR REGRESSIVO
+    // CONTADOR REGRESSIVO — tempo restante até meia-noite (horário de Brasília)
     function startCountdown() {
-        // Define 2 horas a partir de agora
-        const now = new Date().getTime();
-        const countdownTime = now + (2 * 60 * 60 * 1000); // 2 horas
-        
-        const countdownElement = document.getElementById('countdown');
-        const hoursElement = document.getElementById('hours');
-        const minutesElement = document.getElementById('minutes');
-        const secondsElement = document.getElementById('seconds');
-        
-        if (!countdownElement) return;
-        
-        const updateCountdown = () => {
-            const now = new Date().getTime();
-            const distance = countdownTime - now;
-            
-            if (distance < 0) {
-                clearInterval(countdownInterval);
-                hoursElement.textContent = '00';
-                minutesElement.textContent = '00';
-                secondsElement.textContent = '00';
+        const hEl = document.getElementById('timer-hours');
+        const mEl = document.getElementById('timer-minutes');
+        const sEl = document.getElementById('timer-seconds');
+        if (!hEl || !mEl || !sEl) return;
+
+        function update() {
+            // Calcula meia-noite BRT (UTC-3) a partir do horário atual
+            const now = new Date();
+            const brt = new Date(now.getTime() - 3 * 60 * 60 * 1000);
+            const brtDay = brt.toISOString().split('T')[0];
+            // Meia-noite BRT do dia seguinte = dia seguinte 00:00 BRT = dia seguinte 03:00 UTC
+            const nextMidnightBRT = new Date(brtDay + 'T03:00:00Z');
+            nextMidnightBRT.setUTCDate(nextMidnightBRT.getUTCDate() + 1);
+            const diff = nextMidnightBRT.getTime() - now.getTime();
+
+            if (diff <= 0) {
+                hEl.textContent = '00';
+                mEl.textContent = '00';
+                sEl.textContent = '00';
                 return;
             }
-            
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-            hoursElement.textContent = hours.toString().padStart(2, '0');
-            minutesElement.textContent = minutes.toString().padStart(2, '0');
-            secondsElement.textContent = seconds.toString().padStart(2, '0');
-        };
-        
-        updateCountdown();
-        const countdownInterval = setInterval(updateCountdown, 1000);
+
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            hEl.textContent = hours.toString().padStart(2, '0');
+            mEl.textContent = minutes.toString().padStart(2, '0');
+            sEl.textContent = seconds.toString().padStart(2, '0');
+        }
+
+        update();
+        setInterval(update, 1000);
     }
-    
+
     startCountdown();
 
     // SMOOTH SCROLL
