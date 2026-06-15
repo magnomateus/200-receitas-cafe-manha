@@ -207,6 +207,138 @@ body {
     }
 }
 
+/* Botão de recusa do upsell */
+.btn-decline {
+    display: block;
+    margin: 18px auto 0;
+    background: none;
+    border: none;
+    color: #8a8175;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 10px;
+    transition: color 0.3s ease;
+}
+
+.btn-decline:hover {
+    color: var(--primary-burgundy);
+}
+
+/* ==========================================================================
+   MODAL DOWNSELL (oferta final R$27)
+   ========================================================================== */
+.downsell-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.downsell-overlay.active {
+    display: flex;
+}
+
+.downsell-card {
+    background: var(--secondary-white);
+    border-radius: 20px;
+    padding: 40px 30px;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    border: 3px solid var(--primary-gold);
+    animation: fadeIn 0.4s ease-out;
+}
+
+.downsell-badge {
+    display: inline-block;
+    background: var(--primary-burgundy);
+    color: var(--primary-gold);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+}
+
+.downsell-title {
+    font-family: var(--font-heading);
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: var(--primary-burgundy);
+    margin-bottom: 18px;
+    line-height: 1.2;
+}
+
+.downsell-text {
+    font-size: 1.05rem;
+    color: var(--primary-dark);
+    margin-bottom: 20px;
+}
+
+.price-old {
+    text-decoration: line-through;
+    color: #b00020;
+    font-weight: 700;
+}
+
+.downsell-price {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4px;
+    color: var(--primary-burgundy);
+    margin-bottom: 25px;
+    font-family: var(--font-heading);
+}
+
+.price-currency {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.price-value {
+    font-size: 5rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.downsell-buy {
+    font-size: 1.4rem;
+    margin: 0 auto 15px;
+    padding: 20px 30px;
+    max-width: 100%;
+}
+
+.downsell-decline {
+    display: block;
+    margin: 5px auto 0;
+    background: none;
+    border: none;
+    color: #8a8175;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 8px;
+    transition: color 0.3s ease;
+}
+
+.downsell-decline:hover {
+    color: var(--primary-burgundy);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .headline {
@@ -237,5 +369,22 @@ body {
     .btn-cta {
         font-size: 1.125rem;
         padding: 18px 25px;
+    }
+
+    .downsell-card {
+        padding: 30px 20px;
+    }
+
+    .downsell-title {
+        font-size: 1.5rem;
+    }
+
+    .price-value {
+        font-size: 4rem;
+    }
+
+    .downsell-buy {
+        font-size: 1.15rem;
+        padding: 18px 22px;
     }
 }

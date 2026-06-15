@@ -46,7 +46,7 @@
             <div class="vsl-container">
                 <div class="vimeo-wrapper">
                     <iframe
-                        src="https://player.vimeo.com/video/1158662375?h=0&badge=0&autopause=0&player_id=0&app_id=58479&title=0&byline=0&portrait=0&sidedock=0&controls=0&background=0&transparent=0&loop=0"
+                        src="https://player.vimeo.com/video/1201556747?h=0&badge=0&autopause=0&player_id=0&app_id=58479&title=0&byline=0&portrait=0&sidedock=0&controls=0&background=0&transparent=0&loop=0"
                         frameborder="0"
                         allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
                         title="O Ano Litúrgico Completo"
@@ -74,8 +74,36 @@
                 SIM! QUERO O ANO LITÚRGICO COMPLETO ✝️
             </a>
 
+            <!-- Botão de recusa do upsell (aparece 15s após o CTA) -->
+            <button class="btn-decline" id="decline-button" style="display: none;">
+                Não quero o upsell, apenas acessar o Missa Explicada
+            </button>
+
         </div>
     </section>
+
+    <!-- MODAL DOWNSELL (oferta final por R$27) -->
+    <div class="downsell-overlay" id="downsell-modal">
+        <div class="downsell-card">
+            <span class="downsell-badge">⚠️ Espere! Oferta Final</span>
+            <h2 class="downsell-title">Última chance de levar O Ano Litúrgico Completo</h2>
+            <p class="downsell-text">
+                Eu não quero que você fique sem esse material.
+                Por isso, em vez de <span class="price-old">R$67</span>, vou liberar agora,
+                só nesta página, por apenas:
+            </p>
+            <div class="downsell-price">
+                <span class="price-currency">R$</span>
+                <span class="price-value">27</span>
+            </div>
+            <a href="https://visplatform.pro/checkout-fast/o-ano-liturgico-completo-especial" class="btn-cta pulse downsell-buy" id="downsell-buy">
+                SIM! QUERO POR APENAS R$27 ✝️
+            </a>
+            <button class="downsell-decline" id="downsell-decline-final">
+                Não, obrigado. Quero apenas acessar o Missa Explicada
+            </button>
+        </div>
+    </div>
 
     <!-- JavaScript -->
     <script src="script.js"></script>
