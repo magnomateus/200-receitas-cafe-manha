@@ -207,22 +207,27 @@ body {
     }
 }
 
-/* Botão de recusa do upsell */
+/* Botão de recusa do upsell - visível mas secundário (atenção fica no CTA) */
 .btn-decline {
     display: block;
     margin: 18px auto 0;
-    background: none;
-    border: none;
-    color: #8a8175;
+    max-width: 340px;
+    width: 100%;
+    background: transparent;
+    border: 2px solid #b9a98f;
+    color: var(--primary-dark);
     font-family: var(--font-body);
-    font-size: 0.95rem;
-    text-decoration: underline;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
     cursor: pointer;
-    padding: 10px;
-    transition: color 0.3s ease;
+    padding: 12px 20px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
 }
 
 .btn-decline:hover {
+    border-color: var(--primary-burgundy);
     color: var(--primary-burgundy);
 }
 
@@ -323,19 +328,24 @@ body {
 
 .downsell-decline {
     display: block;
-    margin: 5px auto 0;
-    background: none;
-    border: none;
-    color: #8a8175;
+    margin: 12px auto 0;
+    max-width: 320px;
+    width: 100%;
+    background: transparent;
+    border: 2px solid #b9a98f;
+    color: var(--primary-dark);
     font-family: var(--font-body);
-    font-size: 0.9rem;
-    text-decoration: underline;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
     cursor: pointer;
-    padding: 8px;
-    transition: color 0.3s ease;
+    padding: 11px 18px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
 }
 
 .downsell-decline:hover {
+    border-color: var(--primary-burgundy);
     color: var(--primary-burgundy);
 }
 
