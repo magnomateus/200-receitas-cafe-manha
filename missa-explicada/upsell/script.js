@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Tempo (em segundos) APÓS o CTA aparecer para mostrar o botão de recusa
     const SEGUNDOS_PARA_BOTAO_RECUSA = 15;
 
-    // >>> SUBSTITUIR pela URL da área de membros / acesso ao Missa Explicada <<<
-    const URL_ACESSO_MISSA = 'PLACEHOLDER_URL_ACESSO_MISSA';
+    // URL da área de membros / acesso ao Missa Explicada (recusa final do downsell)
+    const URL_ACESSO_MISSA = 'https://vis.semeardigital.com.br/area-do-aluno';
 
     const iframe = document.querySelector('.vimeo-wrapper iframe');
     const progressFill = document.getElementById('progress-fill');
