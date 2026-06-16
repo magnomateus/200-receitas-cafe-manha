@@ -210,18 +210,18 @@ body {
 /* Botão de recusa do upsell - visível mas secundário (atenção fica no CTA) */
 .btn-decline {
     display: block;
-    margin: 18px auto 0;
-    max-width: 340px;
-    width: 100%;
+    width: fit-content;
+    max-width: 100%;
+    margin: 16px auto 0;
     background: transparent;
-    border: 2px solid #b9a98f;
+    border: 1.5px solid #b9a98f;
     color: var(--primary-dark);
     font-family: var(--font-body);
-    font-size: 1rem;
+    font-size: 0.85rem;
     font-weight: 600;
     text-decoration: none;
     cursor: pointer;
-    padding: 12px 20px;
+    padding: 9px 18px;
     border-radius: 50px;
     transition: all 0.3s ease;
 }
@@ -328,18 +328,18 @@ body {
 
 .downsell-decline {
     display: block;
+    width: fit-content;
+    max-width: 100%;
     margin: 12px auto 0;
-    max-width: 320px;
-    width: 100%;
     background: transparent;
-    border: 2px solid #b9a98f;
+    border: 1.5px solid #b9a98f;
     color: var(--primary-dark);
     font-family: var(--font-body);
-    font-size: 0.95rem;
+    font-size: 0.8rem;
     font-weight: 600;
     text-decoration: none;
     cursor: pointer;
-    padding: 11px 18px;
+    padding: 8px 16px;
     border-radius: 50px;
     transition: all 0.3s ease;
 }
