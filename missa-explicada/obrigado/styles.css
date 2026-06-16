@@ -1,0 +1,319 @@
+/* ==========================================================================
+   PÁGINA DE OBRIGADO - MISSA EXPLICADA - ESTILOS
+   ========================================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Cores - TEMA MISSA EXPLICADA */
+    --primary-burgundy: hsl(0, 60%, 30%);
+    --primary-burgundy-light: hsl(0, 60%, 35%);
+    --primary-gold: hsl(42, 85%, 50%);
+    --primary-dark: hsl(25, 30%, 20%);
+    --secondary-cream: hsl(34, 33%, 93%);
+    --secondary-white: rgb(255, 255, 255);
+    --whatsapp: #25D366;
+
+    --font-heading: 'Montserrat', 'Poppins', sans-serif;
+    --font-body: 'Open Sans', 'Roboto', sans-serif;
+}
+
+body {
+    font-family: var(--font-body);
+    background:
+        radial-gradient(circle at 50% 0%, hsl(0, 40%, 88%) 0%, var(--secondary-cream) 55%);
+    color: var(--primary-dark);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.thankyou {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 0;
+}
+
+.container {
+    max-width: 640px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Card principal */
+.card {
+    background: var(--secondary-white);
+    border-radius: 24px;
+    padding: 50px 40px 45px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(122, 31, 31, 0.18);
+    border-top: 6px solid var(--primary-gold);
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Selo de confirmação */
+.check-badge {
+    width: 88px;
+    height: 88px;
+    margin: 0 auto 24px;
+    background: linear-gradient(135deg, var(--primary-burgundy), var(--primary-burgundy-light));
+    border: 4px solid var(--primary-gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(122, 31, 31, 0.35);
+    animation: pop 0.5s ease-out 0.2s both;
+}
+
+.check-icon {
+    color: var(--primary-gold);
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.eyebrow {
+    display: inline-block;
+    background: hsl(120, 50%, 94%);
+    color: hsl(140, 60%, 28%);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 50px;
+    margin-bottom: 18px;
+}
+
+/* Headline */
+.headline {
+    font-family: var(--font-heading);
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--primary-burgundy);
+    line-height: 1.15;
+    margin-bottom: 18px;
+}
+
+.headline strong {
+    color: var(--primary-burgundy);
+}
+
+.lead {
+    font-size: 1.15rem;
+    color: var(--primary-dark);
+    margin-bottom: 28px;
+}
+
+.lead strong {
+    color: var(--primary-burgundy);
+    font-weight: 700;
+}
+
+/* Lista de produtos liberados */
+.products {
+    list-style: none;
+    display: inline-block;
+    text-align: left;
+    margin: 0 auto 32px;
+    background: var(--secondary-cream);
+    border-radius: 14px;
+    padding: 18px 26px;
+}
+
+.products li {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--primary-dark);
+    padding: 6px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.prod-check {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: var(--primary-gold);
+    color: var(--secondary-white);
+    border-radius: 50%;
+    font-size: 0.85rem;
+    font-weight: 800;
+    flex-shrink: 0;
+}
+
+/* CTA Button */
+.btn-cta {
+    display: block;
+    background: linear-gradient(135deg, var(--primary-burgundy), var(--primary-burgundy-light));
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 800;
+    font-family: var(--font-heading);
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 22px 36px;
+    border-radius: 50px;
+    margin: 0 auto 14px;
+    max-width: 520px;
+    box-shadow: 0 10px 30px rgba(122, 31, 31, 0.4);
+    transition: all 0.3s ease;
+}
+
+.btn-cta:hover {
+    background: linear-gradient(135deg, var(--primary-burgundy-light), var(--primary-burgundy));
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(122, 31, 31, 0.6);
+}
+
+.pulse {
+    animation: pulse-btn 2s ease-in-out infinite;
+}
+
+.cta-hint {
+    font-size: 0.95rem;
+    color: #6b6357;
+    margin-bottom: 34px;
+}
+
+/* Passos */
+.steps {
+    text-align: left;
+    background: var(--secondary-cream);
+    border-radius: 16px;
+    padding: 26px 28px;
+    margin-bottom: 32px;
+}
+
+.steps-title {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary-burgundy);
+    margin-bottom: 14px;
+}
+
+.steps ol {
+    padding-left: 20px;
+}
+
+.steps li {
+    font-size: 1.02rem;
+    margin-bottom: 10px;
+    padding-left: 6px;
+}
+
+.steps li:last-child {
+    margin-bottom: 0;
+}
+
+/* Suporte WhatsApp */
+.support {
+    border-top: 1px solid hsl(34, 20%, 86%);
+    padding-top: 28px;
+}
+
+.support-text {
+    font-size: 1rem;
+    color: var(--primary-dark);
+    margin-bottom: 14px;
+    font-weight: 600;
+}
+
+.btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--whatsapp);
+    color: white;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 50px;
+    box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
+    transition: all 0.3s ease;
+}
+
+.btn-whatsapp:hover {
+    background: #1ebe5a;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(37, 211, 102, 0.5);
+}
+
+.wa-icon {
+    font-size: 1.2rem;
+}
+
+.footer-note {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #8a8175;
+    margin-top: 26px;
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pop {
+    0% { transform: scale(0); }
+    70% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+@keyframes pulse-btn {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .card {
+        padding: 38px 22px 34px;
+        border-radius: 18px;
+    }
+
+    .headline {
+        font-size: 1.8rem;
+    }
+
+    .lead {
+        font-size: 1.05rem;
+    }
+
+    .btn-cta {
+        font-size: 1.2rem;
+        padding: 20px 24px;
+    }
+
+    .check-badge {
+        width: 72px;
+        height: 72px;
+    }
+
+    .check-icon {
+        font-size: 38px;
+    }
+
+    .products li {
+        font-size: 1rem;
+    }
+}
