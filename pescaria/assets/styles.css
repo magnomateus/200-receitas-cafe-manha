@@ -346,6 +346,11 @@ a {
     color: var(--primary);
 }
 
+.agitation-cta {
+    text-align: center;
+    margin-top: var(--space-lg);
+}
+
 /* ==========================================================================
    PREVIEW SECTION (Carrossel)
    ========================================================================== */
@@ -728,7 +733,8 @@ a {
 .bonus-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-md);
+    /* gap maior nas LINHAS (afasta a fileira de cima da de baixo) que nas colunas */
+    gap: var(--space-lg) var(--space-md);
     max-width: 700px;
     margin: 0 auto;
 }
@@ -763,7 +769,7 @@ a {
 
 .bonus-image {
     width: 100%;
-    max-width: 150px;
+    max-width: 210px;
     height: auto;
     margin: var(--space-md) auto var(--space-sm);
     border-radius: 8px;
@@ -1001,11 +1007,13 @@ a {
     margin: 0 auto;
 }
 
-.offer-mockup img { width: 100%; height: auto; }
+.offer-mockup img { width: 100%; height: auto; border-radius: 14px; }
 
 .offer-name {
     font-family: var(--font-heading);
-    font-size: 1.75rem;
+    /* tamanho fluido calibrado p/ caber em 1 linha sem vazar do card;
+       se nao couber em telas minusculas, quebra suave (sem overflow) */
+    font-size: clamp(1.05rem, 5.6vw, 1.9rem);
     font-weight: 900;
     color: var(--primary);
     margin-top: var(--space-xs);
@@ -1091,11 +1099,14 @@ a {
 }
 
 .testimonial-avatar {
-    width: 70px;
-    height: 70px;
+    display: block;
+    width: 84px;
+    height: 84px;
     border-radius: 50%;
     object-fit: cover;
+    object-position: center 25%; /* favorece o rosto no recorte circular */
     margin: 0 auto var(--space-sm);
+    border: 3px solid var(--foam-dark);
 }
 
 .testimonial-stars {
@@ -1517,9 +1528,9 @@ a {
 
     .btn { padding: 16px 24px; font-size: 0.95rem; }
 
-    .bonus-grid { gap: 8px; }
+    .bonus-grid { gap: 36px 8px; }
     .bonus-card { padding: 8px; }
-    .bonus-image { max-width: 90px; }
+    .bonus-image { max-width: 150px; }
     .bonus-card h4 { font-size: 0.85rem; }
     .bonus-desc { font-size: 0.7rem; }
     .bonus-price { font-size: 0.72rem; }
