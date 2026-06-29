@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ============================================================
+         VIS: identifica o produto desta pagina para o snippet
+         (sales-page/view -> ViewContent SEGMENTADO por produto).
+         >>> PREENCHER: slug final do produto cadastrado na VIS.
+         ============================================================ -->
+    <meta name="vis-product" content="manual-do-pescador">
+
+    <!-- SEO Meta Tags -->
+    <title>Manual do Pescador | Volte de Toda Pescaria com Peixe na Mão</title>
+    <meta name="description" content="Descubra as iscas, montagens e técnicas que realmente funcionam e pare de voltar de mão vazia. Passo a passo testado na água para pegar mais peixe.">
+    <meta name="keywords" content="pesca, pescaria, isca artificial, pesca esportiva, tucunaré, traíra, dourado, robalo, tilápia, técnicas de pesca">
+    <meta name="author" content="Manual do Pescador">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Manual do Pescador | Volte de Toda Pescaria com Peixe na Mão">
+    <meta property="og:description" content="As iscas, montagens e técnicas que realmente funcionam. Pare de queimar dinheiro testando no escuro.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="./assets/styles.css">
+
+    <!-- ============================================================
+         RASTREAMENTO — SEGMENTADO PARA ESTE PRODUTO (PESCARIA)
+         NAO reutilizar os IDs da Missa. Cada produto tem os seus.
+         >>> PREENCHER os 3 IDs abaixo antes de publicar.
+         ============================================================ -->
+
+    <!-- Utmify Pixel (>>> PREENCHER: pixelId do Utmify deste produto) -->
+    <script>
+      window.pixelId = "SEU_UTMIFY_PIXEL_ID_PESCARIA";
+      var a = document.createElement("script");
+      a.setAttribute("async", "");
+      a.setAttribute("defer", "");
+      a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+      document.head.appendChild(a);
+    </script>
+
+    <!-- Utmify UTMs Script -->
+    <script
+      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+      data-utmify-prevent-xcod-sck
+      data-utmify-prevent-subids
+      async
+      defer
+    ></script>
+
+    <!-- Meta Pixel Code (>>> PREENCHER: Pixel ID dedicado da PESCARIA) -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'SEU_PIXEL_ID_PESCARIA');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=SEU_PIXEL_ID_PESCARIA&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <!-- VIS Tracking (>>> PREENCHER: tid do produto na VIS — dispara ViewContent via meta vis-product) -->
+    <script src="https://vis.semeardigital.com.br/api/tracking/snippet.js?tid=SEU_TID_PESCARIA"></script>
+</head>
+<body>
+
+    <!-- Barra de Urgência -->
+    <div class="urgency-bar">
+        <span class="urgency-icon">🎣</span>
+        <span>OFERTA ESPECIAL - Válida até <strong id="current-date">hoje</strong></span>
+    </div>
+
+    <!-- ============================================================
+         1. HERO
+         Headline escolhida em uso. Alternativas comentadas abaixo.
+         ============================================================ -->
+    <section class="hero">
+        <img class="hero-bg-img" src="./assets/head-bg.webp" alt="Pescador com tucunaré" loading="eager" fetchpriority="high">
+        <div class="hero-top">
+            <h1 class="hero-title">
+                Volte de Toda Pescaria com Peixe na Mão
+                <span class="highlight">Mesmo nos Dias que Ninguém Mais Fisga Nada</span>
+            </h1>
+            <!-- ALT A: Copie o Passo a Passo que Transforma Pescador Comum em Quem Volta com a Caixa Cheia -->
+            <!-- ALT B: Você Passa Horas na Água e Volta pra Casa de Mão Vazia? -->
+        </div>
+
+        <div class="hero-bottom">
+            <p class="hero-subtitle">
+                Descubra as <strong>iscas, montagens e técnicas</strong> que realmente funcionam —
+                e pare de <strong>queimar dinheiro</strong> testando no escuro.
+            </p>
+
+            <a href="#oferta" class="btn btn-primary btn-cta pulse">
+                QUERO PEGAR MAIS PEIXE 🎣
+            </a>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         2. VOCÊ SE IDENTIFICA COM ISSO?
+         ============================================================ -->
+    <section class="problem-section">
+        <div class="container">
+            <h2 class="section-title">Você se Identifica com Isso?</h2>
+
+            <div class="problem-grid">
+                <div class="problem-item">
+                    <span class="problem-icon">🎣</span>
+                    <p>Passa o dia inteiro na água e volta sem nada, sem saber o que fez de errado</p>
+                </div>
+                <div class="problem-item">
+                    <span class="problem-icon">💸</span>
+                    <p>Gasta caro em isca atrás de isca e nenhuma traz o resultado prometido</p>
+                </div>
+                <div class="problem-item">
+                    <span class="problem-icon">😤</span>
+                    <p>Vê os amigos puxando peixão enquanto você fica só na tentativa</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         3. AGITAÇÃO
+         ============================================================ -->
+    <section class="agitation-section">
+        <div class="container">
+            <p class="agitation-text">
+                Isso acontece porque pescar com isca artificial <strong>mudou</strong>.
+                Tentar descobrir sozinho só queima dinheiro, frustra com o erro e gasta um tempo
+                que não volta. O atalho é um só:
+                <strong>usar o que já foi testado e fazer igual na água.</strong>
+            </p>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         4. PREVIEW DO PRODUTO (carrossel)
+         >>> PREENCHER: imagens reais dos mockups das páginas internas
+         ============================================================ -->
+    <section class="preview-section">
+        <div class="container">
+            <h2 class="section-title">Veja o Que Você Recebe na Prática</h2>
+
+            <div class="carousel-container">
+                <div class="carousel-wrapper">
+                    <div class="carousel-track">
+                        <div class="carousel-slide">
+                            <img src="./assets/mockup-interno-1.png" alt="Página interna 1 do Manual do Pescador">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="./assets/mockup-interno-2.png" alt="Página interna 2 do Manual do Pescador">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="./assets/mockup-interno-3.png" alt="Página interna 3 do Manual do Pescador">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="./assets/mockup-interno-4.png" alt="Página interna 4 do Manual do Pescador">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-dots">
+                <button class="carousel-dot active" data-slide="0" aria-label="Página 1"></button>
+                <button class="carousel-dot" data-slide="1" aria-label="Página 2"></button>
+                <button class="carousel-dot" data-slide="2" aria-label="Página 3"></button>
+                <button class="carousel-dot" data-slide="3" aria-label="Página 4"></button>
+            </div>
+
+            <div class="preview-cta">
+                <a href="#oferta" class="btn btn-primary btn-cta pulse">
+                    QUERO PEGAR MAIS PEIXE 🎣
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         5. BENEFÍCIOS (4 cards)
+         ============================================================ -->
+    <section class="solution-section">
+        <div class="container">
+            <h3 class="product-name">MANUAL DO PESCADOR</h3>
+
+            <p class="solution-text">
+                Um material prático que mostra exatamente o que fazer na água — sem teoria, só o que pega peixe.
+            </p>
+
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <span class="benefit-icon"><i class="fa-solid fa-fish-fins"></i></span>
+                    <h4>Método Validado</h4>
+                    <p>Técnica testada na água de verdade, não teoria de internet</p>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon"><i class="fa-solid fa-list-check"></i></span>
+                    <h4>Passo a Passo Simples</h4>
+                    <p>Abra, olhe e faça igual — sem complicação</p>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon"><i class="fa-solid fa-water"></i></span>
+                    <h4>Pra Qualquer Espécie</h4>
+                    <p>Funciona do tucunaré ao robalo, em rio, represa ou pesqueiro</p>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon"><i class="fa-solid fa-bolt"></i></span>
+                    <h4>Aplicação Imediata</h4>
+                    <p>Dá pra usar já na sua próxima pescaria</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         6. O QUE VOCÊ VAI DESCOBRIR
+         >>> PREENCHER com o conteúdo real do produto (formato de exemplo abaixo)
+         ============================================================ -->
+    <section class="learn-section">
+        <div class="container">
+            <h2 class="section-title">O Que Você Vai Descobrir</h2>
+
+            <ul class="learn-list">
+                <li>A <strong>isca certa</strong> pra cada espécie e condição da água</li>
+                <li><strong>Montagens</strong> que realmente fisgam (e as que só enroscam)</li>
+                <li>Como <strong>achar o peixe</strong> no pesqueiro, no rio e na represa</li>
+                <li>Os melhores <strong>horários</strong> — e como usar a <strong>lua</strong> a teu favor</li>
+                <li>A forma certa de <strong>conduzir a isca</strong> pra provocar o ataque</li>
+                <li>O que fazer quando <strong>nada está fisgando</strong></li>
+            </ul>
+
+            <div class="bonus-hint">
+                <span class="bonus-text">+BÔNUS ABAIXO</span>
+                <i class="fa-solid fa-chevron-down bonus-arrow"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         7. ESPÉCIES
+         ============================================================ -->
+    <section class="species-section">
+        <div class="container">
+            <h2 class="section-title">Funciona Pra Pegar</h2>
+
+            <div class="species-grid">
+                <div class="species-item">
+                    <span class="species-icon">🐟</span>
+                    <p>Tucunaré</p>
+                </div>
+                <div class="species-item">
+                    <span class="species-icon">🐠</span>
+                    <p>Traíra</p>
+                </div>
+                <div class="species-item">
+                    <span class="species-icon">🐡</span>
+                    <p>Tilápia</p>
+                </div>
+                <div class="species-item">
+                    <span class="species-icon">🦈</span>
+                    <p>Dourado</p>
+                </div>
+                <div class="species-item">
+                    <span class="species-icon">🎣</span>
+                    <p>Robalo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         8. TABELA COMPARATIVA
+         ============================================================ -->
+    <section class="compare-section">
+        <div class="container">
+            <h2 class="section-title">Por Que Esse Método Pega Mais Peixe?</h2>
+
+            <div class="compare-table">
+                <div class="compare-head">
+                    <div class="compare-col-label"></div>
+                    <div class="compare-col-yes">Manual do Pescador</div>
+                    <div class="compare-col-no">Continuar no Escuro</div>
+                </div>
+
+                <div class="compare-row">
+                    <div class="compare-feature">Isca certa pra cada peixe</div>
+                    <div class="compare-cell yes"><i class="fa-solid fa-check"></i></div>
+                    <div class="compare-cell no"><i class="fa-solid fa-xmark"></i></div>
+                </div>
+                <div class="compare-row">
+                    <div class="compare-feature">Montagem que funciona</div>
+                    <div class="compare-cell yes"><i class="fa-solid fa-check"></i></div>
+                    <div class="compare-cell no"><i class="fa-solid fa-xmark"></i></div>
+                </div>
+                <div class="compare-row">
+                    <div class="compare-feature">Onde achar o peixe</div>
+                    <div class="compare-cell yes"><i class="fa-solid fa-check"></i></div>
+                    <div class="compare-cell no"><i class="fa-solid fa-xmark"></i></div>
+                </div>
+                <div class="compare-row">
+                    <div class="compare-feature">Melhor horário / lua</div>
+                    <div class="compare-cell yes"><i class="fa-solid fa-check"></i></div>
+                    <div class="compare-cell no"><i class="fa-solid fa-xmark"></i></div>
+                </div>
+                <div class="compare-row">
+                    <div class="compare-feature">Sem queimar dinheiro testando</div>
+                    <div class="compare-cell yes"><i class="fa-solid fa-check"></i></div>
+                    <div class="compare-cell no"><i class="fa-solid fa-xmark"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         9. BÔNUS EMPILHADOS
+         >>> PREENCHER nomes/valores reais. Calendário Lunar incluído.
+         ============================================================ -->
+    <section class="bonus-section">
+        <div class="container">
+            <h2 class="section-title">
+                RECEBA AINDA<br>
+                <span class="highlight-gold">+ 4 BÔNUS EXCLUSIVOS:</span>
+            </h2>
+
+            <div class="bonus-grid">
+                <div class="bonus-card">
+                    <span class="bonus-badge">BÔNUS HOJE</span>
+                    <img src="./assets/bonus-1.png" alt="Calendário Lunar de Pesca" class="bonus-image">
+                    <h4>Calendário Lunar de Pesca</h4>
+                    <p class="bonus-desc">Saiba os melhores dias e fases da lua pra pescar o ano inteiro</p>
+                    <p class="bonus-price"><span class="strikethrough">R$27,00</span> <span class="bonus-free">GRÁTIS</span></p>
+                </div>
+                <div class="bonus-card">
+                    <span class="bonus-badge">BÔNUS HOJE</span>
+                    <!-- >>> PREENCHER bônus real -->
+                    <img src="./assets/bonus-2.png" alt="Bônus 2" class="bonus-image">
+                    <h4>[Nome do Bônus 2]</h4>
+                    <p class="bonus-desc">[Descrição curta do bônus 2]</p>
+                    <p class="bonus-price"><span class="strikethrough">R$27,00</span> <span class="bonus-free">GRÁTIS</span></p>
+                </div>
+                <div class="bonus-card">
+                    <span class="bonus-badge">BÔNUS HOJE</span>
+                    <!-- >>> PREENCHER bônus real -->
+                    <img src="./assets/bonus-3.png" alt="Bônus 3" class="bonus-image">
+                    <h4>[Nome do Bônus 3]</h4>
+                    <p class="bonus-desc">[Descrição curta do bônus 3]</p>
+                    <p class="bonus-price"><span class="strikethrough">R$27,00</span> <span class="bonus-free">GRÁTIS</span></p>
+                </div>
+                <div class="bonus-card">
+                    <span class="bonus-badge">BÔNUS HOJE</span>
+                    <!-- >>> PREENCHER bônus real -->
+                    <img src="./assets/bonus-4.png" alt="Bônus 4" class="bonus-image">
+                    <h4>[Nome do Bônus 4]</h4>
+                    <p class="bonus-desc">[Descrição curta do bônus 4]</p>
+                    <p class="bonus-price"><span class="strikethrough">R$27,00</span> <span class="bonus-free">GRÁTIS</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         10. É PRA VOCÊ / NÃO É PRA VOCÊ
+         ============================================================ -->
+    <section class="foryou-section">
+        <div class="container">
+            <div class="foryou-grid">
+                <div class="foryou-col foryou-yes">
+                    <h3><i class="fa-solid fa-circle-check"></i> É pra você se...</h3>
+                    <ul>
+                        <li>É iniciante e quer começar certo, sem perder tempo</li>
+                        <li>Já pesca mas quer evoluir e pegar mais</li>
+                        <li>Quer parar de gastar dinheiro à toa em isca que não funciona</li>
+                    </ul>
+                </div>
+                <div class="foryou-col foryou-no">
+                    <h3><i class="fa-solid fa-circle-xmark"></i> Não é pra você se...</h3>
+                    <ul>
+                        <li>Se contenta em voltar de toda pescaria sem peixe</li>
+                        <li>Acha que isca cara resolve tudo sozinha</li>
+                        <li>Não quer aplicar o que aprende</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         11. OFERTA
+         ============================================================ -->
+    <section class="offer-section" id="oferta">
+        <div class="container">
+            <h2 class="section-title">Oferta Especial por Tempo Limitado</h2>
+
+            <div class="offer-timer">
+                <div class="timer-display" id="timer-offer">23:59:59</div>
+            </div>
+
+            <div class="offer-card">
+                <div class="offer-mockup">
+                    <!-- >>> PREENCHER: mockup real do produto -->
+                    <img src="./assets/mockup-produto.png" alt="Manual do Pescador">
+                </div>
+
+                <h3 class="offer-name">MANUAL DO PESCADOR</h3>
+
+                <div class="offer-includes">
+                    <p>✅ Manual do Pescador - Completo</p>
+                    <p>✅ Bônus: Calendário Lunar de Pesca</p>
+                    <p>✅ Bônus: [Nome do Bônus 2]</p>
+                    <p>✅ Bônus: [Nome do Bônus 3]</p>
+                    <p>✅ Bônus: [Nome do Bônus 4]</p>
+                    <p>✅ Acesso Imediato</p>
+                    <p>✅ Garantia de 15 Dias</p>
+                </div>
+
+                <!-- Value stack -->
+                <p class="value-stack">Tudo isso deveria custar <span class="strikethrough">R$[X]</span></p>
+
+                <div class="price-box">
+                    <p class="price-original">De <span class="strikethrough">R$[X]</span></p>
+                    <p class="price-current">R$37,00</p>
+                    <p class="price-installments">ou em até 3x no cartão</p>
+                </div>
+
+                <!-- >>> Checkout VIS — slug do produto. NAO usar o slug da Missa. -->
+                <a href="https://visplatform.pro/checkout-fast/manual-do-pescador?utm_source=organic&utm_campaign=&utm_medium=&utm_content=&utm_term=" class="btn btn-primary btn-cta-main pulse" id="cta-main">
+                    QUERO PEGAR MAIS PEIXE 🎣
+                </a>
+
+                <p class="security-text">🔒 Pagamento 100% Seguro | 📱 Acesso Imediato</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         12. PROVA SOCIAL
+         >>> PREENCHER com depoimentos e fotos REAIS conforme as primeiras
+             vendas. Formato representativo no lançamento. NÃO inventar
+             números grandes específicos.
+         ============================================================ -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">Quem Aplicou, Voltou com Peixe</h2>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <img src="./assets/perfil-1.png" alt="Depoimento" class="testimonial-avatar">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"[Depoimento real do cliente]"</p>
+                    <p class="testimonial-author">- [Nome], [UF]</p>
+                </div>
+                <div class="testimonial-card">
+                    <img src="./assets/perfil-2.png" alt="Depoimento" class="testimonial-avatar">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"[Depoimento real do cliente]"</p>
+                    <p class="testimonial-author">- [Nome], [UF]</p>
+                </div>
+                <div class="testimonial-card">
+                    <img src="./assets/perfil-3.png" alt="Depoimento" class="testimonial-avatar">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"[Depoimento real do cliente]"</p>
+                    <p class="testimonial-author">- [Nome], [UF]</p>
+                </div>
+            </div>
+
+            <!-- >>> PREENCHER: grid de fotos reais de peixes capturados pelos clientes -->
+        </div>
+    </section>
+
+    <!-- ============================================================
+         13. GARANTIA
+         ============================================================ -->
+    <section class="guarantee-section">
+        <div class="container">
+            <div class="guarantee-content">
+                <img src="./assets/guarantee-badge.png" alt="Selo de Garantia de 15 Dias" class="guarantee-badge">
+                <h2 class="guarantee-title">Garantia Incondicional de 15 Dias</h2>
+                <p class="guarantee-description">
+                    Se por qualquer motivo você não ficar satisfeito com o material, basta nos enviar um email dentro de 15 dias e devolvemos 100% do seu dinheiro. Sem perguntas, sem burocracia.
+                </p>
+                <p class="guarantee-highlight">Seu investimento está 100% protegido!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         14. AUTORIA
+         >>> PREENCHER: persona de pescador experiente OU o Mateus.
+             Story honesto, sem inventar "X anos" que não existem.
+         ============================================================ -->
+    <section class="author-section">
+        <div class="container">
+            <div class="author-image-wrapper">
+                <img src="./assets/autor.png" alt="Criador do Manual do Pescador" class="author-image" loading="lazy">
+            </div>
+            <p class="author-eyebrow">Quem está por trás disso</p>
+            <h2 class="author-name">[Nome do Autor]</h2>
+            <div class="author-bio">
+                <p>[Story honesto do autor — quem é, a relação com a pesca e por que reuniu esse material. Sem inventar números de anos que não existem.]</p>
+            </div>
+            <div class="author-cta-wrapper">
+                <a href="#oferta" class="btn btn-primary btn-cta-author pulse">
+                    QUERO PEGAR MAIS PEIXE 🎣
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         15. DUAS OPÇÕES
+         ============================================================ -->
+    <section class="choice-section">
+        <div class="container">
+            <h2 class="section-title">Você Tem Duas Opções</h2>
+
+            <div class="choice-grid">
+                <div class="choice-col choice-bad">
+                    <h3>Continuar como está</h3>
+                    <ul>
+                        <li>Seguir no escuro, no tentativa e erro</li>
+                        <li>Gastar em isca que não funciona</li>
+                        <li>Voltar de toda pescaria de mão vazia</li>
+                        <li>Ver os outros pegando enquanto você espera</li>
+                    </ul>
+                </div>
+                <div class="choice-col choice-good">
+                    <h3>Mudar agora</h3>
+                    <ul>
+                        <li>Passo a passo na palma da mão</li>
+                        <li>Saber a isca certa pra cada peixe</li>
+                        <li>Achar o peixe e no melhor horário</li>
+                        <li>Voltar com a caixa cheia</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         16. FAQ
+         ============================================================ -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">Perguntas Frequentes</h2>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Como vou receber o material?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Após a confirmação do pagamento, você recebe um email com o link de acesso. É tudo digital e o acesso é imediato.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        O acesso é imediato?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sim! Assim que o pagamento é confirmado, você já recebe o acesso e pode começar na hora.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Consigo ler no celular?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Consegue! O material foi feito pra ler no celular, tablet ou computador — onde for mais fácil pra você, inclusive na beira da água.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        E se eu não gostar?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Você tem 15 dias de garantia incondicional. Se não gostar, basta enviar um email e devolvemos 100% do valor.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Funciona pra mim mesmo sendo iniciante?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Funciona. O passo a passo foi pensado pra qualquer nível: se você está começando, começa certo; se já pesca, evolui o resultado.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        O pagamento é seguro?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sim! Utilizamos uma plataforma de pagamento segura e criptografada. Seus dados estão 100% protegidos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         17. CTA FINAL
+         ============================================================ -->
+    <section class="final-cta-section">
+        <div class="container">
+            <h2 class="final-title">Não Perca Esta Oportunidade!</h2>
+            <p class="final-subtitle">Sua próxima pescaria pode ser a primeira com a caixa cheia</p>
+
+            <div class="timer-box">
+                <p class="timer-label">⏰ Oferta válida até:</p>
+                <div class="timer-display" id="timer-main">23:59:59</div>
+            </div>
+
+            <a href="https://visplatform.pro/checkout-fast/manual-do-pescador?utm_source=organic&utm_campaign=&utm_medium=&utm_content=&utm_term=" class="btn btn-primary btn-cta-final pulse">
+                GARANTIR POR R$37,00 🎣
+            </a>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         18. FOOTER
+         ============================================================ -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-header">
+                <span class="footer-icon">🎣</span>
+                <h3 class="footer-title">Manual do Pescador</h3>
+            </div>
+            <p class="footer-subtitle">Mais peixe na mão, menos dinheiro queimado</p>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2026 Manual do Pescador. Todos os direitos reservados.</p>
+                <p class="footer-disclaimer">Este produto é vendido e entregue pela plataforma de pagamento. O acesso é enviado automaticamente após a confirmação do pagamento.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="./assets/script.js"></script>
+
+    <!-- InitiateCheckout (dispara no clique de qualquer link de checkout VIS) -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('a[href*="visplatform.pro"]').forEach(function(link) {
+            link.addEventListener('click', function() {
+                if (typeof fbq !== 'undefined') {
+                    fbq('track', 'InitiateCheckout');
+                }
+            });
+        });
+    });
+    </script>
+</body>
+</html>
