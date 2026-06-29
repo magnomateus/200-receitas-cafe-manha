@@ -898,6 +898,92 @@ a {
     letter-spacing: 3px;
 }
 
+/* --- PLANO BASICO (card simples, acima do Premium) --- */
+.plan-basic {
+    max-width: 500px;
+    margin: 0 auto var(--space-lg);
+    background: var(--text-white);
+    border-radius: 16px;
+    padding: var(--space-lg) var(--space-md);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    border: 2px solid var(--foam-dark);
+    text-align: center;
+}
+
+.plan-name {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: var(--space-md);
+    letter-spacing: 0.5px;
+}
+
+.plan-includes {
+    text-align: left;
+    max-width: 300px;
+    margin: 0 auto var(--space-md);
+}
+
+.plan-includes p {
+    padding: 7px 0;
+    color: var(--text-medium);
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.plan-includes p:last-child { border-bottom: none; }
+
+.plan-price { margin-bottom: var(--space-md); }
+
+.plan-price-value {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--primary);
+    line-height: 1;
+}
+
+.plan-price-note {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-top: 2px;
+}
+
+/* Botao do basico: azul (secundario) p/ o laranja do premium se destacar */
+.btn-basic {
+    width: 100%;
+    max-width: 420px;
+    background: var(--primary);
+    color: var(--text-white);
+    box-shadow: 0 4px 15px rgba(11, 94, 122, 0.35);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .btn-basic:hover {
+        background: var(--primary-light);
+        transform: translateY(-2px);
+    }
+}
+
+/* Badge "MAIS ESCOLHIDO" no card Premium */
+.offer-badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+    color: var(--text-white);
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 6px 16px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(242, 140, 28, 0.4);
+}
+
 .offer-card {
     max-width: 500px;
     margin: 0 auto;
