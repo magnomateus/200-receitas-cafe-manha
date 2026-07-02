@@ -388,25 +388,45 @@ a {
     margin: var(--space-lg) 0 var(--space-md);
 }
 
-/* Mosaico dinamico (masonry) das fotos de peixe — respeita cada proporcao */
-.catch-gallery {
-    max-width: 820px;
+/* Carrossel infinito (marquee) das fotos de peixe — roda sozinho, devagar */
+.catch-marquee {
+    max-width: 960px;
     margin: 0 auto;
-    column-count: 3;
-    column-gap: 10px;
+    overflow: hidden;
+    /* suaviza as bordas (aparecem/somem em fade) */
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
 }
 
-.catch-gallery img {
-    display: block;
-    width: 100%;
-    margin-bottom: 10px;
+.catch-track {
+    display: flex;
+    width: max-content;
+    animation: catch-scroll 30s linear infinite;
+}
+
+.catch-track img {
+    height: 230px;
+    width: auto;
+    margin-right: 12px;              /* margin (nao gap) p/ o -50% fechar exato */
     border-radius: 12px;
     box-shadow: 0 6px 18px rgba(6, 24, 48, 0.15);
-    break-inside: avoid;
+    display: block;
+}
+
+@keyframes catch-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
 }
 
 @media (max-width: 600px) {
-    .catch-gallery { column-count: 2; }
+    .catch-track img { height: 175px; }
+    .catch-track { animation-duration: 22s; }
+}
+
+/* respeita quem prefere menos animacao */
+@media (prefers-reduced-motion: reduce) {
+    .catch-track { animation: none; }
+    .catch-marquee { overflow-x: auto; }
 }
 
 .results-cta {
