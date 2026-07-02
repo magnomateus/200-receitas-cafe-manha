@@ -226,6 +226,41 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    /* ======================================================================
+       7. DEPOIMENTOS: arrasta 1x sozinho pra revelar o 2o print, depois para
+       ====================================================================== */
+
+    (function() {
+        const grid = document.querySelector('.results-grid');
+        if (!grid) return;
+        let done = false;
+
+        function hintScroll() {
+            if (done) return;
+            // so faz sentido quando ha overflow horizontal (mobile/swipe)
+            if (grid.scrollWidth <= grid.clientWidth + 10) return;
+            done = true;
+            const first = grid.querySelector('img');
+            if (!first) return;
+            const step = first.getBoundingClientRect().width + 12; // largura + gap
+            grid.scrollTo({ left: step, behavior: 'smooth' });
+        }
+
+        if ('IntersectionObserver' in window) {
+            const io = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        setTimeout(hintScroll, 500);
+                        io.disconnect();
+                    }
+                });
+            }, { threshold: 0.4 });
+            io.observe(grid);
+        } else {
+            setTimeout(hintScroll, 1200);
+        }
+    })();
+
     console.log('%c🎣 Manual do Pescador', 'font-size: 18px; font-weight: bold; color: #0b5e7a;');
     console.log('%cLanding page carregada.', 'font-size: 13px; color: #f28c1c;');
 
