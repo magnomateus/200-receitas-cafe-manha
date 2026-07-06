@@ -39,14 +39,30 @@
     <link rel="stylesheet" href="./assets/styles.css">
 
     <!-- ============================================================
-         RASTREAMENTO — SEGMENTADO PARA ESTE PRODUTO (PESCARIA)
-         NAO reutilizar os IDs da Missa. Cada produto tem os seus.
-         >>> PREENCHER os 3 IDs abaixo antes de publicar.
+         RASTREAMENTO — PESCARIA
          ============================================================ -->
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '37417630844501797');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=37417630844501797&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
 
     <!-- Utmify Pixel -->
     <script>
-      window.pixelId = "6a41e34f329584db33052821";
+      window.pixelId = "6a4b0f89e66332929277a497";
       var a = document.createElement("script");
       a.setAttribute("async", "");
       a.setAttribute("defer", "");
@@ -62,24 +78,6 @@
       async
       defer
     ></script>
-
-    <!-- Meta Pixel Code (>>> PREENCHER: Pixel ID dedicado da PESCARIA) -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', 'SEU_PIXEL_ID_PESCARIA');
-    fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=SEU_PIXEL_ID_PESCARIA&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
 
     <!-- VIS Tracking (dispara ViewContent via meta vis-product) -->
     <script src="https://visplatform.pro/api/tracking/snippet.js?tid=19"></script>
