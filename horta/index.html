@@ -2,12 +2,9 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- ============================================================
-         VIS: identifica o produto desta pagina para o snippet
-         (sales-page/view -> ViewContent SEGMENTADO por produto).
-         ============================================================ -->
+    <!-- VIS: identifica o produto desta pagina para o snippet (ViewContent segmentado) -->
     <meta name="vis-product" content="manual-da-horta">
 
     <!-- SEO -->
@@ -22,28 +19,24 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pt_BR">
 
-    <!-- Google Fonts -->
+    <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;700;800;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <!-- Favicon (caminho relativo — roda em subpasta /horta/) -->
-    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
-
-    <!-- Font Awesome -->
+    <!-- Icones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- Stylesheet (caminho relativo) -->
+    <!-- Stylesheet (caminho relativo — roda em subpasta /horta/) -->
     <link rel="stylesheet" href="./assets/styles.css">
 
     <!-- ============================================================
-         CONFIG DE RASTREAMENTO  —  ⚠️ PREENCHER ANTES DE PUBLICAR
-         O pixel SÓ dispara se META_PIXEL_ID for um ID numérico real
-         (evita subir com pixel-placeholder).
+         CONFIG DE RASTREAMENTO
+         O pixel SÓ dispara se META_PIXEL_ID for um ID numérico real.
          ============================================================ -->
     <script>
       window.HORTA_CONFIG = {
-        META_PIXEL_ID: '2474205939758959',   // pixel real da Horta (dispara init + PageView via script.js)
+        META_PIXEL_ID: '2474205939758959',   // pixel real da Horta (init + PageView via script.js)
         VIS_TID: '',            // VAZIO de propósito: o snippet da VIS é a tag estática no <head> abaixo
                                 //   (evita carregar 2x). O pk do PIXEL HORTA já vai na tag.
         UTMIFY_PIXEL_ID: ''     // opcional: atribuição paralela via Utmify
@@ -72,284 +65,242 @@
     <script src="https://visplatform.pro/api/tracking/snippet.js?tid=19&pk=01KX3DHVV5Y6GBFEDCHZ9FD185"></script>
 </head>
 <body>
+<div class="shell"><div class="page">
 
-    <!-- ============================================================
-         BLOCO 1 — HERO (above-the-fold: promessa + hook + CTA + preço)
-         Hero COMPACTO: preço e botão aparecem na 1ª tela no mobile
-         (navegador in-app do FB/IG). NÃO usar 100svh.
-         ============================================================ -->
-    <header class="hero">
-        <div class="hero-inner">
-            <h1 class="hero-title">
-                Você sabe de onde veio o tomate que tá na sua geladeira agora?
-            </h1>
-            <p class="hero-hook">
-                Passou por mãos que você não conhece, num caminho que você não vê — e ninguém te contou
-                o que jogaram nele até chegar na prateleira. Tem um jeito de sair disso: colher o seu
-                próprio alimento, fresco, no quintal de casa. Mesmo que você nunca tenha plantado nada na vida.
-            </p>
-            <a href="#oferta" class="btn btn-primary btn-cta pulse">
-                QUERO MINHA HORTA EM CASA
-            </a>
-            <p class="price-badge">🌱 A partir de <strong>R$10</strong> · acesso imediato</p>
-        </div>
-    </header>
+<!-- ============================================================
+     1. HERO — CTA + preço acima da dobra no mobile (sem 100svh)
+     ============================================================ -->
+<header class="hero">
+<div class="container">
+<div class="hero-inner">
+<div class="hero-copy">
+<span class="eyebrow">🌱 Manual da Horta em Casa</span>
+<h1 class="hero-title">Você sabe de onde veio o tomate que tá na sua geladeira agora?</h1>
+<a href="#oferta" class="btn btn-primary btn-cta pulse">QUERO MINHA HORTA EM CASA</a>
+<p class="price-badge">🌱 A partir de <strong>R$10</strong> · acesso imediato</p>
+</div>
+<div class="hero-media"><div class="imgph"><span>FOTO — pessoa 50+ colhendo<br>na horta / varanda (retrato)</span></div></div>
+</div>
+</div>
+</header>
 
-    <main>
+<main>
 
-    <!-- ============================================================
-         BLOCO 2 — A HISTÓRIA (1ª pessoa; vilão = indústria)
-         ============================================================ -->
-    <section class="story-section">
-        <div class="container">
-            <div class="story-body">
-                <p>Durante anos eu enchi o carrinho no mercado achando que tava cuidando da minha família.</p>
+<!-- ============================================================
+     2. A IDEIA CENTRAL (vilão = indústria)
+     ============================================================ -->
+<section class="story-section">
+<div class="container">
+<div class="idea">
+<span class="eyebrow eyebrow-dark">A verdade que ninguém te conta</span>
+<h2 class="idea-statement">A indústria não vende comida pra você.<br><em>Vende validade.</em></h2>
+<p class="idea-support">Quanto mais tempo o alimento aguenta na prateleira, mais ela lucra — e o que passam nele pra durar tanto não vem escrito no rótulo.</p>
+<div class="fact-card">
+<span class="fact-icon"><i class="fa-solid fa-triangle-exclamation"></i></span>
+<p>A própria <strong>ANVISA</strong> reprova parte das amostras de agrotóxico nos alimentos todo ano — <mark class="pendencia">[PENDÊNCIA MATEUS: inserir % e ano atual do programa PARA + link da fonte. NÃO inventar número.]</mark>. Já está na prateleira, sendo vendido, agora.</p>
+</div>
+<div class="contrast">
+<div class="contrast-col contrast-bad">
+<span class="contrast-tag"><i class="fa-solid fa-cart-shopping"></i> A prateleira do mercado</span>
+<p>Você não sabe de onde veio, por quantas mãos passou, nem o que jogaram pra durar.</p>
+</div>
+<div class="contrast-arrow"><i class="fa-solid fa-arrow-down-long"></i></div>
+<div class="contrast-col contrast-good">
+<span class="contrast-tag"><i class="fa-solid fa-seedling"></i> A sua horta em casa</span>
+<p>Fresco, colhido na hora, no quintal — mesmo que você nunca tenha plantado nada na vida.</p>
+</div>
+</div>
+<p class="idea-punch">Eu colho a minha.</p>
+</div>
+</div>
+</section>
 
-                <p>Até o dia em que entendi por que a verdura chega tão bonita e dura tanto tempo na prateleira.
-                A indústria não vende comida pra você — <strong>vende validade</strong>. Quanto mais tempo o
-                alimento aguenta na gôndola, mais ela lucra. E o que passam nele pra durar tanto tempo não vem
-                escrito em lugar nenhum do rótulo.</p>
+<!-- ============================================================
+     3. O QUE É O MANUAL
+     ============================================================ -->
+<section class="whatis-section">
+<div class="container">
+<h2 class="section-title">O que é o Manual da Horta em Casa</h2>
+<p class="whatis-intro">O passo a passo pra ter a sua própria horta <strong>do zero</strong> — mesmo sem espaço, sem experiência e sem gastar quase nada.</p>
+<div class="feat-grid">
+<div class="feat"><span class="feat-ic"><i class="fa-solid fa-house-chimney"></i></span><div><h3>Em qualquer espaço</h3><p>Quintal, varanda ou um cantinho com vaso.</p></div></div>
+<div class="feat"><span class="feat-ic"><i class="fa-solid fa-seedling"></i></span><div><h3>As plantas mais fáceis</h3><p>Pra quem nunca plantou — colhe rápido e não desanima.</p></div></div>
+<div class="feat"><span class="feat-ic"><i class="fa-solid fa-calendar-days"></i></span><div><h3>O que plantar em cada época</h3><p>Sem errar o tempo certo.</p></div></div>
+<div class="feat"><span class="feat-ic"><i class="fa-solid fa-recycle"></i></span><div><h3>Adubo natural de graça</h3><p>Feito com o que sobra da cozinha.</p></div></div>
+<div class="feat"><span class="feat-ic"><i class="fa-solid fa-shield-halved"></i></span><div><h3>Praga sem veneno nenhum</h3><p>Receitas caseiras pra proteger as plantas.</p></div></div>
+<div class="feat"><span class="feat-ic"><i class="fa-solid fa-triangle-exclamation"></i></span><div><h3>Os erros do iniciante</h3><p>O que mata a plantinha — e como evitar.</p></div></div>
+<div class="feat"><span class="feat-ic"><i class="fa-solid fa-basket-shopping"></i></span><div><h3>Colher e conservar</h3><p>Pra sua verdura durar mais em casa.</p></div></div>
+</div>
+<p class="whatis-close">Tudo em linguagem simples, feito pra quem tá começando agora.</p>
+</div>
+</section>
 
-                <p>Isso não é achismo. A própria ANVISA, no programa que analisa resíduo de agrotóxico nos
-                alimentos, reprova parte das amostras todo ano —
-                <mark class="pendencia">[PENDÊNCIA MATEUS: inserir % e ano atual do programa PARA + link da fonte. NÃO inventar número.]</mark>.
-                Ou seja: já tá na prateleira, sendo vendido, agora.</p>
+<!-- ============================================================
+     4. VEJA O QUE VOCÊ VAI RECEBER
+     >>> PENDÊNCIA: trocar os .imgph pelas imagens reais (mockup + 4 bônus)
+     ============================================================ -->
+<section class="deliver-section">
+<div class="container">
+<h2 class="section-title title-tight">Veja o que você vai receber</h2>
+<p class="deliver-sub">Tudo digital, com acesso imediato após o pagamento.</p>
+<figure class="deliver-main">
+<div class="imgph"><span>IMAGEM — mockup do<br>Manual da Horta (capa / tablet)</span></div>
+<figcaption>O Manual da Horta em Casa</figcaption>
+</figure>
+<p class="deliver-bonus-label">+ os 4 bônus do Plano Premium</p>
+<div class="deliver-grid">
+<figure class="deliver-item"><div class="imgph"><span>IMAGEM — Bônus 1</span></div><figcaption>Calendário de Plantio Anual</figcaption></figure>
+<figure class="deliver-item"><div class="imgph"><span>IMAGEM — Bônus 2</span></div><figcaption>Guia do Adubo Natural</figcaption></figure>
+<figure class="deliver-item"><div class="imgph"><span>IMAGEM — Bônus 3</span></div><figcaption>Controle de Pragas sem Veneno</figcaption></figure>
+<figure class="deliver-item"><div class="imgph"><span>IMAGEM — Bônus 4</span></div><figcaption>Temperos Frescos em Casa</figcaption></figure>
+</div>
+</div>
+</section>
 
-                <p>Fiquei perplexa. E comecei a procurar uma saída.</p>
+<!-- ============================================================
+     5. OFERTA (2 planos)
+     Links de checkout LIMPOS (sem query string): o snippet.js da VIS
+     decora as UTMs reais dinamicamente. NÃO hardcodar utm_source.
+     ============================================================ -->
+<section class="offer-section" id="oferta">
+<div class="container">
+<h2 class="section-title">Você escolhe como quer começar</h2>
+<div class="product-media"><div class="imgph"><span>MOCKUP — capa do e-book<br>no tablet/celular</span></div></div>
+<div class="plan-card plan-basic">
+<h3 class="plan-name">PLANO BÁSICO</h3>
+<div class="plan-price">
+<p class="plan-price-value">R$10</p>
+<p class="plan-price-note">pagamento único</p>
+</div>
+<div class="plan-includes">
+<p>✅ O Manual da Horta em Casa completo</p>
+<p>✅ Tudo que você precisa pra plantar e colher o seu</p>
+<p>✅ Acesso imediato</p>
+</div>
+<a href="https://visplatform.pro/checkout-fast/manual-da-horta-basico" class="btn btn-basic btn-cta-main">GARANTIR PLANO BÁSICO — R$10</a>
+</div>
+<div class="offer-card plan-premium">
+<span class="offer-badge">⭐ MAIS COMPLETO · RECOMENDADO</span>
+<h3 class="offer-name">PLANO PREMIUM</h3>
+<div class="price-box">
+<p class="price-current">R$29,90</p>
+<p class="price-installments">pagamento único · ou parcelado no cartão</p>
+</div>
+<p class="offer-lead">O Manual + os <strong>4 bônus</strong> que aceleram a sua horta:</p>
+<div class="offer-includes">
+<p>✅ <strong>O Manual da Horta em Casa completo</strong></p>
+<p>🎁 <strong>Bônus 1 — Calendário de Plantio Anual:</strong> o que plantar mês a mês, pra nunca perder o tempo certo</p>
+<p>🎁 <strong>Bônus 2 — Guia do Adubo Natural:</strong> transforme casca e resto de cozinha em comida pra sua horta, de graça</p>
+<p>🎁 <strong>Bônus 3 — Controle de Pragas sem Veneno:</strong> receitas caseiras pra proteger suas plantas</p>
+<p>🎁 <strong>Bônus 4 — Temperos Frescos em Casa:</strong> cebolinha, salsinha, manjericão sempre à mão</p>
+<p>✅ Acesso imediato · Garantia de 7 dias</p>
+</div>
+<a href="https://visplatform.pro/checkout-fast/manual-da-horta-premium" class="btn btn-primary btn-cta-main pulse" id="cta-main">QUERO COMEÇAR MINHA HORTA</a>
+<p class="security-text">🔒 Pagamento 100% seguro · 📱 Acesso imediato após o pagamento</p>
+</div>
+</div>
+</section>
 
-                <p>Foi quando fui visitar meus avós. Eles moram longe, a quilômetros do mercado mais perto — e
-                mesmo assim nunca faltou alface, tomate e couve na mesa deles. Tudo do quintal. Colhido na hora.</p>
+<!-- ============================================================
+     6. PROVA SOCIAL
+     >>> PENDÊNCIA: trocar por prints reais conforme as vendas entram.
+     ============================================================ -->
+<section class="testimonials-section">
+<div class="container">
+<h2 class="section-title">Quem começou, colheu</h2>
+<div class="testimonials-grid">
+<div class="testimonial-card">
+<div class="testimonial-avatar">M</div>
+<div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+<p class="testimonial-text">"Achei que precisava de um quintalzão. Comecei com quatro vasos na varanda e já tô colhendo minha própria salada."</p>
+<p class="testimonial-author">— Marta, 58</p>
+</div>
+<div class="testimonial-card">
+<div class="testimonial-avatar">S</div>
+<div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+<p class="testimonial-text">"Nunca tinha plantado nada. Segui o passo a passo e minha primeira alface nasceu. Não troco por nada."</p>
+<p class="testimonial-author">— Sônia, 63</p>
+</div>
+<div class="testimonial-card">
+<div class="testimonial-avatar">C</div>
+<div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+<p class="testimonial-text">"O que eu mais gosto é saber exatamente de onde veio o que eu como. Isso não tem preço."</p>
+<p class="testimonial-author">— Cleusa, 61</p>
+</div>
+</div>
+<p class="testimonials-note">PENDÊNCIA: trocar por prints reais conforme as vendas entram.</p>
+</div>
+</section>
 
-                <p>Sentei com eles e anotei tudo. Cada coisa que aprenderam numa vida inteira plantando. Voltei
-                pra casa, coloquei em prática — e hoje eu não dependo mais da prateleira do mercado pra botar
-                verdura no meu prato.</p>
+<!-- ============================================================
+     7. GARANTIA
+     ============================================================ -->
+<section class="guarantee-section">
+<div class="container">
+<div class="guarantee-content">
+<div class="guarantee-icon">🛡️</div>
+<h2 class="guarantee-title">7 dias de garantia</h2>
+<p class="guarantee-description">Você tem <strong>7 dias</strong> pra abrir o Manual, colocar em prática e ver com seus próprios olhos. Se achar que não é pra você, é só pedir o reembolso — e devolvo cada centavo, sem pergunta nenhuma.</p>
+<p class="guarantee-highlight">O risco é todo meu.</p>
+</div>
+</div>
+</section>
 
-                <p class="story-punch">Eu colho a minha.</p>
-            </div>
-        </div>
-    </section>
+<!-- ============================================================
+     8. CTA FINAL + FAQ
+     ============================================================ -->
+<section class="final-cta-section">
+<div class="container">
+<p class="final-lead">Você pode continuar dependendo da prateleira do mercado e do que a indústria decide colocar no seu prato.</p>
+<p class="final-lead final-lead-strong">Ou pode começar hoje a colher o seu próprio alimento, fresco, no quintal de casa.</p>
+<a href="#oferta" class="btn btn-primary btn-cta-final pulse">QUERO MINHA HORTA EM CASA</a>
+<p class="price-badge price-badge-light">🌱 A partir de <strong>R$10</strong> · acesso imediato após o pagamento</p>
+</div>
+</section>
 
-    <!-- ============================================================
-         BLOCO 3 — O QUE É / O QUE VEM DENTRO
-         ============================================================ -->
-    <section class="whatis-section">
-        <div class="container">
-            <h2 class="section-title">O que é o Manual da Horta em Casa</h2>
+<section class="faq-section">
+<div class="container">
+<h2 class="section-title">Perguntas frequentes</h2>
+<div class="faq-list">
+<div class="faq-item">
+<button class="faq-question">Preciso de espaço grande?<span class="faq-icon">+</span></button>
+<div class="faq-answer"><p>Não. Dá pra começar numa varanda, com vasos.</p></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">Nunca plantei na vida, consigo?<span class="faq-icon">+</span></button>
+<div class="faq-answer"><p>Consegue. O Manual foi feito pra quem tá começando do zero.</p></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">Como recebo?<span class="faq-icon">+</span></button>
+<div class="faq-answer"><p>É digital. Cai no seu e-mail na hora do pagamento — abre no celular ou no computador.</p></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">Serve pra qualquer região do Brasil?<span class="faq-icon">+</span></button>
+<div class="faq-answer"><p>Serve. O calendário de plantio te mostra o que dá em cada época.</p></div>
+</div>
+</div>
+</div>
+</section>
 
-            <p class="whatis-intro">
-                Foi tudo isso que eu organizei no <strong>Manual da Horta em Casa</strong>: o passo a passo pra
-                você ter a sua própria horta do zero — mesmo sem espaço, sem experiência e sem gastar quase nada
-                pra começar.
-            </p>
+</main>
 
-            <p class="whatis-lead">Dentro dele você vai aprender:</p>
+<footer class="footer">
+<div class="footer-container">
+<div class="footer-header">
+<span class="footer-icon">🌱</span>
+<h3 class="footer-title">Manual da Horta em Casa</h3>
+</div>
+<p class="footer-subtitle">Colha o seu próprio alimento, fresco, no quintal de casa</p>
+<div class="footer-bottom">
+<p class="footer-copyright">© 2026 Manual da Horta em Casa. Todos os direitos reservados.</p>
+<p class="footer-disclaimer">Este produto é digital e entregue pela plataforma de pagamento. O acesso é enviado automaticamente após a confirmação do pagamento.</p>
+</div>
+</div>
+</footer>
 
-            <ul class="learn-list">
-                <li>Como começar em <strong>qualquer espaço</strong> — quintal, varanda, ou até um cantinho com vaso</li>
-                <li>As hortaliças mais fáceis pra quem <strong>nunca plantou</strong> — você começa colhendo rápido e não desanima</li>
-                <li>O que plantar em <strong>cada época do ano</strong>, sem errar o tempo</li>
-                <li>Como fazer seu <strong>próprio adubo natural</strong> com o que sobra da cozinha</li>
-                <li>Como <strong>espantar praga sem veneno nenhum</strong></li>
-                <li>Os erros que matam a plantinha do iniciante — e como evitar cada um</li>
-                <li>Como colher e conservar pra sua verdura durar mais em casa</li>
-            </ul>
+</div></div>
 
-            <p class="whatis-close">Tudo em linguagem simples, passo a passo, feito pra quem tá começando agora.</p>
-        </div>
-    </section>
-
-    <!-- ============================================================
-         BLOCO 4 — A OFERTA (2 planos + bônus)
-         Premium é o card visualmente dominante/recomendado.
-         Links de checkout LIMPOS (sem query string): o snippet.js da
-         VIS decora as UTMs reais dinamicamente. NÃO hardcodar utm_source.
-         ============================================================ -->
-    <section class="offer-section" id="oferta">
-        <div class="container">
-            <h2 class="section-title">Você escolhe como quer começar</h2>
-
-            <!-- PLANO BÁSICO (card simples, acima do Premium) -->
-            <div class="plan-card plan-basic">
-                <h3 class="plan-name">PLANO BÁSICO</h3>
-                <div class="plan-price">
-                    <p class="plan-price-value">R$10</p>
-                    <p class="plan-price-note">pagamento único</p>
-                </div>
-                <div class="plan-includes">
-                    <p>✅ O Manual da Horta em Casa completo</p>
-                    <p>✅ Tudo que você precisa pra plantar e colher o seu</p>
-                    <p>✅ Acesso imediato</p>
-                </div>
-                <a href="https://visplatform.pro/checkout-fast/manual-da-horta-basico" class="btn btn-basic btn-cta-main">
-                    GARANTIR PLANO BÁSICO — R$10
-                </a>
-            </div>
-
-            <!-- PLANO PREMIUM (card em destaque, recomendado) -->
-            <div class="offer-card plan-premium">
-                <span class="offer-badge">⭐ MAIS COMPLETO · RECOMENDADO</span>
-
-                <h3 class="offer-name">PLANO PREMIUM</h3>
-                <div class="price-box">
-                    <p class="price-current">R$29,90</p>
-                    <p class="price-installments">pagamento único · ou parcelado no cartão</p>
-                </div>
-
-                <p class="offer-lead">O Manual + os <strong>4 bônus</strong> que aceleram a sua horta:</p>
-
-                <div class="offer-includes">
-                    <p>✅ <strong>O Manual da Horta em Casa completo</strong></p>
-                    <p>🎁 <strong>Bônus 1 — Calendário de Plantio Anual:</strong> o que plantar mês a mês, pra nunca perder o tempo certo</p>
-                    <p>🎁 <strong>Bônus 2 — Guia do Adubo Natural:</strong> transforme casca e resto de cozinha em comida pra sua horta, de graça</p>
-                    <p>🎁 <strong>Bônus 3 — Controle de Pragas sem Veneno:</strong> receitas caseiras pra proteger suas plantas</p>
-                    <p>🎁 <strong>Bônus 4 — Temperos Frescos em Casa:</strong> cebolinha, salsinha, manjericão sempre à mão</p>
-                    <p>✅ Acesso imediato · Garantia de 7 dias</p>
-                </div>
-
-                <a href="https://visplatform.pro/checkout-fast/manual-da-horta-premium" class="btn btn-primary btn-cta-main pulse" id="cta-main">
-                    QUERO COMEÇAR MINHA HORTA
-                </a>
-
-                <p class="security-text">🔒 Pagamento 100% seguro · 📱 Acesso imediato após o pagamento</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-         BLOCO 5 — PROVA SOCIAL
-         >>> PENDÊNCIA: depoimentos representativos de lançamento.
-             Trocar por prints reais conforme as vendas entram.
-         ============================================================ -->
-    <section class="testimonials-section">
-        <div class="container">
-            <h2 class="section-title">Quem começou, colheu</h2>
-
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-avatar">M</div>
-                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">"Achei que precisava de um quintalzão. Comecei com quatro vasos na varanda e já tô colhendo minha própria salada."</p>
-                    <p class="testimonial-author">— Marta, 58</p>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-avatar">S</div>
-                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">"Nunca tinha plantado nada. Segui o passo a passo e minha primeira alface nasceu. Não troco por nada."</p>
-                    <p class="testimonial-author">— Sônia, 63</p>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-avatar">C</div>
-                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">"O que eu mais gosto é saber exatamente de onde veio o que eu como. Isso não tem preço."</p>
-                    <p class="testimonial-author">— Cleusa, 61</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-         BLOCO 6 — GARANTIA
-         ============================================================ -->
-    <section class="guarantee-section">
-        <div class="container">
-            <div class="guarantee-content">
-                <div class="guarantee-icon">🛡️</div>
-                <h2 class="guarantee-title">7 dias de garantia</h2>
-                <p class="guarantee-description">
-                    Você tem <strong>7 dias</strong> pra abrir o Manual, colocar em prática e ver com seus próprios
-                    olhos. Se achar que não é pra você, é só pedir o reembolso — e devolvo cada centavo, sem
-                    pergunta nenhuma.
-                </p>
-                <p class="guarantee-highlight">O risco é todo meu.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-         BLOCO 7 — CTA FINAL + FAQ
-         ============================================================ -->
-    <section class="final-cta-section">
-        <div class="container">
-            <p class="final-lead">
-                Você pode continuar dependendo da prateleira do mercado e do que a indústria decide colocar no seu prato.
-            </p>
-            <p class="final-lead final-lead-strong">
-                Ou pode começar hoje a colher o seu próprio alimento, fresco, no quintal de casa.
-            </p>
-
-            <a href="#oferta" class="btn btn-primary btn-cta-final pulse">
-                QUERO MINHA HORTA EM CASA
-            </a>
-            <p class="price-badge price-badge-light">🌱 A partir de <strong>R$10</strong> · acesso imediato após o pagamento</p>
-        </div>
-    </section>
-
-    <section class="faq-section">
-        <div class="container">
-            <h2 class="section-title">Perguntas frequentes</h2>
-
-            <div class="faq-list">
-                <div class="faq-item">
-                    <button class="faq-question">
-                        Preciso de espaço grande?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Não. Dá pra começar numa varanda, com vasos.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">
-                        Nunca plantei na vida, consigo?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Consegue. O Manual foi feito pra quem tá começando do zero.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">
-                        Como recebo?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>É digital. Cai no seu e-mail na hora do pagamento — abre no celular ou no computador.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">
-                        Serve pra qualquer região do Brasil?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Serve. O calendário de plantio te mostra o que dá em cada época.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    </main>
-
-    <!-- ============================================================
-         FOOTER
-         ============================================================ -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-header">
-                <span class="footer-icon">🌱</span>
-                <h3 class="footer-title">Manual da Horta em Casa</h3>
-            </div>
-            <p class="footer-subtitle">Colha o seu próprio alimento, fresco, no quintal de casa</p>
-
-            <div class="footer-bottom">
-                <p class="footer-copyright">© 2026 Manual da Horta em Casa. Todos os direitos reservados.</p>
-                <p class="footer-disclaimer">Este produto é digital e entregue pela plataforma de pagamento. O acesso é enviado automaticamente após a confirmação do pagamento.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- JavaScript (ofuscado; caminho relativo) -->
-    <script src="./assets/script.js"></script>
+<!-- JavaScript (ofuscado; caminho relativo) -->
+<script src="./assets/script.js"></script>
 </body>
 </html>
