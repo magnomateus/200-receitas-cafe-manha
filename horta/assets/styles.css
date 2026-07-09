@@ -105,6 +105,14 @@ a:hover{color:var(--terra)}
 .deliver-main{margin:0 auto var(--space-lg);max-width:340px;text-align:center}
 .deliver-main .imgph{aspect-ratio:4/3;min-height:200px}
 .deliver-main figcaption{margin-top:12px;font-family:var(--font-head);font-weight:800;color:var(--green-dark);font-size:1.12rem}
+
+/* Preview "por dentro do Manual" (paginas internas reais) */
+.deliver-peek-label{text-align:center;font-family:var(--font-head);font-weight:800;color:var(--green-dark);margin-bottom:var(--space-md);font-size:1.08rem}
+.peek-grid{display:grid;grid-template-columns:1fr;gap:18px;max-width:540px;margin:0 auto var(--space-lg)}
+.peek-item{text-align:center}
+.peek-item img{width:100%;height:auto;border-radius:14px;border:1px solid #e3d8c4;box-shadow:0 6px 20px rgba(0,0,0,.10);background:#fff}
+.peek-item figcaption{margin-top:10px;font-weight:700;color:var(--soil-med);font-size:.92rem;line-height:1.35}
+
 .deliver-bonus-label{text-align:center;font-weight:700;color:var(--terra-dark);margin-bottom:var(--space-md);font-size:1.02rem}
 .deliver-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:520px;margin:0 auto}
 .deliver-item{text-align:center}
@@ -220,6 +228,7 @@ a:hover{color:var(--terra)}
 
   .feat-grid{grid-template-columns:1fr 1fr;gap:16px;max-width:940px}
   .deliver-main{max-width:420px}
+  .peek-grid{grid-template-columns:repeat(3,1fr);gap:20px;max-width:980px}
   .deliver-grid{grid-template-columns:repeat(4,1fr);gap:18px;max-width:920px}
   .testimonials-grid{grid-template-columns:repeat(3,1fr);max-width:1000px}
 }
