@@ -44,8 +44,8 @@
     <script>
       window.HORTA_CONFIG = {
         META_PIXEL_ID: '2474205939758959',   // pixel real da Horta (dispara init + PageView via script.js)
-        VIS_TID: '19',          // produtor na VIS (mesmo do Manual do Pescador)
-        VIS_PIXEL_KEY: '',      // opcional: pk do pixel. Vazio => usa o pixel is_default do produtor
+        VIS_TID: '',            // VAZIO de propósito: o snippet da VIS agora é a tag estática no <head> abaixo
+                                //   (evita carregar 2x). Para usar pk, edite a tag: ...snippet.js?tid=19&pk=SEU_PK
         UTMIFY_PIXEL_ID: ''     // opcional: atribuição paralela via Utmify
       };
     </script>
@@ -64,6 +64,10 @@
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=2474205939758959&ev=PageView&noscript=1"
     /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <!-- VIS Tracking (UTM passthrough + CAPI: PageView/ViewContent/InitiateCheckout) -->
+    <script src="https://visplatform.pro/api/tracking/snippet.js?tid=19"></script>
 </head>
 <body>
 
