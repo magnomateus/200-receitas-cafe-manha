@@ -115,8 +115,9 @@ a:hover{color:var(--terra)}
 .peek-carousel{overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none;cursor:grab;margin:0 auto var(--space-sm);max-width:980px}
 .peek-carousel::-webkit-scrollbar{display:none}
 .peek-carousel.dragging{cursor:grabbing;scroll-snap-type:none}
-.peek-track{display:flex;gap:14px;padding:4px 2px}
-.peek-slide{flex:0 0 80%;max-width:340px;scroll-snap-align:center;text-align:center}
+.peek-track{display:flex;gap:16px;padding:4px 2px}
+/* 1 imagem por tela: cada slide ocupa a largura toda (sem espiar o proximo) */
+.peek-slide{flex:0 0 100%;max-width:100%;scroll-snap-align:center;text-align:center}
 .peek-slide img{width:100%;height:auto;border-radius:14px;border:1px solid #e3d8c4;box-shadow:0 6px 20px rgba(0,0,0,.10);background:#fff;pointer-events:none}
 .peek-slide figcaption{margin-top:10px;font-weight:700;color:var(--soil-med);font-size:.9rem;line-height:1.35}
 .carousel-hint{text-align:center;color:var(--soil-light);font-size:.85rem;margin-bottom:var(--space-md)}
@@ -244,7 +245,9 @@ a:hover{color:var(--terra)}
   .contrast-arrow{transform:rotate(-90deg)}
 
   .feat-grid{grid-template-columns:1fr 1fr;gap:16px;max-width:940px}
-  .peek-slide{flex:0 0 42%;max-width:none}
+  /* desktop: 1 slide por vez, imagem centralizada e limitada p/ nao ficar gigante */
+  .peek-carousel{max-width:640px}
+  .peek-slide img{max-width:560px;margin-left:auto;margin-right:auto}
   .bonus-grid{grid-template-columns:repeat(4,1fr);gap:20px;max-width:1000px}
   .testimonials-grid{grid-template-columns:repeat(3,1fr);max-width:1000px}
 }
