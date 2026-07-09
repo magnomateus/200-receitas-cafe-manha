@@ -44,8 +44,8 @@
     <script>
       window.HORTA_CONFIG = {
         META_PIXEL_ID: '2474205939758959',   // pixel real da Horta (dispara init + PageView via script.js)
-        VIS_TID: '',            // VAZIO de propósito: o snippet da VIS agora é a tag estática no <head> abaixo
-                                //   (evita carregar 2x). Para usar pk, edite a tag: ...snippet.js?tid=19&pk=SEU_PK
+        VIS_TID: '',            // VAZIO de propósito: o snippet da VIS é a tag estática no <head> abaixo
+                                //   (evita carregar 2x). O pk do PIXEL HORTA já vai na tag.
         UTMIFY_PIXEL_ID: ''     // opcional: atribuição paralela via Utmify
       };
     </script>
@@ -66,8 +66,10 @@
     /></noscript>
     <!-- End Meta Pixel Code -->
 
-    <!-- VIS Tracking (UTM passthrough + CAPI: PageView/ViewContent/InitiateCheckout) -->
-    <script src="https://visplatform.pro/api/tracking/snippet.js?tid=19"></script>
+    <!-- VIS Tracking (UTM passthrough + CAPI: PageView/ViewContent/InitiateCheckout)
+         pk = pixel_key do "PIXEL HORTA" (2474205939758959). Amarra o CAPI a ESTE pixel,
+         independente de qual esteja marcado como padrao no painel. -->
+    <script src="https://visplatform.pro/api/tracking/snippet.js?tid=19&pk=01KX3DHVV5Y6GBFEDCHZ9FD185"></script>
 </head>
 <body>
 
