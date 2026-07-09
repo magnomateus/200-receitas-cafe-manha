@@ -114,9 +114,10 @@ a:hover{color:var(--terra)}
 .peek-item figcaption{margin-top:10px;font-weight:700;color:var(--soil-med);font-size:.92rem;line-height:1.35}
 
 .deliver-bonus-label{text-align:center;font-weight:700;color:var(--terra-dark);margin-bottom:var(--space-md);font-size:1.02rem}
-.deliver-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:520px;margin:0 auto}
+.deliver-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:520px;margin:0 auto;align-items:start}
 .deliver-item{text-align:center}
-.deliver-item .imgph{aspect-ratio:3/4;min-height:150px}
+/* aspect fixo + contain: uniformiza a grade sem cortar o titulo das capas */
+.deliver-item img{width:100%;aspect-ratio:4/5;object-fit:contain;background:#fff;border-radius:12px;border:1px solid #e3d8c4;box-shadow:0 5px 16px rgba(0,0,0,.10)}
 .deliver-item figcaption{margin-top:9px;font-weight:700;color:var(--green-dark);font-size:.92rem;line-height:1.3}
 
 /* ==========================================================================
