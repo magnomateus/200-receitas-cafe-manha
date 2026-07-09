@@ -5,10 +5,14 @@
 
 /* ==========================================================================
    ANTI-COPIA (bloqueia selecao / arrasto de imagem)
+   So entra em vigor quando o script.js adiciona a classe .protegido no <body>,
+   o que depende de HORTA_CONFIG.PROTECOES === true (ver index.html).
+   Em modo construcao (PROTECOES: false) a pagina fica normal: da pra
+   selecionar, copiar, inspecionar e usar o F12.
    ========================================================================== */
-*{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none}
-img{-webkit-user-drag:none;-moz-user-drag:none;user-drag:none}
-input,textarea{-webkit-user-select:text;user-select:text}
+.protegido,.protegido *{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none}
+.protegido img{-webkit-user-drag:none;-moz-user-drag:none;user-drag:none}
+.protegido input,.protegido textarea{-webkit-user-select:text;user-select:text}
 
 /* ==========================================================================
    RESET & TOKENS

@@ -36,6 +36,11 @@
          ============================================================ -->
     <script>
       window.HORTA_CONFIG = {
+        // ⚠️ MODO CONSTRUÇÃO: proteções desligadas (F12/inspecionar/selecionar/copiar liberados).
+        //    TROCAR PARA true ANTES DE LANÇAR (ativa anti-cópia CSS + JS).
+        //    O guarda anti-clonagem continua ativo independente deste flag.
+        PROTECOES: false,
+
         META_PIXEL_ID: '2474205939758959',   // pixel real da Horta (init + PageView via script.js)
         VIS_TID: '',            // VAZIO de propósito: o snippet da VIS é a tag estática no <head> abaixo
                                 //   (evita carregar 2x). O pk do PIXEL HORTA já vai na tag.
