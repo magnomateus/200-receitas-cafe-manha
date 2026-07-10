@@ -27,6 +27,9 @@ a:hover{color:var(--terra)}
 
 /* .page fluida: sem trava de 480px, para funcionar bem no desktop tambem */
 .shell{background:var(--paper)}
+.urgency-bar{background:linear-gradient(90deg,var(--terra) 0%,var(--terra-dark) 100%);color:#fff;text-align:center;padding:11px 16px;font-family:var(--font-body);font-weight:700;font-size:.98rem;line-height:1.35;letter-spacing:.2px}
+.urgency-bar strong{font-weight:800}
+.urgency-bar #urgency-date{text-transform:capitalize}
 .page{font-family:var(--font-body);font-size:1.15rem;line-height:1.7;color:var(--soil);background:var(--paper);-webkit-font-smoothing:antialiased;overflow-x:hidden;width:100%;margin:0 auto;min-height:100vh}
 .container{max-width:var(--maxw);margin:0 auto;padding:0 22px;width:100%}
 .section-title{font-family:var(--font-head);font-size:var(--h2);font-weight:800;color:var(--green-dark);text-align:center;line-height:1.15;margin-bottom:var(--space-lg)}
@@ -54,7 +57,8 @@ a:hover{color:var(--terra)}
 .hero-inner{display:grid;grid-template-columns:1fr;gap:26px;align-items:center;text-align:center;margin:0 auto}
 .hero-copy{text-align:center;display:flex;flex-direction:column;align-items:center}
 .hero-title{font-family:var(--font-head);font-size:clamp(1.9rem,4.2vw,3rem);font-weight:900;line-height:1.12;letter-spacing:-.5px}
-.hero .btn-cta{margin-top:28px}
+.hero-img{width:100%;max-width:460px;height:auto;display:block;margin:18px auto 0;border-radius:16px;box-shadow:0 12px 30px rgba(0,0,0,.30)}
+.hero .btn-cta{margin-top:20px}
 .price-badge{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:1rem;font-weight:700;color:#fff;background:rgba(0,0,0,.22);padding:9px 18px;border-radius:999px}
 .price-badge strong{color:var(--terra-light)}
 .hero-media .imgph{min-height:220px;aspect-ratio:16/10;background:repeating-linear-gradient(45deg,rgba(255,255,255,.14),rgba(255,255,255,.14) 11px,rgba(255,255,255,.07) 11px,rgba(255,255,255,.07) 22px);border-color:rgba(255,255,255,.25)}
@@ -238,10 +242,9 @@ a:hover{color:var(--terra)}
    ========================================================================== */
 @media(min-width:768px){
   :root{--h2:2.2rem}
-  .hero{padding:64px 0 72px}
-  .hero-inner{grid-template-columns:1.05fr .95fr;gap:40px;text-align:left}
-  .hero-copy{text-align:left;align-items:flex-start}
-  .hero-media .imgph{min-height:300px}
+  .hero{padding:52px 0 60px}
+  .hero-inner{max-width:600px}
+  .hero-img{max-width:520px}
 
   .idea{max-width:760px}
   /* contraste lado a lado; a seta desce -> aponta pra direita */
