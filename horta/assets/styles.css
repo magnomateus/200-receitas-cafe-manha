@@ -129,9 +129,9 @@ a:hover{color:var(--terra)}
 
 /* Carrossel "por dentro do Manual" (loop infinito + bolinhas) */
 .deliver-peek-label{text-align:center;font-family:var(--font-head);font-weight:800;color:var(--green-dark);margin-bottom:var(--space-md);font-size:1.08rem}
-.peek-carousel{max-width:520px;margin:0 auto var(--space-md)}
+.peek-carousel{max-width:520px;margin:0 auto var(--space-md);-webkit-user-select:none;-moz-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}
 .peek-viewport{overflow:hidden;border-radius:14px;border:1px solid #e3d8c4;box-shadow:0 6px 20px rgba(0,0,0,.10);background:#fff;aspect-ratio:1/1}
-.peek-track{display:flex;height:100%;will-change:transform;cursor:grab}
+.peek-track{display:flex;height:100%;will-change:transform;cursor:grab;touch-action:pan-y}
 .peek-track.dragging{cursor:grabbing}
 .peek-slide{flex:0 0 100%;min-width:100%;height:100%;margin:0}
 .peek-slide img{width:100%;height:100%;object-fit:contain;display:block;pointer-events:none;-webkit-user-drag:none;user-drag:none}
