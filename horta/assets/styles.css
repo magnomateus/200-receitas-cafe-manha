@@ -27,6 +27,16 @@ a:hover{color:var(--terra)}
 
 /* .page fluida: sem trava de 480px, para funcionar bem no desktop tambem */
 .shell{background:var(--paper)}
+/* Notificação de venda (prova social simulada) */
+.sales-toast{position:fixed;right:16px;top:16px;z-index:9999;width:calc(100% - 32px);max-width:290px;display:flex;gap:12px;align-items:center;background:#fff;border:2px solid #a8d5ae;border-radius:14px;box-shadow:0 12px 32px rgba(0,0,0,.20);padding:12px 16px 12px 12px;opacity:0;transform:translateX(24px);pointer-events:none;transition:opacity .35s ease,transform .35s ease}
+.sales-toast.show{opacity:1;transform:translateX(0)}
+.sales-toast-ic{flex-shrink:0;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#6fcf85 0%,#4caf50 100%);color:#fff;font-size:1rem}
+.sales-toast-body{display:flex;flex-direction:column;line-height:1.25;text-align:left;min-width:0}
+.sales-toast-body strong{font-size:.95rem;color:var(--soil);font-weight:800}
+.sales-toast-body span{font-size:.82rem;color:var(--soil-med)}
+.sales-toast-meta{color:var(--soil-light)!important;font-size:.76rem!important;margin-top:2px}
+@media(prefers-reduced-motion:reduce){.sales-toast{transition:opacity .2s}}
+
 .urgency-bar{background:linear-gradient(90deg,var(--terra) 0%,var(--terra-dark) 100%);color:#fff;text-align:center;padding:11px 16px;font-family:var(--font-body);font-weight:700;font-size:.98rem;line-height:1.35;letter-spacing:.2px}
 .urgency-bar strong{font-weight:800}
 .urgency-bar #urgency-date{text-transform:capitalize}
@@ -44,8 +54,8 @@ a:hover{color:var(--terra)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:19px 38px;font-family:var(--font-body);font-size:1.18rem;font-weight:800;text-transform:uppercase;letter-spacing:.4px;border-radius:12px;border:none;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s;text-align:center;line-height:1.25}
 .btn-primary{background:linear-gradient(135deg,var(--terra) 0%,var(--terra-dark) 100%);color:#fff;box-shadow:0 6px 18px rgba(176,84,31,.38)}
 .btn-cta,.btn-cta-main,.btn-cta-final{width:100%;max-width:440px}
-.btn-basic{width:100%;max-width:420px;background:var(--card);color:var(--green-dark);border:2px solid var(--green);box-shadow:0 3px 10px rgba(0,0,0,.06)}
-@media(hover:hover) and (pointer:fine){.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(176,84,31,.5)}.btn-basic:hover{background:#f3efe6;transform:translateY(-2px)}}
+.btn-basic{width:100%;max-width:420px;background:linear-gradient(135deg,var(--terra) 0%,var(--terra-dark) 100%);color:#fff;box-shadow:0 6px 18px rgba(176,84,31,.38)}
+@media(hover:hover) and (pointer:fine){.btn-primary:hover,.btn-basic:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(176,84,31,.5)}}
 .pulse{animation:pulse 2.4s infinite}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
 @media(prefers-reduced-motion:reduce){.pulse{animation:none}}
@@ -58,6 +68,8 @@ a:hover{color:var(--terra)}
 .hero-copy{text-align:center;display:flex;flex-direction:column;align-items:center}
 .hero-title{font-family:var(--font-head);font-size:clamp(1.9rem,4.2vw,3rem);font-weight:900;line-height:1.12;letter-spacing:-.5px}
 .hero-img{width:100%;max-width:460px;height:auto;display:block;margin:18px auto 0;border-radius:16px;box-shadow:0 12px 30px rgba(0,0,0,.30)}
+.hero-sub{font-size:clamp(1.02rem,3.6vw,1.2rem);line-height:1.5;color:rgba(255,255,255,.95);max-width:540px;margin:16px auto 0}
+.hero-sub strong{color:var(--terra-light)}
 .hero .btn-cta{margin-top:20px}
 .price-badge{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:1rem;font-weight:700;color:#fff;background:rgba(0,0,0,.22);padding:9px 18px;border-radius:999px}
 .price-badge strong{color:var(--terra-light)}
@@ -67,7 +79,7 @@ a:hover{color:var(--terra)}
 /* ==========================================================================
    2. A IDEIA CENTRAL
    ========================================================================== */
-.story-section{padding:var(--space-xl) 0;background:var(--card)}
+.story-section{padding:var(--space-xl) 0 var(--space-md);background:var(--card)}
 .idea{max-width:640px;margin:0 auto;text-align:center}
 .eyebrow.eyebrow-dark{color:var(--terra-dark)}
 .idea-statement{font-family:var(--font-head);font-weight:900;font-size:1.8rem;line-height:1.2;color:var(--green-dark);margin-bottom:var(--space-md)}
@@ -109,7 +121,7 @@ a:hover{color:var(--terra)}
    4. VEJA O QUE VOCE VAI RECEBER
    ========================================================================== */
 .title-tight{margin-bottom:var(--space-sm)}
-.deliver-section{padding:var(--space-xl) 0;background:var(--card)}
+.deliver-section{padding:var(--space-md) 0 var(--space-xl);background:var(--card)}
 .deliver-sub{text-align:center;max-width:520px;margin:0 auto var(--space-lg);color:var(--soil-med);font-size:1.05rem}
 .deliver-main{margin:0 auto var(--space-lg);max-width:340px;text-align:center}
 .deliver-main .imgph{aspect-ratio:4/3;min-height:200px}
