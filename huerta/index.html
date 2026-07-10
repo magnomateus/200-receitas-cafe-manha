@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- VIS: identifica el producto de esta página para el snippet -->
+    <meta name="vis-product" content="manual-de-la-huerta">
+
+    <!-- SEO -->
+    <title>Manual de la Huerta en Casa | Cosecha tu Propio Alimento Fresco</title>
+    <meta name="description" content="El paso a paso para tener tu propia huerta desde cero — aunque no tengas espacio, experiencia ni casi nada para empezar. Desde R$10, acceso inmediato.">
+    <meta name="author" content="Manual de la Huerta en Casa">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Manual de la Huerta en Casa | Cosecha tu Propio Alimento Fresco">
+    <meta property="og:description" content="Ten tu propia huerta en casa, aunque nunca hayas plantado nada en tu vida.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_ES">
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;700;800;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Stylesheet (ruta relativa — corre en subcarpeta /huerta/) -->
+    <link rel="stylesheet" href="./assets/styles.css">
+
+    <!-- ============================================================
+         CONFIG DE RASTREAMENTO  —  ⚠️ COMPLETAR ANTES DE PUBLICAR
+         ============================================================ -->
+    <script>
+      window.HUERTA_CONFIG = {
+        // ⚠️ MODO CONSTRUCCIÓN: protecciones desactivadas. Poner true antes de lanzar.
+        PROTECOES: false,
+        META_PIXEL_ID: '',      // ⚠️ pixel de la versión ES (registrar en el panel VIS)
+        VIS_TID: '',            // el snippet VIS es la etiqueta estática de abajo
+        UTMIFY_PIXEL_ID: ''
+      };
+    </script>
+
+    <!-- Meta Pixel base (la inicialización real está en assets/script.js) -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    </script>
+
+    <!-- VIS Tracking (UTM passthrough + CAPI)  ⚠️ PENDIENTE: añadir &pk= del pixel ES -->
+    <script src="https://visplatform.pro/api/tracking/snippet.js?tid=19"></script>
+</head>
+<body>
+<div class="shell"><div class="page">
+
+<!-- Barra de urgencia (fecha de hoy, se actualiza sola vía script.js) -->
+<div class="urgency-bar">🔥 <strong>Oferta válida solo hoy</strong> · <span id="urgency-date">hoy</span></div>
+
+<!-- ============================================================
+     1. HERO
+     ============================================================ -->
+<header class="hero">
+<div class="container">
+<div class="hero-inner">
+<div class="hero-copy">
+<h1 class="hero-title">¿Sabes cuánto agrotóxico ya ingeriste este mes — sin siquiera darte cuenta?</h1>
+<img class="hero-img" src="./assets/hero-comparativo.webp" alt="Comparación: alimento con veneno del supermercado vs huerta fresca y sin veneno en casa" width="776" height="561" loading="eager" fetchpriority="high">
+<p class="hero-sub">Aprende a armar tu propia huerta en casa, desde cero — y cosecha verdura fresca, limpia y sin veneno, aunque nunca hayas plantado nada en tu vida.</p>
+<a href="#oferta" class="btn btn-primary btn-cta pulse">QUIERO MI HUERTA EN CASA</a>
+<p class="price-badge">🌱 Desde <strong>R$10</strong> · acceso inmediato</p>
+</div>
+</div>
+</div>
+</header>
+
+<main>
+
+<!-- ============================================================
+     2. LA INDUSTRIA LUCRA CON TU SALUD
+     ============================================================ -->
+<section class="story-section">
+<div class="container">
+<div class="idea">
+<h2 class="idea-statement">La Industria Lucra <em>con tu Salud</em></h2>
+<div class="contrast">
+<div class="contrast-col contrast-bad">
+<span class="contrast-tag"><i class="fa-solid fa-cart-shopping"></i> La góndola del supermercado</span>
+<p>Alimentos llenos de <strong>agrotóxicos y químicos</strong>. Ingieres un poco cada día, sin darte cuenta — venenos que se acumulan en el cuerpo generando enfermedades, problemas hormonales y hasta cáncer.</p>
+</div>
+<div class="contrast-arrow"><i class="fa-solid fa-arrow-down-long"></i></div>
+<div class="contrast-col contrast-good">
+<span class="contrast-tag"><i class="fa-solid fa-seedling"></i> Tu huerta en casa</span>
+<p>Cosechas tu propio alimento, <strong>fresco, limpio y sin ningún agrotóxico</strong>, al momento, en el patio de tu casa — aunque nunca hayas plantado nada en tu vida.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============================================================
+     3. MIRA LO QUE VAS A RECIBIR (carrusel)
+     ============================================================ -->
+<section class="deliver-section">
+<div class="container">
+<h2 class="section-title title-tight">Mira lo que vas a recibir</h2>
+
+<div class="peek-carousel" data-carousel>
+<div class="peek-viewport">
+<div class="peek-track">
+<figure class="peek-slide"><img src="./assets/manual-preview-1.webp" alt="Página del Manual: cómo reconocer y preparar la tierra buena" width="776" height="752" loading="lazy"></figure>
+<figure class="peek-slide"><img src="./assets/manual-preview-2.webp" alt="Página del Manual: el espacio correcto entre las plantas" width="661" height="501" loading="lazy"></figure>
+<figure class="peek-slide"><img src="./assets/manual-preview-3.webp" alt="Página del Manual: espanta las plagas sin veneno" width="773" height="752" loading="lazy"></figure>
+</div>
+</div>
+<div class="peek-dots" aria-label="Navegación de las imágenes"></div>
+</div>
+<div class="deliver-cta">
+<a href="#oferta" class="btn btn-primary btn-cta pulse">QUIERO MI HUERTA EN CASA</a>
+</div>
+</div>
+</section>
+
+<!-- ============================================================
+     4. PARA QUIÉN ES ESTE MATERIAL
+     ============================================================ -->
+<section class="whatis-section">
+<div class="container">
+<h2 class="section-title">¿Para quién es este Material?</h2>
+<div class="feat-grid">
+<div class="feat"><span class="feat-ic"><i class="fa-solid fa-seedling"></i></span><div><h3>Principiantes</h3><p>Ideal para quien nunca tuvo contacto con el cultivo y está empezando ahora: el paso a paso es desde cero, sin necesidad de experiencia.</p></div></div>
+<div class="feat"><span class="feat-ic"><i class="fa-solid fa-leaf"></i></span><div><h3>Amantes de la naturaleza</h3><p>Perfecto para quien ama las plantas, meter las manos en la tierra y tener más verde y vida dentro de casa.</p></div></div>
+<div class="feat"><span class="feat-ic"><i class="fa-solid fa-users"></i></span><div><h3>Familias</h3><p>Indicado para quien quiere poner alimento fresco, saludable y sin veneno en la mesa de los que ama.</p></div></div>
+<div class="feat"><span class="feat-ic"><i class="fa-solid fa-heart"></i></span><div><h3>Jubilados y 50+</h3><p>Ideal para quien busca una actividad tranquila, placentera y saludable para hacer a su propio ritmo, en casa.</p></div></div>
+</div>
+</div>
+</section>
+
+<!-- ============================================================
+     4b. LOS 4 BONOS
+     ============================================================ -->
+<section class="bonus-section">
+<div class="container">
+<h2 class="section-title title-tight">Y además llevas 4 bonos</h2>
+<div class="bonus-grid">
+<article class="bonus-card">
+<img class="bonus-cover" src="./assets/bonus-1.webp" alt="Bono 1 — Calendario de Siembra Anual" width="600" height="745" loading="lazy">
+<div class="bonus-body"><span class="bonus-tag">Bono 1</span><p>Qué plantar mes a mes, para nunca perder el momento justo.</p><p class="bonus-price"><span class="strike">De R$27</span> <span class="bonus-free">GRATIS</span></p></div>
+</article>
+<article class="bonus-card">
+<img class="bonus-cover" src="./assets/bonus-2.webp" alt="Bono 2 — Guía del Abono Natural" width="600" height="745" loading="lazy">
+<div class="bonus-body"><span class="bonus-tag">Bono 2</span><p>Convierte cáscaras y restos de cocina en comida para tu huerta, gratis.</p><p class="bonus-price"><span class="strike">De R$27</span> <span class="bonus-free">GRATIS</span></p></div>
+</article>
+<article class="bonus-card">
+<img class="bonus-cover" src="./assets/bonus-3.webp" alt="Bono 3 — Control de Plagas sin Veneno" width="392" height="532" loading="lazy">
+<div class="bonus-body"><span class="bonus-tag">Bono 3</span><p>Recetas caseras para proteger tus plantas, sin ningún veneno.</p><p class="bonus-price"><span class="strike">De R$27</span> <span class="bonus-free">GRATIS</span></p></div>
+</article>
+<article class="bonus-card">
+<img class="bonus-cover" src="./assets/bonus-4.webp" alt="Bono 4 — Condimentos Frescos en Casa" width="600" height="745" loading="lazy">
+<div class="bonus-body"><span class="bonus-tag">Bono 4</span><p>Cebollín, perejil y albahaca siempre a mano.</p><p class="bonus-price"><span class="strike">De R$27</span> <span class="bonus-free">GRATIS</span></p></div>
+</article>
+</div>
+</div>
+</section>
+
+<!-- ============================================================
+     5. LA OFERTA (2 planes)
+     ============================================================ -->
+<section class="offer-section" id="oferta">
+<div class="container">
+<div class="offer-timer">
+<p class="offer-timer-label">⏳ La oferta de hoy termina en:</p>
+<div class="offer-timer-clock" id="offer-countdown">00:00:00</div>
+</div>
+<h2 class="section-title">Elige tu Plan</h2>
+
+<div class="plan-card plan-basic">
+<h3 class="plan-name">PLAN BÁSICO</h3>
+<div class="plan-price">
+<p class="plan-price-value">R$10</p>
+<p class="plan-price-note">pago único</p>
+</div>
+<div class="plan-includes">
+<p>✅ El Manual de la Huerta en Casa completo</p>
+<p>✅ Acceso inmediato</p>
+</div>
+<a href="https://visplatform.pro/checkout-fast/manual-de-la-huerta-basico" class="btn btn-basic btn-cta-main">QUIERO EL PLAN BÁSICO — R$10</a>
+</div>
+
+<div class="offer-card plan-premium">
+<span class="offer-badge">⭐ MÁS COMPLETO · RECOMENDADO</span>
+<h3 class="offer-name">PLAN PREMIUM</h3>
+<div class="price-box">
+<p class="price-current">R$29,90</p>
+<p class="price-installments">pago único · o en cuotas con tarjeta</p>
+</div>
+<p class="offer-lead">El Manual + los <strong>4 bonos</strong> que aceleran tu huerta:</p>
+<div class="offer-includes">
+<p>✅ <strong>El Manual de la Huerta en Casa completo</strong></p>
+<p>🎁 <strong>Bono 1 — Calendario de Siembra Anual</strong></p>
+<p>🎁 <strong>Bono 2 — Guía del Abono Natural</strong></p>
+<p>🎁 <strong>Bono 3 — Control de Plagas sin Veneno</strong></p>
+<p>🎁 <strong>Bono 4 — Condimentos Frescos en Casa</strong></p>
+<p>✅ Acceso inmediato · Garantía de 7 días</p>
+</div>
+<a href="https://visplatform.pro/checkout-fast/manual-de-la-huerta-premium" class="btn btn-primary btn-cta-main pulse" id="cta-main">QUIERO EMPEZAR MI HUERTA</a>
+<p class="security-text">🔒 Pago 100% seguro · 📱 Acceso inmediato tras el pago</p>
+</div>
+</div>
+</section>
+
+<!-- ============================================================
+     6. PRUEBA SOCIAL
+     ============================================================ -->
+<section class="testimonials-section">
+<div class="container">
+<h2 class="section-title">Mira lo que dicen nuestros clientes</h2>
+<div class="testimonials-grid">
+<div class="testimonial-card">
+<img class="testimonial-avatar" src="./assets/testimonial-1.webp" alt="Foto de Marta" width="240" height="240" loading="lazy">
+<div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+<p class="testimonial-text">"Creía que necesitaba un patio enorme. Empecé con cuatro macetas en el balcón y ya estoy cosechando mi propia ensalada."</p>
+<p class="testimonial-author">— Marta, 58</p>
+</div>
+<div class="testimonial-card">
+<img class="testimonial-avatar" src="./assets/testimonial-2.webp" alt="Foto de Sonia" width="240" height="240" loading="lazy">
+<div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+<p class="testimonial-text">"Nunca había plantado nada. Seguí el paso a paso y nació mi primera lechuga. No lo cambio por nada."</p>
+<p class="testimonial-author">— Sonia, 63</p>
+</div>
+<div class="testimonial-card">
+<img class="testimonial-avatar" src="./assets/testimonial-3.webp" alt="Foto de Cleusa" width="240" height="240" loading="lazy">
+<div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+<p class="testimonial-text">"Lo que más me gusta es saber exactamente de dónde viene lo que como. Eso no tiene precio."</p>
+<p class="testimonial-author">— Cleusa, 61</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============================================================
+     7. GARANTÍA
+     ============================================================ -->
+<section class="guarantee-section">
+<div class="container">
+<div class="guarantee-content">
+<div class="guarantee-icon">🛡️</div>
+<h2 class="guarantee-title">7 días de garantía</h2>
+<p class="guarantee-description">Tienes <strong>7 días</strong> para abrir el Manual, ponerlo en práctica y verlo con tus propios ojos. Si crees que no es para ti, solo pides el reembolso — y te devuelvo cada centavo, sin ninguna pregunta.</p>
+<p class="guarantee-highlight">El riesgo es todo mío.</p>
+</div>
+</div>
+</section>
+
+<!-- ============================================================
+     8. CTA FINAL + FAQ
+     ============================================================ -->
+<section class="final-cta-section">
+<div class="container">
+<p class="final-lead">Puedes seguir dependiendo de la góndola del supermercado y de lo que la industria decide poner en tu plato.</p>
+<p class="final-lead final-lead-strong">O puedes empezar hoy a cosechar tu propio alimento, fresco, en el patio de tu casa.</p>
+<a href="#oferta" class="btn btn-primary btn-cta-final pulse">QUIERO MI HUERTA EN CASA</a>
+<p class="price-badge price-badge-light">🌱 Desde <strong>R$10</strong> · acceso inmediato tras el pago</p>
+</div>
+</section>
+
+<section class="faq-section">
+<div class="container">
+<h2 class="section-title">Preguntas frecuentes</h2>
+<div class="faq-list">
+<div class="faq-item">
+<button class="faq-question">¿Necesito mucho espacio?<span class="faq-icon">+</span></button>
+<div class="faq-answer"><p>No. Puedes empezar en un balcón, con macetas.</p></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">Nunca planté en mi vida, ¿puedo?<span class="faq-icon">+</span></button>
+<div class="faq-answer"><p>Puedes. El Manual está hecho para quien empieza desde cero.</p></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">¿Cómo lo recibo?<span class="faq-icon">+</span></button>
+<div class="faq-answer"><p>Es digital. Llega a tu correo al momento del pago — se abre en el celular o en la computadora.</p></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">¿Sirve en cualquier país o clima?<span class="faq-icon">+</span></button>
+<div class="faq-answer"><p>Sí. El calendario de siembra te muestra qué plantar en cada época del año.</p></div>
+</div>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer class="footer">
+<div class="footer-container">
+<div class="footer-header">
+<span class="footer-icon">🌱</span>
+<h3 class="footer-title">Manual de la Huerta en Casa</h3>
+</div>
+<p class="footer-subtitle">Cosecha tu propio alimento, fresco, en el patio de tu casa</p>
+<div class="footer-bottom">
+<p class="footer-copyright">© 2026 Manual de la Huerta en Casa. Todos los derechos reservados.</p>
+<p class="footer-disclaimer">Este producto es digital y entregado por la plataforma de pago. El acceso se envía automáticamente tras la confirmación del pago.</p>
+</div>
+</div>
+</footer>
+
+</div></div>
+
+<!-- JavaScript (ofuscado; ruta relativa) -->
+<script src="./assets/script.js"></script>
+</body>
+</html>
