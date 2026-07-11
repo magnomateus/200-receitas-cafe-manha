@@ -5,6 +5,6 @@
      pasan a apuntar a "checkout". En el dominio oficial no tiene efecto. */
 window.__HUERTA = {
   "enabled": false,
-  "checkout": "https://visplatform.pro/checkout-fast/manual-de-la-huerta-premium",
-  "checkoutBasico": "https://visplatform.pro/checkout-fast/manual-de-la-huerta-basico"
+  "checkout": "https://pay.hotmart.com/P106697123R?bid=1783741532868",
+  "checkoutBasico": "https://pay.hotmart.com/G106697097V"
 };
