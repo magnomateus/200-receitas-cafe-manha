@@ -195,7 +195,7 @@ body {
 .app-mockup {
     display: block;
     width: 100%;
-    max-width: 320px;
+    max-width: 230px;
     height: auto;
     filter: drop-shadow(0 18px 40px rgba(43, 35, 32, 0.26));
 }
@@ -222,5 +222,5 @@ body {
     .headline { font-size: 2.6rem; }
     .highlight { font-size: 1.85rem; }
     .body-text { font-size: 1.18rem; }
-    .app-mockup { max-width: 340px; }
+    .app-mockup { max-width: 250px; }
 }
