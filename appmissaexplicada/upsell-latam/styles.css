@@ -1,0 +1,427 @@
+/* ==========================================================================
+   Upsell LATAM — App Misa Explicada
+   OTO curto: aviso fixo -> progresso -> oferta -> mockup -> benefícios -> CTA.
+   Mobile-first: o funil chega quase todo por celular; desktop é adaptação.
+   ========================================================================== */
+
+:root {
+    --burgundy: #8B1D1D;
+    --gold: #C9A227;
+    --cream: #FBF7F0;
+    --ink: #2b2320;
+    --green: #16a34a;
+    --green-dark: #15803d;
+
+    --ink-soft: rgba(43, 35, 32, 0.72);
+    --ink-faint: rgba(43, 35, 32, 0.5);
+    --line: rgba(139, 29, 29, 0.12);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', system-ui, -apple-system, sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --------------------------------------------------------------------------
+   Barra fixa de aviso — o freio do OTO: some da tela, some a oferta.
+   -------------------------------------------------------------------------- */
+.warning-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: var(--burgundy);
+    color: #fff;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.4;
+    padding: 10px 14px;
+    box-shadow: 0 2px 12px rgba(139, 29, 29, 0.25);
+}
+
+.page {
+    /* Espaço para a barra fixa não cobrir o conteúdo. */
+    padding: 72px 18px 48px;
+}
+
+.container {
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   Progresso — "falta um passo": empurra sem gritar.
+   -------------------------------------------------------------------------- */
+.progress-block {
+    margin-bottom: 28px;
+}
+
+.progress-labels {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 8px;
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+}
+
+.progress-labels strong {
+    color: var(--burgundy);
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.progress-track {
+    height: 8px;
+    background: rgba(139, 29, 29, 0.1);
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 98%;
+    height: 100%;
+    border-radius: 99px;
+    background: linear-gradient(90deg, var(--burgundy), var(--gold));
+}
+
+/* --------------------------------------------------------------------------
+   Oferta
+   -------------------------------------------------------------------------- */
+.hero {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.eyebrow {
+    display: inline-block;
+    background: rgba(201, 162, 39, 0.16);
+    color: #8a6d10;
+    border: 1px solid rgba(201, 162, 39, 0.4);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 99px;
+    margin-bottom: 14px;
+}
+
+.headline {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    color: var(--burgundy);
+    font-size: 1.85rem;
+    font-weight: 700;
+    line-height: 1.22;
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+}
+
+.subheadline {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    max-width: 44ch;
+    margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   Mockup — o produto visto antes de ser explicado.
+   -------------------------------------------------------------------------- */
+.mockup-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 32px;
+}
+
+.phone {
+    position: relative;
+    width: 232px;
+    background: #1a1a1a;
+    border-radius: 30px;
+    padding: 9px;
+    box-shadow: 0 18px 44px rgba(43, 35, 32, 0.28);
+}
+
+.phone-notch {
+    position: absolute;
+    top: 9px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 82px;
+    height: 16px;
+    background: #1a1a1a;
+    border-radius: 0 0 12px 12px;
+    z-index: 2;
+}
+
+.phone-screen {
+    background: var(--cream);
+    border-radius: 22px;
+    overflow: hidden;
+}
+
+.app-header {
+    background: var(--burgundy);
+    color: #fff;
+    padding: 26px 16px 14px;
+    text-align: center;
+}
+
+.app-name {
+    display: block;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.app-date {
+    display: block;
+    font-size: 0.62rem;
+    opacity: 0.82;
+    margin-top: 2px;
+}
+
+.app-body {
+    padding: 14px 12px 20px;
+}
+
+.app-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 13px;
+    box-shadow: 0 3px 12px rgba(43, 35, 32, 0.09);
+}
+
+.tag-liturgy {
+    display: inline-block;
+    background: rgba(22, 163, 74, 0.12);
+    color: var(--green-dark);
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 3px 8px;
+    border-radius: 99px;
+    margin-bottom: 8px;
+}
+
+.app-card-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.25;
+    margin-bottom: 6px;
+}
+
+.app-card-text {
+    font-size: 0.68rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin-bottom: 9px;
+}
+
+.app-card-ref {
+    display: block;
+    font-size: 0.58rem;
+    color: var(--ink-faint);
+    font-style: italic;
+    border-top: 1px solid rgba(43, 35, 32, 0.08);
+    padding-top: 7px;
+}
+
+/* --------------------------------------------------------------------------
+   Benefícios
+   -------------------------------------------------------------------------- */
+.benefits {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 22px 20px;
+    margin-bottom: 26px;
+    box-shadow: 0 4px 18px rgba(43, 35, 32, 0.05);
+}
+
+.benefits-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    color: var(--burgundy);
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.benefits-list {
+    list-style: none;
+}
+
+.benefits-list li {
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 12px;
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+}
+
+.benefits-list li:last-child {
+    margin-bottom: 0;
+}
+
+/* Cruz dourada no lugar do bullet — católico sem ser clichê. */
+.benefits-list li::before {
+    content: "✝";
+    position: absolute;
+    left: 4px;
+    top: -1px;
+    color: var(--gold);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   Preço + CTA
+   -------------------------------------------------------------------------- */
+.offer {
+    text-align: center;
+    margin-bottom: 22px;
+}
+
+.price-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 8px;
+}
+
+.price {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--burgundy);
+    line-height: 1;
+}
+
+.price-period {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink-faint);
+}
+
+.offer-line {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+}
+
+.offer-note {
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+    margin-bottom: 20px;
+}
+
+.btn-cta {
+    display: block;
+    width: 100%;
+    background: var(--green);
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.02rem;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    text-align: center;
+    padding: 19px 16px;
+    border-radius: 14px;
+    box-shadow: 0 8px 22px rgba(22, 163, 74, 0.32);
+    transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.btn-cta:hover {
+    background: var(--green-dark);
+}
+
+.btn-cta:active {
+    transform: scale(0.985);
+}
+
+/* Pulse leve: chama o olho sem parecer anúncio piscante. */
+.pulse {
+    animation: pulse 2.1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 8px 22px rgba(22, 163, 74, 0.32); }
+    50%      { transform: scale(1.018); box-shadow: 0 10px 28px rgba(22, 163, 74, 0.42); }
+}
+
+/* Respeita quem pediu menos movimento no sistema. */
+@media (prefers-reduced-motion: reduce) {
+    .pulse { animation: none; }
+}
+
+.cta-sub {
+    display: block;
+    font-size: 0.74rem;
+    color: var(--ink-faint);
+    margin-top: 9px;
+}
+
+.secure-seal {
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    margin-top: 16px;
+    line-height: 1.5;
+}
+
+/* --------------------------------------------------------------------------
+   Decline — discreto de propósito: existe, mas não compete com o CTA.
+   -------------------------------------------------------------------------- */
+.btn-decline {
+    display: block;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    text-decoration: underline;
+    padding: 12px;
+    margin-bottom: 28px;
+    transition: color 0.15s ease;
+}
+
+.btn-decline:hover {
+    color: var(--ink-soft);
+}
+
+.footer {
+    text-align: center;
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    border-top: 1px solid var(--line);
+    padding-top: 18px;
+}
+
+/* --------------------------------------------------------------------------
+   Desktop — adaptação, não o ponto de partida.
+   -------------------------------------------------------------------------- */
+@media (min-width: 640px) {
+    .warning-bar { font-size: 0.82rem; padding: 12px 16px; }
+    .page { padding-top: 78px; }
+    .headline { font-size: 2.3rem; }
+    .subheadline { font-size: 1rem; }
+    .phone { width: 258px; }
+    .benefits { padding: 26px 28px; }
+    .benefits-list li { font-size: 0.92rem; }
+    .price { font-size: 3.4rem; }
+    .btn-cta { font-size: 1.1rem; padding: 21px 18px; }
+}
