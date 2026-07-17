@@ -2,13 +2,14 @@
 <!--
   ============================================================================
   UPSELL — App Misa Explicada (LATAM / ES)
-  Estrutura minimalista, no molde da referência Preachfy.
+  Estilo no molde da referência validada (sabedoriadigital / preachfy):
+  Montserrat forte + Roboto no corpo, texto GRANDE, fundo creme (a única
+  troca em relação à ref, que é preta). Ordem: aviso -> "Procesando el pago"
+  -> progresso -> headline -> EMBED Hotmart -> linha de destaque -> corpo ->
+  mockup -> footer.
 
-  BOTÃO DE COMPRA: Hotmart checkout-elements (salesFunnel). O próprio Hotmart
-  renderiza o botão de compra 1-clique E o "não, obrigado", lendo a oferta do
-  FUNIL configurado no painel da Hotmart — não há link hardcoded aqui.
-  Só funciona quando o comprador chega pelo funil da Hotmart (contexto de
-  sessão); fora disso o widget não monta (esperado).
+  BOTÃO DE COMPRA: Hotmart checkout-elements (salesFunnel) — intacto. Só monta
+  no contexto do funil da Hotmart. Conteúdo ES, tracking e mockup preservados.
   ============================================================================
 -->
 <html lang="es">
@@ -22,10 +23,10 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css">
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts — Montserrat (títulos) + Roboto (corpo), como a referência -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
     <!-- Utmify Pixel -->
     <script>
@@ -64,20 +65,18 @@
 </head>
 <body>
 
-    <!-- Barra fixa de aviso -->
+    <!-- 1. Barra de aviso fixa -->
     <div class="warning-bar">
-        ⚠️ Por favor, no cierres ni actualices esta página, pueden ocurrir errores al procesar tu pago.
+        Por favor, no cierres ni actualices esta página, pueden ocurrir errores al procesar tu pago.
     </div>
-
-    <!-- Header con la marca -->
-    <header class="site-header">
-        <span class="brand">✝ Misa Explicada</span>
-    </header>
 
     <main class="page">
         <div class="container">
 
-            <!-- Progreso -->
+            <!-- 2. Procesando el pago -->
+            <p class="processing">Procesando el pago<span class="dots"><span>.</span><span>.</span><span>.</span></span></p>
+
+            <!-- 3. Barra de progreso -->
             <section class="progress-block">
                 <div class="progress-labels">
                     <span>Estás a un paso de completar tu acceso</span>
@@ -88,17 +87,25 @@
                 </div>
             </section>
 
-            <!-- Oferta -->
-            <section class="hero">
-                <span class="gift">Acabas de recibir un regalo especial, disponible solo en esta página.</span>
-                <h1 class="headline">La app que te explica la Santa Misa de cada día, ¡con un solo clic!</h1>
-                <p class="subheadline">
-                    ¿Domingo? ¿Cuaresma? ¿Adviento? La app te trae la reflexión del día, el tiempo
-                    litúrgico y las lecturas explicadas en pocos minutos. La Santa Misa, contigo, todos los días.
-                </p>
+            <!-- 4. Headline -->
+            <h1 class="headline">Acabas de recibir un regalo especial, disponible solo en esta página.</h1>
+
+            <!-- 5. Checkout Hotmart (salesFunnel: botón 1-clic + "no, gracias") -->
+            <section class="checkout">
+                <div id="hotmart-sales-funnel"></div>
+                <p class="checkout-hint" id="checkout-hint">Cargando tu oferta…</p>
             </section>
 
-            <!-- Mockup del app -->
+            <!-- 6. Línea de destaque (valor) -->
+            <p class="highlight">La app que te explica la Santa Misa de cada día, ¡con un solo clic!</p>
+
+            <!-- 7. Cuerpo -->
+            <p class="body-text">
+                ¿Domingo? ¿Cuaresma? ¿Adviento? La app te trae la reflexión del día, el tiempo
+                litúrgico y las lecturas explicadas en pocos minutos. La Santa Misa, contigo, todos los días.
+            </p>
+
+            <!-- 8. Mockup del app -->
             <section class="mockup-wrap">
                 <img
                     src="mockup-app.png"
@@ -111,12 +118,7 @@
                 />
             </section>
 
-            <!-- Botón de compra — Hotmart salesFunnel (1-clic + "no, gracias") -->
-            <section class="checkout">
-                <div id="hotmart-sales-funnel"></div>
-                <p class="checkout-hint" id="checkout-hint">Cargando tu oferta…</p>
-            </section>
-
+            <!-- 9. Footer -->
             <footer class="footer">
                 ✝ Misa Explicada · Todos los derechos reservados ©
             </footer>
@@ -124,8 +126,8 @@
         </div>
     </main>
 
-    <!-- Widget de compra 1-clic da Hotmart. Monta o botão de SIM + o decline,
-         lendo a oferta do funil configurado no painel da Hotmart. -->
+    <!-- Widget de compra 1-clic da Hotmart (intacto). Monta o botão de SIM + o
+         decline, lendo a oferta do funil configurado no painel da Hotmart. -->
     <script>
       (function () {
         var s = document.createElement('script');
