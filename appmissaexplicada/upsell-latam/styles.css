@@ -1,6 +1,7 @@
 /* ==========================================================================
    Upsell LATAM — App Misa Explicada
-   OTO curto: aviso fixo -> progresso -> oferta -> mockup -> benefícios -> CTA.
+   OTO minimalista (molde Preachfy): header -> aviso -> progresso -> gift ->
+   headline -> subheadline -> mockup -> botão Hotmart (1-clic) -> footer.
    Mobile-first: o funil chega quase todo por celular; desktop é adaptação.
    ========================================================================== */
 
@@ -9,8 +10,6 @@
     --gold: #C9A227;
     --cream: #FBF7F0;
     --ink: #2b2320;
-    --green: #16a34a;
-    --green-dark: #15803d;
 
     --ink-soft: rgba(43, 35, 32, 0.72);
     --ink-faint: rgba(43, 35, 32, 0.5);
@@ -56,9 +55,26 @@ body {
     box-shadow: 0 2px 12px rgba(139, 29, 29, 0.25);
 }
 
+/* --------------------------------------------------------------------------
+   Header com a marca — logo abaixo da barra fixa.
+   -------------------------------------------------------------------------- */
+.site-header {
+    margin-top: 40px; /* espaço da barra fixa */
+    padding: 16px;
+    text-align: center;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+}
+
+.brand {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--burgundy);
+}
+
 .page {
-    /* Espaço para a barra fixa não cobrir o conteúdo. */
-    padding: 72px 18px 48px;
+    padding: 28px 18px 40px;
 }
 
 .container {
@@ -70,7 +86,7 @@ body {
    Progresso — "falta um passo": empurra sem gritar.
    -------------------------------------------------------------------------- */
 .progress-block {
-    margin-bottom: 28px;
+    margin-bottom: 26px;
 }
 
 .progress-labels {
@@ -97,40 +113,38 @@ body {
 }
 
 .progress-fill {
-    width: 98%;
+    /* 90% — upsell (o downsell usa 98%). */
+    width: 90%;
     height: 100%;
     border-radius: 99px;
     background: linear-gradient(90deg, var(--burgundy), var(--gold));
 }
 
 /* --------------------------------------------------------------------------
-   Oferta
+   Oferta — gift + headline + subheadline (centrado, como a referência).
    -------------------------------------------------------------------------- */
 .hero {
     text-align: center;
-    margin-bottom: 28px;
+    margin-bottom: 26px;
 }
 
-.eyebrow {
-    display: inline-block;
-    background: rgba(201, 162, 39, 0.16);
-    color: #8a6d10;
-    border: 1px solid rgba(201, 162, 39, 0.4);
-    font-size: 0.68rem;
+.gift {
+    display: block;
+    font-size: 0.9rem;
     font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 5px 12px;
-    border-radius: 99px;
+    color: var(--gold);
     margin-bottom: 14px;
+    max-width: 40ch;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .headline {
     font-family: 'Cormorant Garamond', Georgia, serif;
     color: var(--burgundy);
-    font-size: 1.85rem;
+    font-size: 1.9rem;
     font-weight: 700;
-    line-height: 1.22;
+    line-height: 1.2;
     letter-spacing: -0.01em;
     margin-bottom: 12px;
 }
@@ -138,19 +152,18 @@ body {
 .subheadline {
     font-size: 0.95rem;
     color: var(--ink-soft);
-    max-width: 44ch;
+    max-width: 46ch;
     margin: 0 auto;
 }
 
 /* --------------------------------------------------------------------------
-   Mockup — imagem do app (já com moldura de celular). O produto visto antes
-   de ser explicado. width/height no <img> reservam o espaço e evitam pulo de
-   layout enquanto carrega.
+   Mockup — imagem do app (já com moldura de celular). width/height no <img>
+   reservam o espaço e evitam pulo de layout enquanto carrega.
    -------------------------------------------------------------------------- */
 .mockup-wrap {
     display: flex;
     justify-content: center;
-    margin-bottom: 32px;
+    margin-bottom: 30px;
 }
 
 .app-mockup {
@@ -158,170 +171,27 @@ body {
     width: 100%;
     max-width: 300px;
     height: auto;
-    /* Sombra suave por baixo da própria moldura da imagem. */
     filter: drop-shadow(0 18px 40px rgba(43, 35, 32, 0.26));
 }
 
 /* --------------------------------------------------------------------------
-   Benefícios
+   Checkout — o Hotmart salesFunnel monta aqui o botão de compra + o decline.
    -------------------------------------------------------------------------- */
-.benefits {
-    background: #fff;
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: 22px 20px;
-    margin-bottom: 26px;
-    box-shadow: 0 4px 18px rgba(43, 35, 32, 0.05);
-}
-
-.benefits-title {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    color: var(--burgundy);
-    font-size: 1.3rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 16px;
-}
-
-.benefits-list {
-    list-style: none;
-}
-
-.benefits-list li {
-    position: relative;
-    padding-left: 28px;
-    margin-bottom: 12px;
-    font-size: 0.88rem;
-    color: var(--ink-soft);
-}
-
-.benefits-list li:last-child {
-    margin-bottom: 0;
-}
-
-/* Cruz dourada no lugar do bullet — católico sem ser clichê. */
-.benefits-list li::before {
-    content: "✝";
-    position: absolute;
-    left: 4px;
-    top: -1px;
-    color: var(--gold);
-    font-size: 0.95rem;
-    line-height: 1.6;
-}
-
-/* --------------------------------------------------------------------------
-   Preço + CTA
-   -------------------------------------------------------------------------- */
-.offer {
-    text-align: center;
-    margin-bottom: 22px;
-}
-
-.price-row {
-    display: flex;
-    align-items: baseline;
-    justify-content: center;
-    gap: 5px;
-    margin-bottom: 8px;
-}
-
-.price {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--burgundy);
-    line-height: 1;
-}
-
-.price-period {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--ink-faint);
-}
-
-.offer-line {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--ink);
-    margin-bottom: 4px;
-}
-
-.offer-note {
-    font-size: 0.78rem;
-    color: var(--ink-faint);
-    margin-bottom: 20px;
-}
-
-.btn-cta {
-    display: block;
-    width: 100%;
-    background: var(--green);
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.02rem;
-    font-weight: 800;
-    letter-spacing: 0.01em;
-    text-align: center;
-    padding: 19px 16px;
-    border-radius: 14px;
-    box-shadow: 0 8px 22px rgba(22, 163, 74, 0.32);
-    transition: transform 0.15s ease, background 0.15s ease;
-}
-
-.btn-cta:hover {
-    background: var(--green-dark);
-}
-
-.btn-cta:active {
-    transform: scale(0.985);
-}
-
-/* Pulse leve: chama o olho sem parecer anúncio piscante. */
-.pulse {
-    animation: pulse 2.1s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { transform: scale(1); box-shadow: 0 8px 22px rgba(22, 163, 74, 0.32); }
-    50%      { transform: scale(1.018); box-shadow: 0 10px 28px rgba(22, 163, 74, 0.42); }
-}
-
-/* Respeita quem pediu menos movimento no sistema. */
-@media (prefers-reduced-motion: reduce) {
-    .pulse { animation: none; }
-}
-
-.cta-sub {
-    display: block;
-    font-size: 0.74rem;
-    color: var(--ink-faint);
-    margin-top: 9px;
-}
-
-.secure-seal {
-    font-size: 0.72rem;
-    color: var(--ink-faint);
-    margin-top: 16px;
-    line-height: 1.5;
-}
-
-/* --------------------------------------------------------------------------
-   Decline — discreto de propósito: existe, mas não compete com o CTA.
-   -------------------------------------------------------------------------- */
-.btn-decline {
-    display: block;
-    text-align: center;
-    font-size: 0.8rem;
-    color: var(--ink-faint);
-    text-decoration: underline;
-    padding: 12px;
+.checkout {
     margin-bottom: 28px;
-    transition: color 0.15s ease;
+    min-height: 60px; /* reserva espaço enquanto o widget carrega */
 }
 
-.btn-decline:hover {
-    color: var(--ink-soft);
+#hotmart-sales-funnel {
+    max-width: 460px;
+    margin: 0 auto;
+}
+
+.checkout-hint {
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--ink-faint);
+    padding: 14px;
 }
 
 .footer {
@@ -337,12 +207,8 @@ body {
    -------------------------------------------------------------------------- */
 @media (min-width: 640px) {
     .warning-bar { font-size: 0.82rem; padding: 12px 16px; }
-    .page { padding-top: 78px; }
-    .headline { font-size: 2.3rem; }
+    .site-header { margin-top: 44px; }
+    .headline { font-size: 2.4rem; }
     .subheadline { font-size: 1rem; }
     .app-mockup { max-width: 330px; }
-    .benefits { padding: 26px 28px; }
-    .benefits-list li { font-size: 0.92rem; }
-    .price { font-size: 3.4rem; }
-    .btn-cta { font-size: 1.1rem; padding: 21px 18px; }
 }

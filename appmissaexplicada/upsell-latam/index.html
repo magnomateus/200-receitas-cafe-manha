@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <!--
   ============================================================================
-  PLACEHOLDER ÚNICO — LINK DE COMPRA 1-CLIQUE DA HOTMART
+  UPSELL — App Misa Explicada (LATAM / ES)
+  Estrutura minimalista, no molde da referência Preachfy.
 
-  O botão de CTA está com href="#" e o atributo data-hotmart-1click.
-  Substituir o href="#" pelo link de compra 1-clique gerado no funil da
-  Hotmart (o atributo data-hotmart-1click marca o ponto exato).
-
-  Nada mais é placeholder: preço (US$ 7,90/mes) e rota de decline são finais.
+  BOTÃO DE COMPRA: Hotmart checkout-elements (salesFunnel). O próprio Hotmart
+  renderiza o botão de compra 1-clique E o "não, obrigado", lendo a oferta do
+  FUNIL configurado no painel da Hotmart — não há link hardcoded aqui.
+  Só funciona quando o comprador chega pelo funil da Hotmart (contexto de
+  sessão); fora disso o widget não monta (esperado).
   ============================================================================
 -->
 <html lang="es">
@@ -65,8 +66,13 @@
 
     <!-- Barra fixa de aviso -->
     <div class="warning-bar">
-        ⚠️ Por favor, no cierres ni actualices esta página — esta oferta aparece una sola vez.
+        ⚠️ Por favor, no cierres ni actualices esta página, pueden ocurrir errores al procesar tu pago.
     </div>
+
+    <!-- Header con la marca -->
+    <header class="site-header">
+        <span class="brand">✝ Misa Explicada</span>
+    </header>
 
     <main class="page">
         <div class="container">
@@ -75,7 +81,7 @@
             <section class="progress-block">
                 <div class="progress-labels">
                     <span>Estás a un paso de completar tu acceso</span>
-                    <strong>98%</strong>
+                    <strong>90%</strong>
                 </div>
                 <div class="progress-track">
                     <div class="progress-fill"></div>
@@ -83,14 +89,14 @@
             </section>
 
             <!-- Oferta -->
-            <header class="hero">
-                <span class="eyebrow">Oferta exclusiva de esta página</span>
-                <h1 class="headline">Acabas de desbloquear una oferta especial, disponible solo aquí.</h1>
+            <section class="hero">
+                <span class="gift">Acabas de recibir un regalo especial, disponible solo en esta página.</span>
+                <h1 class="headline">La app que te explica la Santa Misa de cada día, ¡con un solo clic!</h1>
                 <p class="subheadline">
-                    Lleva la Misa contigo todos los días: la app Misa Explicada — reflexión diaria,
-                    color litúrgico y mucho más. Actívala con un solo clic, sin volver a ingresar tus datos.
+                    ¿Domingo? ¿Cuaresma? ¿Adviento? La app te trae la reflexión del día, el tiempo
+                    litúrgico y las lecturas explicadas en pocos minutos. La Santa Misa, contigo, todos los días.
                 </p>
-            </header>
+            </section>
 
             <!-- Mockup del app -->
             <section class="mockup-wrap">
@@ -105,40 +111,11 @@
                 />
             </section>
 
-            <!-- Beneficios -->
-            <section class="benefits">
-                <h2 class="benefits-title">¿Qué recibes al activar la app?</h2>
-                <ul class="benefits-list">
-                    <li>La reflexión del día, cada día, guiada por el Evangelio y explicada en pocos minutos.</li>
-                    <li>El color y el tiempo litúrgico (Adviento, Cuaresma, Pascua, Ordinario) siempre a la vista.</li>
-                    <li>La Misa explicada parte por parte: entiende cada momento del rito como nunca antes.</li>
-                    <li>Guía para acompañar la Misa del domingo y vivirla con más profundidad.</li>
-                    <li>Todo en tu celular, sencillo, sin complicaciones y con acceso inmediato.</li>
-                </ul>
+            <!-- Botón de compra — Hotmart salesFunnel (1-clic + "no, gracias") -->
+            <section class="checkout">
+                <div id="hotmart-sales-funnel"></div>
+                <p class="checkout-hint" id="checkout-hint">Cargando tu oferta…</p>
             </section>
-
-            <!-- Precio + CTA -->
-            <section class="offer">
-                <div class="price-row">
-                    <span class="price">US$ 7,90</span>
-                    <span class="price-period">/mes</span>
-                </div>
-                <p class="offer-line">Actívala ahora con 1 clic, sin volver a ingresar tu tarjeta.</p>
-                <p class="offer-note">Esta oferta solo aparece en esta página.</p>
-
-                <!-- ↓ href="#" recebe o link de compra 1-clique da Hotmart ↓ -->
-                <a href="#" data-hotmart-1click class="btn-cta pulse" id="cta-button">
-                    SÍ, LO QUIERO POR US$ 7,90/MES
-                </a>
-                <span class="cta-sub">Se activa con 1 clic · acceso inmediato</span>
-
-                <p class="secure-seal">🔒 Pago 100% seguro procesado por Hotmart · Acceso inmediato a la app</p>
-            </section>
-
-            <!-- Decline -->
-            <a href="https://receitinhaspratodahora.shop/missa-explicada/gracias-misa-latam/" class="btn-decline" id="decline-button">
-                No, gracias. Prefiero seguir sin la app.
-            </a>
 
             <footer class="footer">
                 ✝ Misa Explicada · Todos los derechos reservados ©
@@ -146,6 +123,25 @@
 
         </div>
     </main>
+
+    <!-- Widget de compra 1-clic da Hotmart. Monta o botão de SIM + o decline,
+         lendo a oferta do funil configurado no painel da Hotmart. -->
+    <script>
+      (function () {
+        var s = document.createElement('script');
+        s.src = 'https://checkout.hotmart.com/lib/hotmart-checkout-elements.js';
+        s.onload = function () {
+          try {
+            checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel');
+            var hint = document.getElementById('checkout-hint');
+            if (hint) hint.style.display = 'none';
+          } catch (err) {
+            console.error('Hotmart salesFunnel:', err);
+          }
+        };
+        document.body.appendChild(s);
+      })();
+    </script>
 
 </body>
 </html>
