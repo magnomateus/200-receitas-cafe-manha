@@ -95,36 +95,31 @@ body {
     margin-bottom: 30px;
 }
 
-.progress-labels {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 12px;
-    margin-bottom: 9px;
-    font-size: 0.95rem;
-    color: var(--ink-soft);
-}
-
-.progress-labels strong {
-    font-family: 'Montserrat', sans-serif;
-    color: var(--burgundy);
-    font-weight: 800;
-    font-size: 1.05rem;
-}
-
 .progress-track {
-    height: 12px;
-    background: rgba(139, 29, 29, 0.12);
-    border-radius: 99px;
+    height: 30px;
+    background: #e6e2da;      /* trilha cinza-clara, como a referência */
+    border-radius: 6px;
     overflow: hidden;
 }
 
 .progress-fill {
-    /* 98% — downsell (o upsell usa 90%). */
-    width: 98%;
+    /* 90% — barra cheia sólida, com o % dentro (igual à referência). */
+    width: 90%;
     height: 100%;
-    border-radius: 99px;
-    background: linear-gradient(90deg, var(--burgundy), var(--gold));
+    background: var(--burgundy);
+    border-radius: 6px 0 0 6px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 12px;
+}
+
+.progress-pct {
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    font-weight: 800;
+    font-size: 0.95rem;
+    line-height: 1;
 }
 
 /* --------------------------------------------------------------------------
