@@ -309,6 +309,10 @@
         <div class="container">
             <h2 class="section-title">Special Offer, Limited Time</h2>
 
+            <div class="offer-timer">
+                <div class="timer-display" id="timer-offer">23:59:59</div>
+            </div>
+
             <div class="offer-card">
                 <!-- REVISAR: imagem com texto em espanhol embutido (mockup-ebook.webp) -->
                 <div class="offer-mockup">
@@ -389,6 +393,32 @@
         </div>
     </section>
 
+    <!-- Author -->
+    <!-- REVISAR: identidade do autor (nome "Father Mateus", foto padre-expert.webp e bio) — validar/adaptar para o mercado US -->
+    <section class="author-section">
+        <div class="container">
+            <div class="author-image-wrapper">
+                <img src="./assets/padre-expert.webp"
+                     alt="Father Mateus - Creator of Mass Explained"
+                     class="author-image"
+                     loading="lazy">
+            </div>
+            <p class="author-eyebrow">Who's Behind This</p>
+            <h2 class="author-name">Father Mateus</h2>
+            <div class="author-bio">
+                <p>Hi, I'm <strong>Father Mateus</strong>.</p>
+                <p>I've been a priest for several years now, and in the day-to-day life of the parish I noticed that so many people come to Mass full of faith, yet with questions about the meaning of each gesture, prayer, and part of the celebration, and they rarely have anyone to talk to about it.</p>
+                <p>With those people in mind, the ones who want to understand and live the Mass more consciously, I gathered everything I've studied and learned about <strong>liturgy and spirituality</strong> into this material, in a simple way.</p>
+                <p>The goal is just one: to help you take part in the Mass with more meaning and more faith. 🙏</p>
+            </div>
+            <div class="author-cta-wrapper">
+                <a href="#oferta" class="btn btn-primary btn-cta-author pulse">
+                    GET IT NOW! ✝️
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- FAQ -->
     <section class="faq-section">
         <div class="container">
@@ -453,6 +483,11 @@
         <div class="container">
             <h2 class="final-title">Don't Miss This Opportunity!</h2>
             <p class="final-subtitle">Transform the way you experience the Holy Mass.</p>
+
+            <div class="timer-box">
+                <p class="timer-label">⏰ Offer ends in:</p>
+                <div class="timer-display" id="timer-main">23:59:59</div>
+            </div>
 
             <!-- CHECKOUT: trocar href="#" pelo link de checkout US real -->
             <a href="#" data-checkout-us class="btn btn-primary btn-cta-final pulse">

@@ -1340,3 +1340,104 @@ a {
         max-width: 200px;
     }
 }
+
+/* ==== Author section (importada da versao PT para igualar a estrutura) ==== */
+.author-section {
+    background: var(--text-white);
+    padding: 80px 0;
+}
+
+.author-section .container {
+    max-width: 720px;
+}
+
+.author-image-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 32px;
+}
+
+.author-image {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--gold);
+    box-shadow: 0 8px 32px rgba(201, 162, 39, 0.25);
+}
+
+.author-eyebrow {
+    color: var(--gold);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.875rem;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.author-name {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--wine);
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.author-bio {
+    text-align: center;
+    color: var(--text-medium);
+    line-height: 1.7;
+    font-size: 1.0625rem;
+    margin-bottom: 40px;
+}
+
+.author-bio p {
+    margin-bottom: 16px;
+}
+
+.author-bio p:last-child {
+    margin-bottom: 0;
+}
+
+.author-bio strong {
+    color: var(--wine);
+    font-weight: 700;
+}
+
+.author-cta-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-cta-author {
+    font-size: 1.125rem;
+    padding: 18px 36px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+    .author-section {
+        padding: 56px 0;
+    }
+    .author-image {
+        width: 130px;
+        height: 130px;
+    }
+    .author-name {
+        font-size: 2rem;
+    }
+    .author-bio {
+        font-size: 1rem;
+        text-align: left;
+    }
+    .btn-cta-author {
+        font-size: 1rem;
+        padding: 16px 28px;
+        width: 100%;
+        text-align: center;
+    }
+}
