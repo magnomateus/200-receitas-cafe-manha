@@ -102,10 +102,9 @@
             <!-- 4. Headline -->
             <h1 class="headline">Você acabou de receber um presente especial, disponível só nesta página.</h1>
 
-            <!-- 5. Checkout Hotmart (salesFunnel: botão 1-clique + "não, obrigado") -->
+            <!-- 5. Checkout VIS (widget de upsell — renderiza o botão de compra + recusa) -->
             <section class="checkout">
-                <div id="hotmart-sales-funnel"></div>
-                <p class="checkout-hint" id="checkout-hint">Carregando sua oferta…</p>
+                <div id="vis-upsell"></div>
             </section>
 
             <!-- 6. Linha de destaque (valor) -->
@@ -138,23 +137,10 @@
         </div>
     </main>
 
-    <!-- Widget de compra 1-clique da Hotmart (intacto). Monta o botão de SIM + o
-         decline, lendo a oferta do funil configurado no painel da Hotmart. -->
+    <!-- Widget de upsell da VIS — renderiza e monta o botão de compra em #vis-upsell -->
+    <script src="https://vis.semeardigital.com.br/js/vis-upsell.js"></script>
     <script>
-      (function () {
-        var s = document.createElement('script');
-        s.src = 'https://checkout.hotmart.com/lib/hotmart-checkout-elements.js';
-        s.onload = function () {
-          try {
-            checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel');
-            var hint = document.getElementById('checkout-hint');
-            if (hint) hint.style.display = 'none';
-          } catch (err) {
-            console.error('Hotmart salesFunnel:', err);
-          }
-        };
-        document.body.appendChild(s);
-      })();
+      VISUpsell.init({ upsellId: 5 }).mount('#vis-upsell');
     </script>
 
 </body>
