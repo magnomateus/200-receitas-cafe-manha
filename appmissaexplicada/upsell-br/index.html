@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  UPSELL — App Missa Explicada (BRASIL / PT-BR)
+  Versão brasileira da /upsell-latam/ (mesmo layout, CSS e mockup).
+  Ordem: aviso -> "Processando o pagamento" -> progresso -> headline ->
+  EMBED Hotmart -> linha de destaque -> corpo -> mockup -> rodapé.
+
+  BOTÃO DE COMPRA: Hotmart checkout-elements (salesFunnel) — intacto.
+  Só monta no contexto do funil da Hotmart (o funil BR define a oferta).
+
+  ⚠️ PENDENTE: preencher os PIXELS DO BR no bloco window.BR_PIXELS abaixo.
+     Enquanto estiverem como "PREENCHER_...", nada dispara.
+  ============================================================================
+-->
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Oferta Especial - App Missa Explicada</title>
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Google Fonts — Montserrat (títulos) + Roboto (corpo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- ============================================================
+         PIXELS DO BRASIL — ⚠️ PREENCHER antes de anunciar.
+         Enquanto os valores começarem com "PREENCHER", nada dispara.
+         ============================================================ -->
+    <script>
+      window.BR_PIXELS = {
+        UTMIFY: 'PREENCHER_UTMIFY_PIXEL_ID_BR',
+        META:   'PREENCHER_META_PIXEL_ID_BR'
+      };
+      (function () {
+        var cfg = window.BR_PIXELS;
+        if (cfg.UTMIFY.indexOf('PREENCHER') !== 0) {
+          window.pixelId = cfg.UTMIFY;
+          var a = document.createElement('script');
+          a.setAttribute('async', '');
+          a.setAttribute('defer', '');
+          a.setAttribute('src', 'https://cdn.utmify.com.br/scripts/pixel/pixel.js');
+          document.head.appendChild(a);
+        }
+      })();
+    </script>
+
+    <!-- Utmify UTMs Script (passa as UTMs adiante — pode ficar sempre ativo) -->
+    <script
+      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+      data-utmify-prevent-subids
+      async
+      defer
+    ></script>
+
+    <!-- Meta Pixel Code (só inicializa com ID real) -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    (function () {
+      var id = window.BR_PIXELS.META;
+      if (id.indexOf('PREENCHER') !== 0) {
+        fbq('init', id);
+        fbq('track', 'PageView');
+      }
+    })();
+    </script>
+    <!-- End Meta Pixel Code -->
+</head>
+<body>
+
+    <!-- 1. Barra de aviso fixa -->
+    <div class="warning-bar">
+        Por favor, não feche nem atualize esta página, podem ocorrer erros ao processar seu pagamento.
+    </div>
+
+    <main class="page">
+        <div class="container">
+
+            <!-- 2. Processando o pagamento -->
+            <p class="processing">Processando o pagamento<span class="dots"><span>.</span><span>.</span><span>.</span></span></p>
+
+            <!-- 3. Barra de progresso -->
+            <section class="progress-block">
+                <div class="progress-track">
+                    <div class="progress-fill"><span class="progress-pct">90%</span></div>
+                </div>
+            </section>
+
+            <!-- 4. Headline -->
+            <h1 class="headline">Você acabou de receber um presente especial, disponível só nesta página.</h1>
+
+            <!-- 5. Checkout Hotmart (salesFunnel: botão 1-clique + "não, obrigado") -->
+            <section class="checkout">
+                <div id="hotmart-sales-funnel"></div>
+                <p class="checkout-hint" id="checkout-hint">Carregando sua oferta…</p>
+            </section>
+
+            <!-- 6. Linha de destaque (valor) -->
+            <p class="highlight">O app que te explica a Santa Missa de cada dia, com um clique só!</p>
+
+            <!-- 7. Corpo -->
+            <p class="body-text">
+                Domingo? Quaresma? Advento? O app te traz a reflexão do dia, o tempo
+                litúrgico e as leituras explicadas em poucos minutos. A Santa Missa, com você, todos os dias.
+            </p>
+
+            <!-- 8. Mockup do app -->
+            <section class="mockup-wrap">
+                <img
+                    src="mockup-app.png"
+                    alt="App Missa Explicada — tela inicial com a reflexão do dia, o tempo litúrgico e as leituras."
+                    class="app-mockup"
+                    width="883"
+                    height="1782"
+                    loading="lazy"
+                    decoding="async"
+                />
+            </section>
+
+            <!-- 9. Rodapé -->
+            <footer class="footer">
+                ✝ Missa Explicada · Todos os direitos reservados ©
+            </footer>
+
+        </div>
+    </main>
+
+    <!-- Widget de compra 1-clique da Hotmart (intacto). Monta o botão de SIM + o
+         decline, lendo a oferta do funil configurado no painel da Hotmart. -->
+    <script>
+      (function () {
+        var s = document.createElement('script');
+        s.src = 'https://checkout.hotmart.com/lib/hotmart-checkout-elements.js';
+        s.onload = function () {
+          try {
+            checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel');
+            var hint = document.getElementById('checkout-hint');
+            if (hint) hint.style.display = 'none';
+          } catch (err) {
+            console.error('Hotmart salesFunnel:', err);
+          }
+        };
+        document.body.appendChild(s);
+      })();
+    </script>
+
+</body>
+</html>
