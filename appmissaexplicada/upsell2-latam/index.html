@@ -1,35 +1,148 @@
 <!DOCTYPE html>
+<!--
+  ============================================================================
+  UPSELL 2 — Tiempos Litúrgicos (LATAM / ES neutro)
+  Mesmo design do upsell 1 (molde da referência preachfy): Montserrat forte +
+  Roboto, texto GRANDE, fundo creme. A COPY segue o padrão da página
+  "Manuel du Prédicateur": headline do "regalo" -> linha de destaque com a
+  "guía indispensable" -> corpo "obtén la guía completa...".
+
+  Produto: "Tiempos Litúrgicos" — guia que explica e ensina a viver e
+  compreender os tempos litúrgicos do ano (Adviento, Cuaresma, Pascua,
+  Navidad, Tiempo Ordinario...).
+
+  BOTÃO DE COMPRA: Hotmart checkout-elements (salesFunnel) — intacto. Só monta
+  no contexto do funil da Hotmart. Tracking e robots preservados.
+  ============================================================================
+-->
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oferta Especial 2 - App Misa Explicada</title>
+
+    <title>Oferta Especial - Tiempos Litúrgicos</title>
     <meta name="robots" content="noindex, nofollow">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, hsl(0, 60%, 30%), hsl(0, 60%, 38%));
-            color: #fff;
-            text-align: center;
-            padding: 24px;
-        }
-        .box { max-width: 480px; }
-        .emoji { font-size: 64px; margin-bottom: 16px; }
-        h1 { font-size: 2rem; margin-bottom: 12px; }
-        p { opacity: 0.9; line-height: 1.6; }
-        code { background: rgba(0,0,0,.25); padding: 2px 8px; border-radius: 6px; }
-    </style>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Google Fonts — Montserrat (títulos) + Roboto (corpo), como o upsell 1 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Utmify Pixel -->
+    <script>
+      window.pixelId = "69d81fb76b07324179345426";
+      var a = document.createElement("script");
+      a.setAttribute("async", "");
+      a.setAttribute("defer", "");
+      a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+      document.head.appendChild(a);
+    </script>
+
+    <!-- Utmify UTMs Script -->
+    <script
+      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+      data-utmify-prevent-subids
+      async
+      defer
+    ></script>
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1957869048451190');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1957869048451190&ev=PageView&noscript=1"/></noscript>
+    <!-- End Meta Pixel Code -->
 </head>
 <body>
-    <div class="box">
-        <div class="emoji">✝️</div>
-        <h1>App Misa Explicada — Upsell 2 LATAM</h1>
-        <p>Ruta <code>/appmissaexplicada/upsell2-latam/</code> creada correctamente.<br>Contenido en construcción.</p>
+
+    <!-- 1. Barra de aviso fixa -->
+    <div class="warning-bar">
+        Por favor, no cierres ni actualices esta página, pueden ocurrir errores al procesar tu pago.
     </div>
+
+    <main class="page">
+        <div class="container">
+
+            <!-- 2. Procesando el pago -->
+            <p class="processing">Procesando el pago<span class="dots"><span>.</span><span>.</span><span>.</span></span></p>
+
+            <!-- 3. Barra de progreso — % dentro da barra, como a referência -->
+            <section class="progress-block">
+                <div class="progress-track">
+                    <div class="progress-fill"><span class="progress-pct">95%</span></div>
+                </div>
+            </section>
+
+            <!-- 4. Headline (padrão "regalo especial") -->
+            <h1 class="headline">Acabas de recibir un regalo especial, disponible solo en esta página.</h1>
+
+            <!-- 5. Checkout Hotmart (salesFunnel: botón 1-clic + "no, gracias") -->
+            <section class="checkout">
+                <div id="hotmart-sales-funnel"></div>
+                <p class="checkout-hint" id="checkout-hint">Cargando tu oferta…</p>
+            </section>
+
+            <!-- 6. Línea de destaque (valor) — padrão "la guía indispensable" -->
+            <p class="highlight">¡La guía indispensable para vivir y comprender cada tiempo litúrgico del año con fe y profundidad!</p>
+
+            <!-- 7. Cuerpo — padrão "obtén la guía completa..." -->
+            <p class="body-text">
+                Obtén la guía completa para comprender el Adviento, la Navidad, la Cuaresma, la Pascua
+                y el Tiempo Ordinario, y vivir el año litúrgico tal como la Iglesia lo propone.
+            </p>
+
+            <!-- 8. Capa del producto -->
+            <section class="mockup-wrap">
+                <img
+                    src="capa-tiempos-liturgicos.png"
+                    alt="Tiempos Litúrgicos — guía de los tiempos litúrgicos del año: Adviento, Cuaresma, Pascua, Navidad y Tiempo Ordinario."
+                    class="product-cover"
+                    width="600"
+                    height="600"
+                    loading="lazy"
+                    decoding="async"
+                />
+            </section>
+
+            <!-- 9. Footer -->
+            <footer class="footer">
+                ✝ Misa Explicada · Todos los derechos reservados ©
+            </footer>
+
+        </div>
+    </main>
+
+    <!-- Widget de compra 1-clic da Hotmart (intacto). Monta o botão de SIM + o
+         decline, lendo a oferta do funil configurado no painel da Hotmart. -->
+    <script>
+      (function () {
+        var s = document.createElement('script');
+        s.src = 'https://checkout.hotmart.com/lib/hotmart-checkout-elements.js';
+        s.onload = function () {
+          try {
+            checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel');
+            var hint = document.getElementById('checkout-hint');
+            if (hint) hint.style.display = 'none';
+          } catch (err) {
+            console.error('Hotmart salesFunnel:', err);
+          }
+        };
+        document.body.appendChild(s);
+      })();
+    </script>
+
 </body>
 </html>
