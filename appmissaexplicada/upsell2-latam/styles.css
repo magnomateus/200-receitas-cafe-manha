@@ -172,6 +172,9 @@ body {
 #hotmart-sales-funnel iframe {
     display: block;
     border-radius: 10px;
+    /* Espaço p/ a oferta caber sem o scroll interno do iframe da Hotmart.
+       Ajustável após você enxugar os textos da oferta no painel. */
+    min-height: 440px;
 }
 
 .checkout-hint {
