@@ -86,10 +86,16 @@
             <!-- 4. Headline -->
             <h1 class="headline">Acabas de recibir un regalo especial, disponible solo en esta página.</h1>
 
-            <!-- 5. Checkout Hotmart (salesFunnel: botón 1-clic + "no, gracias") -->
+            <!-- 5. Checkout Hotmart — moldura elevada. O iframe da Hotmart é
+                 cross-origin: estilizamos só o cartão em volta, não o interior.
+                 O botão é o padrão da Hotmart ("comprar") — não se define aqui. -->
             <section class="checkout">
-                <div id="hotmart-sales-funnel"></div>
-                <p class="checkout-hint" id="checkout-hint">Cargando tu oferta…</p>
+                <p class="checkout-eyebrow">Tu oferta exclusiva</p>
+                <div class="checkout-card">
+                    <div id="hotmart-sales-funnel"></div>
+                    <p class="checkout-hint" id="checkout-hint"><span class="spinner"></span> Cargando tu oferta…</p>
+                </div>
+                <p class="checkout-trust">🔒 Pago 100% seguro procesado por Hotmart</p>
             </section>
 
             <!-- 6. Línea de destaque (valor) -->
