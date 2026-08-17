@@ -188,35 +188,41 @@
           }, 0);
         });
 
-        // ===== TESTE do autoclick — clica no CANCELAR (não cobra, sem chave) =====
-        // Clica sozinho no "Non, annuler" do modal. NÃO completa compra, NÃO
-        // cobra — por isso roda automático, sem chave, em qualquer dispositivo.
-        // Prova o mecanismo: como o modal agora NÃO fecha sozinho (reload
-        // corrigido), se ele fechar ~1.5s depois de aparecer, foi o nosso clique
-        // — e o "Oui, confirmer", no mesmo modal, seria clicável igual. TEMPORÁRIO.
-        function findCancelBtn() {
+        // ===== TESTE do autoclick no CONFIRMAR (chave de teste = só o dono) =====
+        // Clica sozinho no "Oui, confirmer l'achat" — COMPLETA A COMPRA (cobra o
+        // cartão). SÓ dispara pra quem ligou a CHAVE DE TESTE (você). Cliente
+        // real, sem a chave, NUNCA é auto-confirmado. Ligar a chave no console:
+        //     localStorage.setItem('autotest','1')
+        // Desligar depois:  localStorage.removeItem('autotest')
+        // TEMPORÁRIO: removido após validar em produção.
+        var AUTOTEST = false;
+        try { AUTOTEST = localStorage.getItem('autotest') === '1'; } catch (e) {}
+        function findConfirmBtn() {
           var all = document.querySelectorAll('button, a, [role="button"], [onclick], div, span');
           for (var i = 0; i < all.length; i++) {
             var el = all[i];
             var t = ((el.textContent || '') + '').trim().toLowerCase();
-            if (!t || t.length > 30) continue;
-            var isCancel = t.indexOf('annuler') !== -1 || t.indexOf('cancelar') !== -1;
-            var isConfirm = t.indexOf('confirmer') !== -1 || t.indexOf('confirmar') !== -1;
-            if (isCancel && !isConfirm) return el;
+            if (!t || t.length > 35) continue;
+            var hasConfirm = t.indexOf('confirmer') !== -1 || t.indexOf('confirmar') !== -1;
+            var bad = t.indexOf('voulez') !== -1 || t.indexOf('quieres') !== -1 ||
+                      t.indexOf('annuler') !== -1 || t.indexOf('cancelar') !== -1;
+            if (hasConfirm && !bad) return el;
           }
           return null;
         }
-        var cancelPoll = setInterval(function () {
-          var btn = findCancelBtn();
+        var confirmPoll = setInterval(function () {
+          var btn = findConfirmBtn();
           if (!btn) return;
-          clearInterval(cancelPoll);
-          console.log('[teste] CANCELAR encontrado no DOM -> clico em 1.5s:', btn);
-          setTimeout(function () {
-            btn.click();
-            console.log('[teste] cliquei no CANCELAR. Se o modal fechou agora, o autoclick FUNCIONA (o confirmar seria igual).');
-          }, 1500);
+          clearInterval(confirmPoll);
+          console.log('[teste] botao CONFIRMAR encontrado no DOM:', btn);
+          if (AUTOTEST) {
+            console.log('[teste] chave LIGADA -> clico no confirmar em 1.5s (vai cobrar SEU cartao)');
+            setTimeout(function () { btn.click(); console.log('[teste] cliquei no CONFIRMAR.'); }, 1500);
+          } else {
+            console.log('[teste] chave DESLIGADA -> nao clico. Ligue: localStorage.setItem("autotest","1")');
+          }
         }, 300);
-        setTimeout(function () { clearInterval(cancelPoll); }, 120000);
+        setTimeout(function () { clearInterval(confirmPoll); }, 120000);
       })();
     </script>
 
