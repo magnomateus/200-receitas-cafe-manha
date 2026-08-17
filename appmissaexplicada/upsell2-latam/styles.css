@@ -183,8 +183,10 @@ body {
        --clip-height (altura da janela visível). São os 2 únicos números. <<<
    -------------------------------------------------------------------------- */
 .widget-clip {
-    --clip-top: 150px;
-    --clip-height: 185px;
+    /* Mostra SÓ o botão de comprar — recorta todo o resto do widget.
+       >>> AJUSTE AO VIVO: --clip-top (topo do botão) e --clip-height (altura). <<< */
+    --clip-top: 146px;
+    --clip-height: 70px;
     position: relative;
     height: var(--clip-height);
     overflow: hidden;
@@ -192,19 +194,6 @@ body {
 }
 .widget-clip #hotmart-sales-funnel {
     margin-top: calc(-1 * var(--clip-top));
-}
-
-/* Tampa a linha de consentimento (meio do widget) — mostramos ela na página.
-   >>> AJUSTE AO VIVO: --cover-top (onde começa), --cover-height (altura) e
-       --widget-bg (cor do fundo do widget, pra a tampa ficar invisível). <<< */
-.consent-cover {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: var(--cover-top, 62px);
-    height: var(--cover-height, 62px);
-    background: var(--widget-bg, #eff1f3);
-    z-index: 3;
 }
 
 /* Consentimento mostrado na página (em espanhol, discreto) */
