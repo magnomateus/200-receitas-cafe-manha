@@ -197,6 +197,14 @@ body {
     margin-top: calc(-1 * var(--clip-top));
 }
 
+/* Na TELA DE CONFIRMAÇÃO (após clicar em comprar), recorta pro botão de
+   confirmação — que fica mais abaixo no modal — escondendo o texto do topo.
+   >>> AJUSTE AO VIVO (chutes): --clip-top e --clip-height. <<< */
+.widget-clip.confirming {
+    --clip-top: 260px;
+    --clip-height: 85px;
+}
+
 /* Consentimento mostrado na página (em espanhol, discreto) */
 .checkout-consent {
     margin: 12px auto 0;
