@@ -173,9 +173,25 @@ body {
 #hotmart-sales-funnel iframe {
     display: block;
     border-radius: 10px;
-    /* Espaço p/ a oferta caber sem o scroll interno do iframe da Hotmart.
-       Ajustável após você enxugar os textos da oferta no painel. */
-    min-height: 440px;
+    /* Alto o suficiente p/ NÃO ter scroll interno (a máscara recorta depois). */
+    min-height: 700px;
+}
+
+/* --------------------------------------------------------------------------
+   MÁSCARA DO WIDGET — recorta o iframe pra mostrar só a faixa do botão.
+   Esconde o topo (nome + descrição/preço da Hotmart) e o rodapé (powered by).
+   >>> AJUSTE FINO AO VIVO: mexa em --clip-top (quanto some do topo) e
+       --clip-height (altura da janela visível). São os 2 únicos números. <<<
+   -------------------------------------------------------------------------- */
+.widget-clip {
+    --clip-top: 110px;
+    --clip-height: 220px;
+    height: var(--clip-height);
+    overflow: hidden;
+    border-radius: 10px;
+}
+.widget-clip #hotmart-sales-funnel {
+    margin-top: calc(-1 * var(--clip-top));
 }
 
 .checkout-hint {
