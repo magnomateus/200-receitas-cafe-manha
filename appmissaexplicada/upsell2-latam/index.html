@@ -168,18 +168,6 @@
           if (++n > 50) clearInterval(iv);
         }, 200);
 
-        // ===== AUTO-RECUSA (auto-advance por inatividade) =====
-        // Se o lead ficar SEGUNDOS_ESPERA sem interagir com o widget, a página
-        // vai pro próximo passo do funil (equivale a recusar o upsell). O timer
-        // é cancelado se o lead clicar no widget (revealWidget), pra não
-        // expulsar quem está comprando.
-        // >>> AJUSTE AQUI (chutes — corrija se preciso): <<<
-        var URL_RECUSA = 'https://receitinhaspratodahora.shop/appmissaexplicada/downsell2-latam/';
-        var SEGUNDOS_ESPERA = 60;
-        var autoTimer = setTimeout(function () {
-          window.location.href = URL_RECUSA;
-        }, SEGUNDOS_ESPERA * 1000);
-
         // Revela o widget COMPLETO quando o lead clica dentro dele (o iframe
         // ganha foco). Antes disso mostra só o botão recortado; depois, tira o
         // recorte e a tampa pra o fluxo da Hotmart aparecer inteiro.
@@ -187,7 +175,6 @@
         function revealWidget() {
           if (revealed) return;
           revealed = true;
-          clearTimeout(autoTimer);   // lead interagiu: cancela a auto-recusa
           clearInterval(iv);
           var clip = document.querySelector('.widget-clip');
           if (clip) clip.classList.add('revealed');
