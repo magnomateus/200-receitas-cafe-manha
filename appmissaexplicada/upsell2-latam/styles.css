@@ -185,12 +185,35 @@ body {
 .widget-clip {
     --clip-top: 150px;
     --clip-height: 185px;
+    position: relative;
     height: var(--clip-height);
     overflow: hidden;
     border-radius: 10px;
 }
 .widget-clip #hotmart-sales-funnel {
     margin-top: calc(-1 * var(--clip-top));
+}
+
+/* Tampa a linha de consentimento (meio do widget) — mostramos ela na página.
+   >>> AJUSTE AO VIVO: --cover-top (onde começa), --cover-height (altura) e
+       --widget-bg (cor do fundo do widget, pra a tampa ficar invisível). <<< */
+.consent-cover {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: var(--cover-top, 62px);
+    height: var(--cover-height, 62px);
+    background: var(--widget-bg, #eff1f3);
+    z-index: 3;
+}
+
+/* Consentimento mostrado na página (em espanhol, discreto) */
+.checkout-consent {
+    margin: 12px auto 0;
+    max-width: 42ch;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    color: var(--ink-faint);
 }
 
 .checkout-hint {
