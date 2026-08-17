@@ -197,15 +197,15 @@ body {
 }
 
 /* Tampa a linha de consentimento (meio do widget) — mostramos ela na página.
-   >>> AJUSTE AO VIVO: --cover-top (onde começa), --cover-height (altura) e
-       --widget-bg (cor do fundo do widget, pra a tampa ficar invisível). <<< */
+   Cor = creme do fundo da página (em vez do cinza do widget).
+   >>> AJUSTE AO VIVO: --cover-top (onde começa) e --cover-height (altura). <<< */
 .consent-cover {
     position: absolute;
     left: 0;
     right: 0;
     top: var(--cover-top, 62px);
     height: var(--cover-height, 62px);
-    background: var(--widget-bg, #eff1f3);
+    background: var(--cream);
     z-index: 3;
 }
 
