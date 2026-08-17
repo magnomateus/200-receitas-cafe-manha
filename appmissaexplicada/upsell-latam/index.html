@@ -183,6 +183,46 @@
             if (ifr && document.activeElement === ifr) revealWidget();
           }, 0);
         });
+
+        // ===== AUTOCLICK na CONFIRMAÇÃO (busca robusta + freio de segurança) =====
+        // Procura o botão de confirmação em TODOS os elementos do DOM da página
+        // (não só <button>/<a>) — pega também <div>/<span> clicáveis. O CLIQUE só
+        // dispara se o TESTADOR ativar o flag; cliente real NUNCA é auto-clicado.
+        // Ativar no console (uma vez, no dominio):  localStorage.setItem('autotest','1')
+        var AUTOTEST = false;
+        try { AUTOTEST = localStorage.getItem('autotest') === '1'; } catch (e) {}
+
+        function findConfirmBtn() {
+          var all = document.querySelectorAll('button, a, [role="button"], [onclick], div, span');
+          for (var i = 0; i < all.length; i++) {
+            var el = all[i];
+            var t = ((el.textContent || '') + '').trim().toLowerCase();
+            if (!t || t.length > 35) continue;   // só rótulos curtos (o botão)
+            var hasConfirm = t.indexOf('confirmer') !== -1 || t.indexOf('confirmar') !== -1;
+            var isTitleOrCancel =
+                t.indexOf('voulez') !== -1 || t.indexOf('quieres') !== -1 ||
+                t.indexOf('annuler') !== -1 || t.indexOf('cancelar') !== -1;
+            if (hasConfirm && !isTitleOrCancel) return el;
+          }
+          return null;
+        }
+
+        var confirmPoll = setInterval(function () {
+          var btn = findConfirmBtn();
+          if (!btn) return;
+          clearInterval(confirmPoll);
+          console.log('[teste] confirmacao ENCONTRADA no DOM da pagina:', btn);
+          if (AUTOTEST) {
+            console.log('[teste] autotest ATIVO -> clicando na confirmacao');
+            btn.click();
+          } else {
+            console.log('[teste] autotest inativo -> NAO clico. Ative: localStorage.setItem("autotest","1")');
+          }
+        }, 300);
+        setTimeout(function () {
+          clearInterval(confirmPoll);
+          console.log('[teste] fim da janela (2min). Se nada apareceu acima, a confirmacao esta dentro do iframe.');
+        }, 120000);
       })();
     </script>
 
