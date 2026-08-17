@@ -184,8 +184,8 @@ body {
        --clip-height (altura da janela visível). São os 2 únicos números. <<<
    -------------------------------------------------------------------------- */
 .widget-clip {
-    --clip-top: 110px;
-    --clip-height: 220px;
+    --clip-top: 150px;
+    --clip-height: 185px;
     height: var(--clip-height);
     overflow: hidden;
     border-radius: 10px;
