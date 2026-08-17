@@ -178,8 +178,8 @@
           clearInterval(iv);
           var clip = document.querySelector('.widget-clip');
           if (clip) clip.classList.add('revealed');
-          var ifr = document.querySelector('#hotmart-sales-funnel iframe');
-          if (ifr) ifr.setAttribute('scrolling', 'yes');
+          // NÃO mexer no atributo "scrolling" aqui: mudá-lo recarrega o iframe
+          // (~1s) e faz o modal de confirmação sumir.
         }
         window.addEventListener('blur', function () {
           setTimeout(function () {
