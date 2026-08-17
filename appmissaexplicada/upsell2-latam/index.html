@@ -167,6 +167,26 @@
           lockScroll();
           if (++n > 50) clearInterval(iv);
         }, 200);
+
+        // Revela o widget COMPLETO quando o lead clica dentro dele (o iframe
+        // ganha foco). Antes disso mostra só o botão recortado; depois, tira o
+        // recorte e a tampa pra o fluxo da Hotmart aparecer inteiro.
+        var revealed = false;
+        function revealWidget() {
+          if (revealed) return;
+          revealed = true;
+          clearInterval(iv);
+          var clip = document.querySelector('.widget-clip');
+          if (clip) clip.classList.add('revealed');
+          var ifr = document.querySelector('#hotmart-sales-funnel iframe');
+          if (ifr) ifr.setAttribute('scrolling', 'yes');
+        }
+        window.addEventListener('blur', function () {
+          setTimeout(function () {
+            var ifr = document.querySelector('#hotmart-sales-funnel iframe');
+            if (ifr && document.activeElement === ifr) revealWidget();
+          }, 0);
+        });
       })();
     </script>
 
