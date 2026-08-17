@@ -238,18 +238,6 @@ body {
     color: var(--ink-faint);
 }
 
-/* Bloco de preço na página (TESTE de scroll — placeholders) */
-.price-block { text-align: center; margin: 0 auto 16px; }
-.price-eyebrow {
-    font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 0.8rem;
-    letter-spacing: 0.12em; text-transform: uppercase; color: var(--burgundy);
-    margin-bottom: 8px;
-}
-.price-amounts { display: flex; align-items: baseline; justify-content: center; gap: 12px; }
-.price-old { color: rgba(43, 35, 32, 0.45); text-decoration: line-through; font-size: 1.3rem; font-weight: 600; }
-.price-now { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 3rem; color: var(--burgundy); line-height: 1; }
-.price-note { font-size: 0.9rem; color: var(--ink-soft); margin-top: 8px; }
-
 /* --------------------------------------------------------------------------
    6. Linha de destaque (valor) — grande e negrito, dourado (era teal na ref).
    -------------------------------------------------------------------------- */
