@@ -164,20 +164,23 @@
           if (++n > 50) clearInterval(iv);
         }, 200);
 
-        // Quando o lead clica no botão (o iframe ganha foco), a Hotmart mostra a
-        // TELA DE CONFIRMAÇÃO. Trocamos o recorte pra mostrar o BOTÃO de
-        // confirmação (mais abaixo no modal), escondendo o texto do topo.
-        // >>> Se sair errado, ajuste .widget-clip.confirming no CSS. <<<
-        function toConfirmCrop() {
-          setTimeout(function () {
-            var clip = document.querySelector('.widget-clip');
-            if (clip) clip.classList.add('confirming');
-          }, 400);
+        // Quando o lead clica no botão (o iframe ganha foco), revela o widget
+        // completo pra a tela de confirmação aparecer. NÃO mexe na altura do
+        // iframe — assim a Hotmart não reseta o widget e o 1º clique já funciona.
+        var revealed = false;
+        function revealWidget() {
+          if (revealed) return;
+          revealed = true;
+          clearInterval(iv);
+          var clip = document.querySelector('.widget-clip');
+          if (clip) clip.classList.add('revealed');
+          var ifr = document.querySelector('#hotmart-sales-funnel iframe');
+          if (ifr) ifr.setAttribute('scrolling', 'yes');
         }
         window.addEventListener('blur', function () {
           setTimeout(function () {
             var ifr = document.querySelector('#hotmart-sales-funnel iframe');
-            if (ifr && document.activeElement === ifr) toConfirmCrop();
+            if (ifr && document.activeElement === ifr) revealWidget();
           }, 0);
         });
       })();

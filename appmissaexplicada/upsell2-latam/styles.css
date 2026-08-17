@@ -209,16 +209,15 @@ body {
     z-index: 3;
 }
 
-/* Ao clicar no botão, o widget completo é revelado (tira o recorte e a tampa). */
+/* Ao clicar no botão, o widget completo é revelado (tira o recorte e a tampa).
+   NÃO muda o min-height do iframe — assim a Hotmart não reseta o widget e o
+   primeiro clique já funciona (evita ter que clicar duas vezes). */
 .widget-clip.revealed {
     height: auto;
     overflow: visible;
 }
 .widget-clip.revealed #hotmart-sales-funnel {
     margin-top: 0;
-}
-.widget-clip.revealed #hotmart-sales-funnel iframe {
-    min-height: 0;
 }
 .widget-clip.revealed .consent-cover {
     display: none;
