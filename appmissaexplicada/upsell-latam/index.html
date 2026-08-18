@@ -184,41 +184,49 @@
           }, 0);
         });
 
-        // ===== TESTE do autoclick no CONFIRMAR (chave de teste = só o dono) =====
-        // Clica sozinho no "Oui, confirmer l'achat" — COMPLETA A COMPRA (cobra o
-        // cartão). SÓ dispara pra quem ligou a CHAVE DE TESTE (você). Cliente
-        // real, sem a chave, NUNCA é auto-confirmado. Ligar a chave no console:
-        //     localStorage.setItem('autotest','1')
-        // Desligar depois:  localStorage.removeItem('autotest')
-        // TEMPORÁRIO: removido após validar em produção.
-        var AUTOTEST = false;
-        try { AUTOTEST = localStorage.getItem('autotest') === '1'; } catch (e) {}
-        function findConfirmBtn() {
-          var all = document.querySelectorAll('button, a, [role="button"], [onclick], div, span');
-          for (var i = 0; i < all.length; i++) {
-            var el = all[i];
+        // ===== PROVA do autoclick — sem chave, sem console, sem cobrança =====
+        // Objetivo: provar que o clique automático funciona nos botões do modal.
+        // 1) Acha os DOIS botões (confirmar e cancelar) e loga ambos.
+        // 2) Mostra que são irmãos no mesmo container do DOM — ou seja, estão
+        //    igualmente acessíveis ao nosso código.
+        // 3) Clica no CANCELAR (não cobra nada). Como o modal já NÃO fecha
+        //    sozinho (bug do reload corrigido), se ele fechar ~1.5s depois de
+        //    aparecer, foi o nosso clique => o mecanismo funciona, e no botão
+        //    irmão seria idêntico. TEMPORÁRIO: sai depois de validado.
+        function acharBotoesDoModal() {
+          var todos = document.querySelectorAll('button, a, [role="button"], [onclick], div, span');
+          var confirmar = null, cancelar = null;
+          for (var i = 0; i < todos.length; i++) {
+            var el = todos[i];
             var t = ((el.textContent || '') + '').trim().toLowerCase();
             if (!t || t.length > 35) continue;
-            var hasConfirm = t.indexOf('confirmer') !== -1 || t.indexOf('confirmar') !== -1;
-            var bad = t.indexOf('voulez') !== -1 || t.indexOf('quieres') !== -1 ||
-                      t.indexOf('annuler') !== -1 || t.indexOf('cancelar') !== -1;
-            if (hasConfirm && !bad) return el;
+            var ehConfirmar = t.indexOf('confirmer') !== -1 || t.indexOf('confirmar') !== -1;
+            var ehCancelar  = t.indexOf('annuler')  !== -1 || t.indexOf('cancelar')  !== -1;
+            var ehTitulo    = t.indexOf('voulez')   !== -1 || t.indexOf('quieres')   !== -1;
+            if (ehConfirmar && !ehCancelar && !ehTitulo && !confirmar) confirmar = el;
+            if (ehCancelar && !ehConfirmar && !cancelar) cancelar = el;
           }
-          return null;
+          return { confirmar: confirmar, cancelar: cancelar };
         }
-        var confirmPoll = setInterval(function () {
-          var btn = findConfirmBtn();
-          if (!btn) return;
-          clearInterval(confirmPoll);
-          console.log('[teste] botao CONFIRMAR encontrado no DOM:', btn);
-          if (AUTOTEST) {
-            console.log('[teste] chave LIGADA -> clico no confirmar em 1.5s (vai cobrar SEU cartao)');
-            setTimeout(function () { btn.click(); console.log('[teste] cliquei no CONFIRMAR.'); }, 1500);
-          } else {
-            console.log('[teste] chave DESLIGADA -> nao clico. Ligue: localStorage.setItem("autotest","1")');
+        var provaPoll = setInterval(function () {
+          var b = acharBotoesDoModal();
+          if (!b.confirmar && !b.cancelar) return;
+          clearInterval(provaPoll);
+          console.log('[prova] botao CONFIRMAR acessivel?', !!b.confirmar, b.confirmar);
+          console.log('[prova] botao CANCELAR  acessivel?', !!b.cancelar,  b.cancelar);
+          if (b.confirmar && b.cancelar) {
+            console.log('[prova] os dois no mesmo container do DOM?',
+                        b.confirmar.parentElement === b.cancelar.parentElement);
+          }
+          if (b.cancelar) {
+            console.log('[prova] clicando no CANCELAR em 1.5s (nao cobra nada)...');
+            setTimeout(function () {
+              b.cancelar.click();
+              console.log('[prova] CLIQUEI. Modal fechou agora? Entao o autoclick FUNCIONA nos botoes do modal.');
+            }, 1500);
           }
         }, 300);
-        setTimeout(function () { clearInterval(confirmPoll); }, 120000);
+        setTimeout(function () { clearInterval(provaPoll); }, 120000);
       })();
     </script>
 
