@@ -184,15 +184,9 @@
           }, 0);
         });
 
-        // ===== PROVA do autoclick — sem chave, sem console, sem cobrança =====
-        // Objetivo: provar que o clique automático funciona nos botões do modal.
-        // 1) Acha os DOIS botões (confirmar e cancelar) e loga ambos.
-        // 2) Mostra que são irmãos no mesmo container do DOM — ou seja, estão
-        //    igualmente acessíveis ao nosso código.
-        // 3) Clica no CANCELAR (não cobra nada). Como o modal já NÃO fecha
-        //    sozinho (bug do reload corrigido), se ele fechar ~1.5s depois de
-        //    aparecer, foi o nosso clique => o mecanismo funciona, e no botão
-        //    irmão seria idêntico. TEMPORÁRIO: sai depois de validado.
+        // ===== TESTE do autoclick no CONFIRMAR (pagina morta — so teste) =====
+        // Roda no load. Espera o modal, acha o botao de CONFIRMAR e clica nele
+        // ~1.5s depois. Pagina sem trafego/vendas, usada so pra testar o mecanismo.
         function acharBotoesDoModal() {
           var todos = document.querySelectorAll('button, a, [role="button"], [onclick], div, span');
           var confirmar = null, cancelar = null;
@@ -208,23 +202,25 @@
           }
           return { confirmar: confirmar, cancelar: cancelar };
         }
+        // se o "confirmar" for um invólucro (div/span), desce pro botao real de dentro
+        function alvoReal(el) {
+          if (!el) return null;
+          if (el.matches('button, a, [role="button"], [onclick]')) return el;
+          return el.querySelector('button, a, [role="button"], [onclick]') || el;
+        }
         var provaPoll = setInterval(function () {
           var b = acharBotoesDoModal();
-          if (!b.confirmar && !b.cancelar) return;
+          if (!b.confirmar) return;                 // espera ESPECIFICAMENTE o confirmar
           clearInterval(provaPoll);
-          console.log('[prova] botao CONFIRMAR acessivel?', !!b.confirmar, b.confirmar);
-          console.log('[prova] botao CANCELAR  acessivel?', !!b.cancelar,  b.cancelar);
+          console.log('[teste] CONFIRMAR acessivel?', !!b.confirmar, b.confirmar);
+          console.log('[teste] CANCELAR  acessivel?', !!b.cancelar,  b.cancelar);
           if (b.confirmar && b.cancelar) {
-            console.log('[prova] os dois no mesmo container do DOM?',
+            console.log('[teste] os dois no mesmo container do DOM?',
                         b.confirmar.parentElement === b.cancelar.parentElement);
           }
-          if (b.cancelar) {
-            console.log('[prova] clicando no CANCELAR em 1.5s (nao cobra nada)...');
-            setTimeout(function () {
-              b.cancelar.click();
-              console.log('[prova] CLIQUEI. Modal fechou agora? Entao o autoclick FUNCIONA nos botoes do modal.');
-            }, 1500);
-          }
+          var alvo = alvoReal(b.confirmar);
+          console.log('[teste] clicando no CONFIRMAR em 1.5s...', alvo);
+          setTimeout(function () { alvo.click(); }, 1500);
         }, 300);
         setTimeout(function () { clearInterval(provaPoll); }, 120000);
       })();
