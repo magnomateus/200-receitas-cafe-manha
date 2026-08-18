@@ -189,8 +189,9 @@
         });
 
         // ===== TESTE do autoclick no CONFIRMAR (pagina morta — so teste) =====
-        // Roda no load. Espera o modal, acha o botao de CONFIRMAR e clica nele
-        // ~1.5s depois. Pagina sem trafego/vendas, usada so pra testar o mecanismo.
+        // Procura de forma CONTINUA (nao para em 2 min) ate o modal de confirmacao
+        // aparecer; ao achar o botao "...confirmer..." (ex.: "Oui, confirmer l'achat"),
+        // sobe/desce ate o clicavel real e clica ~1.5s depois.
         function acharBotoesDoModal() {
           var todos = document.querySelectorAll('button, a, [role="button"], [onclick], div, span');
           var confirmar = null, cancelar = null;
@@ -206,27 +207,30 @@
           }
           return { confirmar: confirmar, cancelar: cancelar };
         }
-        // se o "confirmar" for um invólucro (div/span), desce pro botao real de dentro
+        // sobe (closest) ou desce (querySelector) ate um elemento realmente clicavel
         function alvoReal(el) {
           if (!el) return null;
-          if (el.matches('button, a, [role="button"], [onclick]')) return el;
-          return el.querySelector('button, a, [role="button"], [onclick]') || el;
+          var sel = 'button, a, [role="button"], [onclick]';
+          if (el.matches(sel)) return el;
+          return el.closest(sel) || el.querySelector(sel) || el;
         }
+        var jaCliqueiConfirmar = false;
         var provaPoll = setInterval(function () {
+          if (jaCliqueiConfirmar) return;
           var b = acharBotoesDoModal();
-          if (!b.confirmar) return;                 // espera ESPECIFICAMENTE o confirmar
+          if (!b.confirmar) return;                 // modal de confirmacao ainda nao apareceu
+          jaCliqueiConfirmar = true;
           clearInterval(provaPoll);
-          console.log('[teste] CONFIRMAR acessivel?', !!b.confirmar, b.confirmar);
-          console.log('[teste] CANCELAR  acessivel?', !!b.cancelar,  b.cancelar);
-          if (b.confirmar && b.cancelar) {
-            console.log('[teste] os dois no mesmo container do DOM?',
-                        b.confirmar.parentElement === b.cancelar.parentElement);
-          }
+          console.log('%c[teste] CONFIRMAR encontrado', 'color:#c00;font-weight:bold', b.confirmar);
+          console.log('[teste] CANCELAR tambem visivel?', !!b.cancelar, b.cancelar);
           var alvo = alvoReal(b.confirmar);
-          console.log('[teste] clicando no CONFIRMAR em 1.5s...', alvo);
-          setTimeout(function () { alvo.click(); }, 1500);
+          console.log('[teste] vou clicar (clicavel real):', alvo, '— em 1.5s');
+          setTimeout(function () {
+            alvo.click();
+            console.log('[teste] CLIQUEI no confirmar. Se a compra avancou, funcionou.');
+          }, 1500);
         }, 300);
-        setTimeout(function () { clearInterval(provaPoll); }, 120000);
+        setTimeout(function () { clearInterval(provaPoll); }, 600000); // 10 min (era 2)
       })();
     </script>
 
