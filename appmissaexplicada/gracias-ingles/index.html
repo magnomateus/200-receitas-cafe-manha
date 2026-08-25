@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  THANK YOU — The Mass Explained (ENGLISH / EN)
+  English version of /gracias-misa-latam/ (same design and CSS). Static
+  confirmation page: check icon -> headline -> next steps (email) -> final
+  message -> support. Fires the Meta Purchase event on load.
+
+  ⚠️ PIXELS: pending. Fill window.EN_PIXELS below. While the values start with
+     "PREENCHER", nothing fires (no PageView, no Purchase).
+  ⚠️ PURCHASE product id: fill PREENCHER_HOTMART_PRODUCT_ID_EN with the EN
+     Hotmart product id (the Purchase only fires once the Meta pixel is set).
+  ============================================================================
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Thank you for your purchase! - The Mass Explained</title>
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- ============================================================
+         ENGLISH PIXELS — ⚠️ FILL before running traffic.
+         While the values start with "PREENCHER", nothing fires.
+         ============================================================ -->
+    <script>
+      window.EN_PIXELS = {
+        UTMIFY: 'PREENCHER_UTMIFY_PIXEL_ID_EN',
+        META:   'PREENCHER_META_PIXEL_ID_EN'
+      };
+      (function () {
+        var cfg = window.EN_PIXELS;
+        if (cfg.UTMIFY.indexOf('PREENCHER') !== 0) {
+          window.pixelId = cfg.UTMIFY;
+          var a = document.createElement('script');
+          a.setAttribute('async', '');
+          a.setAttribute('defer', '');
+          a.setAttribute('src', 'https://cdn.utmify.com.br/scripts/pixel/pixel.js');
+          document.head.appendChild(a);
+        }
+      })();
+    </script>
+
+    <!-- Utmify UTMs Script (forwards the UTMs — safe to keep always on) -->
+    <script
+      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+      data-utmify-prevent-subids
+      async
+      defer
+    ></script>
+
+    <!-- Meta Pixel Code (only initializes with a real ID) -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    (function () {
+      var id = window.EN_PIXELS.META;
+      if (id.indexOf('PREENCHER') !== 0) {
+        fbq('init', id);
+        fbq('track', 'PageView');
+      }
+    })();
+    </script>
+    <!-- End Meta Pixel Code -->
+</head>
+<body>
+    <main class="thanks-page">
+        <div class="container">
+
+            <!-- Check icon -->
+            <div class="success-icon">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="#d4af37" stroke-width="4"/>
+                    <path d="M30 52 L45 67 L72 38" fill="none" stroke="#d4af37" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+
+            <!-- Headline -->
+            <h1 class="thanks-headline">
+                Congratulations! <br>
+                <span class="thanks-headline-emph">Your purchase is confirmed</span>
+            </h1>
+
+            <p class="thanks-subheadline">
+                You've just taken a huge step in your spiritual life.
+                You now have full access to <strong>The Mass Explained</strong>. ✝️
+            </p>
+
+            <!-- Next steps card -->
+            <section class="next-steps">
+                <h2 class="section-title">Next steps</h2>
+
+                <ol class="steps-list">
+                    <li>
+                        <span class="step-number">1</span>
+                        <div class="step-content">
+                            <h3>Check your email</h3>
+                            <p>We've sent your access details to the email address you used at checkout. It may take a few minutes to arrive.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="step-number">2</span>
+                        <div class="step-content">
+                            <h3>Didn't find the email?</h3>
+                            <p>Check your <strong>spam or promotions</strong> folder. If it still hasn't arrived, wait up to 15 minutes. The confirmation comes from Hotmart.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="step-number">3</span>
+                        <div class="step-content">
+                            <h3>Access your material</h3>
+                            <p>From the email, click the link to enter the platform and start studying right away.</p>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+
+            <!-- Final message -->
+            <div class="thanks-final">
+                <p class="thanks-final-text">
+                    May the Lord bless you on this new path of faith and understanding.
+                </p>
+                <p class="thanks-final-signature">— Father Mateus</p>
+            </div>
+
+            <!-- Support -->
+            <div class="support-info">
+                <p>
+                    Questions or problems?
+                    Write to us at:
+                    <a href="mailto:soporte@missaexplicadaes.shop">soporte@missaexplicadaes.shop</a>
+                </p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Tracking Purchase event (The Mass Explained). Only fires once the Meta
+         pixel is set (window.EN_PIXELS.META filled). Fill the product id below. -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof fbq !== 'undefined') {
+            fbq('track', 'Purchase', {
+                content_name: 'The Mass Explained',
+                content_ids: ['PREENCHER_HOTMART_PRODUCT_ID_EN'],
+                content_type: 'product',
+                currency: 'USD',
+                num_items: 1
+            });
+        }
+    });
+    </script>
+</body>
+</html>
