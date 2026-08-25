@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  DOWNSELL of UPSELL 2 — Liturgical Seasons (ENGLISH / EN)
+  Our style (cream, Montserrat strong + Roboto, burgundy/gold). Copy follows
+  the DISCOUNT pattern: "Congratulations! you received a super discount...
+  valid only on this page" -> highlight (value) -> checkout -> body.
+
+  Lean structure (like the discount page): NO warning bar, NO "Processing
+  payment" and NO progress bar — those are the upsell theater.
+
+  Product: "Liturgical Seasons". Hotmart salesFunnel checkout + robots noindex
+  — untouched.
+
+  ⚠️ PIXELS: pending. Fill window.EN_PIXELS below. While the values start with
+     "PREENCHER", nothing fires (no tracking).
+  ============================================================================
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Last Chance - Liturgical Seasons</title>
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Google Fonts — Montserrat (titles) + Roboto (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- ============================================================
+         ENGLISH PIXELS — ⚠️ FILL before running traffic.
+         While the values start with "PREENCHER", nothing fires.
+         ============================================================ -->
+    <script>
+      window.EN_PIXELS = {
+        UTMIFY: 'PREENCHER_UTMIFY_PIXEL_ID_EN',
+        META:   'PREENCHER_META_PIXEL_ID_EN'
+      };
+      (function () {
+        var cfg = window.EN_PIXELS;
+        if (cfg.UTMIFY.indexOf('PREENCHER') !== 0) {
+          window.pixelId = cfg.UTMIFY;
+          var a = document.createElement('script');
+          a.setAttribute('async', '');
+          a.setAttribute('defer', '');
+          a.setAttribute('src', 'https://cdn.utmify.com.br/scripts/pixel/pixel.js');
+          document.head.appendChild(a);
+        }
+      })();
+    </script>
+
+    <!-- Utmify UTMs Script (forwards the UTMs — safe to keep always on) -->
+    <script
+      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+      data-utmify-prevent-subids
+      async
+      defer
+    ></script>
+
+    <!-- Meta Pixel Code (only initializes with a real ID) -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    (function () {
+      var id = window.EN_PIXELS.META;
+      if (id.indexOf('PREENCHER') !== 0) {
+        fbq('init', id);
+        fbq('track', 'PageView');
+      }
+    })();
+    </script>
+    <!-- End Meta Pixel Code -->
+</head>
+<body>
+
+    <main class="page">
+        <div class="container">
+
+            <!-- 1. Headline — discount page pattern (with b/u) -->
+            <h1 class="headline">
+                <b>Congratulations!</b> You received a <u>super discount</u> to live and understand the liturgical seasons of the year.
+                <b>Discount valid only on this page.</b>
+            </h1>
+
+            <!-- 2. Highlight line (value) -->
+            <p class="highlight">The essential guide to live and understand every liturgical season of the year with faith and depth!</p>
+
+            <!-- 3. Hotmart checkout (salesFunnel: 1-click button + "no, thanks") -->
+            <section class="checkout">
+                <div id="hotmart-sales-funnel"></div>
+                <p class="checkout-hint" id="checkout-hint">Loading your offer…</p>
+            </section>
+
+            <!-- 4. Body -->
+            <p class="body-text">
+                Get the complete guide to understand Advent, Christmas, Lent, Easter and Ordinary Time,
+                and live the liturgical year just as the Church proposes it.
+            </p>
+
+            <!-- 5. Product cover -->
+            <section class="mockup-wrap">
+                <img
+                    src="capa-tiempos-liturgicos.png"
+                    alt="Liturgical Seasons — guide to the liturgical seasons of the year: Advent, Lent, Easter, Christmas and Ordinary Time."
+                    class="product-cover"
+                    width="600"
+                    height="600"
+                    loading="lazy"
+                    decoding="async"
+                />
+            </section>
+
+            <!-- 6. Footer -->
+            <footer class="footer">
+                ✝ The Mass Explained · All rights reserved ©
+            </footer>
+
+        </div>
+    </main>
+
+    <!-- Hotmart 1-click buy widget (untouched). Mounts the YES button + the
+         decline, reading the offer from the funnel configured in the Hotmart panel. -->
+    <script>
+      (function () {
+        var s = document.createElement('script');
+        s.src = 'https://checkout.hotmart.com/lib/hotmart-checkout-elements.js';
+        s.onload = function () {
+          try {
+            checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel');
+            var hint = document.getElementById('checkout-hint');
+            if (hint) hint.style.display = 'none';
+          } catch (err) {
+            console.error('Hotmart salesFunnel:', err);
+          }
+        };
+        document.body.appendChild(s);
+      })();
+    </script>
+
+</body>
+</html>

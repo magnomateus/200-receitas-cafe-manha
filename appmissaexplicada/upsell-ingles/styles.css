@@ -1,0 +1,316 @@
+/* ==========================================================================
+   Upsell LATAM — App Misa Explicada
+   Estilo copiado da referência validada (preachfy): Montserrat forte nos
+   títulos, Roboto no corpo, texto GRANDE e negrito. Única diferença: fundo
+   CREME (a ref é preta), então os textos brancos da ref viram escuros aqui.
+   Mobile-first.
+   ========================================================================== */
+
+:root {
+    --burgundy: #8B1D1D;
+    --gold: #C9A227;
+    --cream: #FBF7F0;
+    --ink: #2b2320;
+
+    --ink-soft: rgba(43, 35, 32, 0.75);
+    --ink-faint: rgba(43, 35, 32, 0.5);
+    --line: rgba(139, 29, 29, 0.14);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Roboto', system-ui, -apple-system, sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.55;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --------------------------------------------------------------------------
+   1. Barra de aviso fixa — grande e forte, como a barra vermelha da ref.
+   -------------------------------------------------------------------------- */
+.warning-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: var(--burgundy);
+    color: #fff;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.05rem;      /* ~17px, sobe no desktop */
+    font-weight: 700;
+    line-height: 1.35;
+    padding: 12px 16px;
+    box-shadow: 0 2px 14px rgba(139, 29, 29, 0.28);
+}
+
+.page {
+    padding: 92px 20px 44px; /* espaço da barra fixa */
+}
+
+.container {
+    max-width: 620px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   2. "Procesando el pago" — reforça a urgência, Montserrat forte.
+   -------------------------------------------------------------------------- */
+.processing {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.25rem;      /* ~20px */
+    font-weight: 800;
+    color: var(--burgundy);
+    margin-bottom: 18px;
+}
+
+.dots span {
+    animation: blink 1.4s infinite both;
+}
+.dots span:nth-child(2) { animation-delay: 0.2s; }
+.dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes blink {
+    0%, 100% { opacity: 0.2; }
+    50%      { opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   3. Barra de progresso — trilha clara + preenchimento burgundy -> dourado.
+   -------------------------------------------------------------------------- */
+.progress-block {
+    margin-bottom: 30px;
+}
+
+.progress-track {
+    height: 30px;
+    background: #e6e2da;      /* trilha cinza-clara, como a referência */
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    /* 90% — barra cheia sólida, com o % dentro (igual à referência). */
+    width: 90%;
+    height: 100%;
+    background: var(--burgundy);
+    border-radius: 6px 0 0 6px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 12px;
+}
+
+.progress-pct {
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    font-weight: 800;
+    font-size: 0.95rem;
+    line-height: 1;
+}
+
+/* --------------------------------------------------------------------------
+   4. Headline — grande e em negrito forte (burgundy; era branco na ref).
+   -------------------------------------------------------------------------- */
+.headline {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--burgundy);
+    font-size: 1.9rem;       /* ~30px, cresce no desktop */
+    font-weight: 800;
+    line-height: 1.18;
+    letter-spacing: -0.01em;
+    margin-bottom: 26px;
+}
+
+/* --------------------------------------------------------------------------
+   5. Checkout — o Hotmart salesFunnel monta aqui o botão + o decline.
+   -------------------------------------------------------------------------- */
+.checkout {
+    max-width: 500px;
+    margin: 0 auto 28px;
+}
+
+/* Rótulo chamativo acima do checkout */
+.checkout-eyebrow {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--burgundy);
+    margin-bottom: 12px;
+}
+
+/* Cartão que "eleva" o widget e combina com o fundo creme */
+.checkout-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--gold);
+    border-radius: 16px;
+    padding: 12px;
+    box-shadow: 0 16px 38px rgba(43, 35, 32, 0.16);
+}
+
+/* Arredonda os cantos do iframe da Hotmart (corta a quadradez do box) */
+#hotmart-sales-funnel {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#hotmart-sales-funnel iframe {
+    display: block;
+    border-radius: 10px;
+    /* Alto o suficiente p/ NÃO ter scroll interno (a máscara recorta depois). */
+    min-height: 700px;
+}
+
+/* --------------------------------------------------------------------------
+   MÁSCARA DO WIDGET — recorta o iframe pra mostrar só a faixa do botão.
+   Esconde o topo (nome + descrição/preço da Hotmart) e o rodapé (powered by).
+   >>> AJUSTE FINO AO VIVO: mexa em --clip-top (quanto some do topo) e
+       --clip-height (altura da janela visível). São os 2 únicos números. <<<
+   -------------------------------------------------------------------------- */
+.widget-clip {
+    /* Mostra SÓ o botão de comprar — recorta todo o resto do widget.
+       >>> AJUSTE AO VIVO: --clip-top (topo do botão) e --clip-height (altura). <<< */
+    --clip-top: 146px;
+    --clip-height: 70px;
+    position: relative;
+    height: var(--clip-height);
+    overflow: hidden;
+    border-radius: 10px;
+}
+.widget-clip #hotmart-sales-funnel {
+    margin-top: calc(-1 * var(--clip-top));
+}
+
+/* Ao clicar no botão, revela o widget completo (tira o recorte) pra a tela de
+   confirmação aparecer. NÃO muda o min-height do iframe — evita reset e a
+   necessidade de clicar duas vezes. */
+.widget-clip.revealed {
+    height: auto;
+    overflow: visible;
+}
+.widget-clip.revealed #hotmart-sales-funnel {
+    margin-top: 0;
+}
+
+/* Consentimento mostrado na página (em espanhol, discreto) */
+.checkout-consent {
+    margin: 12px auto 0;
+    max-width: 42ch;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    color: var(--ink-faint);
+}
+
+.checkout-hint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.95rem;
+    color: var(--ink-faint);
+    padding: 22px 14px;
+}
+
+/* Spinner de carregamento */
+.spinner {
+    width: 15px;
+    height: 15px;
+    border: 2px solid rgba(139, 29, 29, 0.22);
+    border-top-color: var(--burgundy);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Linha de confiança abaixo do checkout */
+.checkout-trust {
+    margin-top: 14px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--ink-faint);
+}
+
+/* --------------------------------------------------------------------------
+   6. Linha de destaque (valor) — grande e negrito, dourado (era teal na ref).
+   -------------------------------------------------------------------------- */
+.highlight {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--gold);
+    font-size: 1.5rem;       /* ~24px */
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 16px;
+}
+
+/* --------------------------------------------------------------------------
+   7. Corpo — Roboto, grande o suficiente para ler sem esforço.
+   -------------------------------------------------------------------------- */
+.body-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.06rem;      /* ~17px */
+    font-weight: 400;
+    color: var(--ink);
+    max-width: 42ch;
+    margin: 0 auto 32px;
+}
+
+/* --------------------------------------------------------------------------
+   8. Mockup — imagem do app (moldura de celular já embutida).
+   -------------------------------------------------------------------------- */
+.mockup-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 34px;
+}
+
+.app-mockup {
+    display: block;
+    width: 100%;
+    max-width: 230px;
+    height: auto;
+    filter: drop-shadow(0 18px 40px rgba(43, 35, 32, 0.26));
+}
+
+/* --------------------------------------------------------------------------
+   9. Footer
+   -------------------------------------------------------------------------- */
+.footer {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink-faint);
+    border-top: 1px solid var(--line);
+    padding-top: 20px;
+}
+
+/* --------------------------------------------------------------------------
+   Desktop — texto ainda maior, no espírito da referência.
+   -------------------------------------------------------------------------- */
+@media (min-width: 640px) {
+    .warning-bar { font-size: 1.2rem; padding: 14px 18px; }
+    .page { padding-top: 100px; }
+    .processing { font-size: 1.4rem; }
+    .headline { font-size: 2.6rem; }
+    .highlight { font-size: 1.85rem; }
+    .body-text { font-size: 1.18rem; }
+    .app-mockup { max-width: 250px; }
+}
