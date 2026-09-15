@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>VideoPack SFX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* ============ VideoPack SFX — mundo visual único (dark, estúdio/plugin) ============ */
+  :root{
+    --bg:#151109;            /* carvão quente, não preto puro */
+    --bg-2:#1b150d;
+    --surface:#221c12;
+    --surface-2:#2a2216;
+    --line:#3a3020;
+    --line-soft:#2c2416;
+    --ink:#f6efe0;           /* creme */
+    --ink-2:#cabda2;         /* creme apagado */
+    --ink-3:#8f8265;         /* mais apagado */
+    --amber:#ff7a1a;         /* acento quente (pico/VU) */
+    --amber-2:#ffab5e;
+    --amber-ink:#1a1206;
+    --green:#8fd14f;         /* sinal / grátis */
+    --green-2:#b7e089;
+    --maxw:1120px;
+    --radius:18px;
+    --font-display:"Bricolage Grotesque",-apple-system,BlinkMacSystemFont,sans-serif;
+    --font-body:"Hanken Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --font-mono:"Space Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-inline:22px}
+
+  .mono{
+    font-family:var(--font-mono);
+    font-size:.72rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--ink-3);
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar{
+    position:relative;z-index:3;
+    display:flex;align-items:center;justify-content:space-between;
+    padding-block:22px;gap:16px;
+  }
+  .brand{display:flex;align-items:center;gap:11px;font-family:var(--font-display);
+    font-weight:800;letter-spacing:-.02em;font-size:1.12rem}
+  .brand .glyph{display:flex;align-items:flex-end;gap:2.5px;height:20px}
+  .brand .glyph i{width:3px;border-radius:2px;background:var(--amber);display:block}
+  .brand .glyph i:nth-child(1){height:8px}
+  .brand .glyph i:nth-child(2){height:18px}
+  .brand .glyph i:nth-child(3){height:12px}
+  .brand .glyph i:nth-child(4){height:20px}
+  .brand .glyph i:nth-child(5){height:7px}
+  .brand b{color:var(--amber)}
+  .spec-chip{
+    font-family:var(--font-mono);font-size:.7rem;letter-spacing:.1em;
+    color:var(--ink-2);border:1px solid var(--line);border-radius:999px;
+    padding:6px 13px;white-space:nowrap;
+  }
+
+  /* ---------- Hero (primeira tela) ---------- */
+  .hero{
+    position:relative;
+    min-height:calc(100svh - 84px);
+    display:flex;flex-direction:column;justify-content:center;
+    padding-block:40px 30px;
+  }
+  .hero-glow{
+    position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(680px 420px at 12% 30%, rgba(255,122,26,.16), transparent 70%),
+      radial-gradient(560px 380px at 92% 78%, rgba(143,209,79,.07), transparent 70%);
+  }
+  .hero > *{position:relative;z-index:1}
+
+  .eyebrow{margin:0 0 20px}
+  h1.headline{
+    font-family:var(--font-display);
+    font-weight:800;
+    font-size:clamp(2.5rem,7.2vw,5rem);
+    line-height:.98;
+    letter-spacing:-.03em;
+    margin:0;
+    max-width:16ch;
+    text-wrap:balance;
+  }
+  h1.headline em{font-style:normal;color:var(--amber);position:relative}
+  .subhead{
+    margin:22px 0 0;
+    font-size:clamp(1.02rem,2.1vw,1.24rem);
+    color:var(--ink-2);
+    max-width:52ch;
+    line-height:1.5;
+  }
+
+  /* waveform herói */
+  .waveform{
+    position:relative;
+    margin:34px 0 0;
+    height:clamp(96px,17vw,150px);
+    border:1px solid var(--line-soft);
+    border-radius:14px;
+    background:
+      linear-gradient(var(--bg-2),var(--bg-2)) padding-box,
+      repeating-linear-gradient(90deg,transparent 0 calc(10% - 1px),rgba(255,255,255,.03) calc(10% - 1px) 10%);
+    padding:14px 16px;
+    display:flex;align-items:center;gap:2px;
+    overflow:hidden;
+  }
+  .waveform .mid{position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(255,255,255,.06)}
+  .waveform span{
+    flex:1 1 0;
+    min-width:0;
+    height:var(--h,30%);
+    background:linear-gradient(180deg,var(--amber-2),var(--amber));
+    border-radius:2px;
+    opacity:.92;
+    transform-origin:center;
+    animation:pulse 1.9s ease-in-out infinite;
+    animation-delay:var(--d,0s);
+  }
+  .playhead{
+    position:absolute;top:8px;bottom:8px;width:2px;left:0;
+    background:linear-gradient(var(--green),transparent);
+    box-shadow:0 0 12px 2px rgba(143,209,79,.6);
+    animation:sweep 6s linear infinite;
+  }
+  .playhead::before{content:"";position:absolute;top:-4px;left:-3px;width:8px;height:8px;
+    border-radius:50%;background:var(--green);box-shadow:0 0 10px 2px rgba(143,209,79,.7)}
+  @keyframes pulse{0%,100%{transform:scaleY(.82)}50%{transform:scaleY(1.12)}}
+  @keyframes sweep{0%{left:2%}100%{left:98%}}
+
+  .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px;align-items:center}
+  .btn{
+    font-family:var(--font-body);font-weight:700;font-size:1rem;
+    border-radius:12px;padding:15px 26px;cursor:pointer;border:1px solid transparent;
+    display:inline-flex;align-items:center;gap:10px;transition:transform .15s ease,box-shadow .2s ease,background .2s ease;
+  }
+  .btn-amber{background:var(--amber);color:var(--amber-ink);box-shadow:0 10px 30px -10px var(--amber)}
+  .btn-amber:hover{transform:translateY(-2px);box-shadow:0 16px 40px -12px var(--amber)}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+  .btn-ghost:hover{border-color:var(--ink-3);transform:translateY(-2px)}
+  .btn .arw{transition:transform .2s ease}
+  .btn:hover .arw{transform:translateY(2px)}
+
+  .ticker{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:34px;align-items:center}
+  .ticker .lbl{color:var(--ink-3);font-family:var(--font-mono);font-size:.68rem;letter-spacing:.12em}
+
+  /* ---------- Régua/divisória timeline ---------- */
+  .ruler{position:relative;margin-top:6px;height:44px;border-top:1px solid var(--line-soft);
+    display:flex;align-items:center;justify-content:space-between}
+  .ruler .ticks{position:absolute;inset:0 0 auto 0;height:10px;
+    background-image:repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px 40px)}
+  .ruler .rlabel{font-family:var(--font-mono);font-size:.68rem;color:var(--ink-3);
+    background:var(--bg);padding:0 10px;position:relative;letter-spacing:.1em}
+  .ruler .rlabel.mid{color:var(--amber);}
+
+  /* ---------- Ofertas (segunda tela) ---------- */
+  .offers{padding-block:70px 30px}
+  .offers-head{max-width:40ch;margin-bottom:40px}
+  .offers-head h2{font-family:var(--font-display);font-weight:800;letter-spacing:-.02em;
+    font-size:clamp(1.9rem,4.5vw,3rem);line-height:1.02;margin:14px 0 0;text-wrap:balance}
+
+  .cards{display:grid;grid-template-columns:1fr 1.15fr;gap:22px;align-items:stretch}
+  .card{
+    position:relative;border-radius:var(--radius);padding:30px 28px 28px;
+    display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line-soft);
+  }
+  .card.free{background:var(--bg-2)}
+  .card.pro{
+    background:
+      linear-gradient(var(--surface),var(--surface)) padding-box,
+      linear-gradient(150deg,var(--amber),rgba(255,122,26,.15)) border-box;
+    border:1.5px solid transparent;
+    box-shadow:0 30px 80px -40px var(--amber), 0 0 0 1px rgba(255,122,26,.06);
+  }
+  .card .tag{margin-bottom:16px}
+  .card.free .tag{color:var(--green-2)}
+  .badge{
+    position:absolute;top:-13px;right:24px;
+    font-family:var(--font-mono);font-weight:700;font-size:.66rem;letter-spacing:.14em;
+    background:var(--amber);color:var(--amber-ink);padding:7px 13px;border-radius:999px;
+    box-shadow:0 8px 22px -8px var(--amber);
+  }
+  .qty{font-family:var(--font-display);font-weight:800;letter-spacing:-.03em;
+    font-size:clamp(2.4rem,6vw,3.4rem);line-height:1;margin:0}
+  .qty small{font-size:.34em;font-weight:700;color:var(--ink-2);letter-spacing:.02em;display:block;margin-top:8px;font-family:var(--font-body)}
+  .card .lede{color:var(--ink-2);margin:14px 0 0;font-size:.98rem}
+
+  /* mini waveform nos cards */
+  .mini-wf{display:flex;align-items:center;gap:2px;height:38px;margin:22px 0 4px}
+  .mini-wf span{flex:1 1 0;border-radius:2px;background:var(--ink-3);opacity:.5}
+  .card.pro .mini-wf span{background:linear-gradient(180deg,var(--amber-2),var(--amber));opacity:.9}
+  .card.free .mini-wf span{background:var(--green);opacity:.55}
+
+  .price{display:flex;align-items:baseline;gap:10px;margin:20px 0 4px}
+  .price .amount{font-family:var(--font-display);font-weight:800;font-size:2.5rem;letter-spacing:-.02em}
+  .price .free-word{font-family:var(--font-display);font-weight:800;font-size:2.5rem;color:var(--green)}
+  .price .note{font-family:var(--font-mono);font-size:.68rem;color:var(--ink-3);letter-spacing:.08em}
+
+  ul.feats{list-style:none;padding:0;margin:22px 0 26px;display:flex;flex-direction:column;gap:12px;flex:1}
+  ul.feats li{display:flex;gap:11px;align-items:flex-start;font-size:.96rem;color:var(--ink-2)}
+  ul.feats li svg{flex:none;margin-top:3px}
+  .card.pro ul.feats li{color:var(--ink)}
+
+  .card .btn{width:100%;justify-content:center}
+  .card.free .btn-ghost{border-color:var(--green);color:var(--green-2)}
+  .card.free .btn-ghost:hover{background:rgba(143,209,79,.08);border-color:var(--green)}
+
+  .cat-strip{margin-top:34px;display:flex;flex-wrap:wrap;gap:9px;align-items:center}
+  .cat-strip .clabel{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.12em;color:var(--ink-3);margin-right:6px}
+  .chip{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.06em;color:var(--ink-2);
+    border:1px solid var(--line);border-radius:999px;padding:6px 12px}
+
+  .reassure{margin-top:26px;color:var(--ink-3);font-size:.9rem;display:flex;align-items:center;gap:9px}
+  .reassure svg{flex:none}
+
+  /* ---------- Footer ---------- */
+  footer{border-top:1px solid var(--line-soft);margin-top:64px;padding-block:30px 46px;
+    display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;align-items:center}
+  footer .fnote{color:var(--ink-3);font-size:.82rem;max-width:46ch}
+
+  @media (max-width:760px){
+    .cards{grid-template-columns:1fr}
+    .card.pro{order:-1}
+    .spec-chip{display:none}
+    .hero{min-height:auto;padding-block:26px 44px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .waveform span{animation:none}
+    .playhead{animation:none;left:50%}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="topbar">
+    <div class="brand">
+      <span class="glyph" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+      Video<b>Pack</b>
+    </div>
+    <span class="spec-chip">WAV · 48 kHz · 24-bit</span>
+  </header>
+</div>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <p class="mono eyebrow">// efeitos sonoros para editores de vídeo</p>
+    <h1 class="headline">Seu corte tá pronto. Só falta o <em>impacto</em>.</h1>
+    <p class="subhead">Whoosh, riser, glitch, transição, sub&nbsp;drop. Efeitos sonoros prontos pra arrastar direto na timeline — sem royalties, em qualquer editor.</p>
+
+    <div class="waveform" aria-hidden="true" id="waveform">
+      <span class="mid"></span>
+      <span class="playhead"></span>
+    </div>
+
+    <div class="cta-row">
+      <a href="#packs" class="btn btn-amber">Ver os packs <span class="arw">↓</span></a>
+      <a href="#packs" class="btn btn-ghost">Baixar 10 grátis</a>
+    </div>
+
+    <div class="ticker">
+      <span class="lbl">Funciona no seu editor:</span>
+      <span class="mono" style="color:var(--ink-2)">Premiere</span>
+      <span class="mono" style="color:var(--ink-2)">DaVinci</span>
+      <span class="mono" style="color:var(--ink-2)">CapCut</span>
+      <span class="mono" style="color:var(--ink-2)">Final Cut</span>
+      <span class="mono" style="color:var(--ink-2)">Vegas</span>
+    </div>
+  </section>
+</div>
+
+<div class="wrap">
+  <div class="ruler" aria-hidden="true">
+    <div class="ticks"></div>
+    <span class="rlabel">00:00</span>
+    <span class="rlabel mid">arraste e solte</span>
+    <span class="rlabel">00:10</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <section class="offers" id="packs">
+    <div class="offers-head">
+      <p class="mono">// escolha seu pack</p>
+      <h2>Dois jeitos de dar vida à sua edição</h2>
+    </div>
+
+    <div class="cards">
+      <!-- CARD GRÁTIS -->
+      <article class="card free">
+        <p class="mono tag">Amostra grátis</p>
+        <p class="qty">10 <small>efeitos essenciais</small></p>
+        <p class="lede">O kit padrão pra você sentir a qualidade antes de ir pro pack completo.</p>
+
+        <div class="mini-wf" data-wf="free" aria-hidden="true"></div>
+
+        <div class="price">
+          <span class="free-word">Grátis</span>
+        </div>
+
+        <ul class="feats">
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7.5" fill="none" stroke="#8fd14f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 10 efeitos essenciais (whoosh, click, impacto)</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7.5" fill="none" stroke="#8fd14f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Arquivos WAV em alta qualidade</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7.5" fill="none" stroke="#8fd14f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Uso livre nos seus vídeos</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7.5" fill="none" stroke="#8fd14f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Download na hora</li>
+        </ul>
+
+        <!-- PREENCHER: link de download dos 10 grátis -->
+        <a href="#" class="btn btn-ghost" data-cta="free">Baixar grátis</a>
+      </article>
+
+      <!-- CARD 100 (PRINCIPAL) -->
+      <article class="card pro">
+        <span class="badge">★ Mais tocado</span>
+        <p class="mono tag" style="color:var(--amber-2)">Pack completo</p>
+        <p class="qty">100 <small>efeitos premium</small></p>
+        <p class="lede">Tudo que você precisa pra nunca mais travar a edição procurando o som certo.</p>
+
+        <div class="mini-wf" data-wf="pro" aria-hidden="true"></div>
+
+        <div class="price">
+          <span class="amount">US$ 9,90</span>
+          <span class="note">pagamento único · acesso vitalício</span>
+        </div>
+
+        <ul class="feats">
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7.5" fill="none" stroke="#ff7a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 100 efeitos organizados por categoria</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7.5" fill="none" stroke="#ff7a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Whoosh, impacto, riser, glitch, UI, sub drop e mais</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7.5" fill="none" stroke="#ff7a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Uso comercial liberado</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7.5" fill="none" stroke="#ff7a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Compatível com todos os editores</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7.5" fill="none" stroke="#ff7a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Acesso imediato e vitalício</li>
+        </ul>
+
+        <!-- PREENCHER: link de checkout dos 100 (US$ 9,90) -->
+        <a href="#" class="btn btn-amber" data-cta="checkout">Quero os 100 efeitos</a>
+      </article>
+    </div>
+
+    <div class="cat-strip">
+      <span class="clabel">Dentro do pack:</span>
+      <span class="chip">Whoosh</span>
+      <span class="chip">Impact</span>
+      <span class="chip">Riser</span>
+      <span class="chip">Transição</span>
+      <span class="chip">Glitch</span>
+      <span class="chip">UI / Click</span>
+      <span class="chip">Sub Drop</span>
+      <span class="chip">Foley</span>
+    </div>
+
+    <p class="reassure">
+      <svg width="15" height="15" viewBox="0 0 16 16"><path d="M8 1l5 2v4c0 3.2-2.1 6-5 7-2.9-1-5-3.8-5-7V3l5-2z" fill="none" stroke="#8f8265" stroke-width="1.3"/></svg>
+      Pagamento 100% seguro · acesso imediato após a compra.
+    </p>
+  </section>
+</div>
+
+<div class="wrap">
+  <footer>
+    <div class="brand">
+      <span class="glyph" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+      Video<b>Pack</b>
+    </div>
+    <p class="fnote">© 2026 VideoPack · Efeitos sonoros livres de royalties, entregues digitalmente.</p>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Waveform do herói — barras com envelope orgânico (parece um clipe de áudio real)
+    var wf = document.getElementById('waveform');
+    if (wf) {
+      var N = 92, frag = '';
+      for (var i = 0; i < N; i++) {
+        var t = i / N;
+        var env = 0.30 + 0.55 * Math.pow(Math.sin(Math.PI * t), 0.65);
+        var detail = Math.abs(Math.sin(i * 0.7) + 0.6 * Math.sin(i * 1.9) + 0.4 * Math.sin(i * 3.3));
+        var h = env * detail / 1.7;
+        h = Math.max(0.10, Math.min(1, h));
+        var d = (reduce ? 0 : (i % 12) * 0.06).toFixed(2);
+        frag += '<span style="--h:' + (h * 100).toFixed(1) + '%;--d:' + d + 's"></span>';
+      }
+      // insere as barras antes do playhead
+      wf.insertAdjacentHTML('beforeend', frag);
+    }
+
+    // Mini waveforms dos cards (padrão estático, determinístico)
+    document.querySelectorAll('.mini-wf').forEach(function (el) {
+      var n = el.dataset.wf === 'pro' ? 46 : 30, s = '';
+      for (var i = 0; i < n; i++) {
+        var h = 0.25 + 0.75 * Math.abs(Math.sin(i * 0.9) * Math.cos(i * 0.35));
+        s += '<span style="height:' + (h * 100).toFixed(0) + '%"></span>';
+      }
+      el.innerHTML = s;
+    });
+  })();
+</script>
+
+</body>
+</html>
