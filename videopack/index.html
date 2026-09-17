@@ -420,5 +420,37 @@
   })();
 </script>
 
+<script>
+/* Tracking de cliques (free/premium) + modo dono. Nao atrapalha o redirect. */
+(function () {
+  try {
+    var qs = new URLSearchParams(location.search);
+    if (qs.has('owner')) {
+      if (qs.get('owner') === 'off') { localStorage.removeItem('vp_owner'); }
+      else { localStorage.setItem('vp_owner', '1'); }
+    }
+  } catch (e) {}
+
+  function isOwner() { try { return localStorage.getItem('vp_owner') === '1'; } catch (e) { return false; } }
+
+  document.querySelectorAll('a[data-cta]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      try {
+        var tz = '';
+        try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone; } catch (e) {}
+        var payload = {
+          card: a.getAttribute('data-cta') === 'checkout' ? 'premium' : 'free',
+          owner: isOwner(),
+          lang: navigator.language || '',
+          tz: tz
+        };
+        var blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
+        navigator.sendBeacon('track.php', blob);
+      } catch (e) {}
+      /* sem preventDefault: o redirect (Drive / Kiwify) acontece normalmente */
+    });
+  });
+})();
+</script>
 </body>
 </html>
