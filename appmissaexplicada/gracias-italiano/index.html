@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  THANK YOU — The Mass Explained (ENGLISH / EN)
+  English version of /gracias-misa-latam/ (same design and CSS). Static
+  confirmation page: check icon -> headline -> next steps (email) -> final
+  message -> support. Fires the Meta Purchase event on load.
+
+  ⚠️ PIXELS: pending. Fill window.IT_PIXELS below. While the values start with
+     "PREENCHER", nothing fires (no PageView, no Purchase).
+  ⚠️ PURCHASE product id: fill PREENCHER_HOTMART_PRODUCT_ID_IT with the EN
+     Hotmart product id (the Purchase only fires once the Meta pixel is set).
+  ============================================================================
+-->
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Grazie per il tuo acquisto! - La Messa Spiegata</title>
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- ============================================================
+         ENGLISH PIXELS — ⚠️ FILL before running traffic.
+         While the values start with "PREENCHER", nothing fires.
+         ============================================================ -->
+    <script>
+      window.IT_PIXELS = {
+        UTMIFY: 'PREENCHER_UTMIFY_PIXEL_ID_IT',
+        META:   'PREENCHER_META_PIXEL_ID_IT'
+      };
+      (function () {
+        var cfg = window.IT_PIXELS;
+        if (cfg.UTMIFY.indexOf('PREENCHER') !== 0) {
+          window.pixelId = cfg.UTMIFY;
+          var a = document.createElement('script');
+          a.setAttribute('async', '');
+          a.setAttribute('defer', '');
+          a.setAttribute('src', 'https://cdn.utmify.com.br/scripts/pixel/pixel.js');
+          document.head.appendChild(a);
+        }
+      })();
+    </script>
+
+    <!-- Utmify UTMs Script (forwards the UTMs — safe to keep always on) -->
+    <script
+      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+      data-utmify-prevent-subids
+      async
+      defer
+    ></script>
+
+    <!-- Meta Pixel Code (only initializes with a real ID) -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    (function () {
+      var id = window.IT_PIXELS.META;
+      if (id.indexOf('PREENCHER') !== 0) {
+        fbq('init', id);
+        fbq('track', 'PageView');
+      }
+    })();
+    </script>
+    <!-- End Meta Pixel Code -->
+</head>
+<body>
+    <main class="thanks-page">
+        <div class="container">
+
+            <!-- Check icon -->
+            <div class="success-icon">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="#d4af37" stroke-width="4"/>
+                    <path d="M30 52 L45 67 L72 38" fill="none" stroke="#d4af37" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+
+            <!-- Headline -->
+            <h1 class="thanks-headline">
+                Congratulazioni! <br>
+                <span class="thanks-headline-emph">Il tuo acquisto è confermato</span>
+            </h1>
+
+            <p class="thanks-subheadline">
+                Hai appena fatto un passo enorme nella tua vita spirituale.
+                Ora hai accesso completo a <strong>La Messa Spiegata</strong>. ✝️
+            </p>
+
+            <!-- Next steps card -->
+            <section class="next-steps">
+                <h2 class="section-title">Prossimi passi</h2>
+
+                <ol class="steps-list">
+                    <li>
+                        <span class="step-number">1</span>
+                        <div class="step-content">
+                            <h3>Controlla la tua email</h3>
+                            <p>Abbiamo inviato i dati di accesso all'indirizzo email che hai usato al momento dell'acquisto. Potrebbero volerci alcuni minuti.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="step-number">2</span>
+                        <div class="step-content">
+                            <h3>Non trovi l'email?</h3>
+                            <p>Controlla la cartella <strong>spam o promozioni</strong>. Se non è ancora arrivata, aspetta fino a 15 minuti. La conferma arriva da Hotmart.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="step-number">3</span>
+                        <div class="step-content">
+                            <h3>Accedi al tuo materiale</h3>
+                            <p>Dall'email, clicca sul link per entrare nella piattaforma e iniziare subito.</p>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+
+            <!-- Final message -->
+            <div class="thanks-final">
+                <p class="thanks-final-text">
+                    Che il Signore ti benedica in questo nuovo cammino di fede e comprensione.
+                </p>
+                <p class="thanks-final-signature">— Padre Mateus</p>
+            </div>
+
+            <!-- Support -->
+            <div class="support-info">
+                <p>
+                    Hai dubbi o problemi?
+                    Scrivici a:
+                    <a href="mailto:soporte@missaexplicadaes.shop">soporte@missaexplicadaes.shop</a>
+                </p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Tracking Purchase event (The Mass Explained). Only fires once the Meta
+         pixel is set (window.IT_PIXELS.META filled). Fill the product id below. -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof fbq !== 'undefined') {
+            fbq('track', 'Purchase', {
+                content_name: 'La Messa Spiegata',
+                content_ids: ['PREENCHER_HOTMART_PRODUCT_ID_IT'],
+                content_type: 'product',
+                currency: 'USD',
+                num_items: 1
+            });
+        }
+    });
+    </script>
+</body>
+</html>
