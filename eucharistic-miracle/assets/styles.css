@@ -1347,3 +1347,68 @@ a {
         max-width: 200px;
     }
 }
+
+/* ==========================================================================
+   PRIMEIRA TELA COMPLETA — da barra de urgencia ate o botao CTA, em qualquer
+   device. A chave e limitar a ALTURA da imagem em unidades de viewport (svh),
+   assim ela nunca empurra o botao pra fora da tela.
+   ========================================================================== */
+.hero {
+    min-height: calc(100vh - 52px);
+    min-height: calc(100svh - 52px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--space-md) 0;
+}
+
+.hero-title {
+    margin-bottom: var(--space-sm);
+}
+
+.hero-image {
+    max-width: 520px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.mockup-img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 40vh;
+    max-height: 40svh;
+    margin: 0 auto;
+}
+
+.hero-subtitle {
+    margin: var(--space-sm) auto var(--space-md);
+}
+
+/* CTA entre secoes */
+.mid-cta-section {
+    text-align: center;
+    padding: var(--space-sm) 0 var(--space-md);
+}
+
+@media (max-width: 768px) {
+    .hero { min-height: calc(100vh - 56px); min-height: calc(100svh - 56px); padding: var(--space-sm) 0; }
+    .hero-image { max-width: 420px; }
+    .mockup-img { max-height: 34vh; max-height: 34svh; }
+    .hero-subtitle { font-size: 1.05rem; margin: var(--space-xs) auto var(--space-sm); }
+}
+
+@media (max-width: 480px) {
+    .hero { min-height: calc(100vh - 64px); min-height: calc(100svh - 64px); }
+    .hero-image { max-width: 100%; }
+    .mockup-img { max-height: 30vh; max-height: 30svh; }
+    .hero-subtitle { font-size: 0.98rem; line-height: 1.5; margin: var(--space-xs) auto var(--space-sm); }
+}
+
+/* telas baixas: celular deitado, notebook de tela curta */
+@media (max-height: 700px) {
+    .mockup-img { max-height: 26vh; max-height: 26svh; }
+    .hero-title { font-size: clamp(1.2rem, 1rem + 2.8vw, 2.2rem); }
+    .hero-subtitle { font-size: 0.95rem; }
+}
