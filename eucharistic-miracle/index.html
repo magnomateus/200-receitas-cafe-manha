@@ -9,7 +9,7 @@
     <meta name="description" content="Discover the Eucharistic miracles documented by the Church that prove the real presence of Jesus Christ in the Eucharist. A complete ebook with history, science and faith.">
     <meta name="keywords" content="eucharistic miracle, eucharistic miracles, eucharist, real presence, lanciano, buenos aires, catholic ebook, catholic faith">
     <meta name="author" content="Eucharistic Miracle">
-    <meta name="robots" content="noindex, nofollow">
+    <meta name="robots" content="index, follow">
 
     <!-- Open Graph -->
     <meta property="og:title" content="Eucharistic Miracle | The Real Proof of Christ's Presence in the Eucharist">
@@ -31,26 +31,7 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="./assets/styles.css">
 
-    <!-- TRACKING: Meta Pixel 1112695544541745 (proprio da oferta EN) | VIS tid=19 pk=01M3DBE3M3RQ2D8FHQ4CFD61WR (proprio) | PENDENTE: Utmify ainda e o do Missa (69c0b174e1086a9f5151fc81) e o checkout ainda e o PT -->
-
-    <!-- Utmify Pixel -->
-    <script>
-      window.pixelId = "69c0b174e1086a9f5151fc81";
-      var a = document.createElement("script");
-      a.setAttribute("async", "");
-      a.setAttribute("defer", "");
-      a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
-      document.head.appendChild(a);
-    </script>
-
-    <!-- Utmify UTMs Script -->
-    <script
-      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
-      data-utmify-prevent-xcod-sck
-      data-utmify-prevent-subids
-      async
-      defer
-    ></script>
+    <!-- TRACKING: Meta Pixel 1112695544541745 (EN) | VIS tid=19 pk=01M3DBE3M3RQ2D8FHQ4CFD61WR | checkout Hotmart L107770643P | repasse de UTM -> sck/src pelo decorador no fim do body. Sem Utmify. -->
 
     <!-- Meta Pixel Code -->
     <script>
@@ -306,7 +287,7 @@
                     <p class="price-installments">(You can pay in your local currency)</p>
                 </div>
 
-                <a href="https://vis.semeardigital.com.br/checkout-fast/milagre-eucaristico?utm_source=organic&utm_campaign=&utm_medium=&utm_content=&utm_term=" class="btn btn-primary btn-cta-main pulse" id="cta-main">
+                <a href="https://pay.hotmart.com/L107770643P?checkoutMode=10" class="btn btn-primary btn-cta-main pulse" id="cta-main">
                     GARANTIR<br>EUCHARISTIC MIRACLE ✝️
                 </a>
 
@@ -437,7 +418,7 @@
                 <div class="timer-display" id="timer-main">23:59:59</div>
             </div>
 
-            <a href="https://vis.semeardigital.com.br/checkout-fast/milagre-eucaristico?utm_source=organic&utm_campaign=&utm_medium=&utm_content=&utm_term=" class="btn btn-primary btn-cta-final pulse">
+            <a href="https://pay.hotmart.com/L107770643P?checkoutMode=10" class="btn btn-primary btn-cta-final pulse">
                 GET THE EUCHARISTIC MIRACLE FOR $9.90 USD ✝️
             </a>
         </div>
@@ -474,5 +455,72 @@
         });
     });
     </script>
+    <!-- Repasse de origem para o checkout (sem dependencia externa).
+         Le xcod/sck/src/utm_*/fbclid da URL, guarda na sessao e anexa ao link
+         da Hotmart como sck/src/utm_*, preservando o checkoutMode. -->
+    <script>
+    (function () {
+      var KEYS = ['xcod','sck','src','utm_source','utm_campaign','utm_medium','utm_content','utm_term','fbclid'];
+      var STORE = 'me_euc_track';
+
+      function getParams() {
+        var q = new URLSearchParams(location.search);
+        var p = {}, hasUrl = false;
+        for (var i = 0; i < KEYS.length; i++) {
+          var v = q.get(KEYS[i]);
+          if (v !== null && v !== '') { p[KEYS[i]] = v; hasUrl = true; }
+        }
+        if (hasUrl) {
+          try { sessionStorage.setItem(STORE, JSON.stringify(p)); } catch (e) {}
+          return p;
+        }
+        try { return JSON.parse(sessionStorage.getItem(STORE) || '{}'); } catch (e) { return {}; }
+      }
+
+      function decorate(href, p) {
+        if (!href) return href;
+        var toAdd = {};
+        var sckVal = p.xcod || p.sck;
+        if (sckVal) toAdd.sck = sckVal;
+        if (p.utm_source) toAdd.src = p.utm_source;
+        ['utm_source','utm_campaign','utm_medium','utm_content','utm_term'].forEach(function (k) {
+          if (p[k]) toAdd[k] = p[k];
+        });
+        var qi = href.indexOf('?');
+        var existing = {};
+        if (qi !== -1) {
+          href.slice(qi + 1).split('&').forEach(function (pair) {
+            var n = pair.split('=')[0];
+            if (n) existing[n] = true;
+          });
+        }
+        var add = [];
+        Object.keys(toAdd).forEach(function (k) {
+          if (!existing[k]) add.push(encodeURIComponent(k) + '=' + encodeURIComponent(toAdd[k]));
+        });
+        if (!add.length) return href;
+        return href + (qi === -1 ? '?' : '&') + add.join('&');
+      }
+
+      function decorateAll() {
+        var p = getParams();
+        var links = document.querySelectorAll('a[href*="pay.hotmart.com"]');
+        for (var i = 0; i < links.length; i++) {
+          links[i].href = decorate(links[i].href, p);
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', decorateAll);
+      } else {
+        decorateAll();
+      }
+      document.addEventListener('click', function (e) {
+        var a = e.target && e.target.closest ? e.target.closest('a[href*="pay.hotmart.com"]') : null;
+        if (a) a.href = decorate(a.href, getParams());
+      }, true);
+    })();
+    </script>
+
 </body>
 </html>

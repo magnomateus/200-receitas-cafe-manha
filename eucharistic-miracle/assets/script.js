@@ -229,9 +229,7 @@ document.addEventListener('DOMContentLoaded', function() {
        ====================================================================== */
 
     function trackCTAClick(ctaName) {
-        if (typeof utmify !== 'undefined') {
-            utmify.track('cta_click', { button: ctaName });
-        }
+        /* hook livre para analytics futuro; a Utmify foi removida desta pagina */
     }
 
     const ctaButtons = document.querySelectorAll('.btn-cta, .btn-cta-main, .btn-cta-final');
