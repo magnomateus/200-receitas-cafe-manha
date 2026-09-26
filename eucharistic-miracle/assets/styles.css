@@ -1370,10 +1370,6 @@ a {
     gap: var(--space-xs);
 }
 
-/* no desktop sobra pouca altura relativa: centralizar fica mais equilibrado */
-@media (min-width: 769px) {
-    .hero > .container { justify-content: center; }
-}
 
 /* o gap cuida do espacamento: zera as margens que criavam os vazios */
 .hero-title,
@@ -1485,4 +1481,28 @@ a {
     min-width: min(280px, 100%);
     margin-left: auto;
     margin-right: auto;
+}
+
+/* ==========================================================================
+   DISTRIBUICAO DA FOLGA DA PRIMEIRA TELA
+   Em flexbox, margin auto absorve o espaco livre no ponto onde e aplicada.
+   Usando dois pontos, a folga e repartida em duas metades iguais:
+
+       titulo            <- encostado no topo
+         [ folga / 2 ]
+       imagem
+       subtitulo         <- continua colado na imagem (sem folga entre eles)
+         [ folga / 2 ]
+       botao             <- encostado na base
+
+   Assim nao sobra buraco nem no meio nem so no rodape, e a hierarquia que
+   voce pediu (texto junto da imagem, longe do botao) e preservada.
+   ========================================================================== */
+.hero-image {
+    margin-top: auto;
+    margin-bottom: 0;
+}
+
+.hero .btn-cta {
+    margin-top: auto;
 }
