@@ -916,7 +916,9 @@ a {
     font-size: 1.75rem;
     font-weight: 800;
     color: var(--wine);
-    margin-top: -10px;
+    /* era -10px: compensava a moldura transparente do mockup antigo. A imagem
+       foi cortada no bounding box, entao a margem negativa virou cola. */
+    margin-top: var(--space-sm);
     margin-bottom: var(--space-xs);
 }
 
@@ -1392,9 +1394,10 @@ a {
     padding-left: 0;
     padding-right: 0;
     /* fica colado na imagem acima e afastado do botao abaixo:
-       o gap do container da o espaco de cima; este margin-bottom soma no de baixo */
+       o gap do container da o espaco de cima; o respiro de baixo agora e o
+       margin-top fixo do proprio botao */
     margin-top: 0;
-    margin-bottom: var(--space-xs);
+    margin-bottom: 0;
 }
 
 .hero-image {
@@ -1426,12 +1429,6 @@ a {
     flex: 0 0 auto;
 }
 
-/* CTA entre secoes */
-.mid-cta-section {
-    text-align: center;
-    padding: var(--space-sm) 0 var(--space-md);
-}
-
 @media (max-width: 768px) {
     .hero { min-height: calc(100vh - 56px); min-height: calc(100svh - 56px); }
     .hero-image { max-width: 100%; }
@@ -1456,10 +1453,12 @@ a {
 .btn-cta-main,
 .btn-cta-final {
     max-width: 500px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    padding-left: 28px;
+    padding-right: 28px;
     letter-spacing: 0;
-    font-size: clamp(0.8rem, 0.68rem + 0.75vw, 1.1rem);
+    font-size: clamp(0.82rem, 0.75rem + 0.7vw, 1.25rem);
     line-height: 1.25;
 }
 
@@ -1467,8 +1466,8 @@ a {
     .btn-cta,
     .btn-cta-main,
     .btn-cta-final {
-        padding-left: 14px;
-        padding-right: 14px;
+        padding-left: 18px;
+        padding-right: 18px;
     }
 }
 
@@ -1478,7 +1477,7 @@ a {
 .btn-cta-main,
 .btn-cta-final {
     width: fit-content;
-    min-width: min(280px, 100%);
+    min-width: min(300px, 100%);
     margin-left: auto;
     margin-right: auto;
 }
@@ -1499,8 +1498,21 @@ a {
    voce pediu (texto junto da imagem, longe do botao) e preservada.
    ========================================================================== */
 .hero-image {
-    margin-top: auto;
+    /* volta a crescer, mas agora DIVIDINDO a folga com o espaco abaixo do
+       botao (peso 1 para cada). align-items: flex-end mantem a imagem
+       encostada no subtitulo. */
+    flex: 1 1 auto;
+    margin-top: 0;
     margin-bottom: 0;
+    align-items: flex-end;
+}
+
+/* espaco flexivel DEPOIS do botao: e para ca que vai a metade da folga que
+   antes ficava acima dele. E o que faz o botao subir. */
+.hero > .container::after {
+    content: '';
+    flex: 1 1 auto;
+    min-height: 0;
 }
 
 /* margin-bottom: auto entra como um TERCEIRO ponto de absorcao. A folga passa
@@ -1508,6 +1520,43 @@ a {
    encolhe e ele sobe, sem mexer no resto do bloco. O respiro acima dele continua
    sendo o maior dos tres (soma o margin-bottom do subtitulo), entao nao cola. */
 .hero .btn-cta {
-    margin-top: auto;
-    margin-bottom: auto;
+    /* respiro FIXO acima do botao: nao cresce junto com a tela, entao o botao
+       fica sempre logo abaixo do texto em vez de flutuar. */
+    margin-top: 12px;
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
+   BOTAO DE COMPRA DO CARD DE OFERTA — maior e verde
+
+   Verde #2e7d32: exatamente o mesmo do preco logo acima, para o card fechar
+   numa cor so em vez de misturar dourado com verde.
+
+   Ele vive DENTRO do .offer-card, que tem 24px (mobile) / 48px (desktop) de
+   padding proprio. Por isso o padding lateral do botao cai para 16px: com
+   width 100% o texto ja fica centralizado, e os 24px economizados de cada
+   lado sao o que permite a fonte crescer sem quebrar linha.
+   ========================================================================== */
+.btn-cta-main {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    padding-left: 16px;
+    padding-right: 16px;
+    font-size: clamp(0.85rem, 0.75rem + 0.72vw, 1.35rem);
+}
+
+.btn-primary.btn-cta-main {
+    background: #2e7d32;
+    border-color: #1b5e20;
+    box-shadow: 0 6px 20px rgba(46, 125, 50, 0.45);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .btn-primary.btn-cta-main:hover {
+        background: #256428;
+        box-shadow: 0 8px 26px rgba(46, 125, 50, 0.55);
+    }
 }
