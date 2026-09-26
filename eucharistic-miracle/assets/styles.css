@@ -1442,3 +1442,27 @@ a {
     .hero-title { font-size: clamp(1.15rem, 1rem + 2.6vw, 2.1rem); }
     .hero > .container { gap: 4px; }
 }
+
+/* ==========================================================================
+   BOTOES CTA — cabem em 1 linha: menos padding lateral, mais largura util,
+   sem letter-spacing e fonte fluida.
+   ========================================================================== */
+.btn-cta,
+.btn-cta-main,
+.btn-cta-final {
+    max-width: 500px;
+    padding-left: 20px;
+    padding-right: 20px;
+    letter-spacing: 0;
+    font-size: clamp(0.8rem, 0.68rem + 0.75vw, 1.1rem);
+    line-height: 1.25;
+}
+
+@media (max-width: 400px) {
+    .btn-cta,
+    .btn-cta-main,
+    .btn-cta-final {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+}
