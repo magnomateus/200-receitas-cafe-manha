@@ -1377,11 +1377,15 @@ a {
 /* subtitulo: tamanho FLUIDO (escala junto com a tela, sem breakpoint) e
    mais presenca, para nao se perder entre o titulo e a imagem. */
 .hero-subtitle {
-    font-size: clamp(1.15rem, 1.02rem + 1.4vw, 1.5rem);
-    line-height: 1.5;
+    font-size: clamp(1.02rem, 0.95rem + 0.85vw, 1.2rem);
+    line-height: 1.45;
     color: var(--text-dark);
     font-weight: 500;
     max-width: 34ch;
+    /* fica colado na imagem acima e afastado do botao abaixo:
+       o gap do container da o espaco de cima; este margin-bottom soma no de baixo */
+    margin-top: 0;
+    margin-bottom: var(--space-sm);
 }
 
 .hero-image {
