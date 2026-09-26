@@ -1394,7 +1394,7 @@ a {
     /* fica colado na imagem acima e afastado do botao abaixo:
        o gap do container da o espaco de cima; este margin-bottom soma no de baixo */
     margin-top: 0;
-    margin-bottom: var(--space-sm);
+    margin-bottom: var(--space-xs);
 }
 
 .hero-image {
@@ -1503,6 +1503,11 @@ a {
     margin-bottom: 0;
 }
 
+/* margin-bottom: auto entra como um TERCEIRO ponto de absorcao. A folga passa
+   a se dividir em tres em vez de duas, entao a parte que ficava acima do botao
+   encolhe e ele sobe, sem mexer no resto do bloco. O respiro acima dele continua
+   sendo o maior dos tres (soma o margin-bottom do subtitulo), entao nao cola. */
 .hero .btn-cta {
     margin-top: auto;
+    margin-bottom: auto;
 }
