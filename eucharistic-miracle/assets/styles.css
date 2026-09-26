@@ -1466,3 +1466,14 @@ a {
         padding-right: 14px;
     }
 }
+
+/* Botao acompanha a largura do TEXTO em vez de esticar ate 500px.
+   min-width garante area de toque confortavel quando o texto e curto. */
+.btn-cta,
+.btn-cta-main,
+.btn-cta-final {
+    width: fit-content;
+    min-width: min(280px, 100%);
+    margin-left: auto;
+    margin-right: auto;
+}
