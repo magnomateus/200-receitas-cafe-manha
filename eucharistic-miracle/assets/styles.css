@@ -1364,8 +1364,15 @@ a {
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* conteudo encostado no topo: o que sobrar de altura fica embaixo, como
+       respiro antes da proxima secao, em vez de virar buraco no meio. */
+    justify-content: flex-start;
     gap: var(--space-xs);
+}
+
+/* no desktop sobra pouca altura relativa: centralizar fica mais equilibrado */
+@media (min-width: 769px) {
+    .hero > .container { justify-content: center; }
 }
 
 /* o gap cuida do espacamento: zera as margens que criavam os vazios */
@@ -1395,14 +1402,16 @@ a {
 }
 
 .hero-image {
-    flex: 1 1 auto;
-    min-height: 0;              /* permite a imagem encolher dentro do flex */
+    /* NAO cresce: a imagem e limitada pela LARGURA, entao crescer a caixa so
+       criava um vazio dentro dela. flex-shrink continua ligado para que em
+       telas baixas (celular deitado) a imagem diminua em vez de estourar. */
+    flex: 0 1 auto;
+    min-height: 0;
     width: 100%;
     max-width: 560px;
     margin: 0 auto;
     display: flex;
-    align-items: flex-end;      /* imagem encostada na base: o espaco que sobra
-                                   vai para cima, nao entre a imagem e o texto */
+    align-items: center;
     justify-content: center;
 }
 
