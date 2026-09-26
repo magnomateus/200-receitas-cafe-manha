@@ -1381,7 +1381,13 @@ a {
     line-height: 1.45;
     color: var(--text-dark);
     font-weight: 500;
-    max-width: 34ch;
+    /* 48ch: a faixa que fecha em 3 linhas vai de 42 a 56 chars; 48 fica no meio,
+       entao variacao de renderizacao nao vira 2 nem 4 linhas.
+       Sem padding proprio: aproveita toda a largura do container, que ja
+       tem 20px de margem lateral. */
+    max-width: 48ch;
+    padding-left: 0;
+    padding-right: 0;
     /* fica colado na imagem acima e afastado do botao abaixo:
        o gap do container da o espaco de cima; este margin-bottom soma no de baixo */
     margin-top: 0;
