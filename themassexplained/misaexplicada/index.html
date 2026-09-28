@@ -34,24 +34,6 @@
     <!-- VIS Tracking -->
     <script src="https://visplatform.pro/api/tracking/snippet.js?tid=19&pk=01M3MB9XCC89RXS6JACXXFCRWH"></script>
 
-    <!-- Utmify Pixel -->
-    <script>
-      window.pixelId = "69d81fb76b07324179345426";
-      var a = document.createElement("script");
-      a.setAttribute("async", "");
-      a.setAttribute("defer", "");
-      a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
-      document.head.appendChild(a);
-    </script>
-
-    <!-- Utmify UTMs Script -->
-    <script
-      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
-      data-utmify-prevent-subids
-      async
-      defer
-    ></script>
-
     <!-- Meta Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
@@ -450,13 +432,90 @@
     <!-- JavaScript -->
     <script src="./assets/script.js?v=2"></script>
 
+    <!-- ============================================================
+         Repasse de origem para o checkout (sem dependencia externa).
+         Le xcod/sck/src/utm_*/fbclid da URL, guarda na sessao e anexa
+         ao link da Hotmart como sck/src/utm_* — preservando o
+         checkoutMode. Substitui o que a Utmify fazia. -->
+    <script>
+    (function () {
+      var KEYS = ['xcod','sck','src','utm_source','utm_campaign','utm_medium','utm_content','utm_term','fbclid'];
+      var STORE = 'me_es_track';
+
+      // 1) Le os parametros da URL; se a URL vier sem nenhum, reidrata da sessao.
+      function getParams() {
+        var q = new URLSearchParams(location.search);
+        var p = {}, hasUrl = false;
+        for (var i = 0; i < KEYS.length; i++) {
+          var v = q.get(KEYS[i]);
+          if (v !== null && v !== '') { p[KEYS[i]] = v; hasUrl = true; }
+        }
+        if (hasUrl) {
+          try { sessionStorage.setItem(STORE, JSON.stringify(p)); } catch (e) {}
+          return p;
+        }
+        try { return JSON.parse(sessionStorage.getItem(STORE) || '{}'); } catch (e) { return {}; }
+      }
+
+      // 2) Monta o href decorado, sem duplicar parametro ja existente.
+      function decorate(href, p) {
+        if (!href) return href;
+        var toAdd = {};
+        var sckVal = p.xcod || p.sck;               // sck = xcod (ou sck explicito)
+        if (sckVal) toAdd.sck = sckVal;
+        if (p.utm_source) toAdd.src = p.utm_source; // src = utm_source
+        ['utm_source','utm_campaign','utm_medium','utm_content','utm_term'].forEach(function (k) {
+          if (p[k]) toAdd[k] = p[k];
+        });
+
+        var qi = href.indexOf('?');
+        var existing = {};
+        if (qi !== -1) {
+          href.slice(qi + 1).split('&').forEach(function (pair) {
+            var n = pair.split('=')[0];
+            if (n) existing[n] = true;
+          });
+        }
+        var add = [];
+        Object.keys(toAdd).forEach(function (k) {
+          if (!existing[k]) add.push(encodeURIComponent(k) + '=' + encodeURIComponent(toAdd[k]));
+        });
+        if (!add.length) return href;
+        return href + (qi === -1 ? '?' : '&') + add.join('&');
+      }
+
+      function decorateAll() {
+        var p = getParams();
+        var links = document.querySelectorAll('a[href*="pay.hotmart.com"]');
+        for (var i = 0; i < links.length; i++) {
+          links[i].href = decorate(links[i].href, p);
+        }
+      }
+
+      // 3) Decora no load e de novo no clique (defensivo; e idempotente).
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', decorateAll);
+      } else {
+        decorateAll();
+      }
+      document.addEventListener('click', function (e) {
+        var a = e.target && e.target.closest ? e.target.closest('a[href*="pay.hotmart.com"]') : null;
+        if (a) a.href = decorate(a.href, getParams());
+      }, true);
+    })();
+    </script>
+
     <!-- InitiateCheckout -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('a[href*="pay.hotmart.com"]').forEach(function(link) {
             link.addEventListener('click', function() {
                 if (typeof fbq !== 'undefined') {
-                    fbq('track', 'InitiateCheckout');
+                    fbq('track', 'InitiateCheckout', {
+                        content_name: 'Misa Explicada',
+                        value: 9.90,
+                        currency: 'USD'
+                    });
                 }
             });
         });
