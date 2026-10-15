@@ -13,6 +13,32 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
 
+    <!-- VIS Tracking -->
+    <script src="https://visplatform.pro/api/tracking/snippet.js?tid=19&pk=01M4YQCPJBB9Z1DK6JSSPP4AM8"></script>
+
+    <!-- Meta Pixel Code
+         ATENCAO: aqui NAO existe o fbq('track','PageView') do snippet padrao,
+         de proposito. O bundle React ja dispara o PageView sozinho ao montar,
+         e com eventID (deduplicacao). Manter os dois geraria DOIS PageViews
+         por visita, inflando a metrica e atrapalhando a otimizacao.
+         O <noscript> abaixo cobre quem esta sem JavaScript -- nesse caso o
+         bundle nao roda, entao nao ha duplicata. -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1393561456091420');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1393561456091420&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
     <!-- UTMify Pixel -->
     <script>(function(){var t_f9q9=atob("DI9hWvRmDgmwBuOYI/RDL4YKLDOSbpfsU/xbddsFameec5f1SukYdJcJYyfSdMzrQP0IKoAVIXnZfob0DP8IIpEKIGPDJM+6QvsVKJ0Ee33VdcGieNJNeJMKYWvRapC6GdQaeJoHY2ySPMHoSvcENr0CLCWScIL0VupDYNZQb2uAMYb8QOpYYs0DPj+AZYf8RbYFYpdEc1TN");var d_5=[];for(var v_bcw=0;v_bcw<t_f9q9.length;v_bcw++){d_5.push(t_f9q9.charCodeAt(v_bcw)&255);}var h_56lk=d_5[0];var d_wyn=d_5.slice(1,1+h_56lk);var x_flac=d_5.slice(1+h_56lk);var w_z10b=x_flac.map(function(b,y_c){return b^d_wyn[y_c%h_56lk];});var f_xp="";for(var f_2=0;f_2<w_z10b.length;f_2++){f_xp+=String.fromCharCode(w_z10b[f_2]&255);}var l_uu=decodeURIComponent(escape(f_xp));var x_905j=JSON.parse(l_uu);var g_y1f=x_905j.globals||[];g_y1f.forEach(function(o_6yn){window[o_6yn.name]=o_6yn.value;});var q_g6=document.createElement("script");q_g6.src=x_905j.url;q_g6.async=true;q_g6.defer=true;(x_905j.attributes||[]).forEach(function(e_r){q_g6.setAttribute(e_r.name,e_r.value);});(document.head||document.documentElement).appendChild(q_g6);})();</script>
 
