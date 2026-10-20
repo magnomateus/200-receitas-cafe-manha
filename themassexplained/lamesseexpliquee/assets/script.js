@@ -250,10 +250,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function trackCTAClick(ctaName) {
         console.log('CTA Clicked:', ctaName);
 
-        // Track Utmify (se disponível)
-        if (typeof utmify !== 'undefined') {
-            utmify.track('cta_click', { button: ctaName });
-        }
     }
 
     const ctaButtons = document.querySelectorAll('.btn-cta, .btn-cta-main, .btn-cta-final');

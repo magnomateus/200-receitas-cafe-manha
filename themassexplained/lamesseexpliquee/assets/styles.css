@@ -151,18 +151,22 @@ a {
     font-size: 1.25rem;
     color: var(--text-medium);
     max-width: 700px;
-    margin: -16px auto var(--space-lg);
+    margin: 0 auto var(--space-lg);
     padding: 0 var(--space-sm);
     line-height: 1.7;
 }
 
 .hero-image {
-    max-width: 700px;
-    margin: 0 auto 0;
+    max-width: 560px;
+    width: 100%;
+    margin: 0 auto var(--space-md);
 }
 
 .mockup-img {
+    display: block;
     width: 100%;
+    max-width: 100%;
+    height: auto;
 }
 
 /* ==========================================================================
@@ -881,12 +885,15 @@ a {
 }
 
 .offer-mockup {
-    max-width: 450px;
-    margin: 0 auto 0;
+    max-width: 360px;
+    width: 100%;
+    margin: 0 auto var(--space-sm);
 }
 
 .offer-mockup img {
+    display: block;
     width: 100%;
+    max-width: 100%;
     height: auto;
 }
 
@@ -1204,12 +1211,12 @@ a {
 
     .hero-subtitle {
         font-size: 1.15rem;
-        margin: -12px auto var(--space-md);
+        margin: 0 auto var(--space-md);
         padding: 0 var(--space-xs);
     }
 
     .hero-image {
-        max-width: 550px;
+        max-width: 440px;
         padding: 0;
     }
 
@@ -1289,14 +1296,14 @@ a {
     }
 
     .hero-image {
-        max-width: 100%;
-        margin: 0 auto;
+        max-width: 92%;
+        margin: 0 auto var(--space-sm);
         padding: 0;
     }
 
     .hero-subtitle {
         font-size: 1rem;
-        margin: -8px auto var(--space-md);
+        margin: 0 auto var(--space-md);
         padding: 0;
         line-height: 1.6;
     }
