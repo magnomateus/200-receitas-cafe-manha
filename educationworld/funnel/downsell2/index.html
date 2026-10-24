@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!--
+  ==========================================================================
+  UPSELL / DOWNSELL 2 — PREENCHER_OFERTA_2 (ENGLISH / EN)
+  Copiada do funil Missa Explicada; estrutura, CSS, widget da Hotmart e
+  autoclick preservados.
+
+  ⚠️ FALTA DEFINIR A OFERTA 2. Enquanto houver PREENCHER_OFERTA_2 no texto,
+     esta pagina nao esta pronta para trafego: o titulo, a frase de destaque,
+     o corpo, o alt e a capa (capa-oferta-2.webp) ainda precisam do produto.
+
+  BUY BUTTON: Hotmart checkout-elements (salesFunnel) — intocado. So monta
+  dentro do contexto do funil configurado no painel da Hotmart.
+  ==========================================================================
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Last Chance - PREENCHER_OFERTA_2</title>
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Google Fonts — Montserrat (titles) + Roboto (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- ============================================================
+         ENGLISH PIXELS — ⚠️ FILL before running traffic.
+         While the values start with "PREENCHER", nothing fires.
+         ============================================================ -->
+    <script>
+      window.EN_PIXELS = {
+        META:   '1745775066484581'
+      };
+      (function () {
+        var cfg = window.EN_PIXELS;
+      })();
+    </script>
+
+    <!-- Meta Pixel Code (only initializes with a real ID) -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    (function () {
+      var id = window.EN_PIXELS.META;
+      if (id.indexOf('PREENCHER') !== 0) {
+        fbq('init', id);
+        fbq('track', 'PageView');
+      }
+    })();
+    </script>
+    <!-- End Meta Pixel Code -->
+
+    <!-- VIS — ⚠️ FALTA a pk desta pagina (tid=19). Enquanto estiver PREENCHER, nao carrega. -->
+    <script>
+      (function () {
+        var pk = 'PREENCHER_VIS_PK';
+        if (pk.indexOf('PREENCHER') === 0) return;
+        var v = document.createElement('script');
+        v.src = 'https://visplatform.pro/api/tracking/snippet.js?tid=19&pk=' + pk;
+        document.head.appendChild(v);
+      })();
+    </script>
+</head>
+<body>
+
+    <main class="page">
+        <div class="container">
+
+            <!-- 1. Headline — discount page pattern (with b/u) -->
+            <h1 class="headline">
+                <b>Congratulations!</b> You received a <u>super discount</u> PREENCHER_OFERTA_2 — beneficio em uma linha.
+                <b>Discount valid only on this page.</b>
+            </h1>
+
+            <!-- 2. Highlight line (value) -->
+            <p class="highlight">PREENCHER_OFERTA_2 — frase de destaque.</p>
+
+            <!-- 3. Hotmart checkout (salesFunnel: 1-click button + "no, thanks") -->
+            <section class="checkout">
+                <div id="hotmart-sales-funnel"></div>
+                <p class="checkout-hint" id="checkout-hint">Loading your offer…</p>
+            </section>
+
+            <!-- 4. Body -->
+            <p class="body-text">
+                PREENCHER_OFERTA_2 — paragrafo de corpo.
+            </p>
+
+            <!-- 5. Product cover -->
+            <section class="mockup-wrap">
+                <img
+                    src="capa-oferta-2.webp"
+                    alt="PREENCHER_OFERTA_2 — capa do produto."
+                    class="product-cover"
+                    width="600"
+                    height="600"
+                    loading="lazy"
+                    decoding="async"
+                />
+            </section>
+
+            <!-- 6. Footer -->
+            <footer class="footer">
+                ♥ Sign Language with Love · All rights reserved ©
+            </footer>
+
+        </div>
+    </main>
+
+    <!-- Hotmart 1-click buy widget (untouched). Mounts the YES button + the
+         decline, reading the offer from the funnel configured in the Hotmart panel. -->
+    <script>
+      (function () {
+        var s = document.createElement('script');
+        s.src = 'https://checkout.hotmart.com/lib/hotmart-checkout-elements.js';
+        s.onload = function () {
+          try {
+            checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel');
+            var hint = document.getElementById('checkout-hint');
+            if (hint) hint.style.display = 'none';
+          } catch (err) {
+            console.error('Hotmart salesFunnel:', err);
+          }
+        };
+        document.body.appendChild(s);
+      })();
+    </script>
+
+</body>
+</html>
