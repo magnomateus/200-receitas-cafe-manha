@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  UPSELL 2 — Liturgical Seasons (ENGLISH / EN) — CHECKOUT KASHPAY
+
+  Copia de /funnel/upsell2/ (que estava sem oferta definida) com a oferta
+  Liturgical Seasons. O texto em ingles veio de appmissaexplicada/upsell2-ingles,
+  onde essa mesma oferta ja roda.
+
+  FLUXO: comprou -> a Kashpay redireciona (configure no painel dela).
+         recusou -> /funnel/thank-you/
+
+  ⚠️ FALTA: o codigo de embed da Kashpay e a pk da VIS.
+  ============================================================================
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Special Offer - Liturgical Seasons</title>
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Google Fonts — Montserrat (titles) + Roboto (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- ============================================================
+         ENGLISH PIXELS — ⚠️ FILL before running traffic.
+         While the values start with "PREENCHER", nothing fires.
+         ============================================================ -->
+    <script>
+      window.EN_PIXELS = {
+        META:   '1745775066484581'
+      };
+      (function () {
+        var cfg = window.EN_PIXELS;
+      })();
+    </script>
+
+    <!-- Meta Pixel Code (only initializes with a real ID) -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    (function () {
+      var id = window.EN_PIXELS.META;
+      if (id.indexOf('PREENCHER') !== 0) {
+        fbq('init', id);
+        fbq('track', 'PageView');
+      }
+    })();
+    </script>
+    <!-- End Meta Pixel Code -->
+
+    <!-- VIS — ⚠️ FALTA a pk desta pagina (tid=19). Enquanto estiver PREENCHER, nao carrega. -->
+    <script>
+      (function () {
+        var pk = 'PREENCHER_VIS_PK';
+        if (pk.indexOf('PREENCHER') === 0) return;
+        var v = document.createElement('script');
+        v.src = 'https://visplatform.pro/api/tracking/snippet.js?tid=19&pk=' + pk;
+        document.head.appendChild(v);
+      })();
+    </script>
+</head>
+<body>
+
+    <!-- 1. Fixed warning bar -->
+    <div class="warning-bar">
+        Please don't close or refresh this page — errors may occur while processing your payment.
+    </div>
+
+    <main class="page">
+        <div class="container">
+
+            <!-- 2. Processing payment -->
+            <p class="processing">Processing payment<span class="dots"><span>.</span><span>.</span><span>.</span></span></p>
+
+            <!-- 3. Progress bar — % inside the bar -->
+            <section class="progress-block">
+                <div class="progress-track">
+                    <div class="progress-fill"><span class="progress-pct">95%</span></div>
+                </div>
+            </section>
+
+            <!-- 4. Headline ("special gift" pattern) -->
+            <h1 class="headline">You've just received a special gift, available only on this page.</h1>
+
+            <!-- 5. Checkout — embed da KASHPAY.
+                 Diferente da Hotmart, aqui nao recortamos nada: o widget
+                 renderiza na altura natural dele dentro do cartao. -->
+            <section class="checkout">
+                <p class="checkout-eyebrow">Your exclusive offer</p>
+                <div class="checkout-card">
+
+                    <!-- =============================================================
+                         >>> COLE AQUI O EMBED DA KASHPAY <<<
+                         Cole o codigo exatamente como a Kashpay entregou: a tag
+                         de script dela mais o elemento que ela monta. Se o embed
+                         pedir um id proprio, troque o id abaixo pelo que ele espera.
+                         O aviso "Loading your offer" some sozinho assim que
+                         qualquer coisa aparecer dentro deste bloco.
+                         ============================================================= -->
+                    <div id="kashpay-checkout"></div>
+
+                    <p class="checkout-hint" id="checkout-hint"><span class="spinner"></span> Loading your offer&hellip;</p>
+                </div>
+
+                <p class="checkout-decline"><a href="/funnel/thank-you/">No thanks, take me to my purchase</a></p>
+            </section>
+
+            <!-- 6. Highlight line (value) — "the essential guide" pattern -->
+            <p class="highlight">The essential guide to live and understand every liturgical season of the year with faith and depth!</p>
+
+            <!-- 7. Body — "get the complete guide..." pattern -->
+            <p class="body-text">
+                Get the complete guide to understand Advent, Christmas, Lent, Easter
+                and Ordinary Time, and live the liturgical year just as the Church
+                proposes it.
+            </p>
+
+            <!-- 8. Product cover -->
+            <section class="mockup-wrap">
+                <img
+                    src="capa-liturgical-seasons.webp"
+                    alt="Liturgical Seasons — guide to the liturgical seasons of the year: Advent, Lent, Easter, Christmas and Ordinary Time."
+                    class="product-cover"
+                    width="600"
+                    height="600"
+                    loading="lazy"
+                    decoding="async"
+                />
+            </section>
+
+            <!-- 9. Footer -->
+            <footer class="footer">
+                ♥ Sign Language with Love · All rights reserved ©
+            </footer>
+
+        </div>
+    </main>
+
+        <!-- Esconde o aviso de carregando assim que o embed da Kashpay renderizar
+         alguma coisa. Funciona com qualquer embed: so observa o container. -->
+    <script>
+      (function () {
+        var alvo = document.getElementById('kashpay-checkout');
+        var aviso = document.getElementById('checkout-hint');
+        if (!alvo || !aviso) return;
+
+        function pronto() {
+          if (alvo.children.length === 0 && !alvo.textContent.trim()) return false;
+          aviso.style.display = 'none';
+          return true;
+        }
+        if (pronto()) return;
+
+        var obs = new MutationObserver(function () { if (pronto()) obs.disconnect(); });
+        obs.observe(alvo, { childList: true, subtree: true });
+
+        // Se em 20s nada montou, o aviso vira um recado util em vez de um
+        // spinner eterno.
+        setTimeout(function () {
+          obs.disconnect();
+          if (alvo.children.length === 0 && !alvo.textContent.trim()) {
+            aviso.innerHTML = 'The offer could not be loaded. Please refresh the page.';
+          }
+        }, 20000);
+      })();
+    </script>
+
+</body>
+</html>
