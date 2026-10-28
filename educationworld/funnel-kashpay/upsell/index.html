@@ -75,6 +75,9 @@
         document.head.appendChild(v);
       })();
     </script>
+    <!-- Kashpay — processador de upsell. O data-kashpay-upsell-delay-support
+         e o opt-in do recurso de atraso: sem ele o script nao mexe nos botoes. -->
+    <script src="https://checkout.kashpay.com/scripts/upsell-processor.js" data-kashpay-upsell-delay-support></script>
 </head>
 <body>
 
@@ -106,15 +109,12 @@
                 <p class="checkout-eyebrow">Your exclusive offer</p>
                 <div class="checkout-card">
 
-                    <!-- =============================================================
-                         >>> COLE AQUI O EMBED DA KASHPAY <<<
-                         Cole o codigo exatamente como a Kashpay entregou: a tag
-                         de script dela mais o elemento que ela monta. Se o embed
-                         pedir um id proprio, troque o id abaixo pelo que ele espera.
-                         O aviso "Loading your offer" some sozinho assim que
-                         qualquer coisa aparecer dentro deste bloco.
-                         ============================================================= -->
-                    <div id="kashpay-checkout"></div>
+                    <!-- Botao de compra da Kashpay, exatamente como ela entregou.
+                         O delay de 5s e dela: o script esconde o botao e devolve
+                         depois desse tempo. -->
+                    <div id="kashpay-checkout">
+                        <button type="button" data-kashpay-upsell-delay="5" onclick="acceptUpsell('https://checkout.kashpay.com/u/b13c8f705c90d1f8')" style="font-family: 'Helvetica'; font-size: 18px; font-weight: 600; line-height: 1.3; color: #ffffff; background-color: #057932; border: none; border-radius: 10px; padding: 13px 7%; cursor: pointer; text-align: center; display: block; margin: auto;">SECURE NOW</button>
+                    </div>
 
                     <p class="checkout-hint" id="checkout-hint"><span class="spinner"></span> Loading your offer&hellip;</p>
                 </div>
@@ -151,32 +151,59 @@
         </div>
     </main>
 
-        <!-- Esconde o aviso de carregando assim que o embed da Kashpay renderizar
-         alguma coisa. Funciona com qualquer embed: so observa o container. -->
+        <!-- Dois ajustes que o fluxo da Kashpay exige. -->
     <script>
       (function () {
-        var alvo = document.getElementById('kashpay-checkout');
+        var ESPERA_MAXIMA = 20000;
+
+        /* 1. O aviso de carregando acompanha o BOTAO, nao o container.
+              O script da Kashpay esconde o botao por 5s (display:none) e
+              depois devolve. Enquanto ele nao aparece, o cartao ficaria
+              vazio. Se o script dela nunca carregar, o botao fica visivel
+              desde o inicio e o aviso some na hora. */
+        var botao = document.querySelector('#kashpay-checkout button');
         var aviso = document.getElementById('checkout-hint');
-        if (!alvo || !aviso) return;
 
-        function pronto() {
-          if (alvo.children.length === 0 && !alvo.textContent.trim()) return false;
-          aviso.style.display = 'none';
-          return true;
-        }
-        if (pronto()) return;
+        if (botao && aviso) {
+          var visivel = function () { return botao.offsetParent !== null; };
+          var resolver = function () {
+            if (!visivel()) return false;
+            aviso.style.display = 'none';
+            return true;
+          };
 
-        var obs = new MutationObserver(function () { if (pronto()) obs.disconnect(); });
-        obs.observe(alvo, { childList: true, subtree: true });
+          if (!resolver()) {
+            var obs = new MutationObserver(function () { if (resolver()) obs.disconnect(); });
+            obs.observe(botao, { attributes: true, attributeFilter: ['style', 'class', 'hidden'] });
 
-        // Se em 20s nada montou, o aviso vira um recado util em vez de um
-        // spinner eterno.
-        setTimeout(function () {
-          obs.disconnect();
-          if (alvo.children.length === 0 && !alvo.textContent.trim()) {
-            aviso.innerHTML = 'The offer could not be loaded. Please refresh the page.';
+            // Falha aberta: se passou o tempo e o botao continua escondido,
+            // mostro assim mesmo. Melhor um botao sem o atraso do que
+            // nenhum botao.
+            setTimeout(function () {
+              obs.disconnect();
+              if (!visivel()) botao.style.removeProperty('display');
+              aviso.style.display = 'none';
+            }, ESPERA_MAXIMA);
           }
-        }, 20000);
+        }
+
+        /* 2. O ks viaja no link de recusa.
+              A Kashpay le o token da URL da pagina (window.location) e nao
+              guarda em storage nenhum. Se a recusa levar para a upsell 2 sem
+              ele, o botao de la nao funciona. */
+        var recusa = document.querySelector('.checkout-decline a');
+        if (recusa) {
+          try {
+            var atual = new URLSearchParams(window.location.search);
+            if (atual.get('ks')) {
+              var destino = new URL(recusa.getAttribute('href'), window.location.href);
+              atual.forEach(function (v, k) {
+                if (!destino.searchParams.has(k)) destino.searchParams.set(k, v);
+              });
+              recusa.href = destino.toString();
+            }
+          } catch (e) {}
+        }
       })();
     </script>
 
