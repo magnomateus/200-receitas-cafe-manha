@@ -360,21 +360,3 @@ body {
     .sub-value { font-size: 4.2rem; }
     .sub-currency { font-size: 1.55rem; }
 }
-
-
-/* Link de recusa. Nas paginas antigas quem desenhava era o widget da
-   Hotmart; com a Kashpay o fluxo e nosso, entao ele mora aqui. */
-.checkout-decline {
-  margin: 18px auto 0;
-  text-align: center;
-  font-size: 0.9rem;
-}
-.checkout-decline a {
-  color: var(--ink-faint);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-.checkout-decline a:hover,
-.checkout-decline a:focus-visible {
-  color: var(--ink);
-}

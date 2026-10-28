@@ -8,7 +8,8 @@
 
   O QUE MUDOU: saiu o widget salesFunnel da Hotmart (que montava o botao E
   controlava o fluxo) e com ele o recorte do iframe e o autoclick de teste.
-  Entra o embed da Kashpay, e o link de recusa agora e desta pagina.
+  Entra o botao da Kashpay. Nao ha recusa: o unico caminho e o aceite,
+  e quem roteia depois disso e a Kashpay.
 
   FLUXO: comprou -> a Kashpay redireciona (configure no painel dela).
          recusou -> ../upsell2/
@@ -118,8 +119,6 @@
 
                     <p class="checkout-hint" id="checkout-hint"><span class="spinner"></span> Loading your offer&hellip;</p>
                 </div>
-
-                <p class="checkout-decline"><a href="../upsell2/">No thanks, I'll pass on this offer</a></p>
             </section>
 
             <!-- 6. Highlight line (value) -->
@@ -151,59 +150,34 @@
         </div>
     </main>
 
-        <!-- Dois ajustes que o fluxo da Kashpay exige. -->
+        <!-- O aviso de carregando acompanha o BOTAO, nao o container: o script da
+         Kashpay esconde o botao (display:none) e devolve depois do atraso.
+         Sem isso o cartao ficaria vazio durante a espera. -->
     <script>
       (function () {
         var ESPERA_MAXIMA = 20000;
-
-        /* 1. O aviso de carregando acompanha o BOTAO, nao o container.
-              O script da Kashpay esconde o botao por 5s (display:none) e
-              depois devolve. Enquanto ele nao aparece, o cartao ficaria
-              vazio. Se o script dela nunca carregar, o botao fica visivel
-              desde o inicio e o aviso some na hora. */
         var botao = document.querySelector('#kashpay-checkout button');
         var aviso = document.getElementById('checkout-hint');
+        if (!botao || !aviso) return;
 
-        if (botao && aviso) {
-          var visivel = function () { return botao.offsetParent !== null; };
-          var resolver = function () {
-            if (!visivel()) return false;
-            aviso.style.display = 'none';
-            return true;
-          };
+        var visivel = function () { return botao.offsetParent !== null; };
+        var resolver = function () {
+          if (!visivel()) return false;
+          aviso.style.display = 'none';
+          return true;
+        };
+        if (resolver()) return;
 
-          if (!resolver()) {
-            var obs = new MutationObserver(function () { if (resolver()) obs.disconnect(); });
-            obs.observe(botao, { attributes: true, attributeFilter: ['style', 'class', 'hidden'] });
+        var obs = new MutationObserver(function () { if (resolver()) obs.disconnect(); });
+        obs.observe(botao, { attributes: true, attributeFilter: ['style', 'class', 'hidden'] });
 
-            // Falha aberta: se passou o tempo e o botao continua escondido,
-            // mostro assim mesmo. Melhor um botao sem o atraso do que
-            // nenhum botao.
-            setTimeout(function () {
-              obs.disconnect();
-              if (!visivel()) botao.style.removeProperty('display');
-              aviso.style.display = 'none';
-            }, ESPERA_MAXIMA);
-          }
-        }
-
-        /* 2. O ks viaja no link de recusa.
-              A Kashpay le o token da URL da pagina (window.location) e nao
-              guarda em storage nenhum. Se a recusa levar para a upsell 2 sem
-              ele, o botao de la nao funciona. */
-        var recusa = document.querySelector('.checkout-decline a');
-        if (recusa) {
-          try {
-            var atual = new URLSearchParams(window.location.search);
-            if (atual.get('ks')) {
-              var destino = new URL(recusa.getAttribute('href'), window.location.href);
-              atual.forEach(function (v, k) {
-                if (!destino.searchParams.has(k)) destino.searchParams.set(k, v);
-              });
-              recusa.href = destino.toString();
-            }
-          } catch (e) {}
-        }
+        // Falha aberta: passou o tempo e o botao continua escondido, mostro
+        // assim mesmo. Melhor um botao sem o atraso do que nenhum botao.
+        setTimeout(function () {
+          obs.disconnect();
+          if (!visivel()) botao.style.removeProperty('display');
+          aviso.style.display = 'none';
+        }, ESPERA_MAXIMA);
       })();
     </script>
 
