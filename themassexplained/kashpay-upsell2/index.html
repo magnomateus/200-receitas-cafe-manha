@@ -84,9 +84,9 @@
     })();
     </script>
     <!-- End Meta Pixel Code -->
-    <!-- Kashpay — processador de upsell. O atributo de opt-in no fim da tag
-         liga o recurso de atraso: sem ele o script nao mexe nos botoes. -->
-    <script src="https://checkout.kashpay.com/scripts/upsell-processor.js" data-kashpay-upsell-delay-support></script>
+    <!-- Kashpay — processador de upsell. Sem o atributo de opt-in do atraso:
+         esta pagina nao usa atraso, o botao aparece junto com a pagina. -->
+    <script src="https://checkout.kashpay.com/scripts/upsell-processor.js"></script>
 </head>
 <body>
 
@@ -116,14 +116,12 @@
             <section class="checkout">
                 <p class="checkout-eyebrow">Your exclusive offer</p>
                 <div class="checkout-card">
-                    <!-- Botao de compra da Kashpay, exatamente como ela entregou.
-                         O atraso de 2s e dela: o script esconde o botao e
-                         devolve depois desse tempo. -->
+                    <!-- Botao de compra da Kashpay, como o Mateus entregou na revisao de
+                         30/10: SEM atraso, entao aparece junto com a pagina. Por isso
+                         tambem nao ha mais aviso de carregando aqui. -->
                     <div id="kashpay-checkout">
-                        <button type="button" data-kashpay-upsell-delay="2" onclick="acceptUpsell('https://checkout.kashpay.com/u/2a7ec602cc5aae21')" style="font-family: 'Poppins'; font-size: 18px; font-weight: 600; line-height: 1.3; color: #ffffff; background-color: #057932; border: none; border-radius: 10px; padding: 13px 7%; cursor: pointer; text-align: center; display: block; margin: auto;">Aceitar Oferta</button>
+                        <button type="button" onclick="acceptUpsell('https://checkout.kashpay.com/u/2a7ec602cc5aae21')" style="font-family: 'Poppins'; font-size: 18px; font-weight: 600; line-height: 1.3; color: #ffffff; background-color: #057932; border: none; border-radius: 10px; padding: 13px 7%; cursor: pointer; text-align: center; display: block; margin: auto;">SECURE NOW</button>
                     </div>
-
-                    <p class="checkout-hint" id="checkout-hint"><span class="spinner"></span> Loading your offer…</p>
                 </div>
             </section>
 
@@ -156,37 +154,6 @@
 
         </div>
     </main>
-
-    <!-- O aviso de carregando acompanha o BOTAO, nao o container: o script da
-         Kashpay esconde o botao (display:none) e devolve depois do atraso.
-         Sem isso o cartao ficaria vazio durante a espera. -->
-    <script>
-      (function () {
-        var ESPERA_MAXIMA = 20000;
-        var botao = document.querySelector('#kashpay-checkout button');
-        var aviso = document.getElementById('checkout-hint');
-        if (!botao || !aviso) return;
-
-        var visivel = function () { return botao.offsetParent !== null; };
-        var resolver = function () {
-          if (!visivel()) return false;
-          aviso.style.display = 'none';
-          return true;
-        };
-        if (resolver()) return;
-
-        var obs = new MutationObserver(function () { if (resolver()) obs.disconnect(); });
-        obs.observe(botao, { attributes: true, attributeFilter: ['style', 'class', 'hidden'] });
-
-        // Falha aberta: passou o tempo e o botao continua escondido, mostro
-        // assim mesmo. Melhor um botao sem o atraso do que nenhum botao.
-        setTimeout(function () {
-          obs.disconnect();
-          if (!visivel()) botao.style.removeProperty('display');
-          aviso.style.display = 'none';
-        }, ESPERA_MAXIMA);
-      })();
-    </script>
 
 </body>
 </html>
