@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  UPSELL 1 - The Mass Explained App (ENGLISH / EN) - CHECKOUT KASHPAY
+  Rota: themassexplained.shop/kashpay-upsell/
+
+  Copia de /appmissaexplicada/upsell-ingles/ - mesmo layout, CSS e imagem. UMA troca: o widget de
+  1-clique da Hotmart saiu, entrou o botao da Kashpay. Por isso saiu tambem o
+  bloco de autoclique no CONFIRMAR, que existia so para testar o modal da
+  Hotmart, e as regras de CSS do iframe dela.
+
+  SEM RECUSA, de proposito: o pedido foi upsell 1 e upsell 2, nada mais.
+
+  O botao depende do token ks que a Kashpay anexa na URL depois da compra. Sem
+  ?ks= na URL o acceptUpsell nao processa. Ligar vendas -> upsell 1 -> upsell 2
+  e configuracao no painel da Kashpay, nao neste arquivo.
+
+  PIXELS: pendentes, como na pagina de origem. Enquanto window.EN_PIXELS
+  comecar com PREENCHER, nada dispara - esta pagina nao rastreia nada.
+  ============================================================================
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Special Offer - The Mass Explained App</title>
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Google Fonts — Montserrat (titles) + Roboto (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- ============================================================
+         ENGLISH PIXELS — ⚠️ FILL before running traffic.
+         While the values start with "PREENCHER", nothing fires.
+         ============================================================ -->
+    <script>
+      window.EN_PIXELS = {
+        UTMIFY: 'PREENCHER_UTMIFY_PIXEL_ID_EN',
+        META:   'PREENCHER_META_PIXEL_ID_EN'
+      };
+      (function () {
+        var cfg = window.EN_PIXELS;
+        if (cfg.UTMIFY.indexOf('PREENCHER') !== 0) {
+          window.pixelId = cfg.UTMIFY;
+          var a = document.createElement('script');
+          a.setAttribute('async', '');
+          a.setAttribute('defer', '');
+          a.setAttribute('src', 'https://cdn.utmify.com.br/scripts/pixel/pixel.js');
+          document.head.appendChild(a);
+        }
+      })();
+    </script>
+
+    <!-- Utmify UTMs Script (forwards the UTMs — safe to keep always on) -->
+    <script
+      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+      data-utmify-prevent-subids
+      async
+      defer
+    ></script>
+
+    <!-- Meta Pixel Code (only initializes with a real ID) -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    (function () {
+      var id = window.EN_PIXELS.META;
+      if (id.indexOf('PREENCHER') !== 0) {
+        fbq('init', id);
+        fbq('track', 'PageView');
+      }
+    })();
+    </script>
+    <!-- End Meta Pixel Code -->
+    <!-- Kashpay — processador de upsell. O data-kashpay-upsell-delay-support
+         e o opt-in do recurso de atraso: sem ele o script nao mexe nos botoes. -->
+    <script src="https://checkout.kashpay.com/scripts/upsell-processor.js" data-kashpay-upsell-delay-support></script>
+</head>
+<body>
+
+    <!-- 1. Fixed warning bar -->
+    <div class="warning-bar">
+        Please don't close or refresh this page — errors may occur while processing your payment.
+    </div>
+
+    <main class="page">
+        <div class="container">
+
+            <!-- 2. Processing payment -->
+            <p class="processing">Processing payment<span class="dots"><span>.</span><span>.</span><span>.</span></span></p>
+
+            <!-- 3. Progress bar — % inside the bar -->
+            <section class="progress-block">
+                <div class="progress-track">
+                    <div class="progress-fill"><span class="progress-pct">90%</span></div>
+                </div>
+            </section>
+
+            <!-- 4. Headline -->
+            <h1 class="headline">You've just received a special gift, available only on this page.</h1>
+
+            <!-- 5. Hotmart checkout — elevated frame. The Hotmart iframe is
+                 cross-origin: we style only the card around it, not the inside.
+                 The button is Hotmart's default ("buy") — not defined here. -->
+            <section class="checkout">
+                <p class="checkout-eyebrow">Your exclusive offer</p>
+                <div class="checkout-card">
+                    <!-- Botao de compra da Kashpay, exatamente como ela entregou.
+                         O delay de 5s e dela: o script esconde o botao e devolve
+                         depois desse tempo. -->
+                    <div id="kashpay-checkout">
+                        <button type="button" data-kashpay-upsell-delay="5" onclick="acceptUpsell('https://checkout.kashpay.com/u/b13c8f705c90d1f8')" style="font-family: 'Helvetica'; font-size: 18px; font-weight: 600; line-height: 1.3; color: #ffffff; background-color: #057932; border: none; border-radius: 10px; padding: 13px 7%; cursor: pointer; text-align: center; display: block; margin: auto;">SECURE NOW</button>
+                    </div>
+
+                    <p class="checkout-hint" id="checkout-hint"><span class="spinner"></span> Loading your offer…</p>
+                </div>
+            </section>
+
+            <!-- 6. Highlight line (value) -->
+            <p class="highlight">The app that explains the Holy Mass of every day — in just one click!</p>
+
+            <!-- 7. Body -->
+            <p class="body-text">
+                Sunday? Lent? Advent? The app brings you the daily reflection, the liturgical
+                season and the readings explained in just a few minutes. The Holy Mass, with you, every day.
+            </p>
+
+            <!-- 8. App mockup -->
+            <section class="mockup-wrap">
+                <img
+                    src="mockup-app.webp"
+                    alt="The Mass Explained App — home screen with the daily reflection, the liturgical season and the readings."
+                    class="app-mockup"
+                    width="883"
+                    height="1782"
+                    loading="lazy"
+                    decoding="async"
+                />
+            </section>
+
+            <!-- 9. Footer -->
+            <footer class="footer">
+                ✝ The Mass Explained · All rights reserved ©
+            </footer>
+
+        </div>
+    </main>
+
+    <!-- O aviso de carregando acompanha o BOTAO, nao o container: o script da
+         Kashpay esconde o botao (display:none) e devolve depois do atraso.
+         Sem isso o cartao ficaria vazio durante a espera. -->
+    <script>
+      (function () {
+        var ESPERA_MAXIMA = 20000;
+        var botao = document.querySelector('#kashpay-checkout button');
+        var aviso = document.getElementById('checkout-hint');
+        if (!botao || !aviso) return;
+
+        var visivel = function () { return botao.offsetParent !== null; };
+        var resolver = function () {
+          if (!visivel()) return false;
+          aviso.style.display = 'none';
+          return true;
+        };
+        if (resolver()) return;
+
+        var obs = new MutationObserver(function () { if (resolver()) obs.disconnect(); });
+        obs.observe(botao, { attributes: true, attributeFilter: ['style', 'class', 'hidden'] });
+
+        // Falha aberta: passou o tempo e o botao continua escondido, mostro
+        // assim mesmo. Melhor um botao sem o atraso do que nenhum botao.
+        setTimeout(function () {
+          obs.disconnect();
+          if (!visivel()) botao.style.removeProperty('display');
+          aviso.style.display = 'none';
+        }, ESPERA_MAXIMA);
+      })();
+    </script>
+
+</body>
+</html>
