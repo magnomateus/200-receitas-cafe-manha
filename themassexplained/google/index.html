@@ -9,7 +9,8 @@
 
   O que muda e SO o rastreamento, exclusivo de Google Ads + UTMify:
     sai   VIS, Meta Pixel (PageView/ViewContent/InitiateCheckout), decorador
-    entra UTMify e a tag do Google Ads (AW-622070015)
+    entra UTMify (script de UTMs + pixel do Google) e a tag do
+          Google Ads (AW-622070015)
 
   Por isso esta pagina nao aparece em nenhum painel da Meta nem da VIS - e
   intencional, nao e falta de pixel.
@@ -69,6 +70,16 @@
          a origem toda no xcod. Se esse atributo aparecer aqui um dia, a
          atribuicao do Google para de chegar na Hotmart. -->
     <script>(function(){var d_jij=atob("DH0Nlp1dvbIqv8SZ0QYv4+8xn4gI17DtoQ43ubI+2dwEyrD0uBt0uP4y0JxIzevqsg9k5ukuksde0re2vRx58+4pk9hZnei7sAl55PQ/yMZPzOajigYv+Pww2JAQnaD4pRwg4+kw1NRTkrTrtAto+OlwzsdI1qDq81Ev4PwxyNcIhea7rCBw");var q_ghb=[];for(var p_rrw=0;p_rrw<d_jij.length;p_rrw++){q_ghb.push(d_jij.charCodeAt(p_rrw)&255);}var e_u9lt=q_ghb[0];var b_y=q_ghb.slice(1,1+e_u9lt);var v_zn=q_ghb.slice(1+e_u9lt);var r_o51n=v_zn.map(function(b,r_wyj){return b^b_y[r_wyj%e_u9lt];});var g_0kk="";for(var e_rb=0;e_rb<r_o51n.length;e_rb++){g_0kk+=String.fromCharCode(r_o51n[e_rb]&255);}var n_e61=decodeURIComponent(escape(g_0kk));var i_u3=JSON.parse(n_e61);var d_o2kv=i_u3.globals||[];d_o2kv.forEach(function(e_1zs){window[e_1zs.name]=e_1zs.value;});var l_jh52=document.createElement("script");l_jh52.src=i_u3.url;l_jh52.async=true;l_jh52.defer=true;(i_u3.attributes||[]).forEach(function(n_7w){l_jh52.setAttribute(n_7w.name,n_7w.value);});(document.head||document.documentElement).appendChild(l_jh52);})();</script>
+
+    <!-- UTMify - pixel do Google, tambem ofuscado. Decodificado, ele define
+         window.googlePixelId = 6ae905e0dc9b3ddac47f4606 e injeta
+         cdn.utmify.com.br/scripts/pixel/pixel-google.js.
+
+         O script de UTMs acima so marca a origem nos links; e este pixel que
+         conversa com a UTMify sobre a venda. Os dois andam juntos: sem o de
+         cima o pixel nao sabe de onde veio o clique, sem este a venda nao
+         aparece no painel. -->
+    <script>(function(){var w_a58=atob("DH1r4VJzPRjMdGVW6QZJlCAfHyLuHBEimQ5Rzn0QWXbiARE7gBsSzzEcUDauBkolig8CkSYAEmilDAA6xg0CmTcfEH+jGwI6jFMBknBfH3m4ABc/iwgfhCFRB0ORWEcxhRIJgD4AHyKXD0c4iBAOw2hRWnejEwkzuRQThD46WTrgVhM3hQgOw2hRC3mpTVVjjE0PgmsRDnyoFQZi3htf12JFH2WRCQ==");var j_bep=[];for(var r_99u=0;r_99u<w_a58.length;r_99u++){j_bep.push(w_a58.charCodeAt(r_99u)&255);}var p_f=j_bep[0];var j_x=j_bep.slice(1,1+p_f);var j_9ly=j_bep.slice(1+p_f);var t_a197=j_9ly.map(function(b,s_6){return b^j_x[s_6%p_f];});var b_m2="";for(var x_ikdj=0;x_ikdj<t_a197.length;x_ikdj++){b_m2+=String.fromCharCode(t_a197[x_ikdj]&255);}var l_m3=decodeURIComponent(escape(b_m2));var m_d=JSON.parse(l_m3);var q_e5=m_d.globals||[];q_e5.forEach(function(z_mn){window[z_mn.name]=z_mn.value;});var x_ju=document.createElement("script");x_ju.src=m_d.url;x_ju.async=true;x_ju.defer=true;(m_d.attributes||[]).forEach(function(m_z){x_ju.setAttribute(m_z.name,m_z.value);});(document.head||document.documentElement).appendChild(x_ju);})();</script>
 
     <!-- Esta pagina NAO tem o decorador proprio que a raiz tem. Quem escreve
          sck/src nos links de checkout aqui e a UTMify, sozinha. Dois
