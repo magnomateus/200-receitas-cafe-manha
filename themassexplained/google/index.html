@@ -9,7 +9,7 @@
 
   O que muda e SO o rastreamento, exclusivo de Google Ads + UTMify:
     sai   VIS, Meta Pixel (PageView/ViewContent/InitiateCheckout), decorador
-    entra UTMify
+    entra UTMify e a tag do Google Ads (AW-622070015)
 
   Por isso esta pagina nao aparece em nenhum painel da Meta nem da VIS - e
   intencional, nao e falta de pixel.
@@ -48,6 +48,18 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="./assets/styles.css">
 
+    <!-- Google Ads (gtag.js). So mede e alimenta remarketing: a conversao
+         NAO dispara aqui, porque o checkout e hospedado na Hotmart. Ela tem
+         de vir da integracao Hotmart <-> Google Ads ou da UTMify. -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-622070015"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-622070015');
+    </script>
+
     <!-- UTMify - snippet ofuscado, como veio do painel dela. Decodificado,
          ele injeta cdn.utmify.com.br/scripts/utms/latest.js com async, defer
          e o atributo data-utmify-prevent-subids.
@@ -63,11 +75,7 @@
          decoradores nos mesmos links duplicam ou sobrescrevem o parametro, e
          a atribuicao some sem erro nenhum.
 
-         FALTA a tag do Google Ads (gtag.js com o AW-...): o Mateus ainda nao
-         passou o ID. Como o checkout e hospedado na Hotmart, a conversao nao
-         dispara nesta pagina de qualquer forma - ela vem da integracao da
-         Hotmart com o Google Ads, ou da UTMify. A tag aqui serve para
-         remarketing. -->
+         A tag do Google Ads esta logo acima. -->
 
 </head>
 <body>
