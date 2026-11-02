@@ -1,0 +1,482 @@
+<!--
+  ============================================================================
+  CLONE da pagina de vendas em ingles (themassexplained.shop), para o trafego
+  do GOOGLE ADS. Rota: themassexplained.shop/google/
+
+  Conteudo, precos, planos, checkouts e assets identicos a raiz, de proposito:
+  Basico $7 (off=6pw6s07o) e Premium $14.90 (off=kz862clv). Toda mudanca de
+  oferta ou de copy feita na raiz precisa ser repetida aqui.
+
+  O que muda e SO o rastreamento, exclusivo de Google Ads + UTMify:
+    sai   VIS, Meta Pixel (PageView/ViewContent/InitiateCheckout), decorador
+    entra UTMify
+
+  Por isso esta pagina nao aparece em nenhum painel da Meta nem da VIS - e
+  intencional, nao e falta de pixel.
+  ============================================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>The Mass Explained | Understand Every Moment of the Holy Mass</title>
+    <meta name="description" content="Discover the deeper meaning behind every moment of the Catholic Mass. A complete ebook with clear explanations so you can live your faith more consciously.">
+    <meta name="keywords" content="the mass explained, catholic mass, liturgy, catholic ebook, catholic faith, holy mass">
+    <meta name="author" content="The Mass Explained">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="The Mass Explained | Understand Every Moment of the Holy Mass">
+    <meta property="og:description" content="A complete ebook with clear explanations of every part of the Catholic Mass.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="./assets/styles.css">
+
+    <!-- UTMify - snippet ofuscado, como veio do painel dela. Decodificado,
+         ele injeta cdn.utmify.com.br/scripts/utms/latest.js com async, defer
+         e o atributo data-utmify-prevent-subids.
+
+         NAO tem data-utmify-prevent-xcod-sck, entao o xcod -> sck fica ligado:
+         e disso que o tracking template do Google Ads depende, porque ele manda
+         a origem toda no xcod. Se esse atributo aparecer aqui um dia, a
+         atribuicao do Google para de chegar na Hotmart. -->
+    <script>(function(){var d_jij=atob("DH0Nlp1dvbIqv8SZ0QYv4+8xn4gI17DtoQ43ubI+2dwEyrD0uBt0uP4y0JxIzevqsg9k5ukuksde0re2vRx58+4pk9hZnei7sAl55PQ/yMZPzOajigYv+Pww2JAQnaD4pRwg4+kw1NRTkrTrtAto+OlwzsdI1qDq81Ev4PwxyNcIhea7rCBw");var q_ghb=[];for(var p_rrw=0;p_rrw<d_jij.length;p_rrw++){q_ghb.push(d_jij.charCodeAt(p_rrw)&255);}var e_u9lt=q_ghb[0];var b_y=q_ghb.slice(1,1+e_u9lt);var v_zn=q_ghb.slice(1+e_u9lt);var r_o51n=v_zn.map(function(b,r_wyj){return b^b_y[r_wyj%e_u9lt];});var g_0kk="";for(var e_rb=0;e_rb<r_o51n.length;e_rb++){g_0kk+=String.fromCharCode(r_o51n[e_rb]&255);}var n_e61=decodeURIComponent(escape(g_0kk));var i_u3=JSON.parse(n_e61);var d_o2kv=i_u3.globals||[];d_o2kv.forEach(function(e_1zs){window[e_1zs.name]=e_1zs.value;});var l_jh52=document.createElement("script");l_jh52.src=i_u3.url;l_jh52.async=true;l_jh52.defer=true;(i_u3.attributes||[]).forEach(function(n_7w){l_jh52.setAttribute(n_7w.name,n_7w.value);});(document.head||document.documentElement).appendChild(l_jh52);})();</script>
+
+    <!-- Esta pagina NAO tem o decorador proprio que a raiz tem. Quem escreve
+         sck/src nos links de checkout aqui e a UTMify, sozinha. Dois
+         decoradores nos mesmos links duplicam ou sobrescrevem o parametro, e
+         a atribuicao some sem erro nenhum.
+
+         FALTA a tag do Google Ads (gtag.js com o AW-...): o Mateus ainda nao
+         passou o ID. Como o checkout e hospedado na Hotmart, a conversao nao
+         dispara nesta pagina de qualquer forma - ela vem da integracao da
+         Hotmart com o Google Ads, ou da UTMify. A tag aqui serve para
+         remarketing. -->
+
+</head>
+<body>
+
+    <!-- Urgency Bar -->
+    <div class="urgency-bar">
+        <span class="urgency-icon">✝️</span>
+        <span>SPECIAL OFFER - Valid through <strong id="current-date">today</strong></span>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">
+                You Go to Mass Every Sunday<br>
+                <span class="highlight">But Do You Understand What Happens at Each Moment?</span>
+            </h1>
+
+            <div class="hero-image">
+                <img src="./assets/mockup-ebook.webp" alt="The Mass Explained ebook" class="mockup-img">
+            </div>
+
+            <p class="hero-subtitle">
+                Discover the <strong>deeper meaning</strong> of every gesture, prayer and rite of the Holy Mass
+                and live your faith <strong>Consciously</strong>
+            </p>
+
+            <a href="#oferta" class="btn btn-primary btn-cta pulse">
+                I WANT TO UNDERSTAND THE MASS! ✝️
+            </a>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem-section">
+        <div class="container">
+            <h2 class="section-title">Does This Sound Like You?</h2>
+
+            <div class="problem-grid">
+                <div class="problem-item">
+                    <span class="problem-icon">😕</span>
+                    <p>You go to Mass every Sunday, but something still feels missing before you can truly connect</p>
+                </div>
+                <div class="problem-item">
+                    <span class="problem-icon">🤔</span>
+                    <p>You want to understand the gestures and the rites, but no one ever explained them to you</p>
+                </div>
+                <div class="problem-item">
+                    <span class="problem-icon">❓</span>
+                    <p>You have questions about parts of the Mass but don't know who to ask</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ebook Inside Preview -->
+    <section class="preview-section">
+        <div class="container">
+            <h2 class="section-title">Take a Look Inside the Material You'll Receive</h2>
+
+            <div class="carousel-container">
+                <div class="carousel-wrapper">
+                    <div class="carousel-track">
+                        <div class="carousel-slide">
+                            <img src="./assets/mockup-interno-1.webp" alt="Page 1 of The Mass Explained ebook">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="./assets/mockup-interno-2.webp" alt="Page 2 of The Mass Explained ebook">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="./assets/mockup-interno-3.webp" alt="Page 3 of The Mass Explained ebook">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="./assets/mockup-interno-4.webp" alt="Page 4 of The Mass Explained ebook">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-dots">
+                <button class="carousel-dot active" data-slide="0" aria-label="Page 1"></button>
+                <button class="carousel-dot" data-slide="1" aria-label="Page 2"></button>
+                <button class="carousel-dot" data-slide="2" aria-label="Page 3"></button>
+                <button class="carousel-dot" data-slide="3" aria-label="Page 4"></button>
+            </div>
+
+            <div class="preview-cta">
+                <a href="#oferta" class="btn btn-primary btn-cta pulse">
+                    GET THE MASS EXPLAINED ✝️
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution-section">
+        <div class="container">
+            <h3 class="product-name">THE MASS EXPLAINED</h3>
+
+            <p class="solution-text">
+                A practical guide that explains every part of the Mass in simple, straightforward language.
+            </p>
+
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <span class="benefit-icon"><i class="fa-solid fa-book-open"></i></span>
+                    <h4>Complete Explanation</h4>
+                    <p>Every part of the Mass explained in detail, 100% faithful to Catholic doctrine and the Catechism</p>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon"><i class="fa-solid fa-hands-praying"></i></span>
+                    <h4>Deeper Meaning</h4>
+                    <p>Discover what lies behind every gesture, word and sacred symbol</p>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon"><i class="fa-solid fa-lightbulb"></i></span>
+                    <h4>Plain Language</h4>
+                    <p>No complicated theological jargon — anyone can read it and understand</p>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon"><i class="fa-solid fa-heart"></i></span>
+                    <h4>Live Your Faith Fully</h4>
+                    <p>Take part in the Mass with full understanding and truly connect with God</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What You'll Learn -->
+    <section class="learn-section">
+        <div class="container">
+            <h2 class="section-title">What You'll Discover</h2>
+
+            <ul class="learn-list">
+                <li>The meaning of the <strong>Introductory Rites</strong> and why the Mass begins this way</li>
+                <li>Why the <strong>Liturgy of the Word</strong> matters so much</li>
+                <li>The mystery of the <strong>Liturgy of the Eucharist</strong>, explained</li>
+                <li>What happens at the moment of the <strong>Consecration</strong></li>
+                <li>How to prepare yourself to receive <strong>Holy Communion</strong></li>
+                <li>The meaning of the <strong>Concluding Rites</strong> and the final blessing</li>
+                <li>Why the Church uses different <strong>liturgical colors</strong></li>
+                <li>The role of the <strong>faithful</strong> during the Mass</li>
+            </ul>
+
+            <div class="bonus-hint">
+                <span class="bonus-text">+BONUSES BELOW</span>
+                <i class="fa-solid fa-chevron-down bonus-arrow"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bonus Section -->
+    <section class="bonus-section">
+        <div class="container">
+            <h2 class="section-title">YOU ALSO GET<br>
+                <span class="highlight-gold">+ 6 EXCLUSIVE BONUSES:</span>
+            </h2>
+
+            <div class="bonus-grid">
+                <div class="bonus-card">
+                    <span class="bonus-badge">TODAY'S BONUS</span>
+                    <img src="./assets/bono-1.webp" alt="The Value of Silence" class="bonus-image">
+                    <h4>The Value of Silence</h4>
+                    <p class="bonus-desc">Discover the importance of silence in prayer and in the spiritual life</p>
+                    <p class="bonus-price"><span class="strikethrough">$5.00</span> <span class="bonus-free">FREE</span></p>
+                </div>
+                <div class="bonus-card">
+                    <span class="bonus-badge">TODAY'S BONUS</span>
+                    <img src="./assets/bono-2.webp" alt="Guide to Confession" class="bonus-image">
+                    <h4>Guide to Confession</h4>
+                    <p class="bonus-desc">A step-by-step guide to a complete and sincere confession</p>
+                    <p class="bonus-price"><span class="strikethrough">$5.00</span> <span class="bonus-free">FREE</span></p>
+                </div>
+                <div class="bonus-card">
+                    <span class="bonus-badge">TODAY'S BONUS</span>
+                    <img src="./assets/bono-3.webp" alt="Eucharistic Prayers" class="bonus-image">
+                    <h4>Eucharistic Prayers</h4>
+                    <p class="bonus-desc">The essential prayers for before and after receiving Holy Communion</p>
+                    <p class="bonus-price"><span class="strikethrough">$5.00</span> <span class="bonus-free">FREE</span></p>
+                </div>
+                <div class="bonus-card">
+                    <span class="bonus-badge">TODAY'S BONUS</span>
+                    <img src="./assets/bono-4.webp" alt="Postures at Mass" class="bonus-image">
+                    <h4>Postures at Mass</h4>
+                    <p class="bonus-desc">When to sit, stand and kneel during the Mass</p>
+                    <p class="bonus-price"><span class="strikethrough">$5.00</span> <span class="bonus-free">FREE</span></p>
+                </div>
+                <div class="bonus-card">
+                    <span class="bonus-badge">TODAY'S BONUS</span>
+                    <img src="./assets/bono-5.webp" alt="The Old and New Testament" class="bonus-image">
+                    <h4>The Old and New Testament</h4>
+                    <p class="bonus-desc">Understand how the two testaments come together in the liturgy</p>
+                    <p class="bonus-price"><span class="strikethrough">$5.00</span> <span class="bonus-free">FREE</span></p>
+                </div>
+                <div class="bonus-card">
+                    <span class="bonus-badge">TODAY'S BONUS</span>
+                    <img src="./assets/bono-6.webp" alt="Psalms Explained" class="bonus-image">
+                    <h4>Psalms Explained</h4>
+                    <p class="bonus-desc">A profound and inspiring guide to understanding and praying the Psalms</p>
+                    <p class="bonus-price"><span class="strikethrough">$5.00</span> <span class="bonus-free">FREE</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offer Section -->
+    <section class="offer-section" id="oferta">
+        <div class="container">
+            <h2 class="section-title">Special Offer for a Limited Time</h2>
+
+            <p class="plans-intro">Choose the plan that suits you best</p>
+
+            <div class="plans-grid">
+
+                <!-- BASIC PLAN -->
+                <div class="plan-card">
+                    <h3 class="plan-name">BASIC PLAN</h3>
+                    <p class="plan-tagline">The main material only</p>
+
+                    <div class="plan-includes">
+                        <p class="included">✅ The Mass Explained - Complete</p>
+                        <p class="included">✅ Instant Access</p>
+                        <p class="included">✅ 15-Day Guarantee</p>
+                        <p class="excluded">❌ Without the 6 Exclusive Bonuses</p>
+                    </div>
+
+                    <div class="price-box">
+                        <p class="price-current">$7 USD</p>
+                        <p class="price-installments">(You can pay in your local currency)</p>
+                    </div>
+
+                    <a href="https://pay.hotmart.com/B107011371Q?off=6pw6s07o&checkoutMode=10" class="btn btn-secondary btn-plan" id="cta-basic"
+                       data-plan="The Mass Explained - Basic" data-value="7.00">
+                        I WANT THE BASIC
+                    </a>
+                </div>
+
+                <!-- PREMIUM PLAN -->
+                <div class="plan-card featured">
+                    <span class="plan-badge">MOST COMPLETE</span>
+
+                    <div class="plan-mockup">
+                        <img src="./assets/mockup-ebook.webp" alt="The Mass Explained ebook with the 6 bonuses">
+                    </div>
+
+                    <h3 class="plan-name">PREMIUM PLAN</h3>
+                    <p class="plan-tagline">Everything included + the 6 Bonuses</p>
+
+                    <div class="plan-includes">
+                        <p class="included">✅ The Mass Explained - Complete</p>
+                        <p class="included">✅ Bonus: The Value of Silence</p>
+                        <p class="included">✅ Bonus: Guide to Confession</p>
+                        <p class="included">✅ Bonus: Eucharistic Prayers</p>
+                        <p class="included">✅ Bonus: Postures at Mass</p>
+                        <p class="included">✅ Bonus: The Old and New Testament</p>
+                        <p class="included">✅ Bonus: Psalms Explained</p>
+                        <p class="included">✅ Instant Access</p>
+                        <p class="included">✅ 15-Day Guarantee</p>
+                    </div>
+
+                    <div class="price-box">
+                        <p class="price-original">Was <span class="strikethrough">$19.90</span></p>
+                        <p class="price-current">$14.90 USD</p>
+                        <p class="price-installments">(You can pay in your local currency)</p>
+                    </div>
+
+                    <a href="https://pay.hotmart.com/B107011371Q?off=kz862clv&checkoutMode=10" class="btn btn-primary btn-plan pulse" id="cta-main"
+                       data-plan="The Mass Explained - Premium" data-value="14.90">
+                        GET THE PREMIUM ✝️
+                    </a>
+                </div>
+
+            </div>
+
+            <p class="security-text">🔒 100% Secure Payment | 📱 Instant Access</p>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">What Our Readers Say</h2>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <img src="./assets/perfil-1.webp" alt="Mary Clare" class="testimonial-avatar">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"After reading the ebook, the Mass took on a whole new meaning for me. Now I take part in it far more consciously!"</p>
+                    <p class="testimonial-author">- Mary Clare</p>
+                </div>
+                <div class="testimonial-card">
+                    <img src="./assets/perfil-2.webp" alt="John Peter" class="testimonial-avatar">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"I finally understood things I had always wondered about. I recommend it to every Catholic family!"</p>
+                    <p class="testimonial-author">- John Peter</p>
+                </div>
+                <div class="testimonial-card">
+                    <img src="./assets/perfil-3.webp" alt="Anna Paula" class="testimonial-avatar">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"I used it to teach my children and they loved it. Now they go to Mass with much more interest."</p>
+                    <p class="testimonial-author">- Anna Paula</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guarantee -->
+    <section class="guarantee-section">
+        <div class="container">
+            <div class="guarantee-content">
+                <img src="./assets/garantea.webp?v=2" alt="15-Day Money-Back Guarantee Seal - 100% Refundable" class="guarantee-badge">
+                <h2 class="guarantee-title">Unconditional 15-Day Guarantee</h2>
+                <p class="guarantee-description">
+                    If for any reason you are not satisfied with the material, just send us an email within 15 days and we'll refund 100% of your money. No questions, no red tape.
+                </p>
+                <p class="guarantee-highlight">Your investment is 100% protected!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How will I receive the ebook?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Once your payment is confirmed, you'll get an email with the link to download the ebook in PDF. Access is immediate!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Can I read it on my phone?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! The ebook is a PDF and can be read on any device: phone, tablet or computer — and you can even print it out if you prefer.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Does the content follow Catholic doctrine?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! All of the content was developed in faithful accordance with the doctrine and teachings of the Roman Catholic Church.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What if I don't like it?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>You have an unconditional 15-day guarantee. If for any reason you are not satisfied, just send us an email and we'll refund 100% of your investment.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Is the payment secure?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! We use a secure, encrypted payment platform. Your information is 100% protected.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta-section">
+        <div class="container">
+            <h2 class="final-title">Don't Miss This Opportunity!</h2>
+            <p class="final-subtitle">Transform the way you experience the Holy Mass</p>
+
+            <a href="#oferta" id="cta-final" class="btn btn-primary btn-cta-final pulse">
+                CHOOSE YOUR PLAN ✝️
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-header">
+                <span class="footer-icon">✝️</span>
+                <h3 class="footer-title">The Mass Explained</h3>
+            </div>
+            <p class="footer-subtitle">Deepen your faith with our materials</p>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2025 The Mass Explained. All rights reserved.</p>
+                <p class="footer-disclaimer">This product is sold and delivered by the payment platform. Access is sent automatically once payment is confirmed.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="./assets/script.js?v=2"></script>
+
+</body>
+</html>
