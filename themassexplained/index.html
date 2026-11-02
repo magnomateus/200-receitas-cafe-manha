@@ -48,7 +48,7 @@
     fbq('track', 'PageView');
     fbq('track', 'ViewContent', {
         content_name: 'The Mass Explained',
-        value: 9.90,
+        value: 14.90,
         currency: 'USD'
     });
     </script>
@@ -265,37 +265,71 @@
         <div class="container">
             <h2 class="section-title">Special Offer for a Limited Time</h2>
 
-            <div class="offer-card">
-                <div class="offer-mockup">
-                    <img src="./assets/mockup-ebook.webp" alt="The Mass Explained ebook">
+            <p class="plans-intro">Choose the plan that suits you best</p>
+
+            <div class="plans-grid">
+
+                <!-- BASIC PLAN -->
+                <div class="plan-card">
+                    <h3 class="plan-name">BASIC PLAN</h3>
+                    <p class="plan-tagline">The main material only</p>
+
+                    <div class="plan-includes">
+                        <p class="included">✅ The Mass Explained - Complete</p>
+                        <p class="included">✅ Instant Access</p>
+                        <p class="included">✅ 15-Day Guarantee</p>
+                        <p class="excluded">❌ Without the 6 Exclusive Bonuses</p>
+                    </div>
+
+                    <div class="price-box">
+                        <p class="price-current">$7 USD</p>
+                        <p class="price-installments">(You can pay in your local currency)</p>
+                    </div>
+
+                    <a href="https://pay.hotmart.com/B107011371Q?off=6pw6s07o&checkoutMode=10" class="btn btn-secondary btn-plan" id="cta-basic"
+                       data-plan="The Mass Explained - Basic" data-value="7.00">
+                        I WANT THE BASIC
+                    </a>
                 </div>
 
-                <h3 class="offer-name">THE MASS EXPLAINED</h3>
+                <!-- PREMIUM PLAN -->
+                <div class="plan-card featured">
+                    <span class="plan-badge">MOST COMPLETE</span>
 
-                <div class="offer-includes">
-                    <p>✅ The Mass Explained - Complete</p>
-                    <p>✅ Bonus: The Value of Silence</p>
-                    <p>✅ Bonus: Guide to Confession</p>
-                    <p>✅ Bonus: Eucharistic Prayers</p>
-                    <p>✅ Bonus: Postures at Mass</p>
-                    <p>✅ Bonus: The Old and New Testament</p>
-                    <p>✅ Bonus: Psalms Explained</p>
-                    <p>✅ Instant Access</p>
-                    <p>✅ 15-Day Guarantee</p>
+                    <div class="plan-mockup">
+                        <img src="./assets/mockup-ebook.webp" alt="The Mass Explained ebook with the 6 bonuses">
+                    </div>
+
+                    <h3 class="plan-name">PREMIUM PLAN</h3>
+                    <p class="plan-tagline">Everything included + the 6 Bonuses</p>
+
+                    <div class="plan-includes">
+                        <p class="included">✅ The Mass Explained - Complete</p>
+                        <p class="included">✅ Bonus: The Value of Silence</p>
+                        <p class="included">✅ Bonus: Guide to Confession</p>
+                        <p class="included">✅ Bonus: Eucharistic Prayers</p>
+                        <p class="included">✅ Bonus: Postures at Mass</p>
+                        <p class="included">✅ Bonus: The Old and New Testament</p>
+                        <p class="included">✅ Bonus: Psalms Explained</p>
+                        <p class="included">✅ Instant Access</p>
+                        <p class="included">✅ 15-Day Guarantee</p>
+                    </div>
+
+                    <div class="price-box">
+                        <p class="price-original">Was <span class="strikethrough">$19.90</span></p>
+                        <p class="price-current">$14.90 USD</p>
+                        <p class="price-installments">(You can pay in your local currency)</p>
+                    </div>
+
+                    <a href="https://pay.hotmart.com/B107011371Q?off=kz862clv&checkoutMode=10" class="btn btn-primary btn-plan pulse" id="cta-main"
+                       data-plan="The Mass Explained - Premium" data-value="14.90">
+                        GET THE PREMIUM ✝️
+                    </a>
                 </div>
 
-                <div class="price-box">
-                    <p class="price-original">Was <span class="strikethrough">$19.90</span></p>
-                    <p class="price-current">$9.90 USD</p>
-                    <p class="price-installments">(You can pay in your local currency)</p>
-                </div>
-
-                <a href="https://pay.hotmart.com/B107011371Q?off=6pw6s07o&checkoutMode=10" class="btn btn-primary btn-cta-main pulse" id="cta-main">
-                    GET<br>THE MASS EXPLAINED ✝️
-                </a>
-
-                <p class="security-text">🔒 100% Secure Payment | 📱 Instant Access</p>
             </div>
+
+            <p class="security-text">🔒 100% Secure Payment | 📱 Instant Access</p>
         </div>
     </section>
 
@@ -406,8 +440,8 @@
             <h2 class="final-title">Don't Miss This Opportunity!</h2>
             <p class="final-subtitle">Transform the way you experience the Holy Mass</p>
 
-            <a href="https://pay.hotmart.com/B107011371Q?off=6pw6s07o&checkoutMode=10" id="cta-final" class="btn btn-primary btn-cta-final pulse">
-                GET THE MASS EXPLAINED FOR $9.90 USD ✝️
+            <a href="#oferta" id="cta-final" class="btn btn-primary btn-cta-final pulse">
+                CHOOSE YOUR PLAN ✝️
             </a>
         </div>
     </section>
@@ -513,8 +547,8 @@
             link.addEventListener('click', function() {
                 if (typeof fbq !== 'undefined') {
                     fbq('track', 'InitiateCheckout', {
-                        content_name: 'The Mass Explained',
-                        value: 9.90,
+                        content_name: link.getAttribute('data-plan') || 'The Mass Explained',
+                        value: parseFloat(link.getAttribute('data-value')) || 14.90,
                         currency: 'USD'
                     });
                 }

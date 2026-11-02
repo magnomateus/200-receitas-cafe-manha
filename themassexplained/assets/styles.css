@@ -1342,3 +1342,163 @@ a {
         max-width: 200px;
     }
 }
+
+/* ==========================================================================
+   PLANOS (2 opções: Básico e Premium)
+   ========================================================================== */
+
+.plans-intro {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--text-medium);
+    margin-bottom: var(--space-lg);
+}
+
+.plans-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+    max-width: 900px;
+    margin: 0 auto;
+    align-items: start;
+}
+
+.plan-card {
+    background: var(--text-white);
+    border-radius: 20px;
+    padding: var(--space-lg);
+    text-align: center;
+    position: relative;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+}
+
+.plan-card.featured {
+    border: 3px solid var(--gold);
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.18);
+}
+
+.plan-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--wine);
+    color: var(--text-white);
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.plan-name {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--wine);
+    margin: var(--space-xs) 0 4px;
+}
+
+.plan-tagline {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: var(--space-md);
+}
+
+.plan-includes {
+    text-align: left;
+    margin: 0 auto var(--space-md);
+    width: 100%;
+    max-width: 300px;
+    flex-grow: 1;
+}
+
+.plan-includes p {
+    padding: 8px 0;
+    font-size: 0.9rem;
+    color: var(--text-medium);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    line-height: 1.4;
+}
+
+.plan-includes p:last-child {
+    border-bottom: none;
+}
+
+.plan-includes .excluded {
+    color: var(--text-light);
+    opacity: 0.75;
+}
+
+.plan-card .price-current {
+    font-size: 2.75rem;
+}
+
+/* Capa do produto no card premium */
+.plan-mockup {
+    max-width: 360px;
+    width: 100%;
+    margin: 0 auto var(--space-xs);
+}
+
+.plan-mockup img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Botao secundario (plano basico) */
+.btn-secondary {
+    background: transparent;
+    color: var(--wine);
+    border: 2px solid var(--wine);
+}
+
+.btn-secondary:hover {
+    background: var(--wine);
+    color: var(--text-white);
+}
+
+.btn-plan {
+    width: 100%;
+    margin-top: auto;
+}
+
+.offer-section .security-text {
+    text-align: center;
+    margin-top: var(--space-lg);
+}
+
+@media (max-width: 768px) {
+    .plans-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+        max-width: 420px;
+    }
+
+    .plan-card {
+        padding: var(--space-md);
+    }
+
+    .plan-card .price-current {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .plan-name {
+        font-size: 1.3rem;
+    }
+
+    .plan-includes p {
+        font-size: 0.85rem;
+    }
+
+    .plan-card .price-current {
+        font-size: 2.2rem;
+    }
+}
