@@ -61,6 +61,24 @@
         background: #000; color: #9f9; border: 0; font: inherit; }
       #sonda-painel.fechado .sonda-log, #sonda-painel.fechado textarea { display: none; }
       body { padding-bottom: 42vh; }  /* o painel nao cobre o fim da pagina */
+
+      /* ---- widget inteiro, sem recorte ----
+         O .widget-clip do styles.css corta 150px do topo e mostra uma
+         janela de 185px. Esses numeros foram calibrados no widget em
+         espanhol; no ingles o texto quebra em outro ponto, a janela cai
+         deslocada e corta o botao verde, e a tampa do consentimento deixa
+         o link de recusa dentro de uma caixa torta.
+
+         Aqui o widget aparece inteiro. Some o corte, some a tampa - e o
+         consentimento da Hotmart volta a ficar visivel, que e como deve
+         ser numa pagina que cobra cartao. Nao mexo no styles.css: ele
+         continua identico ao da upsell2-ingles. */
+      .widget-clip { height: auto; overflow: visible; }
+      .widget-clip #hotmart-sales-funnel { margin-top: 0; }
+      .widget-clip .consent-cover { display: none; }
+
+      /* a moldura respira, agora que o conteudo define a altura */
+      .checkout-card { padding-bottom: 8px; }
     </style>
 
     <!-- Google Fonts — Montserrat (titles) + Roboto (body) -->
