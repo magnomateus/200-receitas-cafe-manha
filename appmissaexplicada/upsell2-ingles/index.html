@@ -28,25 +28,26 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css">
 
-    <!-- Widget inteiro, sem recorte.
+    <!-- Recorte: mostrar SO o botao de aprovar.
 
-         O .widget-clip do styles.css corta 150px do topo e mostra uma
-         janela de 185px. Esses numeros foram calibrados no widget em
-         espanhol; em ingles o texto quebra em outro ponto, a janela cai
-         deslocada e corta o botao de compra, e a tampa do consentimento
-         deixa a recusa dentro de uma caixa torta.
+         Os numeros foram medidos, nao estimados: fotografei a area do
+         iframe e varri os pixels atras do verde do botao. Ele fica de
+         y=146 a y=185 contados do topo do iframe (39px de
+         altura), igual no desktop e no iPhone - por isso um recorte so
+         serve para as duas larguras.
 
-         Fica aqui no HTML e nao no styles.css de proposito: os styles.css
-         das pastas de idioma sao copias byte a byte uns dos outros, e
-         editar so o do ingles faria eles divergirem em silencio.
+         O valor do styles.css era --clip-top: 150px, 4px ABAIXO do topo
+         do botao: era isso que cortava ele em cima.
 
-         Efeito colateral bem-vindo: o consentimento da Hotmart volta a
-         ficar visivel, que e como deve ser numa pagina que cobra cartao. -->
+         Fica aqui no HTML e nao no styles.css porque os styles.css das
+         pastas de idioma sao copias byte a byte uns dos outros, e mexer
+         so no ingles faria eles divergirem em silencio.
+
+         Ao clicar, o .revealed do styles.css abre o widget inteiro - e
+         assim que o comprador ve o processamento depois do clique. -->
     <style>
-      .widget-clip { height: auto; overflow: visible; }
-      .widget-clip #hotmart-sales-funnel { margin-top: 0; }
+      .widget-clip { --clip-top: 132px; --clip-height: 67px; }
       .widget-clip .consent-cover { display: none; }
-      .checkout-card { padding-bottom: 8px; }
     </style>
 
     <!-- Google Fonts — Montserrat (titles) + Roboto (body) -->
