@@ -30,6 +30,31 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Recorte: mostrar SO o botao de aprovar, como no ingles.
+
+         y=146 a y=185 contados do topo do iframe e onde fica o botao
+         verde. Esse numero foi MEDIDO no widget ingles (foto da area do
+         iframe + varredura de pixels atras do verde), nao no espanhol:
+         o init('salesFunnel') nao recebe oferta, o conteudo vem todo do
+         fsid, e nao existe fsid espanhol sem uma compra real.
+
+         Por isso a folga de 14px de cada lado: o recorte aguenta o
+         botao espanhol estar ate ~14px fora do lugar. Se o titulo da
+         oferta quebrar em duas linhas ele desce mais que isso - ai e so
+         somar a diferenca em --clip-top.
+
+         O valor do styles.css era --clip-top: 150px, 4px ABAIXO do topo
+         do botao: era isso que cortava ele em cima.
+
+         Fica aqui no HTML e nao no styles.css porque os styles.css das
+         pastas de idioma sao copias byte a byte uns dos outros.
+
+         Ao clicar, o .revealed do styles.css abre o widget inteiro - e
+         assim que o comprador ve o processamento depois do clique. -->
+    <style>
+      .widget-clip { --clip-top: 132px; --clip-height: 67px; }
+      .widget-clip .consent-cover { display: none; }
+    </style>
 
     <!-- Utmify Pixel -->
     <script>
