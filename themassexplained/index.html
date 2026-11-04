@@ -506,21 +506,76 @@
     })();
     </script>
 
-    <!-- InitiateCheckout -->
+    <!-- InitiateCheckout ------------------------------------------------
+
+         A saida para o checkout e adiada em 400ms de proposito.
+
+         O fbq manda este evento como GET de IMAGEM (signalsFBEventsSendGET,
+         no fbevents.js; sendBeacon e fetch(keepalive), que sobreviveriam a
+         navegacao, la dentro so valem para eventos de ciclo de vida da
+         pagina). Se o navegador troca de documento no mesmo instante, a
+         imagem pendente e cortada e o evento nao chega.
+
+         Medido com navegacao real para o checkout, contando os cliques em
+         que o Facebook confirmadamente RECEBEU o pedido:
+
+             sem folga     1 de 8
+             150ms         6 de 8
+             250ms         7 de 8
+             400ms       10 de 10
+
+         REGRA DE OURO: o comprador SEMPRE chega ao checkout. Se qualquer
+         coisa aqui falhar, a navegacao acontece na hora.
+         ------------------------------------------------------------- -->
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('a[href*="checkout.kashpay.com"], a[href*="pay.hotmart.com"]').forEach(function(link) {
-            link.addEventListener('click', function() {
-                if (typeof fbq !== 'undefined') {
-                    fbq('track', 'InitiateCheckout', {
-                        content_name: 'The Mass Explained',
-                        value: 9.90,
-                        currency: 'USD'
-                    });
-                }
-            });
+    (function () {
+      var FOLGA = 400;
+      var SELETOR = 'a[href*="checkout.kashpay.com"], a[href*="pay.hotmart.com"]';
+
+      function rastreia() {
+        if (typeof fbq === 'undefined') return;
+        fbq('track', 'InitiateCheckout', {
+            content_name: 'The Mass Explained',
+            value: 9.90,
+            currency: 'USD'
         });
-    });
+      }
+
+      // Delegado no document, na BOLHA: roda depois dos decoradores de UTM
+      // desta pagina, que escutam na CAPTURA e reescrevem o href. E o
+      // destino e lido de novo na hora de sair, para nunca levar um href
+      // desatualizado.
+      document.addEventListener('click', function (e) {
+        var link = e.target && e.target.closest ? e.target.closest(SELETOR) : null;
+        if (!link) return;
+
+        // Casos em que esta pagina NAO e descarregada: o evento sai inteiro
+        // por conta propria e nao ha nada a adiar. Roubar um ctrl+clique ou
+        // um link de nova aba seria pior que perder o evento.
+        if (e.defaultPrevented) { rastreia(); return; }
+        if (e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) { rastreia(); return; }
+        if (link.target && link.target !== '' && link.target !== '_self') { rastreia(); return; }
+
+        var href = link.href;
+        if (!href || href.split('#')[0] === location.href.split('#')[0]) { rastreia(); return; }
+
+        var saiu = false;
+        var sair = function () {
+          if (saiu) return;
+          saiu = true;
+          window.location.href = link.href;
+        };
+
+        e.preventDefault();
+        try {
+          rastreia();
+        } catch (err) {
+          sair();
+          return;
+        }
+        setTimeout(sair, FOLGA);
+      }, false);
+    })();
     </script>
 
 </body>
