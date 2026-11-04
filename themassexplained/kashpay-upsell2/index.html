@@ -9,6 +9,10 @@
   bloco de autoclique no CONFIRMAR, que existia so para testar o modal da
   Hotmart, e as regras de CSS do iframe dela.
 
+  AUTOCLICK desde 04/11/2026, no fim do <body>: clica sozinho no botao de
+  aprovar. Nao tem nada a ver com o autoclique antigo da Hotmart, que nunca
+  funcionou por causa do iframe. Abra com ?autoclick=0 para desligar.
+
   SEM RECUSA, de proposito: o pedido foi upsell 1 e upsell 2, nada mais.
 
   O botao depende do token ks que a Kashpay anexa na URL depois da compra. Sem
@@ -111,8 +115,9 @@
             <!-- 4. Headline ("special gift" pattern) -->
             <h1 class="headline">You've just received a special gift, available only on this page.</h1>
 
-            <!-- 5. Hotmart checkout — elevated frame. The Hotmart iframe is
-                 cross-origin: we style only the card around it, not the inside. -->
+            <!-- 5. Checkout da Kashpay. Ao contrario da Hotmart aqui NAO ha
+                 iframe: o botao e do DOM desta pagina. O texto antigo falava
+                 do iframe da Hotmart, que saiu na copia. -->
             <section class="checkout">
                 <p class="checkout-eyebrow">Your exclusive offer</p>
                 <div class="checkout-card">
@@ -154,6 +159,82 @@
 
         </div>
     </main>
+
+    <!-- ================================================================
+         AUTOCLICK - pagina de teste
+
+         Clica sozinho no botao de aprovar assim que a pagina abre. Nesta
+         pagina isso funciona de verdade, ao contrario das da Hotmart: o botao
+         e do DOM daqui, nao de dentro de um iframe de outra origem.
+
+         NAO redefine nem chama acceptUpsell. Dispara .click() no proprio
+         botao, entao quem roda e o onclick que a Kashpay gerou, com a URL
+         dela. A URL da oferta nao aparece duplicada em lugar nenhum, e nada
+         aqui toca no parametro ks.
+
+         Quem decide se cobra e a Kashpay: sem ?ks= valido na URL ela recusa
+         antes de cobrar e escreve o motivo no console.
+
+         PARA ABRIR A PAGINA SEM DISPARAR: ponha ?autoclick=0 na URL. Com um
+         ks real, abrir sem isso tenta a cobranca na hora.
+         ================================================================ -->
+    <script>
+      (function () {
+        var ESPERA_BOTAO  = 20000;  // teto esperando um atraso da Kashpay
+        var ESPERA_SCRIPT = 10000;  // teto esperando o script da Kashpay
+
+        var pedido = new URLSearchParams(location.search).get('autoclick');
+        if (pedido === '0' || pedido === 'nao' || pedido === 'off') {
+          console.log('[autoclick] desligado por ?autoclick=' + pedido);
+          return;
+        }
+
+        var botao = document.querySelector('#kashpay-checkout button[onclick^="acceptUpsell"]');
+        if (!botao) { console.warn('[autoclick] botao de aprovar nao encontrado'); return; }
+
+        // Hoje esta pagina nao tem atraso. Se um dia tiver, a Kashpay esconde
+        // o elemento que carrega o atributo - pode ser o botao ou um pai dele.
+        var atrasado = botao.closest('[data-kashpay-upsell-delay]');
+        var pronto = function () { return !atrasado || botao.offsetParent !== null; };
+
+        var disparado = false;
+        var disparar = function (motivo) {
+          if (disparado) return;
+          disparado = true;
+          console.log('[autoclick] clicando no botao de aprovar (' + motivo + ')');
+          botao.click();
+        };
+
+        // O upsell-processor.js e sincrono no <head>, entao ja rodou quando
+        // chegamos aqui. A espera e so para nao clicar em um botao cujo
+        // onclick ainda chamaria uma funcao inexistente.
+        var quandoHouverScript = function (seguir) {
+          var ate = Date.now() + ESPERA_SCRIPT;
+          (function olhar() {
+            if (typeof window.acceptUpsell === 'function') return seguir();
+            if (Date.now() > ate) {
+              console.warn('[autoclick] upsell-processor.js nao carregou; nao cliquei');
+              return;
+            }
+            setTimeout(olhar, 100);
+          })();
+        };
+
+        quandoHouverScript(function () {
+          if (pronto()) { disparar('botao ja visivel'); return; }
+
+          console.log('[autoclick] esperando o atraso da Kashpay liberar o botao');
+          var obs = new MutationObserver(function () {
+            if (pronto()) { obs.disconnect(); disparar('atraso liberou o botao'); }
+          });
+          obs.observe(atrasado, { attributes: true, attributeFilter: ['style', 'class', 'hidden'] });
+          setTimeout(function () {
+            obs.disconnect();
+            if (!disparado) console.warn('[autoclick] o botao continuou escondido; nao cliquei');
+          }, ESPERA_BOTAO);
+        });
+      })();
+    </script>
 
 </body>
 </html>
