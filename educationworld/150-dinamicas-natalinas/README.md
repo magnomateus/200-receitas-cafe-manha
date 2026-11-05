@@ -38,29 +38,55 @@ dizer o valor e eu recoloco.
 
 ## Rastreamento
 
-| Peça | Situação |
+Nada disso existia na página original — tudo foi acrescentado nesta rota.
+
+| Peça | Valor |
 |---|---|
-| `<meta name="vis-product" content="150-dinamicas-natalinas">` + snippet `tid=19` | **adicionado aqui** |
-| Utmify pixel `693a40362c9834c426c2d82d` + script de UTMs | já vinha da original |
-| Meta Pixel | **não existe** |
+| Meta Pixel | `2275808619647912` — `PageView`, `ViewContent`, `InitiateCheckout` |
+| Snippet da VIS | `tid=19`, `pk=01M6MW8PHFTG6AS7SQ90KCVVN4` |
+| Decorador de origem | `xcod` → `sck`, `utm_source` → `src` |
+| Utmify | `693a40362c9834c426c2d82d` — já vinha da original |
 
-O snippet da VIS não estava na original — foi acrescentado, no mesmo padrão do
-`pescaria/`, porque sem ele a página manda para o checkout da VIS e a VIS não
-registra a visita. Verificado: com o snippet ativo os três links passam a sair
-com `_vid=<uuid>`, que é o id que liga a visita à venda no painel.
+O bloco de eventos fica no fim do `<body>`, com o comentário explicando as duas
+diferenças em relação ao padrão das outras páginas:
 
-**Confirmar no dashboard da VIS** se o produto está cadastrado com o slug
-`150-dinamicas-natalinas`. Ele foi deduzido dos checkouts, no mesmo padrão do
-pescaria (`manual-do-pescador` ⟶ `manual-do-pescador-premium`).
+**1. Cada oferta manda o seu preço.** O `InitiateCheckout` lê o preço do slug do
+checkout (`-premium` 34,90, `-exclusivo` 17,90, `-basico` 9,90). Mandar um valor
+único faria o Meta otimizar para o número errado. O `ViewContent` usa 34,90, a
+oferta principal.
 
-As UTMs chegam ao checkout pelo script do Utmify, não por decorador próprio —
-igual às outras páginas com checkout da VIS neste repo. Testado: entrando com
-`?utm_source=facebook&utm_campaign=natal26&utm_medium=cpc`, o link do premium sai
-com os três.
+**2. A saída para o checkout é adiada em 400ms.** Um `track` comum do `fbq` sai
+como GET de **imagem**, que o navegador cancela ao trocar de documento — sem a
+folga o evento se perde na maioria dos cliques. Medido nas outras landings em
+produção: sem folga 1 em 8 chegava, com 400ms chega 10 em 10. A
+`halloween-recipes` ainda não tem essa folga.
 
-**A página não tem Meta Pixel nenhum** — logo não tem `PageView`, `ViewContent`
-nem `InitiateCheckout`, e nem a folga de 400ms que as outras 14 landings
-receberam. Para colocar, falta saber qual pixel usar.
+**Regra de ouro: o comprador sempre chega ao checkout.** Se o `fbq` explodir, ou
+se o clique for de um tipo que não descarrega a página (ctrl+clique, botão do
+meio, `target` diferente), nada é adiado nem interceptado.
+
+### O que foi verificado
+
+Teste em `D:\projetos\teste-upsell\testa-natal-pixel.js` (18 checagens, todas
+passando). O `fbevents.js` real não manda nada em navegador automatizado — bot
+blocking da Meta — então o teste troca `window.fbq` por um gravador e confere o
+que a página **pede**:
+
+- na carga: `init` com o pixel certo, `PageView`, e `ViewContent` 1× com
+  `value: 34.9, currency: BRL`
+- os três cliques disparam `InitiateCheckout` com 34,90 / 17,90 / 9,90, cada um
+  indo para o slug certo, adiando 433–516ms
+- entrando com `?utm_source=facebook&utm_campaign=natal26&xcod=ABC123`, o destino
+  sai com `src=facebook`, `sck=ABC123` e a `utm_campaign` preservada
+- ctrl+clique rastreia e **não** é sequestrado
+- `fbq` explodindo: navega em ~148ms
+
+Estrutura e preços: `testa-natal.js` (14 checagens).
+
+### Ainda sem rastreamento
+
+`back-redirect/` e `upsell/` continuam só com Utmify — sem Meta Pixel e sem VIS.
+O `back-redirect/` está no caminho de um visitante real (botão VOLTAR).
 
 ## Ainda na ggcheckout
 

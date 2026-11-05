@@ -15,13 +15,18 @@
   recusa o popup e que chega ao checkout basico. Esse e o desenho da pagina,
   nao um bug.
 
-  RASTREAMENTO: o snippet da VIS (tid=19 + meta vis-product) foi ACRESCENTADO
-  aqui, no padrao do pescaria - sem ele a pagina manda para o checkout da VIS e
-  a VIS nao registra a visita. Com ele, os 3 links saem com _vid=<uuid>.
-  As UTMs chegam ao checkout pelo script do Utmify, nao por decorador proprio.
+  RASTREAMENTO (nada disso existia na pagina original):
+    - Meta Pixel 2275808619647912: PageView, ViewContent e InitiateCheckout
+    - snippet da VIS, tid=19, pk=01M6MW8PHFTG6AS7SQ90KCVVN4. Com ele os 3 links
+      do checkout passam a sair com _vid=<uuid>, que liga a visita a venda
+    - decorador de origem: xcod -> sck e utm_source -> src, no padrao das
+      demais paginas. Sem o src a venda chega como "Origem nao identificada"
+    - Utmify (693a40362c9834c426c2d82d) ja vinha da original
 
-  FALTA: a pagina nao tem Meta Pixel nenhum, so Utmify. Logo nao tem PageView,
-  ViewContent nem InitiateCheckout, nem a folga de 400ms das outras landings.
+  O InitiateCheckout leva o preco da oferta CLICADA, lido do slug do checkout,
+  e a saida e adiada em 400ms - ver o comentario do bloco, no fim do body.
+
+  FALTA: back-redirect/ e upsell/ continuam sem Meta Pixel e sem VIS.
 
   AINDA NA GGCHECKOUT, nao foram pedidos links novos:
     - back-redirect/  R$ 7,90  (alcancavel pelo botao VOLTAR do navegador)
@@ -39,12 +44,6 @@
     <meta name="description" content="150 dinâmicas criativas e divertidas para celebrar o Natal. Atividades para crianças, adultos e toda a família. Transforme seu Natal em momentos inesquecíveis!">
     <meta name="keywords" content="dinâmicas de natal, brincadeiras natal, atividades natal, jogos natal, dinâmicas família, natal em família">
     <meta name="author" content="150 Dinâmicas Natal">
-
-    <!-- Produto na VIS: o snippet usa esta meta para disparar o ViewContent.
-         Slug deduzido dos checkouts (150-dinamicas-natalinas-premium/-exclusivo/
-         -basico), no mesmo padrao do pescaria (manual-do-pescador). Confirmar
-         no dashboard da VIS se o produto esta cadastrado com este slug. -->
-    <meta name="vis-product" content="150-dinamicas-natalinas">
 
     <!-- Open Graph -->
     <meta property="og:title" content="150 Dinâmicas Natalinas">
@@ -99,8 +98,26 @@
       defer
     ></script>
 
-    <!-- VIS Tracking (dispara ViewContent via meta vis-product) -->
-    <script src="https://visplatform.pro/api/tracking/snippet.js?tid=19"></script>
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '2275808619647912');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=2275808619647912&amp;ev=PageView&amp;noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <!-- VIS Tracking -->
+    <script src="https://visplatform.pro/api/tracking/snippet.js?tid=19&amp;pk=01M6MW8PHFTG6AS7SQ90KCVVN4"></script>
 </head>
 <body>
 
@@ -528,5 +545,134 @@
 
     <!-- JavaScript -->
     <script src="script.js"></script>
+
+    <!-- Eventos e decorador de origem -------------------------------------
+         Padrao das demais paginas (ver educationworld/halloween-recipes), com
+         duas diferencas, de proposito:
+
+         1. Esta pagina tem TRES ofertas, com precos diferentes. O
+            InitiateCheckout leva o valor da oferta que foi clicada, lido do
+            proprio slug do checkout - mandar um valor unico faria o Meta
+            otimizar para o numero errado.
+
+         2. A saida para o checkout e adiada em FOLGA ms. Um 'track' comum do
+            fbq sai como GET de IMAGEM, que o navegador cancela ao trocar de
+            documento; sem a folga o evento se perde na maioria dos cliques.
+            Medido em producao nas outras landings: sem folga 1 em 8 chegava,
+            com 400ms chega 10 em 10.
+
+         REGRA DE OURO: o comprador SEMPRE chega ao checkout. Se o fbq explodir,
+         ou se o clique for de um tipo que nao descarrega a pagina (ctrl+clique,
+         botao do meio, target diferente), nada e adiado nem interceptado.
+
+         ATENCAO: PRECOS precisa acompanhar os precos exibidos nos cards.
+         ------------------------------------------------------------------- -->
+    <script>
+    (function () {
+      var MOEDA = 'BRL';
+      var PRODUTO = { content_type: 'product',
+                      content_name: '150 Dinamicas Natalinas',
+                      content_ids: ['150_dinamicas_natalinas'] };
+      var CHAVE = 'natal_track';
+      var CAMPOS = ['xcod','sck','src','utm_source','utm_campaign','utm_medium','utm_content','utm_term','fbclid'];
+      var PAGAMENTO = ['visplatform.pro','ggcheckout.com'];
+      var FOLGA = 400;
+
+      // O preco sai do slug do checkout. O ViewContent usa o da oferta
+      // principal, que e o card premium.
+      var PRECOS = { '-premium': 34.90, '-exclusivo': 17.90, '-basico': 9.90 };
+      var PRINCIPAL = 34.90;
+
+      function precoDe(u) {
+        for (var k in PRECOS) if (u.pathname.indexOf(k) !== -1) return PRECOS[k];
+        return PRINCIPAL;
+      }
+
+      function dados() {
+        var q = new URLSearchParams(window.location.search), p = {}, achou = false;
+        for (var i = 0; i < CAMPOS.length; i++) {
+          var v = q.get(CAMPOS[i]);
+          if (v !== null && v !== '') { p[CAMPOS[i]] = v; achou = true; }
+        }
+        if (achou) { try { sessionStorage.setItem(CHAVE, JSON.stringify(p)); } catch (e) {} return p; }
+        try { return JSON.parse(sessionStorage.getItem(CHAVE) || '{}'); } catch (e) { return {}; }
+      }
+
+      function ehCheckout(u) {
+        for (var i = 0; i < PAGAMENTO.length; i++) if (u.hostname.indexOf(PAGAMENTO[i]) !== -1) return true;
+        return false;
+      }
+
+      function decora(a) {
+        try {
+          var u = new URL(a.href, window.location.href);
+          if (!ehCheckout(u)) return;
+          var p = dados();
+          for (var k in p) if (!u.searchParams.has(k)) u.searchParams.set(k, p[k]);
+          var sck = p.xcod || p.sck;
+          if (sck && !u.searchParams.has('sck')) u.searchParams.set('sck', sck);
+          if (p.utm_source && !u.searchParams.has('src')) u.searchParams.set('src', p.utm_source);
+          a.href = u.toString();
+        } catch (e) {}
+      }
+
+      function evento(nome, valor) {
+        if (typeof fbq !== 'function') return;
+        var d = { value: valor, currency: MOEDA };
+        for (var k in PRODUTO) d[k] = PRODUTO[k];
+        fbq('track', nome, d);
+      }
+
+      function pronto(fn) {
+        document.readyState !== 'loading' ? fn() : document.addEventListener('DOMContentLoaded', fn);
+      }
+
+      pronto(function () {
+        dados();
+        var links = document.querySelectorAll('a[href]');
+        for (var i = 0; i < links.length; i++) decora(links[i]);
+
+        try { evento('ViewContent', PRINCIPAL); } catch (e) {}
+
+        // Na BOLHA, para rodar depois de quem escuta na captura. E o href e
+        // lido de novo na hora de sair, para nunca levar um destino velho.
+        document.addEventListener('click', function (e) {
+          var link = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+          if (!link) return;
+
+          var u;
+          try { u = new URL(link.href, window.location.href); } catch (err) { return; }
+          if (!ehCheckout(u)) return;
+
+          decora(link);
+          var valor = precoDe(u);
+          var rastreia = function () { evento('InitiateCheckout', valor); };
+
+          // Casos em que esta pagina NAO e descarregada: o evento sai inteiro
+          // por conta propria e nao ha nada a adiar. Roubar um ctrl+clique
+          // seria pior que perder o evento.
+          if (e.defaultPrevented) { try { rastreia(); } catch (err) {} return; }
+          if (e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) { try { rastreia(); } catch (err) {} return; }
+          if (link.target && link.target !== '' && link.target !== '_self') { try { rastreia(); } catch (err) {} return; }
+
+          var saiu = false;
+          var sair = function () {
+            if (saiu) return;
+            saiu = true;
+            window.location.href = link.href;
+          };
+
+          e.preventDefault();
+          try {
+            rastreia();
+          } catch (err) {
+            sair();
+            return;
+          }
+          setTimeout(sair, FOLGA);
+        }, false);
+      });
+    })();
+    </script>
 </body>
 </html>
