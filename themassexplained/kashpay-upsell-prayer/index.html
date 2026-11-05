@@ -14,23 +14,18 @@
     2. The Prayer Workshop  kashpay-upsell-prayer/  95%  <- esta
     3. The Mass Explained App  kashpay-upsell/      98%
 
-  >>> FALTA PARA ESTA PAGINA FUNCIONAR <<<
+  OFERTA: c1e2a308e048f9f4, com recusa. Era a oferta do App; mudou de pagina
+  quando o funil foi reordenado em 05/11/2026, e o App ficou com a 36ead500d478e311.
+  O bloco de botoes e o que a Kashpay entrega, sem atraso.
 
-  1. O ID DA OFERTA NA KASHPAY. Hoje o botao esta com PREENCHER_ID_DA_OFERTA_
-     KASHPAY. Troque o BLOCO INTEIRO de botoes por aquele que a Kashpay gera
-     para a oferta do Prayer Workshop, colado como ela entrega - inclusive o
-     type="button" e o onclick. Se o bloco dela vier com atraso
-     (data-kashpay-upsell-delay) ou com botao de recusa, mantenha: o autoclick
-     daqui espera o atraso liberar e clica so no de aprovar.
+  AUTOCLICK: liga sozinho no botao de aprovar. ?autoclick=0 desliga.
 
-     Enquanto o ID for o espaco reservado, o autoclick NAO clica e a pagina
-     mostra um aviso vermelho no topo. Os dois desaparecem sozinhos quando o
-     PREENCHER sair do onclick.
+  >>> AINDA FALTA <<<
 
-  2. A CAPA capa-prayer-workshop.webp. Nao existe ainda; sem ela o bloco da
+  1. A CAPA capa-prayer-workshop.webp. Nao existe ainda; sem ela o bloco da
      imagem se esconde sozinho, em vez de mostrar imagem quebrada.
 
-  3. A COPY. O headline e o rodape seguem o padrao das irmas, mas as duas
+  2. A COPY. O headline e o rodape seguem o padrao das irmas, mas as duas
      linhas de texto sao RASCUNHO - escrevi sem conhecer o conteudo do produto.
      Reveja antes de rodar trafego.
 
@@ -117,13 +112,6 @@
     <main class="page">
         <div class="container">
 
-            <!-- Aviso de pagina nao configurada. Sai sozinho quando o PREENCHER
-                 deixar o onclick do botao - nao e preciso apagar nada. -->
-            <div id="aviso-config" style="background:#8d1b1b;color:#fff;font:700 14px/1.4 system-ui,sans-serif;padding:12px 14px;border-radius:8px;margin-bottom:16px;text-align:center;">
-                Esta pagina ainda nao tem a oferta da Kashpay configurada.
-                O autoclick esta desligado e nenhuma cobranca acontece.
-            </div>
-
             <!-- 2. Processing payment -->
             <p class="processing">Processing payment<span class="dots"><span>.</span><span>.</span><span>.</span></span></p>
 
@@ -143,12 +131,15 @@
             <section class="checkout">
                 <p class="checkout-eyebrow">Your exclusive offer</p>
                 <div class="checkout-card">
-                    <!-- ESPACO RESERVADO. Troque este DIV inteiro pelo bloco que a
-                         Kashpay gera para a oferta do Prayer Workshop, colado como
-                         ela entrega. Mantive aqui a forma da pagina irma (um botao
-                         de aprovar, sem atraso) so para o layout ficar de pe. -->
+                    <!-- Bloco de botoes da Kashpay, colado como ela entrega: aprovar
+                         (GET IT NOW) e recusar, os dois na mesma oferta. Este bloco
+                         NAO tem atraso (sem data-kashpay-upsell-delay), entao aparece
+                         junto com a pagina.
+
+                         A oferta c1e2a308e048f9f4 era a do App. Ela mudou de pagina
+                         quando o funil foi reordenado; o App passou a 36ead500d478e311. -->
                     <div id="kashpay-checkout">
-                        <button type="button" onclick="acceptUpsell('https://checkout.kashpay.com/u/PREENCHER_ID_DA_OFERTA_KASHPAY')" style="font-family: 'Poppins'; font-size: 18px; font-weight: 600; line-height: 1.3; color: #ffffff; background-color: #057932; border: none; border-radius: 10px; padding: 13px 7%; cursor: pointer; text-align: center; display: block; margin: auto;">SECURE NOW</button>
+                        <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;"><button type="button" onclick="acceptUpsell('https://checkout.kashpay.com/u/c1e2a308e048f9f4')" style="font-family: 'Helvetica'; font-size: 20px; font-weight: 600; line-height: 1.3; color: #ffffff; background-color: #31bf67; border: none; border-radius: 10px; padding: 13px 7%; cursor: pointer; text-align: center; display: block; margin: auto;">GET IT NOW</button><button type="button" onclick="declineUpsell('https://checkout.kashpay.com/u/c1e2a308e048f9f4')" style="font-family: 'Poppins'; font-size: 13px; font-weight: 600; line-height: 1.3; color: #3b3030; background-color: #c35555; border: none; border-radius: 10px; padding: 10px 5%; cursor: pointer; text-align: center; display: block; margin: auto;">I don't want this offer.</button></div>
                     </div>
                 </div>
             </section>
@@ -205,10 +196,6 @@
 
          PARA ABRIR A PAGINA SEM DISPARAR: ponha ?autoclick=0 na URL. Com um
          ks real, abrir sem isso tenta a cobranca na hora.
-
-         TRAVA: enquanto a oferta for o espaco reservado, nao clica. Um
-         acceptUpsell com URL invalida nao cobraria nada e deixaria o comprador
-         parado numa pagina que diz "processando".
          ================================================================ -->
     <script>
       (function () {
@@ -223,17 +210,6 @@
 
         var botao = document.querySelector('#kashpay-checkout button[onclick^="acceptUpsell"]');
         if (!botao) { console.warn('[autoclick] botao de aprovar nao encontrado'); return; }
-
-        // A oferta ja foi configurada? Se sim, o aviso vermelho sai. Se nao,
-        // nao clica em nada.
-        var configurada = (botao.getAttribute('onclick') || '').indexOf('PREENCHER') === -1;
-        var aviso = document.getElementById('aviso-config');
-        if (configurada) {
-          if (aviso) aviso.remove();
-        } else {
-          console.warn('[autoclick] a oferta da Kashpay ainda nao foi configurada; nao cliquei');
-          return;
-        }
 
         // Hoje esta pagina nao tem atraso. Se um dia tiver, a Kashpay esconde
         // o elemento que carrega o atributo - pode ser o botao ou um pai dele.
