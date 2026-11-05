@@ -102,8 +102,8 @@ body {
 }
 
 .progress-fill {
-    /* 95% — upsell 2 (mesmo % da página "Manuel du Prédicateur"). */
-    width: 95%;
+    /* 90% — passo 1 de 3 (Liturgical). As barras sobem 90 -> 95 -> 98. */
+    width: 90%;
     height: 100%;
     background: var(--burgundy);
     border-radius: 6px 0 0 6px;

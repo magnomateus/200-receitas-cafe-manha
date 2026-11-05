@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  UPSELL 2 - The Prayer Workshop (ENGLISH / EN) - CHECKOUT KASHPAY
+  Rota: themassexplained.shop/kashpay-upsell-prayer/
+
+  Molde: kashpay-upsell2/ (Liturgical Seasons), que e o passo 1. Mesmo layout,
+  mesmo CSS, mesmo autoclick. O nome da pasta diz o PRODUTO, nao a posicao, de
+  proposito: as duas paginas irmas se chamam kashpay-upsell e kashpay-upsell2
+  por historia e hoje servem os passos 3 e 1.
+
+  A sequencia e:
+    1. Liturgical Seasons   kashpay-upsell2/        90%
+    2. The Prayer Workshop  kashpay-upsell-prayer/  95%  <- esta
+    3. The Mass Explained App  kashpay-upsell/      98%
+
+  >>> FALTA PARA ESTA PAGINA FUNCIONAR <<<
+
+  1. O ID DA OFERTA NA KASHPAY. Hoje o botao esta com PREENCHER_ID_DA_OFERTA_
+     KASHPAY. Troque o BLOCO INTEIRO de botoes por aquele que a Kashpay gera
+     para a oferta do Prayer Workshop, colado como ela entrega - inclusive o
+     type="button" e o onclick. Se o bloco dela vier com atraso
+     (data-kashpay-upsell-delay) ou com botao de recusa, mantenha: o autoclick
+     daqui espera o atraso liberar e clica so no de aprovar.
+
+     Enquanto o ID for o espaco reservado, o autoclick NAO clica e a pagina
+     mostra um aviso vermelho no topo. Os dois desaparecem sozinhos quando o
+     PREENCHER sair do onclick.
+
+  2. A CAPA capa-prayer-workshop.webp. Nao existe ainda; sem ela o bloco da
+     imagem se esconde sozinho, em vez de mostrar imagem quebrada.
+
+  3. A COPY. O headline e o rodape seguem o padrao das irmas, mas as duas
+     linhas de texto sao RASCUNHO - escrevi sem conhecer o conteudo do produto.
+     Reveja antes de rodar trafego.
+
+  PIXELS: pendentes, como nas irmas. Enquanto window.EN_PIXELS comecar com
+  PREENCHER, nada dispara - esta pagina nao rastreia nada.
+  ============================================================================
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Special Offer - The Prayer Workshop</title>
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Google Fonts — Montserrat (titles) + Roboto (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@400;500;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+    <!-- ============================================================
+         ENGLISH PIXELS — ⚠️ FILL before running traffic.
+         While the values start with "PREENCHER", nothing fires.
+         ============================================================ -->
+    <script>
+      window.EN_PIXELS = {
+        UTMIFY: 'PREENCHER_UTMIFY_PIXEL_ID_EN',
+        META:   'PREENCHER_META_PIXEL_ID_EN'
+      };
+      (function () {
+        var cfg = window.EN_PIXELS;
+        if (cfg.UTMIFY.indexOf('PREENCHER') !== 0) {
+          window.pixelId = cfg.UTMIFY;
+          var a = document.createElement('script');
+          a.setAttribute('async', '');
+          a.setAttribute('defer', '');
+          a.setAttribute('src', 'https://cdn.utmify.com.br/scripts/pixel/pixel.js');
+          document.head.appendChild(a);
+        }
+      })();
+    </script>
+
+    <!-- Utmify UTMs Script (forwards the UTMs — safe to keep always on) -->
+    <script
+      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+      data-utmify-prevent-subids
+      async
+      defer
+    ></script>
+
+    <!-- Meta Pixel Code (only initializes with a real ID) -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    (function () {
+      var id = window.EN_PIXELS.META;
+      if (id.indexOf('PREENCHER') !== 0) {
+        fbq('init', id);
+        fbq('track', 'PageView');
+      }
+    })();
+    </script>
+    <!-- End Meta Pixel Code -->
+    <!-- Kashpay — processador de upsell. Sem o atributo de opt-in do atraso:
+         esta pagina nao usa atraso, o botao aparece junto com a pagina. -->
+    <script src="https://checkout.kashpay.com/scripts/upsell-processor.js"></script>
+</head>
+<body>
+
+    <!-- 1. Fixed warning bar -->
+    <div class="warning-bar">
+        Please don't close or refresh this page — errors may occur while processing your payment.
+    </div>
+
+    <main class="page">
+        <div class="container">
+
+            <!-- Aviso de pagina nao configurada. Sai sozinho quando o PREENCHER
+                 deixar o onclick do botao - nao e preciso apagar nada. -->
+            <div id="aviso-config" style="background:#8d1b1b;color:#fff;font:700 14px/1.4 system-ui,sans-serif;padding:12px 14px;border-radius:8px;margin-bottom:16px;text-align:center;">
+                Esta pagina ainda nao tem a oferta da Kashpay configurada.
+                O autoclick esta desligado e nenhuma cobranca acontece.
+            </div>
+
+            <!-- 2. Processing payment -->
+            <p class="processing">Processing payment<span class="dots"><span>.</span><span>.</span><span>.</span></span></p>
+
+            <!-- 3. Progress bar — % inside the bar -->
+            <section class="progress-block">
+                <div class="progress-track">
+                    <div class="progress-fill"><span class="progress-pct">95%</span></div>
+                </div>
+            </section>
+
+            <!-- 4. Headline ("special gift" pattern) -->
+            <h1 class="headline">You've just received a special gift, available only on this page.</h1>
+
+            <!-- 5. Checkout da Kashpay. Ao contrario da Hotmart aqui NAO ha
+                 iframe: o botao e do DOM desta pagina. O texto antigo falava
+                 do iframe da Hotmart, que saiu na copia. -->
+            <section class="checkout">
+                <p class="checkout-eyebrow">Your exclusive offer</p>
+                <div class="checkout-card">
+                    <!-- ESPACO RESERVADO. Troque este DIV inteiro pelo bloco que a
+                         Kashpay gera para a oferta do Prayer Workshop, colado como
+                         ela entrega. Mantive aqui a forma da pagina irma (um botao
+                         de aprovar, sem atraso) so para o layout ficar de pe. -->
+                    <div id="kashpay-checkout">
+                        <button type="button" onclick="acceptUpsell('https://checkout.kashpay.com/u/PREENCHER_ID_DA_OFERTA_KASHPAY')" style="font-family: 'Poppins'; font-size: 18px; font-weight: 600; line-height: 1.3; color: #ffffff; background-color: #057932; border: none; border-radius: 10px; padding: 13px 7%; cursor: pointer; text-align: center; display: block; margin: auto;">SECURE NOW</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. Highlight line (value) — "the essential guide" pattern -->
+            <!-- RASCUNHO: escrito sem conhecer o conteudo do produto. Revisar. -->
+            <p class="highlight">A step-by-step workshop to build a prayer life that finally lasts!</p>
+
+            <!-- 7. Body — "get the complete guide..." pattern -->
+            <!-- RASCUNHO: escrito sem conhecer o conteudo do produto. Revisar. -->
+            <p class="body-text">
+                Learn how to pray with intention, keep the habit on the hard days, and turn
+                a few quiet minutes into the part of your day you never want to skip.
+            </p>
+
+            <!-- 8. Product cover -->
+            <section class="mockup-wrap">
+                <!-- A capa ainda nao existe. Se faltar, o bloco se esconde em vez
+                     de mostrar o icone de imagem quebrada. -->
+                <img
+                    src="capa-prayer-workshop.webp"
+                    alt="The Prayer Workshop — a step-by-step workshop to build a lasting prayer life."
+                    class="product-cover"
+                    width="600"
+                    height="600"
+                    loading="lazy"
+                    decoding="async"
+                    onerror="var w=this.closest('.mockup-wrap'); if (w) w.style.display='none';"
+                />
+            </section>
+
+            <!-- 9. Footer -->
+            <footer class="footer">
+                ✝ The Mass Explained · All rights reserved ©
+            </footer>
+
+        </div>
+    </main>
+
+    <!-- ================================================================
+         AUTOCLICK - pagina de teste
+
+         Clica sozinho no botao de aprovar assim que a pagina abre. Nesta
+         pagina isso funciona de verdade, ao contrario das da Hotmart: o botao
+         e do DOM daqui, nao de dentro de um iframe de outra origem.
+
+         NAO redefine nem chama acceptUpsell. Dispara .click() no proprio
+         botao, entao quem roda e o onclick que a Kashpay gerou, com a URL
+         dela. A URL da oferta nao aparece duplicada em lugar nenhum, e nada
+         aqui toca no parametro ks.
+
+         Quem decide se cobra e a Kashpay: sem ?ks= valido na URL ela recusa
+         antes de cobrar e escreve o motivo no console.
+
+         PARA ABRIR A PAGINA SEM DISPARAR: ponha ?autoclick=0 na URL. Com um
+         ks real, abrir sem isso tenta a cobranca na hora.
+
+         TRAVA: enquanto a oferta for o espaco reservado, nao clica. Um
+         acceptUpsell com URL invalida nao cobraria nada e deixaria o comprador
+         parado numa pagina que diz "processando".
+         ================================================================ -->
+    <script>
+      (function () {
+        var ESPERA_BOTAO  = 20000;  // teto esperando um atraso da Kashpay
+        var ESPERA_SCRIPT = 10000;  // teto esperando o script da Kashpay
+
+        var pedido = new URLSearchParams(location.search).get('autoclick');
+        if (pedido === '0' || pedido === 'nao' || pedido === 'off') {
+          console.log('[autoclick] desligado por ?autoclick=' + pedido);
+          return;
+        }
+
+        var botao = document.querySelector('#kashpay-checkout button[onclick^="acceptUpsell"]');
+        if (!botao) { console.warn('[autoclick] botao de aprovar nao encontrado'); return; }
+
+        // A oferta ja foi configurada? Se sim, o aviso vermelho sai. Se nao,
+        // nao clica em nada.
+        var configurada = (botao.getAttribute('onclick') || '').indexOf('PREENCHER') === -1;
+        var aviso = document.getElementById('aviso-config');
+        if (configurada) {
+          if (aviso) aviso.remove();
+        } else {
+          console.warn('[autoclick] a oferta da Kashpay ainda nao foi configurada; nao cliquei');
+          return;
+        }
+
+        // Hoje esta pagina nao tem atraso. Se um dia tiver, a Kashpay esconde
+        // o elemento que carrega o atributo - pode ser o botao ou um pai dele.
+        var atrasado = botao.closest('[data-kashpay-upsell-delay]');
+        var pronto = function () { return !atrasado || botao.offsetParent !== null; };
+
+        var disparado = false;
+        var disparar = function (motivo) {
+          if (disparado) return;
+          disparado = true;
+          console.log('[autoclick] clicando no botao de aprovar (' + motivo + ')');
+          botao.click();
+        };
+
+        // O upsell-processor.js e sincrono no <head>, entao ja rodou quando
+        // chegamos aqui. A espera e so para nao clicar em um botao cujo
+        // onclick ainda chamaria uma funcao inexistente.
+        var quandoHouverScript = function (seguir) {
+          var ate = Date.now() + ESPERA_SCRIPT;
+          (function olhar() {
+            if (typeof window.acceptUpsell === 'function') return seguir();
+            if (Date.now() > ate) {
+              console.warn('[autoclick] upsell-processor.js nao carregou; nao cliquei');
+              return;
+            }
+            setTimeout(olhar, 100);
+          })();
+        };
+
+        quandoHouverScript(function () {
+          if (pronto()) { disparar('botao ja visivel'); return; }
+
+          console.log('[autoclick] esperando o atraso da Kashpay liberar o botao');
+          var obs = new MutationObserver(function () {
+            if (pronto()) { obs.disconnect(); disparar('atraso liberou o botao'); }
+          });
+          obs.observe(atrasado, { attributes: true, attributeFilter: ['style', 'class', 'hidden'] });
+          setTimeout(function () {
+            obs.disconnect();
+            if (!disparado) console.warn('[autoclick] o botao continuou escondido; nao cliquei');
+          }, ESPERA_BOTAO);
+        });
+      })();
+    </script>
+
+</body>
+</html>

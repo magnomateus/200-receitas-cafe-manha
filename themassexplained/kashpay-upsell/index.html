@@ -1,8 +1,19 @@
 <!DOCTYPE html>
 <!--
   ============================================================================
-  UPSELL 1 - The Mass Explained App (ENGLISH / EN) - CHECKOUT KASHPAY
+  UPSELL 3 - The Mass Explained App (ENGLISH / EN) - CHECKOUT KASHPAY
   Rota: themassexplained.shop/kashpay-upsell/
+
+  ATENCAO AO NOME DA PASTA: ela se chama kashpay-upsell por historia, nao
+  por posicao. Desde 05/11/2026 esta pagina e o PASSO 3 do funil. A rota
+  nao mudou de proposito - ver o cabecalho do kashpay-upsell2.
+
+  A sequencia agora e:
+    1. Liturgical Seasons   kashpay-upsell2/        90%
+    2. The Prayer Workshop  kashpay-upsell-prayer/  95%
+    3. The Mass Explained App  kashpay-upsell/      98%
+
+  SEM AUTOCLICK, de proposito: o Mateus pediu autoclick so nos passos 1 e 2.
 
   Copia de /appmissaexplicada/upsell-ingles/ - mesmo layout, CSS e imagem. UMA troca: o widget de
   1-clique da Hotmart saiu, entrou o botao da Kashpay. Por isso saiu tambem o
@@ -15,7 +26,7 @@
   seguinte com ?decline=1; quem configura esse passo e o painel da Kashpay.
 
   O botao depende do token ks que a Kashpay anexa na URL depois da compra. Sem
-  ?ks= na URL o acceptUpsell nao processa. Ligar vendas -> upsell 1 -> upsell 2
+  ?ks= na URL o acceptUpsell nao processa. Ligar os 3 passos um no outro
   e configuracao no painel da Kashpay, nao neste arquivo.
 
   PIXELS: pendentes, como na pagina de origem. Enquanto window.EN_PIXELS
@@ -107,7 +118,7 @@
             <!-- 3. Progress bar — % inside the bar -->
             <section class="progress-block">
                 <div class="progress-track">
-                    <div class="progress-fill"><span class="progress-pct">90%</span></div>
+                    <div class="progress-fill"><span class="progress-pct">98%</span></div>
                 </div>
             </section>
 

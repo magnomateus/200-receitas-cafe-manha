@@ -103,8 +103,8 @@ body {
 }
 
 .progress-fill {
-    /* 90% — barra cheia sólida, com o % dentro (igual à referência). */
-    width: 90%;
+    /* 98% — passo 3 de 3 (App). As barras sobem 90 -> 95 -> 98. */
+    width: 98%;
     height: 100%;
     background: var(--burgundy);
     border-radius: 6px 0 0 6px;
