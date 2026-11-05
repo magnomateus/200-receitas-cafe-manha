@@ -1,0 +1,425 @@
+/* ==========================================================================
+   UPSELL PAGE - ESTILOS
+   ========================================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Cores Primárias - TEMA NATAL */
+    --primary-red: rgb(196, 30, 58);
+    --primary-green: rgb(22, 80, 22);
+    --primary-gold: rgb(244, 196, 48);
+
+    /* Cores Secundárias */
+    --secondary-cream: rgb(255, 254, 247);
+    --secondary-light-green: rgb(45, 106, 45);
+    --secondary-light-gold: rgb(255, 215, 0);
+
+    /* Tipografia */
+    --font-heading: 'Montserrat', 'Poppins', sans-serif;
+    --font-body: 'Open Sans', 'Roboto', sans-serif;
+}
+
+body {
+    font-family: var(--font-body);
+    background: var(--secondary-cream);
+    color: rgb(44, 62, 80);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Hero Section */
+.upsell-hero {
+    min-height: 100vh;
+    padding: 40px 0;
+}
+
+/* Headlines */
+.headline {
+    font-family: var(--font-heading);
+    font-size: 4.5rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    color: var(--primary-red);
+    text-transform: uppercase;
+    line-height: 1.1;
+    letter-spacing: -1px;
+}
+
+.sub-headline {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--primary-green);
+}
+
+.sub-headline strong {
+    color: var(--primary-red);
+}
+
+/* VSL Container */
+.vsl-container {
+    max-width: 500px;
+    margin: 40px auto;
+}
+
+.vimeo-wrapper {
+    position: relative;
+    padding-bottom: 177.78%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    background: #000;
+}
+
+.vimeo-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Esconder elementos de outro/sugestões do Vimeo e barra original */
+.vimeo-wrapper iframe::after,
+.vimeo-wrapper .vp-outro,
+.vimeo-wrapper .vp-sidedock,
+.vimeo-wrapper [data-name="outro"],
+.vimeo-wrapper [class*="outro"],
+.vimeo-wrapper [class*="sidedock"],
+.vimeo-wrapper .vp-controls-wrapper,
+.vimeo-wrapper .vp-progress {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+/* Botão de play inicial (overlay) */
+.play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 15;
+    cursor: pointer;
+}
+
+.play-overlay.hidden {
+    display: none;
+}
+
+.play-overlay-btn {
+    background: var(--primary-red);
+    border: 4px solid white;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.play-overlay-btn:hover {
+    background: rgb(139, 26, 46);
+    transform: scale(1.1);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+}
+
+.play-overlay-icon {
+    font-size: 40px;
+    color: white;
+    margin-left: 8px;
+}
+
+/* Barra de progresso customizada */
+.custom-progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.3);
+    z-index: 10;
+    cursor: pointer;
+}
+
+.custom-progress-fill {
+    width: 0%;
+    height: 100%;
+    background: var(--primary-red);
+    transition: width 0.3s ease;
+    border-radius: 0 6px 6px 0;
+}
+
+.video-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #1a1a1a;
+    color: #666;
+}
+
+/* Offer Box */
+.offer-box {
+    background: white;
+    border: 4px solid var(--primary-green);
+    border-radius: 20px;
+    padding: 40px;
+    margin: 40px auto;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+}
+
+.product-image {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.product-image img {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.offer-title {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 30px;
+    color: rgb(44, 62, 80);
+}
+
+/* Price Box */
+.price-box {
+    text-align: center;
+    margin: 30px 0;
+    padding: 30px;
+    background: var(--secondary-cream);
+    border-radius: 12px;
+    border: 2px dashed var(--primary-gold);
+}
+
+.price-label {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    color: var(--primary-green);
+}
+
+.price-old {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 1.5rem;
+}
+
+.price-current {
+    font-size: 4rem;
+    font-weight: 800;
+    font-family: var(--font-heading);
+    color: var(--primary-green);
+    line-height: 1;
+    margin: 20px 0;
+}
+
+.price-installment {
+    font-size: 1.25rem;
+    color: var(--primary-green);
+}
+
+/* Benefits */
+.benefits {
+    margin: 30px 0;
+}
+
+.benefits h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--primary-green);
+    font-family: var(--font-heading);
+}
+
+.benefits ul {
+    list-style: none;
+}
+
+.benefits li {
+    font-size: 1.125rem;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(22, 80, 22, 0.1);
+    color: rgb(44, 62, 80);
+}
+
+.benefits li::first-line {
+    font-weight: 600;
+}
+
+.benefits li:before {
+    content: '';
+}
+
+.benefits li {
+    position: relative;
+    padding-left: 0;
+}
+
+/* CTA Button */
+.btn-cta {
+    display: block;
+    background: linear-gradient(135deg, var(--primary-red), rgb(139, 26, 46));
+    color: white;
+    font-size: 1.75rem;
+    font-weight: 800;
+    font-family: var(--font-heading);
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 25px 40px;
+    border-radius: 50px;
+    margin: 30px auto;
+    max-width: 600px;
+    box-shadow: 0 10px 30px rgba(196, 30, 58, 0.4);
+    transition: all 0.3s ease;
+}
+
+.btn-cta:hover {
+    background: linear-gradient(135deg, rgb(139, 26, 46), rgb(107, 20, 35));
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(196, 30, 58, 0.6);
+}
+
+.pulse {
+    animation: pulse-btn 2s ease-in-out infinite;
+}
+
+@keyframes pulse-btn {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.security-text {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1rem;
+    color: var(--primary-green);
+}
+
+/* No Thanks */
+.no-thanks {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.btn-decline {
+    color: #999;
+    font-size: 1rem;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.btn-decline:hover {
+    color: var(--primary-red);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .headline {
+        font-size: 2.75rem;
+        letter-spacing: -0.5px;
+    }
+
+    .sub-headline {
+        font-size: 1.25rem;
+    }
+
+    .product-image img {
+        max-width: 300px;
+    }
+
+    .offer-title {
+        font-size: 2.25rem;
+    }
+
+    .price-current {
+        font-size: 3rem;
+    }
+
+    .btn-cta {
+        font-size: 1.25rem;
+        padding: 20px 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .headline {
+        font-size: 2rem;
+        letter-spacing: 0px;
+    }
+
+    .sub-headline {
+        font-size: 1rem;
+    }
+
+    .product-image img {
+        max-width: 250px;
+    }
+
+    .offer-title {
+        font-size: 1.75rem;
+    }
+
+    .offer-box {
+        padding: 20px;
+    }
+
+    .price-current {
+        font-size: 2.5rem;
+    }
+
+    .btn-cta {
+        font-size: 1.125rem;
+        padding: 18px 25px;
+    }
+}

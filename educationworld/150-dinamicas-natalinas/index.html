@@ -1,0 +1,532 @@
+<!--
+  ============================================================================
+  150 DINAMICAS NATALINAS - rota educationworld.site/150-dinamicas-natalinas/
+
+  Copia da pagina que rodava em receitinhaspratodahora.shop/150-dinamicas-natal/
+  (essa continua no repo, em /150-dinamicas-natal/, e AINDA esta na ggcheckout
+  com os precos antigos - se as duas rodarem ao mesmo tempo, divergem).
+
+  CHECKOUT: VIS (visplatform.pro/checkout-fast/...), tres ofertas:
+    premium    R$ 34,90   botao "GARANTIR PLANO PREMIUM"
+    exclusivo  R$ 17,90   popup que abre ao clicar no plano basico
+    basico     R$  9,90   link "Quero o basico", dentro do popup
+
+  O botao do plano basico NAO vai para o checkout: ele abre o popup. Quem
+  recusa o popup e que chega ao checkout basico. Esse e o desenho da pagina,
+  nao um bug.
+
+  RASTREAMENTO: o snippet da VIS (tid=19 + meta vis-product) foi ACRESCENTADO
+  aqui, no padrao do pescaria - sem ele a pagina manda para o checkout da VIS e
+  a VIS nao registra a visita. Com ele, os 3 links saem com _vid=<uuid>.
+  As UTMs chegam ao checkout pelo script do Utmify, nao por decorador proprio.
+
+  FALTA: a pagina nao tem Meta Pixel nenhum, so Utmify. Logo nao tem PageView,
+  ViewContent nem InitiateCheckout, nem a folga de 400ms das outras landings.
+
+  AINDA NA GGCHECKOUT, nao foram pedidos links novos:
+    - back-redirect/  R$ 7,90  (alcancavel pelo botao VOLTAR do navegador)
+    - upsell/                  (pos-compra, configurado no gateway)
+  ============================================================================
+-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>150 Dinâmicas Natalinas | E-book Completo</title>
+    <meta name="description" content="150 dinâmicas criativas e divertidas para celebrar o Natal. Atividades para crianças, adultos e toda a família. Transforme seu Natal em momentos inesquecíveis!">
+    <meta name="keywords" content="dinâmicas de natal, brincadeiras natal, atividades natal, jogos natal, dinâmicas família, natal em família">
+    <meta name="author" content="150 Dinâmicas Natal">
+
+    <!-- Produto na VIS: o snippet usa esta meta para disparar o ViewContent.
+         Slug deduzido dos checkouts (150-dinamicas-natalinas-premium/-exclusivo/
+         -basico), no mesmo padrao do pescaria (manual-do-pescador). Confirmar
+         no dashboard da VIS se o produto esta cadastrado com este slug. -->
+    <meta name="vis-product" content="150-dinamicas-natalinas">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="150 Dinâmicas Natalinas">
+    <meta property="og:description" content="Transforme seu Natal em momentos inesquecíveis com sua família">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "150 Dinâmicas Natalinas",
+      "description": "E-book digital com 150 dinâmicas natalinas para toda a família",
+      "offers": {
+        "@type": "Offer",
+        "price": "34.90",
+        "priceCurrency": "BRL",
+        "availability": "https://schema.org/InStock"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "1500"
+      }
+    }
+    </script>
+
+    <!-- Utmify Pixel -->
+    <script>
+      window.pixelId = "693a40362c9834c426c2d82d";
+      var a = document.createElement("script");
+      a.setAttribute("async", "");
+      a.setAttribute("defer", "");
+      a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+      document.head.appendChild(a);
+    </script>
+
+    <!-- Utmify UTMs Script -->
+    <script
+      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+      data-utmify-prevent-xcod-sck
+      data-utmify-prevent-subids
+      async
+      defer
+    ></script>
+
+    <!-- VIS Tracking (dispara ViewContent via meta vis-product) -->
+    <script src="https://visplatform.pro/api/tracking/snippet.js?tid=19"></script>
+</head>
+<body>
+
+    <!-- FAIXA DE URGÊNCIA -->
+    <div class="urgency-bar">
+        <div class="container">
+            <strong>OFERTA VÁLIDA APENAS HOJE:</strong> <span id="current-date" class="timer-inline"></span>
+        </div>
+    </div>
+
+    <!-- SEÇÃO 1: HERO / TOPO -->
+    <section id="hero" class="hero-section">
+        <div class="container">
+            <h1 class="headline">
+                +150 Dinâmicas Natalinas<br>
+                <span class="headline-bonus">+BÔNUS</span>
+            </h1>
+
+            <p class="sub-headline">
+                150 DINÂMICAS NATALINAS que <span class="highlight-red">Vão Divertir, Reunir a Família e Criar Memórias Inesquecíveis.</span> Transforme o Natal em uma Noite Especial de Verdade com as pessoas que você ama
+            </p>
+
+            <!-- VSL - Vídeo Vimeo -->
+            <div class="vsl-container">
+                <div class="vimeo-wrapper">
+                    <iframe
+                        src="https://player.vimeo.com/video/1143326288?badge=0&autopause=0&player_id=0&app_id=58479&title=0&byline=0&portrait=0"
+                        frameborder="0"
+                        allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+                        title="VSL 150 Dinâmicas Natalinas">
+                    </iframe>
+                    <div class="vimeo-menu-cover"></div>
+                </div>
+                <script src="https://player.vimeo.com/api/player.js"></script>
+            </div>
+
+            <a href="#oferta" class="btn btn-primary btn-cta pulse">QUERO AS 150 DINÂMICAS NATALINAS</a>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 2: O QUE VOCÊ VAI RECEBER -->
+    <section id="conteudo" class="content-section">
+        <div class="container">
+            <h2 class="section-title">
+                Veja Tudo o Que Você Vai<br>
+                <span class="highlight-gold">Receber Hoje:</span>
+            </h2>
+
+            <div class="content-two-blocks">
+                <div class="content-block">
+                    <div class="content-block-icon">📦</div>
+                    <h3>O QUE VOCÊ RECEBE</h3>
+                    <ul>
+                        <li>✅ Mais de 150 Dinâmicas Natalinas</li>
+                        <li>✅ Dinâmicas para todas as idades</li>
+                        <li>✅ Usam apenas itens que você já tem em casa</li>
+                        <li>✅ Formato digital: acesse do celular, tablet ou computador</li>
+                        <li>✅ Faça todos largarem o celular e aproveitar o Natal Juntos</li>
+                        <li>✅ Instruções passo a passo simples!</li>
+                        <li>✅ Separadas por categorias para facilitar a escolha</li>
+                        <li>✅ Acesso imediato após a compra</li>
+                        <li>✅ Garantia incondicional de 7 dias</li>
+                        <li class="bonus-highlight">🎁 <strong>+3 BÔNUS EXCLUSIVOS</strong><span class="bonus-arrow">⬇</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 3: PARA QUEM É -->
+    <section id="para-quem" class="target-section">
+        <div class="container">
+            <h2 class="section-title section-title-large white-text">
+                Por Que Escolher as<br><span class="highlight-gold">Dinâmicas Natalinas?</span>
+            </h2>
+
+            <!-- 3 PILARES -->
+            <div class="pillars-grid">
+                <div class="pillar-card">
+                    <div class="pillar-icon">👨‍👩‍👧‍👦</div>
+                    <h3>UNIÃO FAMILIAR</h3>
+                    <p><strong>Reconecte-se com quem você ama</strong></p>
+                    <p>Dinâmicas que tiram todos do celular e trazem risadas, abraços e momentos juntos de verdade. Crie um Natal que sua família vai lembrar para sempre.</p>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-icon">❤️</div>
+                    <h3>MEMÓRIAS INESQUECÍVEIS</h3>
+                    <p><strong>Momentos que ficam no coração</strong></p>
+                    <p>Seus filhos vão crescer e lembrar daquele Natal especial que vocês viveram juntos. Você está criando histórias que serão contadas por gerações.</p>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-icon">⭐</div>
+                    <h3>SIMPLICIDADE E DIVERSÃO</h3>
+                    <p><strong>Tudo pronto para você usar</strong></p>
+                    <p>Sem complicação, sem correria. Materiais simples, explicação clara, e pronto para usar. Você só precisa escolher e começar a diversão!</p>
+                </div>
+            </div>
+
+            <a href="#oferta" class="btn btn-secondary btn-cta pulse">QUERO TRANSFORMAR MEU NATAL! 🎄</a>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 4: BÔNUS EXCLUSIVOS -->
+    <section id="bonus" class="bonus-section">
+        <div class="container">
+            <h2 class="section-title">
+                RECEBA AINDA<br>
+                <span class="highlight-gold">+ 3 BÔNUS EXCLUSIVOS:</span>
+            </h2>
+
+            <div class="bonus-grid">
+                <div class="bonus-card">
+                    <img src="images/bonus-1.png" alt="Receitas Divertidas de Natal" class="bonus-image">
+                    <h3>RECEITAS DIVERTIDAS<br>DE NATAL</h3>
+                    <p>Receitas natalinas para fazer com as crianças: biscoitos decorados, chocolate quente especial, cupcakes temáticos e muito mais!</p>
+                    <p class="bonus-value"><span class="strikethrough">R$37,00</span> HOJE É <span class="bonus-free">GRÁTIS!</span></p>
+                </div>
+
+                <div class="bonus-card">
+                    <img src="images/bonus-2.png" alt="Jogos Natalinos para Imprimir" class="bonus-image">
+                    <h3>JOGOS NATALINOS<br>PARA IMPRIMIR</h3>
+                    <p>Caça ao tesouro natalino, bingo de Natal, jogo da memória temático. Imprima e comece a brincadeira!</p>
+                    <p class="bonus-value"><span class="strikethrough">R$29,00</span> HOJE É <span class="bonus-free">GRÁTIS!</span></p>
+                </div>
+
+                <div class="bonus-card">
+                    <img src="images/bonus-3.png" alt="Pack de Decoração Natalina" class="bonus-image">
+                    <h3>PACK DE DECORAÇÃO<br>NATALINA</h3>
+                    <p>Moldes para decoração DIY, cartões de Natal personalizáveis, etiquetas para presentes e muito mais!</p>
+                    <p class="bonus-value"><span class="strikethrough">R$27,00</span> HOJE É <span class="bonus-free">GRÁTIS!</span></p>
+                </div>
+            </div>
+
+            <p class="bonus-total">
+                TOTAL EM BÔNUS: <span class="bonus-total-value">R$ 93,00</span> — HOJE É <span class="bonus-free-large">GRÁTIS!</span> 🎁
+            </p>
+
+            <a href="#oferta" class="btn btn-primary btn-cta pulse">QUERO OS BÔNUS TAMBÉM! 🎁</a>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 5: OFERTA / PREÇO -->
+    <section id="oferta" class="offer-section">
+        <div class="container">
+            <div class="countdown-timer-box">
+                <p class="countdown-label">⏰ ESTA OFERTA EXPIRA EM:</p>
+                <div id="timer-main" class="timer-display">14:59:32</div>
+            </div>
+
+            <h2 class="section-title">
+                Escolha Seu Plano e<br>
+                <span class="highlight-gold">Transforme Seu Natal:</span>
+            </h2>
+
+            <div class="pricing-grid">
+                <!-- PLANO BÁSICO -->
+                <div class="pricing-card">
+                    <h3 class="plan-name">PLANO BÁSICO</h3>
+                    <div class="plan-price">
+                        <span class="price-value">R$ 9,90</span>
+                        <span class="price-payment">À VISTA</span>
+                    </div>
+
+                    <ul class="plan-features">
+                        <li>✅ +150 Dinâmicas Natalinas em PDF</li>
+                        <li>✅ Acesso imediato</li>
+                        <li>✅ Garantia de 7 dias</li>
+                    </ul>
+
+                    <button type="button" class="btn btn-plan pulse" id="btn-basic-plan">GARANTIR PLANO BÁSICO</button>
+
+                    <p class="offer-security">🔒 Pagamento 100% Seguro</p>
+                </div>
+
+                <!-- PLANO PREMIUM -->
+                <div id="plano-premium" class="pricing-card pricing-card-premium">
+                    <div class="premium-image-wrapper">
+                        <img src="images/capa-produto.jpg" alt="150 Dinâmicas Natalinas - Capa do Produto" class="premium-cover">
+                        <div class="ribbon">MAIS ESCOLHIDO</div>
+                    </div>
+
+                    <h3 class="plan-name">PLANO PREMIUM</h3>
+
+                    <div class="plan-price">
+                        <span class="price-from-small">De R$147,00 por...</span>
+                        <span class="price-value">R$ 34,90</span>
+                        <span class="price-payment">À VISTA</span>
+                    </div>
+
+                    <ul class="plan-features">
+                        <li>✅ +150 Dinâmicas Natalinas em PDF</li>
+                        <li>✅ Dinâmicas para toda a família</li>
+                        <li>✅ Dinâmicas Criadas exclusivamente para o Natal</li>
+                        <li>✅ Passo a passo ilustrado de cada dinâmica</li>
+                        <li>✅ Lista de materiais necessários</li>
+                        <li>✅ Acesso imediato após a compra</li>
+                        <li>✅ Garantia incondicional de 7 dias</li>
+                        <li>🎁 <strong>BÔNUS:</strong> Receitas Divertidas de Natal</li>
+                        <li>🎁 <strong>BÔNUS:</strong> Jogos Natalinos</li>
+                        <li>🎁 <strong>BÔNUS:</strong> Pack de Decoração Natalina</li>
+                    </ul>
+
+                    <a href="https://visplatform.pro/checkout-fast/150-dinamicas-natalinas-premium" class="btn btn-plan-premium pulse">GARANTIR PLANO PREMIUM 🎁</a>
+
+                    <p class="offer-security">🔒 Pagamento 100% Seguro | 📱 Acesso Imediato</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 6: DEPOIMENTOS -->
+    <section id="depoimentos" class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title-testimonials">O Que Dizem as Famílias</h2>
+
+            <div class="testimonials-list">
+                <div class="testimonial-item">
+                    <div class="testimonial-header">
+                        <img src="images/perfil-1.png" alt="Maria Santos" class="testimonial-avatar">
+                        <div class="testimonial-info">
+                            <h3 class="testimonial-name">Maria Santos</h3>
+                            <p class="testimonial-role">Mãe de 2 filhos</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">⭐ ⭐ ⭐ ⭐ ⭐</div>
+                    <p class="testimonial-text">"Comprei ano passado e minhas crianças amaram! A gente fez várias brincadeiras e foi muito divertido. Esse ano já comprei de novo porque eles ficaram pedindo. Vale muito a pena!"</p>
+                </div>
+
+                <div class="testimonial-item">
+                    <div class="testimonial-header">
+                        <img src="images/perfil-2.png" alt="Edilene" class="testimonial-avatar">
+                        <div class="testimonial-info">
+                            <h3 class="testimonial-name">Edilene</h3>
+                            <p class="testimonial-role">Avó</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">⭐ ⭐ ⭐ ⭐ ⭐</div>
+                    <p class="testimonial-text">"Adorei! Usei com meus netos e foi uma alegria só. Todo mundo participou, até os mais quietinhos. Esse ano vou fazer de novo porque eles já estão cobrando. Muito bom mesmo!"</p>
+                </div>
+
+                <div class="testimonial-item">
+                    <div class="testimonial-header">
+                        <img src="images/perfil-3.png" alt="Rodrigo" class="testimonial-avatar">
+                        <div class="testimonial-info">
+                            <h3 class="testimonial-name">Rodrigo</h3>
+                            <p class="testimonial-role">Pai de 3 Filhas</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">⭐ ⭐ ⭐ ⭐ ⭐</div>
+                    <p class="testimonial-text">"Comprei o material pra entreter minhas filhas, mas quem se divertiu mesmo fui eu! 😂 Tem coisa fácil de fazer e a gente deu muita risada. As meninas adoraram e já querem fazer de novo no próximo Natal!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 7: FAQ -->
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <h2 class="section-title">
+                Perguntas Frequentes
+            </h2>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Como vou acessar o material após a compra?</span>
+                        <span class="faq-toggle">˅</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Assim que seu pagamento for confirmado, você receberá o material completo diretamente no seu e-mail. É rápido e prático! Você poderá baixar imediatamente e começar a usar.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Quais formas de pagamento são aceitas?</span>
+                        <span class="faq-toggle">˅</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Aceitamos PIX (aprovação imediata) e Cartão de Crédito (parcelamento em até 3x sem juros). Escolha a forma que melhor se encaixa no seu bolso!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Preciso de algum material especial para as atividades?</span>
+                        <span class="faq-toggle">˅</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Não! A maioria das atividades usa materiais simples que você já tem em casa, como papel, lápis de cor, tesoura e cola. Algumas podem usar itens temáticos de Natal que são fáceis de encontrar. Nada complicado ou caro!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>As atividades são adequadas para fazer em família?</span>
+                        <span class="faq-toggle">˅</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Com certeza! Todas as atividades foram pensadas para reunir a família e criar momentos especiais juntos. Adultos e crianças podem participar e se divertir ao mesmo tempo. É diversão garantida para todo mundo!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Como funciona a garantia de 7 dias?</span>
+                        <span class="faq-toggle">˅</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Se por qualquer motivo você não gostar do material, é só me enviar um e-mail dentro de 7 dias após a compra que devolvemos 100% do seu dinheiro. Sem perguntas, sem burocracia. Simples assim!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Para qual idade as atividades são mais adequadas?</span>
+                        <span class="faq-toggle">˅</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Para todas as idades! O material inclui dinâmicas para crianças pequenas, adolescentes, adultos e até para a família toda participar junta. Tem opções para todo mundo se divertir, do mais novo ao mais velho!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 8: GARANTIA -->
+    <section id="garantia" class="guarantee-section">
+        <div class="container">
+            <h2 class="section-title">
+                Garantia Incondicional<br>
+                <span class="highlight-gold">de 7 Dias</span>
+            </h2>
+
+            <div class="guarantee-content">
+                <div class="guarantee-badge-wrapper">
+                    <div class="guarantee-badge">
+                        <div class="badge-icon">🛡️</div>
+                        <div class="badge-days">7</div>
+                        <div class="badge-text">DIAS</div>
+                    </div>
+                </div>
+
+                <div class="guarantee-info">
+                    <h3 class="guarantee-title">Seu Investimento Está 100% Protegido!</h3>
+
+                    <div class="guarantee-features">
+                        <div class="guarantee-feature">
+                            <span class="feature-icon">✅</span>
+                            <p><strong>Teste sem risco:</strong> Use o material por 7 dias completos</p>
+                        </div>
+                        <div class="guarantee-feature">
+                            <span class="feature-icon">✅</span>
+                            <p><strong>Devolução facilitada:</strong> Basta enviar um e-mail</p>
+                        </div>
+                        <div class="guarantee-feature">
+                            <span class="feature-icon">✅</span>
+                            <p><strong>Reembolso total:</strong> 100% do seu dinheiro de volta</p>
+                        </div>
+                        <div class="guarantee-feature">
+                            <span class="feature-icon">✅</span>
+                            <p><strong>Zero burocracia:</strong> Sem perguntas, sem complicações</p>
+                        </div>
+                    </div>
+
+                    <div class="guarantee-highlight">
+                        <p><strong>O risco é todo nosso</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 9: CTA FINAL -->
+    <section id="final-cta" class="final-cta-section">
+        <div class="container">
+            <h2 class="section-title white-text center final-big-title">
+                ⏰ Não Deixe Este Natal Passar em Branco!
+            </h2>
+
+            <p class="final-copy">
+                Imagine sua família reunida, rindo, se abraçando, criando memórias que vão durar para sempre...<br>
+                <strong>Isso pode ser HOJE.</strong>
+            </p>
+
+            <p class="final-price-text">
+                Por apenas <strong>R$34,90</strong>
+            </p>
+
+            <div class="countdown-timer">
+                <p class="countdown-label">⏰ Oferta expira em:</p>
+                <div id="timer-final" class="timer-display">14:59:32</div>
+            </div>
+
+            <a href="#plano-premium" class="btn btn-primary btn-cta-final pulse">QUERO VIVER UM NATAL ESPECIAL 🎄</a>
+
+            <div class="final-security">
+                <p>🔒 Pagamento 100% Seguro</p>
+                <p>📱 Acesso Imediato</p>
+                <p>✅ Garantia de 7 Dias</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 150 Dinâmicas Natalinas. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Popup Oferta Exclusiva -->
+    <div id="popup-offer" class="popup-overlay">
+        <div class="popup-content">
+            <button class="popup-close" id="popup-close">&times;</button>
+            <h2 class="popup-title">OFERTA EXCLUSIVA</h2>
+            <p class="popup-text">Adquira o Plano Premium por Apenas</p>
+            <p class="popup-price">R$ 17,90</p>
+            <a href="https://visplatform.pro/checkout-fast/150-dinamicas-natalinas-exclusivo" class="btn btn-popup-cta">QUERO ESTA OFERTA!</a>
+            <a href="https://visplatform.pro/checkout-fast/150-dinamicas-natalinas-basico" class="popup-basic-link">Quero o básico</a>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
