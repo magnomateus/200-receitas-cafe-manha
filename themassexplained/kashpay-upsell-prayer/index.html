@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <!--
   ============================================================================
-  UPSELL 2 - The Prayer Workshop (ENGLISH / EN) - CHECKOUT KASHPAY
+  UPSELL 2 - The Prayer Workshop (ENGLISH / EN) - CHECKOUT VIS
   Rota: themassexplained.shop/kashpay-upsell-prayer/
 
-  Molde: kashpay-upsell2/ (Liturgical Seasons), que e o passo 1. Mesmo layout,
-  mesmo CSS, mesmo autoclick. O nome da pasta diz o PRODUTO, nao a posicao, de
+  Molde: kashpay-upsell2/ (Liturgical Seasons), que e o passo 1. Mesmo layout
+  e mesmo CSS. O nome da pasta diz o PRODUTO, nao a posicao nem o gateway, de
   proposito: as duas paginas irmas se chamam kashpay-upsell e kashpay-upsell2
   por historia e hoje servem os passos 3 e 1.
 
@@ -14,11 +14,23 @@
     2. The Prayer Workshop  kashpay-upsell-prayer/  95%  <- esta
     3. The Mass Explained App  kashpay-upsell/      98%
 
-  OFERTA: c1e2a308e048f9f4, com recusa. Era a oferta do App; mudou de pagina
-  quando o funil foi reordenado em 05/11/2026, e o App ficou com a 36ead500d478e311.
-  O bloco de botoes e o que a Kashpay entrega, sem atraso.
+  CHECKOUT: widget da VIS, upsellId 7, desde 11/11/2026. Antes era a Kashpay,
+  oferta c1e2a308e048f9f4 com recusa. O visual do botao vem do painel da VIS
+  (Funis > oferta > Botoes), buscado pelo numero da oferta - o codigo colado
+  aqui nao muda. Nao envolver, nao renomear, nao reimplementar o widget.
 
-  AUTOCLICK: liga sozinho no botao de aprovar. ?autoclick=0 desliga.
+  O widget exige order_id na URL, que e o equivalente do ks da Kashpay. Sem
+  ele escreve no console "sem order_id na URL - botao nao renderizado" e nao
+  monta nada. Abrir a rota na mao, sem order_id, mostra a pagina SEM botao -
+  isso e o esperado, nao defeito.
+
+  O AUTOCLICK SAIU junto. Ele clicava pelo seletor
+  #kashpay-checkout button[onclick^="acceptUpsell"], e esse botao nao existe
+  mais. Nao troquei por um seletor do widget da VIS porque o alvo nao e
+  inequivoco: o botao de recusa do widget e configuravel no painel (vem vazio
+  por padrao) e o modo padrao e popup, entao clicar sozinho no primeiro botao
+  que aparecer poderia disparar a coisa errada, com cobranca real atras. Para
+  repor, o aprovar e #vis-upsell button[data-vis-upsell].
 
   >>> AINDA FALTA <<<
 
@@ -98,9 +110,6 @@
     })();
     </script>
     <!-- End Meta Pixel Code -->
-    <!-- Kashpay — processador de upsell. Sem o atributo de opt-in do atraso:
-         esta pagina nao usa atraso, o botao aparece junto com a pagina. -->
-    <script src="https://checkout.kashpay.com/scripts/upsell-processor.js"></script>
 </head>
 <body>
 
@@ -125,22 +134,20 @@
             <!-- 4. Headline ("special gift" pattern) -->
             <h1 class="headline">You've just received a special gift, available only on this page.</h1>
 
-            <!-- 5. Checkout da Kashpay. Ao contrario da Hotmart aqui NAO ha
-                 iframe: o botao e do DOM desta pagina. O texto antigo falava
-                 do iframe da Hotmart, que saiu na copia. -->
+            <!-- 5. Checkout da VIS. Como na Kashpay e ao contrario da Hotmart,
+                 nao ha iframe: o widget monta o botao no DOM desta pagina. -->
             <section class="checkout">
                 <p class="checkout-eyebrow">Your exclusive offer</p>
                 <div class="checkout-card">
-                    <!-- Bloco de botoes da Kashpay, colado como ela entrega: aprovar
-                         (GET IT NOW) e recusar, os dois na mesma oferta. Este bloco
-                         NAO tem atraso (sem data-kashpay-upsell-delay), entao aparece
-                         junto com a pagina.
-
-                         A oferta c1e2a308e048f9f4 era a do App. Ela mudou de pagina
-                         quando o funil foi reordenado; o App passou a 36ead500d478e311. -->
-                    <div id="kashpay-checkout">
-                        <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;"><button type="button" onclick="acceptUpsell('https://checkout.kashpay.com/u/c1e2a308e048f9f4')" style="font-family: 'Helvetica'; font-size: 20px; font-weight: 600; line-height: 1.3; color: #ffffff; background-color: #31bf67; border: none; border-radius: 10px; padding: 13px 7%; cursor: pointer; text-align: center; display: block; margin: auto;">GET IT NOW</button><button type="button" onclick="declineUpsell('https://checkout.kashpay.com/u/c1e2a308e048f9f4')" style="font-family: 'Poppins'; font-size: 13px; font-weight: 600; line-height: 1.3; color: #3b3030; background-color: #c35555; border: none; border-radius: 10px; padding: 10px 5%; cursor: pointer; text-align: center; display: block; margin: auto;">I don't want this offer.</button></div>
-                    </div>
+                    <!-- Widget de upsell da VIS, colado como o Mateus entregou.
+                         O visual do botao vem do painel da VIS (Funis > oferta >
+                         Botoes), buscado pelo numero da oferta - nao se mexe aqui.
+                         Nao envolver, nao renomear, nao reimplementar. -->
+                    <div id="vis-upsell"></div>
+                    <script src="https://vis.semeardigital.com.br/js/vis-upsell.js"></script>
+                    <script>
+                      VISUpsell.init({ upsellId: 7 }).mount('#vis-upsell');
+                    </script>
                 </div>
             </section>
 
@@ -178,82 +185,6 @@
 
         </div>
     </main>
-
-    <!-- ================================================================
-         AUTOCLICK - pagina de teste
-
-         Clica sozinho no botao de aprovar assim que a pagina abre. Nesta
-         pagina isso funciona de verdade, ao contrario das da Hotmart: o botao
-         e do DOM daqui, nao de dentro de um iframe de outra origem.
-
-         NAO redefine nem chama acceptUpsell. Dispara .click() no proprio
-         botao, entao quem roda e o onclick que a Kashpay gerou, com a URL
-         dela. A URL da oferta nao aparece duplicada em lugar nenhum, e nada
-         aqui toca no parametro ks.
-
-         Quem decide se cobra e a Kashpay: sem ?ks= valido na URL ela recusa
-         antes de cobrar e escreve o motivo no console.
-
-         PARA ABRIR A PAGINA SEM DISPARAR: ponha ?autoclick=0 na URL. Com um
-         ks real, abrir sem isso tenta a cobranca na hora.
-         ================================================================ -->
-    <script>
-      (function () {
-        var ESPERA_BOTAO  = 20000;  // teto esperando um atraso da Kashpay
-        var ESPERA_SCRIPT = 10000;  // teto esperando o script da Kashpay
-
-        var pedido = new URLSearchParams(location.search).get('autoclick');
-        if (pedido === '0' || pedido === 'nao' || pedido === 'off') {
-          console.log('[autoclick] desligado por ?autoclick=' + pedido);
-          return;
-        }
-
-        var botao = document.querySelector('#kashpay-checkout button[onclick^="acceptUpsell"]');
-        if (!botao) { console.warn('[autoclick] botao de aprovar nao encontrado'); return; }
-
-        // Hoje esta pagina nao tem atraso. Se um dia tiver, a Kashpay esconde
-        // o elemento que carrega o atributo - pode ser o botao ou um pai dele.
-        var atrasado = botao.closest('[data-kashpay-upsell-delay]');
-        var pronto = function () { return !atrasado || botao.offsetParent !== null; };
-
-        var disparado = false;
-        var disparar = function (motivo) {
-          if (disparado) return;
-          disparado = true;
-          console.log('[autoclick] clicando no botao de aprovar (' + motivo + ')');
-          botao.click();
-        };
-
-        // O upsell-processor.js e sincrono no <head>, entao ja rodou quando
-        // chegamos aqui. A espera e so para nao clicar em um botao cujo
-        // onclick ainda chamaria uma funcao inexistente.
-        var quandoHouverScript = function (seguir) {
-          var ate = Date.now() + ESPERA_SCRIPT;
-          (function olhar() {
-            if (typeof window.acceptUpsell === 'function') return seguir();
-            if (Date.now() > ate) {
-              console.warn('[autoclick] upsell-processor.js nao carregou; nao cliquei');
-              return;
-            }
-            setTimeout(olhar, 100);
-          })();
-        };
-
-        quandoHouverScript(function () {
-          if (pronto()) { disparar('botao ja visivel'); return; }
-
-          console.log('[autoclick] esperando o atraso da Kashpay liberar o botao');
-          var obs = new MutationObserver(function () {
-            if (pronto()) { obs.disconnect(); disparar('atraso liberou o botao'); }
-          });
-          obs.observe(atrasado, { attributes: true, attributeFilter: ['style', 'class', 'hidden'] });
-          setTimeout(function () {
-            obs.disconnect();
-            if (!disparado) console.warn('[autoclick] o botao continuou escondido; nao cliquei');
-          }, ESPERA_BOTAO);
-        });
-      })();
-    </script>
 
 </body>
 </html>
