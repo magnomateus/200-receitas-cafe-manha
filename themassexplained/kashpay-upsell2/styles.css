@@ -283,3 +283,20 @@ body {
     .body-text { font-size: 1.18rem; }
     .product-cover { max-width: 340px; }
 }
+
+/* ============================================================
+   MOSTRAR SO O BOTAO DE APROVAR
+
+   A pagina dispara a compra sozinha (ver o autoclick no fim do
+   <body>). Deixar um botao de recusa visivel ao lado so convida
+   o testador a clicar no errado.
+
+   O widget da VIS poe data-vis-upsell SO no botao de aprovar, e
+   um "No thanks" aparece se o painel configurar um. Entao a regra
+   esconde todo botao ou link dentro do #vis-upsell que nao leve
+   esse atributo - inclusive os que ainda nem existem.
+   ============================================================ */
+#vis-upsell button:not([data-vis-upsell]),
+#vis-upsell a {
+    display: none !important;
+}
