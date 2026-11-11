@@ -19,18 +19,30 @@
   (Funis > oferta > Botoes), buscado pelo numero da oferta - o codigo colado
   aqui nao muda. Nao envolver, nao renomear, nao reimplementar o widget.
 
-  O widget exige order_id na URL, que e o equivalente do ks da Kashpay. Sem
-  ele escreve no console "sem order_id na URL - botao nao renderizado" e nao
-  monta nada. Abrir a rota na mao, sem order_id, mostra a pagina SEM botao -
-  isso e o esperado, nao defeito.
+  O QUE O WIDGET LE DA URL (equivale ao ks da Kashpay):
 
-  O AUTOCLICK SAIU junto. Ele clicava pelo seletor
-  #kashpay-checkout button[onclick^="acceptUpsell"], e esse botao nao existe
-  mais. Nao troquei por um seletor do widget da VIS porque o alvo nao e
-  inequivoco: o botao de recusa do widget e configuravel no painel (vem vazio
-  por padrao) e o modo padrao e popup, entao clicar sozinho no primeiro botao
-  que aparecer poderia disparar a coisa errada, com cobranca real atras. Para
-  repor, o aprovar e #vis-upsell button[data-vis-upsell].
+    order_id      sem ele nao monta botao nenhum. Abrir a rota na mao mostra
+                  a pagina SEM botao - e o esperado, nao defeito
+    inline_token  sem ele o botao aparece, mas ao ser clicado o widget
+                  responde "Abra esta oferta pelo link que chegou logo depois
+                  da compra" e NAO cobra
+    vis_next=1    faz o widget seguir para o proximo passo do funil depois
+                  de aceitar
+
+  Entao, para testar de verdade, use o link que chega depois da compra -
+  com order_id E inline_token. Um order_id inventado monta o botao e para ai.
+
+  O widget resolveu o modo INLINE: aceitar cobra direto, por
+  POST /api/orders/<order_id>/upsell/7/accept, sem abrir popup.
+
+  AUTOCLICK desde 11/11/2026, no fim do <body>: clica sozinho no botao de
+  APROVAR do widget. O alvo e exato - o widget poe data-vis-upsell so no
+  aprovar, nunca no de recusa. ?autoclick=0 desliga. Sem order_id na URL ele
+  nem tenta, porque nao existe botao para clicar.
+
+  O CSS esconde qualquer botao ou link dentro do #vis-upsell que nao seja o
+  de aprovar: com a pagina disparando a compra sozinha, um botao de recusa
+  visivel so convida a clicar errado.
 
   >>> AINDA FALTA <<<
 
@@ -185,6 +197,74 @@
 
         </div>
     </main>
+
+    <!-- ================================================================
+         AUTOCLICK - pagina de teste
+
+         Clica sozinho no botao de APROVAR do widget da VIS assim que ele
+         monta. Funciona porque o botao e do DOM desta pagina, nao de dentro
+         de um iframe de outra origem como na Hotmart.
+
+         O ALVO E EXATO: o widget poe data-vis-upsell so no botao de aprovar
+         (aceitar.botao, no _montarPersonalizado e no _montarHoje). O botao
+         de recusa NUNCA recebe esse atributo. Entao nao ha risco de clicar
+         no errado, nem que o painel configure um "No thanks".
+
+         O widget monta depois de buscar o visual na API, entao esperamos com
+         MutationObserver em vez de clicar na hora.
+
+         Sem order_id na URL o widget nao monta botao nenhum - nao adianta
+         esperar, e o autoclick diz isso e desiste.
+
+         NAO redefine nem chama nada do widget: dispara .click() no proprio
+         botao, entao quem roda e o handler que a VIS registrou.
+
+         PARA ABRIR A PAGINA SEM DISPARAR: ponha ?autoclick=0 na URL.
+         ================================================================ -->
+    <script>
+      (function () {
+        var ESPERA = 20000;
+        var SELETOR = '#vis-upsell button[data-vis-upsell]';
+        var busca = new URLSearchParams(location.search);
+
+        var pedido = busca.get('autoclick');
+        if (pedido === '0' || pedido === 'nao' || pedido === 'off') {
+          console.log('[autoclick] desligado por ?autoclick=' + pedido);
+          return;
+        }
+
+        if (!busca.get('order_id')) {
+          console.warn('[autoclick] sem order_id na URL: o widget da VIS nao vai montar botao, nao ha o que clicar');
+          return;
+        }
+
+        var disparado = false;
+        var disparar = function (botao, motivo) {
+          if (disparado) return;
+          disparado = true;
+          console.log('[autoclick] clicando no botao de aprovar (' + motivo + ')');
+          botao.click();
+        };
+
+        var agora = document.querySelector(SELETOR);
+        if (agora) { disparar(agora, 'botao ja montado'); return; }
+
+        var host = document.getElementById('vis-upsell');
+        if (!host) { console.warn('[autoclick] #vis-upsell nao encontrado'); return; }
+
+        console.log('[autoclick] esperando o widget da VIS montar o botao');
+        var obs = new MutationObserver(function () {
+          var b = document.querySelector(SELETOR);
+          if (b) { obs.disconnect(); disparar(b, 'o widget montou o botao'); }
+        });
+        obs.observe(host, { childList: true, subtree: true });
+
+        setTimeout(function () {
+          obs.disconnect();
+          if (!disparado) console.warn('[autoclick] o widget nao montou botao em ' + ESPERA + 'ms; nao cliquei');
+        }, ESPERA);
+      })();
+    </script>
 
 </body>
 </html>

@@ -13,7 +13,13 @@
     2. The Prayer Workshop  kashpay-upsell-prayer/  95%
     3. The Mass Explained App  kashpay-upsell/      98%
 
-  SEM AUTOCLICK, de proposito: o Mateus pediu autoclick so nos passos 1 e 2.
+  AUTOCLICK desde 11/11/2026, no fim do <body>: clica sozinho no botao de
+  aprovar. ?autoclick=0 desliga. O seletor pede onclick^="acceptUpsell",
+  entao um botao de recusa nunca e alcancado.
+
+  O CSS esconde um eventual botao de recusa: com a pagina disparando a compra
+  sozinha, um botao de recusa visivel so convida a clicar errado. Hoje o bloco
+  desta pagina so tem o aprovar, entao a regra ainda nao faz nada.
 
   Copia de /appmissaexplicada/upsell-ingles/ - mesmo layout, CSS e imagem. UMA troca: o widget de
   1-clique da Hotmart saiu, entrou o botao da Kashpay. Por isso saiu tambem o
@@ -178,6 +184,85 @@
 
         </div>
     </main>
+
+    <!-- ================================================================
+         AUTOCLICK - pagina de teste
+
+         Clica sozinho no botao de aprovar assim que a pagina abre. Nesta
+         pagina isso funciona de verdade, ao contrario das da Hotmart: o botao
+         e do DOM daqui, nao de dentro de um iframe de outra origem.
+
+         NAO redefine nem chama acceptUpsell. Dispara .click() no proprio
+         botao, entao quem roda e o onclick que a Kashpay gerou, com a URL
+         dela. A URL da oferta nao aparece duplicada em lugar nenhum, e nada
+         aqui toca no parametro ks.
+
+         O seletor pede onclick^="acceptUpsell", entao um botao de recusa
+         nunca e alcancado, mesmo que a Kashpay passe a entregar um.
+
+         Quem decide se cobra e a Kashpay: sem ?ks= valido na URL ela recusa
+         antes de cobrar e escreve o motivo no console.
+
+         PARA ABRIR A PAGINA SEM DISPARAR: ponha ?autoclick=0 na URL. Com um
+         ks real, abrir sem isso tenta a cobranca na hora.
+         ================================================================ -->
+    <script>
+      (function () {
+        var ESPERA_BOTAO  = 20000;  // teto esperando um atraso da Kashpay
+        var ESPERA_SCRIPT = 10000;  // teto esperando o script da Kashpay
+
+        var pedido = new URLSearchParams(location.search).get('autoclick');
+        if (pedido === '0' || pedido === 'nao' || pedido === 'off') {
+          console.log('[autoclick] desligado por ?autoclick=' + pedido);
+          return;
+        }
+
+        var botao = document.querySelector('#kashpay-checkout button[onclick^="acceptUpsell"]');
+        if (!botao) { console.warn('[autoclick] botao de aprovar nao encontrado'); return; }
+
+        // Hoje o bloco desta pagina nao tem atraso. Se um dia tiver, a Kashpay
+        // esconde o elemento que carrega o atributo - o botao ou um pai dele.
+        var atrasado = botao.closest('[data-kashpay-upsell-delay]');
+        var pronto = function () { return !atrasado || botao.offsetParent !== null; };
+
+        var disparado = false;
+        var disparar = function (motivo) {
+          if (disparado) return;
+          disparado = true;
+          console.log('[autoclick] clicando no botao de aprovar (' + motivo + ')');
+          botao.click();
+        };
+
+        // O upsell-processor.js e sincrono no <head>, entao ja rodou quando
+        // chegamos aqui. A espera e so para nao clicar em um botao cujo
+        // onclick ainda chamaria uma funcao inexistente.
+        var quandoHouverScript = function (seguir) {
+          var ate = Date.now() + ESPERA_SCRIPT;
+          (function olhar() {
+            if (typeof window.acceptUpsell === 'function') return seguir();
+            if (Date.now() > ate) {
+              console.warn('[autoclick] upsell-processor.js nao carregou; nao cliquei');
+              return;
+            }
+            setTimeout(olhar, 100);
+          })();
+        };
+
+        quandoHouverScript(function () {
+          if (pronto()) { disparar('botao ja visivel'); return; }
+
+          console.log('[autoclick] esperando o atraso da Kashpay liberar o botao');
+          var obs = new MutationObserver(function () {
+            if (pronto()) { obs.disconnect(); disparar('atraso liberou o botao'); }
+          });
+          obs.observe(atrasado, { attributes: true, attributeFilter: ['style', 'class', 'hidden'] });
+          setTimeout(function () {
+            obs.disconnect();
+            if (!disparado) console.warn('[autoclick] o botao continuou escondido; nao cliquei');
+          }, ESPERA_BOTAO);
+        });
+      })();
+    </script>
 
 </body>
 </html>

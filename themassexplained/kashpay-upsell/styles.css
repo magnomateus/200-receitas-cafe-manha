@@ -367,3 +367,19 @@ body {
     .sub-value { font-size: 4.2rem; }
     .sub-currency { font-size: 1.55rem; }
 }
+
+/* ============================================================
+   MOSTRAR SO O BOTAO DE APROVAR
+
+   A pagina dispara a compra sozinha (ver o autoclick no fim do
+   <body>). Deixar um botao de recusa visivel ao lado so convida
+   o testador a clicar no errado.
+
+   Hoje o bloco que a Kashpay entregou para esta oferta so tem o
+   aprovar, entao a regra ainda nao esconde nada. Ela existe para
+   o dia em que o bloco vier com recusa - e vem em DIV junto, sem
+   aviso.
+   ============================================================ */
+#kashpay-checkout button[onclick^="declineUpsell"] {
+    display: none !important;
+}
