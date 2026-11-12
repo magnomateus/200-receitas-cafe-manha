@@ -1,9 +1,10 @@
 <!--
   ============================================================================
-  CHECKOUT ATIVO: VIS, visplatform.pro/checkout/produto-teste-now, nos dois
-  botoes. ATENCAO: "produto-teste-now" e um produto de TESTE.
+  CHECKOUT ATIVO: HOTMART, B107011371Q off=6pw6s07o, nos dois botoes.
+  Voltou da VIS em 11/11/2026 - o checkout de la era produto-teste-now, um
+  produto de TESTE.
 
-  Hotmart e Kashpay ficam GUARDADAS, nao apagadas: os dois hrefs estao em
+  VIS e Kashpay ficam GUARDADAS, nao apagadas: os dois hrefs estao em
   comentario imediatamente acima de cada um dos dois <a>.
 
   Os seletores do decorador de UTM e do InitiateCheckout cobrem os TRES
@@ -12,9 +13,10 @@
   SELETOR no InitiateCheckout. Deixar qualquer um para tras faz a
   atribuicao, ou o evento, sumir sem avisar.
 
-  A rota /kashpay/ e um clone desta pagina e FICOU NA HOTMART: desde
-  11/11/2026 as duas apontam para checkouts diferentes. O nome daquela rota
-  nao diz o gateway que ela usa - ver o cabecalho dela.
+  A rota /kashpay/ e um clone desta pagina e tambem esta na Hotmart: as duas
+  voltaram a apontar para o MESMO checkout, entao nao ha teste de gateway
+  rodando - os numeros das duas somam. O nome daquela rota nao diz o gateway
+  que ela usa - ver o cabecalho dela.
   ============================================================================
 -->
 <!DOCTYPE html>
@@ -310,9 +312,9 @@
                 </div>
 
                 <!-- Guardados, para voltar:
-                     Hotmart  href="https://pay.hotmart.com/B107011371Q?off=6pw6s07o&checkoutMode=10"
+                     VIS      href="https://visplatform.pro/checkout/produto-teste-now"
                      Kashpay  href="https://checkout.kashpay.com/checkout/checkout-1793210049597" -->
-                <a href="https://visplatform.pro/checkout/produto-teste-now" class="btn btn-primary btn-cta-main pulse" id="cta-main">
+                <a href="https://pay.hotmart.com/B107011371Q?off=6pw6s07o&checkoutMode=10" class="btn btn-primary btn-cta-main pulse" id="cta-main">
                     GET<br>THE MASS EXPLAINED ✝️
                 </a>
 
@@ -429,9 +431,9 @@
             <p class="final-subtitle">Transform the way you experience the Holy Mass</p>
 
             <!-- Guardados, para voltar:
-                 Hotmart  href="https://pay.hotmart.com/B107011371Q?off=6pw6s07o&checkoutMode=10"
+                 VIS      href="https://visplatform.pro/checkout/produto-teste-now"
                  Kashpay  href="https://checkout.kashpay.com/checkout/checkout-1793210049597" -->
-            <a href="https://visplatform.pro/checkout/produto-teste-now" id="cta-final" class="btn btn-primary btn-cta-final pulse">
+            <a href="https://pay.hotmart.com/B107011371Q?off=6pw6s07o&checkoutMode=10" id="cta-final" class="btn btn-primary btn-cta-final pulse">
                 GET THE MASS EXPLAINED FOR $9.90 USD ✝️
             </a>
         </div>
@@ -464,9 +466,10 @@
          O seletor cobre VIS, Kashpay e Hotmart: trocar so o href e deixar
          o seletor para tras faz a atribuicao sumir sem avisar.
 
-         A VIS le src (de utm_source) e sck (de xcod) - os dois campos que
-         este bloco monta. O snippet da VIS, carregado no head, ainda
-         acrescenta _vid aos links dela por conta propria. -->
+         Os campos src (de utm_source) e sck (de xcod) sao os que a VIS le;
+         a Hotmart le sck e src tambem, como parametros livres. O snippet da
+         VIS continua carregado no head e acrescenta _vid aos links DELA por
+         conta propria - sem link da VIS na pagina, isso nao faz nada. -->
     <script>
     (function () {
       var KEYS = ['xcod','sck','src','utm_source','utm_campaign','utm_medium','utm_content','utm_term','fbclid'];
