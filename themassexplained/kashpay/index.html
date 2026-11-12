@@ -4,25 +4,25 @@
   Rota: themassexplained.shop/kashpay/
 
   ATENCAO AO NOME DA ROTA: ela se chama /kashpay/ porque NASCEU para testar o
-  checkout da Kashpay. Hoje ela usa a HOTMART, igual a raiz. O nome ficou por
-  historia: nao renomeei porque a rota ja pode estar em anuncio ou link. Vá
-  pelo que esta no href, nao pelo nome da pasta.
+  checkout da Kashpay. Hoje ela usa a VIS. O nome ficou por historia: nao
+  renomeei porque a rota ja pode estar em anuncio ou link. Vá pelo que esta no
+  href, nao pelo nome da pasta.
 
   Conteudo, pixels e assets identicos a raiz, de proposito: num teste de
   gateway a unica variavel que deve mudar e o gateway. Meta 1133070482601279
   e a mesma pk da VIS da raiz, como combinado - os numeros das duas somam.
 
-  CHECKOUT ATIVO: HOTMART, B107011371Q off=6pw6s07o, nos dois botoes.
-  Voltou da VIS em 12/11/2026, junto com a raiz.
+  CHECKOUT ATIVO: VIS, visplatform.pro/checkout/the-mass-explained-complet,
+  nos dois botoes, desde 12/11/2026. Agora e o produto DE VERDADE: o
+  produto-teste-now, usado nas trocas, saiu e nao ficou guardado, de proposito.
+  O checkout mostra US$ 9.90, o mesmo preco que a pagina anuncia.
 
-  VIS e Kashpay ficam GUARDADAS, nao apagadas: os dois hrefs estao em
-  comentario imediatamente acima de cada um dos dois <a>. O href da VIS
-  guardado e o do produto DE VERDADE (the-mass-explained-complet, US$ 9.90),
-  nao o produto-teste-now, que saiu de vez.
+  Hotmart e Kashpay ficam GUARDADAS, nao apagadas: os dois hrefs estao em
+  comentario imediatamente acima de cada um dos dois <a>.
 
   NAO HA TESTE DE GATEWAY RODANDO: esta rota e a raiz apontam para o mesmo
-  checkout da Hotmart, e servem a MESMA pagina com o mesmo pixel e a mesma pk
-  da VIS - os numeros das duas somam.
+  checkout da VIS, e servem a MESMA pagina com o mesmo pixel e a mesma pk da
+  VIS - os numeros das duas somam.
 
   Os seletores do decorador e do InitiateCheckout cobrem os TRES dominios de
   proposito, justamente para a troca ser so o href. Eles aparecem em TRES
@@ -324,9 +324,9 @@
                 </div>
 
                 <!-- Guardados, para voltar:
-                     VIS      href="https://visplatform.pro/checkout/the-mass-explained-complet"
+                     Hotmart  href="https://pay.hotmart.com/B107011371Q?off=6pw6s07o&checkoutMode=10"
                      Kashpay  href="https://checkout.kashpay.com/checkout/checkout-1793210049597" -->
-                <a href="https://pay.hotmart.com/B107011371Q?off=6pw6s07o&checkoutMode=10" class="btn btn-primary btn-cta-main pulse" id="cta-main">
+                <a href="https://visplatform.pro/checkout/the-mass-explained-complet" class="btn btn-primary btn-cta-main pulse" id="cta-main">
                     GET<br>THE MASS EXPLAINED ✝️
                 </a>
 
@@ -443,9 +443,9 @@
             <p class="final-subtitle">Transform the way you experience the Holy Mass</p>
 
             <!-- Guardados, para voltar:
-                 VIS      href="https://visplatform.pro/checkout/the-mass-explained-complet"
+                 Hotmart  href="https://pay.hotmart.com/B107011371Q?off=6pw6s07o&checkoutMode=10"
                  Kashpay  href="https://checkout.kashpay.com/checkout/checkout-1793210049597" -->
-            <a href="https://pay.hotmart.com/B107011371Q?off=6pw6s07o&checkoutMode=10" id="cta-final" class="btn btn-primary btn-cta-final pulse">
+            <a href="https://visplatform.pro/checkout/the-mass-explained-complet" id="cta-final" class="btn btn-primary btn-cta-final pulse">
                 GET THE MASS EXPLAINED FOR $9.90 USD ✝️
             </a>
         </div>
@@ -478,10 +478,9 @@
          O seletor cobre VIS, Kashpay e Hotmart: trocar so o href e deixar
          o seletor para tras faz a atribuicao sumir sem avisar.
 
-         Os campos src (de utm_source) e sck (de xcod) sao os que a VIS le;
-         a Hotmart le sck e src tambem, como parametros livres. O snippet da
-         VIS continua carregado no head e acrescenta _vid aos links DELA por
-         conta propria - sem link da VIS na pagina, isso nao faz nada. -->
+         A VIS le src (de utm_source) e sck (de xcod) - os dois campos que
+         este bloco monta. O snippet da VIS, carregado no head, ainda
+         acrescenta _vid aos links dela por conta propria. -->
     <script>
     (function () {
       var KEYS = ['xcod','sck','src','utm_source','utm_campaign','utm_medium','utm_content','utm_term','fbclid'];
