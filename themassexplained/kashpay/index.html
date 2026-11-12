@@ -4,26 +4,32 @@
   Rota: themassexplained.shop/kashpay/
 
   ATENCAO AO NOME DA ROTA: ela se chama /kashpay/ porque NASCEU para testar o
-  checkout da Kashpay. Desde 09/11/2026 ela usa a HOTMART, igual a raiz. O
-  nome ficou por historia - nao renomeei porque a rota ja pode estar em
-  anuncio ou link. Vá pelo que esta no href, nao pelo nome da pasta.
+  checkout da Kashpay. Desde 12/11/2026 ela usa a VIS. O nome ficou por
+  historia - nao renomeei porque a rota ja pode estar em anuncio ou link.
+  Vá pelo que esta no href, nao pelo nome da pasta.
 
   Conteudo, pixels e assets identicos a raiz, de proposito: num teste de
   gateway a unica variavel que deve mudar e o gateway. Meta 1133070482601279
   e a mesma pk da VIS da raiz, como combinado - os numeros das duas somam.
 
-  CHECKOUT ATIVO: HOTMART, B107011371Q off=6pw6s07o, nos dois botoes.
+  CHECKOUT ATIVO: VIS, visplatform.pro/checkout/produto-teste-now, nos dois
+  botoes. ATENCAO: "produto-teste-now" e um produto de TESTE, enquanto a
+  pagina anuncia The Mass Explained por $9.90 - e esse valor que o
+  InitiateCheckout informa ao pixel.
 
-  A Kashpay fica GUARDADA, nao apagada: o href dela esta em comentario
-  imediatamente acima de cada um dos dois <a>, e e so trocar de volta. Ela
-  era: https://checkout.kashpay.com/checkout/checkout-1793210049597
+  Hotmart e Kashpay ficam GUARDADAS, nao apagadas: os dois hrefs estao em
+  comentario imediatamente acima de cada um dos dois <a>.
 
-  NAO HA MAIS TESTE DE GATEWAY RODANDO: esta rota e a raiz apontam para o
-  mesmo checkout da Hotmart, entao os numeros das duas somam.
+  TESTE DE GATEWAY RODANDO: esta rota esta na VIS e a raiz, na HOTMART. As
+  duas servem a MESMA pagina, com o mesmo pixel e a mesma pk da VIS, entao os
+  eventos das duas caem no mesmo lugar - para separar os numeros, use a URL
+  da rota no relatorio, ou uma utm_content diferente em cada anuncio.
 
-  Os seletores do decorador e do InitiateCheckout cobrem os dois dominios de
-  proposito - trocar so o href e deixar o seletor para tras faz a atribuicao
-  sumir sem avisar.
+  Os seletores do decorador e do InitiateCheckout cobrem os TRES dominios de
+  proposito, justamente para a troca ser so o href. Eles aparecem em TRES
+  lugares - querySelectorAll e closest no decorador, e SELETOR no
+  InitiateCheckout. Deixar qualquer um para tras faz a atribuicao, ou o
+  evento, sumir sem avisar.
   ============================================================================
 -->
 <!DOCTYPE html>
@@ -318,8 +324,10 @@
                     <p class="price-installments">(You can pay in your local currency)</p>
                 </div>
 
-                <!-- Kashpay guardada, para voltar: href="https://checkout.kashpay.com/checkout/checkout-1793210049597" -->
-                <a href="https://pay.hotmart.com/B107011371Q?off=6pw6s07o&checkoutMode=10" class="btn btn-primary btn-cta-main pulse" id="cta-main">
+                <!-- Guardados, para voltar:
+                     Hotmart  href="https://pay.hotmart.com/B107011371Q?off=6pw6s07o&checkoutMode=10"
+                     Kashpay  href="https://checkout.kashpay.com/checkout/checkout-1793210049597" -->
+                <a href="https://visplatform.pro/checkout/produto-teste-now" class="btn btn-primary btn-cta-main pulse" id="cta-main">
                     GET<br>THE MASS EXPLAINED ✝️
                 </a>
 
@@ -435,8 +443,10 @@
             <h2 class="final-title">Don't Miss This Opportunity!</h2>
             <p class="final-subtitle">Transform the way you experience the Holy Mass</p>
 
-            <!-- Kashpay guardada, para voltar: href="https://checkout.kashpay.com/checkout/checkout-1793210049597" -->
-            <a href="https://pay.hotmart.com/B107011371Q?off=6pw6s07o&checkoutMode=10" id="cta-final" class="btn btn-primary btn-cta-final pulse">
+            <!-- Guardados, para voltar:
+                 Hotmart  href="https://pay.hotmart.com/B107011371Q?off=6pw6s07o&checkoutMode=10"
+                 Kashpay  href="https://checkout.kashpay.com/checkout/checkout-1793210049597" -->
+            <a href="https://visplatform.pro/checkout/produto-teste-now" id="cta-final" class="btn btn-primary btn-cta-final pulse">
                 GET THE MASS EXPLAINED FOR $9.90 USD ✝️
             </a>
         </div>
@@ -466,8 +476,12 @@
          Le xcod/sck/src/utm_*/fbclid da URL, guarda na sessao e anexa
          ao link do checkout como sck/src/utm_*, preservando o que o link
          ja tiver. Mesmo efeito do script da UTMify, sem carrega-lo.
-         O seletor cobre Kashpay e Hotmart: trocar so o href e deixar o
-         seletor para tras faz a atribuicao sumir sem avisar. -->
+         O seletor cobre VIS, Kashpay e Hotmart: trocar so o href e deixar
+         o seletor para tras faz a atribuicao sumir sem avisar.
+
+         A VIS le src (de utm_source) e sck (de xcod) - os dois campos que
+         este bloco monta. O snippet da VIS, carregado no head, ainda
+         acrescenta _vid aos links dela por conta propria. -->
     <script>
     (function () {
       var KEYS = ['xcod','sck','src','utm_source','utm_campaign','utm_medium','utm_content','utm_term','fbclid'];
@@ -517,7 +531,7 @@
 
       function decorateAll() {
         var p = getParams();
-        var links = document.querySelectorAll('a[href*="checkout.kashpay.com"], a[href*="pay.hotmart.com"]');
+        var links = document.querySelectorAll('a[href*="visplatform.pro"], a[href*="checkout.kashpay.com"], a[href*="pay.hotmart.com"]');
         for (var i = 0; i < links.length; i++) {
           links[i].href = decorate(links[i].href, p);
         }
@@ -530,7 +544,7 @@
         decorateAll();
       }
       document.addEventListener('click', function (e) {
-        var a = e.target && e.target.closest ? e.target.closest('a[href*="checkout.kashpay.com"], a[href*="pay.hotmart.com"]') : null;
+        var a = e.target && e.target.closest ? e.target.closest('a[href*="visplatform.pro"], a[href*="checkout.kashpay.com"], a[href*="pay.hotmart.com"]') : null;
         if (a) a.href = decorate(a.href, getParams());
       }, true);
     })();
@@ -560,7 +574,7 @@
     <script>
     (function () {
       var FOLGA = 400;
-      var SELETOR = 'a[href*="checkout.kashpay.com"], a[href*="pay.hotmart.com"]';
+      var SELETOR = 'a[href*="visplatform.pro"], a[href*="checkout.kashpay.com"], a[href*="pay.hotmart.com"]';
 
       function rastreia() {
         if (typeof fbq === 'undefined') return;
