@@ -1,0 +1,29 @@
+OS PDFS DO CLIENTE VAO NESTA PASTA
+==================================
+
+Esta pasta esta vazia de proposito. O entregavel em ingles nao existe neste
+repositorio: o que existe, em missa-explicada/entregavel/pdfs/, esta em
+portugues.
+
+Enquanto um arquivo nao estiver aqui, o cartao dele na area de membros
+aparece como "Available soon" e os botoes ficam desligados - o cliente nao
+clica e cai num 404. Solte o PDF aqui com o nome EXATO da lista abaixo e o
+cartao liga sozinho, sem mexer em codigo nenhum.
+
+Os nomes tem de bater letra por letra (o servidor e Linux: maiuscula e
+minuscula sao coisas diferentes).
+
+  the-mass-explained.pdf                 The Mass Explained (o ebook)
+  bonus-the-value-of-silence.pdf          The Value of Silence
+  bonus-guide-to-confession.pdf           Guide to Confession
+  bonus-eucharistic-prayers.pdf           Eucharistic Prayers
+  bonus-postures-at-mass.pdf              Postures at Mass
+  bonus-old-and-new-testament.pdf         The Old and New Testament
+  bonus-psalms-explained.pdf              Psalms Explained
+
+Quer outro nome, outro titulo ou outro material? A lista BIBLIOTECA, no topo
+do app.js, e a unica fonte - titulo, descricao, capa e nome do arquivo.
+
+AVISO: estes arquivos ficam acessiveis por URL direta para quem souber o
+caminho. O portao de e-mail da area de membros e comodidade, nao seguranca.
+O cabecalho do index.html explica o caminho para isso valer de verdade.

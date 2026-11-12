@@ -1,0 +1,142 @@
+<!--
+  ============================================================================
+  AREA DE MEMBROS - The Mass Explained (ENGLISH / EN)
+  Rota: educationworld.site/the-mass-explained-app/
+  (o vhost de educationworld.site tem root = educationworld/ no repo, entao
+  cada subpasta vira rota sozinha - nao precisa mexer no nginx)
+
+  Para que serve: o cliente que comprou em themassexplained.shop entra aqui,
+  digita o e-mail e baixa o ebook e os 6 bonus. A interface e toda em INGLES;
+  estes comentarios, como nos outros arquivos, ficam em portugues.
+
+  O PORTAO NAO E SEGURANCA, E COMODIDADE. Foi o pedido: "so colocar o email e
+  ja entrar". Qualquer e-mail com formato valido entra, nada e conferido
+  contra a lista de compradores, e os PDFs em files/ ficam acessiveis por URL
+  direta para quem souber o caminho. Se um dia precisar valer de verdade, o
+  caminho esta anotado no fim deste comentario.
+
+  TRES ARQUIVOS, nada mais - sem framework, sem build, sem dependencia:
+    index.html   esta pagina (o portao e o esqueleto da biblioteca)
+    styles.css   todo o visual
+    app.js       a lista do material (BIBLIOTECA) e a logica do portao
+
+  PARA ADICIONAR OU TROCAR UM MATERIAL: so o app.js. A lista BIBLIOTECA, no
+  comeco dele, e a unica fonte - titulo, descricao, capa e nome do arquivo.
+
+  OS PDFS AINDA NAO ESTAO AQUI. A pasta files/ esta vazia de proposito: nao
+  existe o entregavel em ingles neste repositorio (o que existe,
+  missa-explicada/entregavel/pdfs/, e em portugues). Enquanto um arquivo nao
+  estiver no lugar, o cartao dele aparece como "Available soon" e os botoes
+  ficam desligados - ninguem clica e cai num 404. Basta soltar o PDF em
+  files/ com o nome exato que o app.js espera, e o cartao liga sozinho, sem
+  mexer em codigo. Os nomes estao em files/LEIA-ME.txt.
+
+  SUPORTE: o bloco de ajuda fica ESCONDIDO enquanto o e-mail de suporte for
+  o marcador PREENCHER_EMAIL_SUPORTE_EN, no app.js. Nao inventei um endereco:
+  o unico que achei nas paginas e o soporte@missaexplicadaes.shop, que e o do
+  espanhol e manda o cliente de ingles para o lugar errado.
+
+  noindex: area de membros nao entra no Google.
+
+  SE UM DIA PRECISAR SER DE VERDADE: o servidor tem PHP (ver videopack/*.php).
+  O caminho e um .php que (1) confere o e-mail contra a lista de compradores
+  guardada do lado do servidor - a lista NUNCA em .json ou .js, que sao
+  baixaveis, e isso vazaria o e-mail dos seus clientes - e (2) entrega o PDF
+  por leitura de arquivo, com os PDFs fora da pasta publica, para a URL do
+  arquivo nao existir. Nao fiz agora porque voce pediu o rapido, e porque
+  convem confirmar antes que o PHP esta ligado neste dominio.
+  ============================================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>The Mass Explained | Member Area</title>
+    <meta name="description" content="Access your copy of The Mass Explained and your exclusive bonuses.">
+
+    <link rel="icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <noscript>
+        <div class="aviso-js">
+            <h1>Please enable JavaScript</h1>
+            <p>This page needs JavaScript to show your material. Turn it on and reload.</p>
+        </div>
+    </noscript>
+
+    <!-- ================================================================
+         1. PORTAO. Escondido na marca: o app.js decide, na carga, se
+         mostra este ou a biblioteca - assim quem ja entrou antes nao ve
+         o formulario piscar na tela.
+         ================================================================ -->
+    <main id="portao" class="portao" hidden>
+        <div class="portao-cartao">
+            <p class="marca">The Mass Explained</p>
+            <h1>Welcome back</h1>
+            <p class="portao-texto">Enter the email you used at checkout to open your material.</p>
+
+            <form id="forma" novalidate>
+                <label for="email">Your email</label>
+                <input type="email" id="email" name="email" autocomplete="email"
+                       inputmode="email" placeholder="you@example.com" required>
+                <p id="erro" class="erro" role="alert" hidden></p>
+                <button type="submit" class="botao">Access my material</button>
+            </form>
+
+            <p class="portao-rodape">Your email stays on this device. We use it only to remember you.</p>
+        </div>
+    </main>
+
+    <!-- ================================================================
+         2. BIBLIOTECA. Os cartoes sao montados pelo app.js a partir da
+         lista BIBLIOTECA - nao escreva cartao na mao aqui.
+         ================================================================ -->
+    <div id="biblioteca" class="biblioteca" hidden>
+
+        <header class="topo">
+            <p class="marca">The Mass Explained</p>
+            <div class="topo-conta">
+                <span id="conta-email" class="conta-email"></span>
+                <button type="button" id="sair" class="sair">Not you? Sign out</button>
+            </div>
+        </header>
+
+        <main class="conteudo">
+            <section class="boas-vindas">
+                <h1>Your material</h1>
+                <p>Everything you bought is right here. Read it online or download it to keep.</p>
+            </section>
+
+            <section class="secao">
+                <h2 class="secao-titulo">Your ebook</h2>
+                <div id="grade-principal" class="grade grade-principal"></div>
+            </section>
+
+            <section class="secao">
+                <h2 class="secao-titulo">Your 6 exclusive bonuses</h2>
+                <div id="grade-bonus" class="grade"></div>
+            </section>
+
+            <!-- Escondido enquanto o e-mail de suporte nao for preenchido no app.js -->
+            <section id="suporte" class="suporte" hidden>
+                <h2>Need help?</h2>
+                <p>If a file will not open, write to us and we will sort it out.</p>
+                <a id="suporte-link" class="botao botao-claro" href="#">Email support</a>
+            </section>
+        </main>
+
+        <footer class="rodape">
+            <p>The Mass Explained &middot; Member area</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

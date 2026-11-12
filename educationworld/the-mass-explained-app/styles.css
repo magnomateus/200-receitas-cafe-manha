@@ -1,0 +1,345 @@
+/* ============================================================
+   AREA DE MEMBROS - The Mass Explained (EN)
+
+   As cores sao as mesmas da pagina de vendas
+   (themassexplained/assets/styles.css), para o cliente sentir
+   que continua na mesma casa depois de comprar.
+   ============================================================ */
+
+:root {
+    --gold: #c9a227;
+    --gold-light: #d4b84a;
+    --gold-dark: #a68521;
+    --wine: #722f37;
+    --wine-dark: #5a252c;
+    --cream: #f5f0e6;
+    --cream-dark: #ebe5d9;
+
+    --text-dark: #2c2c2c;
+    --text-medium: #4a4a4a;
+    --text-light: #6b6b6b;
+    --branco: #ffffff;
+
+    --fonte-titulo: 'Playfair Display', Georgia, serif;
+    --fonte-corpo: 'Open Sans', 'Roboto', sans-serif;
+
+    --raio: 12px;
+    --sombra: 0 4px 18px rgba(0, 0, 0, 0.09);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--fonte-corpo);
+    color: var(--text-dark);
+    background: var(--cream);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+[hidden] { display: none !important; }
+
+h1, h2, h3 { font-family: var(--fonte-titulo); line-height: 1.25; }
+
+.marca {
+    font-family: var(--fonte-titulo);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    font-size: 0.82rem;
+}
+
+/* ---------- botoes ---------- */
+.botao {
+    display: inline-block;
+    width: 100%;
+    padding: 14px 18px;
+    border: none;
+    border-radius: var(--raio);
+    background: linear-gradient(135deg, var(--wine), var(--wine-dark));
+    color: var(--branco);
+    font-family: var(--fonte-corpo);
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+.botao:hover { transform: translateY(-2px); box-shadow: var(--sombra); }
+.botao:active { transform: translateY(0); }
+
+.botao-claro {
+    background: var(--branco);
+    color: var(--wine);
+    border: 2px solid var(--wine);
+}
+
+.botao-ouro { background: linear-gradient(135deg, var(--gold), var(--gold-dark)); }
+
+.botao:disabled,
+.botao[aria-disabled="true"] {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* ---------- aviso de JS desligado ---------- */
+.aviso-js {
+    max-width: 520px;
+    margin: 18vh auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.aviso-js h1 { font-size: 1.6rem; margin-bottom: 10px; }
+
+/* ============================================================
+   1. PORTAO
+   ============================================================ */
+.portao {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+    background:
+        radial-gradient(circle at 20% 15%, rgba(201, 162, 39, 0.16), transparent 42%),
+        radial-gradient(circle at 85% 85%, rgba(114, 47, 55, 0.14), transparent 45%),
+        var(--cream);
+}
+
+.portao-cartao {
+    width: 100%;
+    max-width: 420px;
+    background: var(--branco);
+    border-radius: 18px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    padding: 34px 26px 26px;
+    text-align: center;
+}
+
+.portao-cartao h1 { font-size: 1.75rem; margin: 10px 0 8px; }
+
+.portao-texto {
+    color: var(--text-medium);
+    font-size: 0.95rem;
+    margin-bottom: 22px;
+}
+
+.portao form { text-align: left; }
+
+.portao label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-light);
+    margin-bottom: 7px;
+}
+
+.portao input {
+    width: 100%;
+    padding: 14px 15px;
+    font-family: var(--fonte-corpo);
+    font-size: 1rem;
+    color: var(--text-dark);
+    background: var(--cream);
+    border: 2px solid var(--cream-dark);
+    border-radius: var(--raio);
+    margin-bottom: 14px;
+}
+
+.portao input:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: var(--branco);
+}
+
+.erro {
+    color: #a3242f;
+    font-size: 0.88rem;
+    font-weight: 600;
+    margin: -6px 0 12px;
+}
+
+.portao-rodape {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    margin-top: 18px;
+}
+
+/* ============================================================
+   2. BIBLIOTECA
+   ============================================================ */
+.topo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: var(--branco);
+    border-bottom: 3px solid var(--gold);
+}
+
+.topo-conta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.conta-email {
+    font-size: 0.85rem;
+    color: var(--text-medium);
+    word-break: break-all;
+}
+
+.sair {
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: var(--fonte-corpo);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--wine);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.conteudo {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 30px 16px 10px;
+}
+
+.boas-vindas { text-align: center; margin-bottom: 34px; }
+.boas-vindas h1 { font-size: 2rem; margin-bottom: 8px; }
+.boas-vindas p { color: var(--text-medium); }
+
+.secao { margin-bottom: 40px; }
+
+.secao-titulo {
+    font-size: 1.35rem;
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 12px;
+}
+
+.secao-titulo::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 54px;
+    height: 3px;
+    background: var(--gold);
+    border-radius: 2px;
+}
+
+.grade {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+}
+
+.grade-principal { grid-template-columns: 1fr; max-width: 560px; margin: 0 auto; }
+
+/* ---------- cartao de material ---------- */
+.item {
+    background: var(--branco);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.item-capa {
+    background: var(--cream-dark);
+    padding: 18px;
+    text-align: center;
+}
+
+.item-capa img {
+    max-width: 100%;
+    max-height: 210px;
+    width: auto;
+    height: auto;
+    display: inline-block;
+    border-radius: 6px;
+}
+
+.grade-principal .item-capa img { max-height: 280px; }
+
+.item-corpo {
+    padding: 16px 18px 18px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.item-corpo h3 { font-size: 1.1rem; margin-bottom: 6px; }
+
+.item-desc {
+    font-size: 0.9rem;
+    color: var(--text-medium);
+    flex: 1;
+    margin-bottom: 14px;
+}
+
+.item-acoes { display: flex; gap: 10px; }
+.item-acoes .botao { padding: 11px 12px; font-size: 0.92rem; }
+
+.selo {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 4px 9px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+    background: var(--cream-dark);
+    color: var(--text-light);
+}
+
+.item-em-breve .item-capa img { opacity: 0.45; filter: grayscale(0.6); }
+
+/* ---------- suporte e rodape ---------- */
+.suporte {
+    max-width: 480px;
+    margin: 0 auto 40px;
+    padding: 24px 22px;
+    background: var(--branco);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+    text-align: center;
+}
+
+.suporte h2 { font-size: 1.25rem; margin-bottom: 8px; }
+.suporte p { color: var(--text-medium); font-size: 0.93rem; margin-bottom: 16px; }
+
+.rodape {
+    padding: 22px 16px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-light);
+    border-top: 1px solid var(--cream-dark);
+}
+
+/* ---------- telas pequenas ---------- */
+@media (max-width: 480px) {
+    .boas-vindas h1 { font-size: 1.6rem; }
+    .portao-cartao { padding: 28px 20px 22px; }
+    .item-acoes { flex-direction: column; }
+    .topo { justify-content: center; text-align: center; }
+    .topo-conta { justify-content: center; }
+}
