@@ -47,62 +47,6 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   2. "Procesando el pago" — reforça a urgência, Montserrat forte.
-   -------------------------------------------------------------------------- */
-.processing {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.25rem;      /* ~20px */
-    font-weight: 800;
-    color: var(--burgundy);
-    margin-bottom: 18px;
-}
-
-.dots span {
-    animation: blink 1.4s infinite both;
-}
-.dots span:nth-child(2) { animation-delay: 0.2s; }
-.dots span:nth-child(3) { animation-delay: 0.4s; }
-
-@keyframes blink {
-    0%, 100% { opacity: 0.2; }
-    50%      { opacity: 1; }
-}
-
-/* --------------------------------------------------------------------------
-   3. Barra de progresso — trilha clara + preenchimento burgundy -> dourado.
-   -------------------------------------------------------------------------- */
-.progress-block {
-    margin-bottom: 30px;
-}
-
-.progress-track {
-    height: 30px;
-    background: #e6e2da;      /* trilha cinza-clara, como a referência */
-    border-radius: 6px;
-    overflow: hidden;
-}
-
-.progress-fill {
-    /* 98% — passo 3 de 3 (App). As barras sobem 90 -> 95 -> 98. */
-    width: 98%;
-    height: 100%;
-    background: var(--burgundy);
-    border-radius: 6px 0 0 6px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding-right: 12px;
-}
-
-.progress-pct {
-    font-family: 'Montserrat', sans-serif;
-    color: #fff;
-    font-weight: 800;
-    font-size: 0.95rem;
-    line-height: 1;
-}
-
-/* --------------------------------------------------------------------------
    4. Headline — grande e em negrito forte (burgundy; era branco na ref).
    -------------------------------------------------------------------------- */
 .headline {
@@ -338,7 +282,6 @@ body {
    -------------------------------------------------------------------------- */
 @media (min-width: 640px) {
     .page { padding-top: 44px; }
-    .processing { font-size: 1.4rem; }
     .headline { font-size: 2.6rem; }
     .highlight { font-size: 1.85rem; }
     .body-text { font-size: 1.18rem; }
@@ -406,7 +349,7 @@ body {
    que e o papel dele, mas nunca escondido. Alvo de toque de 44px.
    -------------------------------------------------------------------------- */
 .decline {
-    margin-top: 18px;
+    margin-top: 10px;      /* dentro do cartao, colado ao aprovar */
     text-align: center;
 }
 
@@ -426,4 +369,29 @@ body {
 .decline a:hover,
 .decline a:focus {
     color: var(--ink);
+}
+
+/* --------------------------------------------------------------------------
+   Linha sob o titulo. Carrega o que o "Processing payment..." fingia dizer,
+   so que verdade: a compra ja esta fechada, e este item e opcional.
+   -------------------------------------------------------------------------- */
+.headline-sub {
+    font-size: 1.02rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin: -14px auto 26px;
+    max-width: 30em;
+}
+
+/* Sem order_id na URL o widget nao monta botao. O cartao explica em vez de
+   ficar vazio - foi exatamente o que pareceu defeito ao abrir a rota na mao. */
+.sem-pedido {
+    margin-top: 6px;
+    padding: 14px 12px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    background: #faf6ee;
+    border: 1px dashed var(--line);
+    border-radius: 10px;
 }

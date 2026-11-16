@@ -133,23 +133,24 @@
     <main class="page">
         <div class="container">
 
-            <!-- 2. Processing payment -->
-            <p class="processing">Processing payment<span class="dots"><span>.</span><span>.</span><span>.</span></span></p>
+            <!-- 2 e 3. O "Processing payment..." e a barra de progresso
+                 sairam em 16/11/2026. O pagamento nao estava sendo
+                 processado: a compra ja foi aprovada antes de o comprador
+                 chegar aqui, e a barra subia de 90 para 98% sem medir coisa
+                 alguma. Era urgencia encenada. Quem precisa dizer que a
+                 compra esta fechada e a linha .headline-sub, logo abaixo. -->
 
-            <!-- 3. Progress bar — % inside the bar -->
-            <section class="progress-block">
-                <div class="progress-track">
-                    <div class="progress-fill"><span class="progress-pct">98%</span></div>
-                </div>
-            </section>
-
-            <!-- 4. Headline -->
-            <h1 class="headline">You've just received a special gift, available only on this page.</h1>
+            <!-- 4. Headline. Era "You've just received a special gift,
+                 available only on this page.", que prometia presente numa
+                 pagina que vende. Agora diz o que a oferta e: um item a mais,
+                 opcional, somado a uma compra que ja esta fechada. -->
+            <h1 class="headline">One more item you can add to your order</h1>
+            <p class="headline-sub">Your purchase is already confirmed. This is an optional extra — add it to the same order now, or skip it and keep only what you bought.</p>
 
             <!-- 5. Checkout da VIS. Como na Kashpay e ao contrario da Hotmart,
                  nao ha iframe: o widget monta o botao no DOM desta pagina. -->
             <section class="checkout">
-                <p class="checkout-eyebrow">Your exclusive offer</p>
+                <p class="checkout-eyebrow">Optional add-on</p>
                 <div class="checkout-card">
                     <!-- Widget de upsell da VIS, colado como o Mateus entregou.
                          O visual do botao vem do painel da VIS (Funis > oferta >
@@ -176,24 +177,32 @@
                     <script>
                       VISUpsell.init({ upsellId: 8, locale: 'en' }).mount('#vis-upsell');
                     </script>
+
+                    <!-- ====================================================
+                         RECUSAR, DENTRO do cartao e logo abaixo do aprovar:
+                         as duas saidas no mesmo lugar, que e onde o comprador
+                         esta olhando.
+
+                         O widget so monta o "No thanks" dele quando a URL traz
+                         vis_next=1; sem isso a pagina nao daria caminho nenhum
+                         para dizer nao. Este link vai para o MESMO endereco que
+                         o widget usaria - a pagina da VIS que registra a recusa
+                         e segue o funil. Nao chama, nao redefine e nao embrulha
+                         nada do widget.
+                         ==================================================== -->
+                    <p class="decline" hidden>
+                        <a id="recusar" href="#">No thanks, I'll skip this offer</a>
+                    </p>
+
+                    <!-- SEM PEDIDO NA URL. E este o motivo de "o botao nao
+                         aparecer" quando se abre a rota na mao: o widget da VIS
+                         so monta botao com order_id, e ate aqui o cartao ficava
+                         vazio sem dizer por que. -->
+                    <p class="sem-pedido" hidden>
+                        Open this offer from the link you received right after your purchase —
+                        that link carries your order, and without it there is nothing to add.
+                    </p>
                 </div>
-
-                <!-- ========================================================
-                     RECUSAR. O widget so monta o "No thanks" dele quando a
-                     URL traz vis_next=1; sem isso a pagina nao dava caminho
-                     nenhum para dizer nao. Este link vai para o MESMO
-                     endereco que o widget usaria - a pagina da VIS que
-                     registra a recusa e segue o funil. Nao chama, nao
-                     redefine e nao embrulha nada do widget.
-
-                     Nasce escondido e o script abaixo o mostra: sem order_id
-                     na URL nao existe compra para recusar (e o widget nem
-                     monta botao de aprovar), entao um link ali so levaria a
-                     um erro.
-                     ======================================================== -->
-                <p class="decline" hidden>
-                    <a id="recusar" href="#">No thanks, I'll skip this offer</a>
-                </p>
 
                 <script>
                   (function () {
@@ -214,7 +223,14 @@
                     catch (e) { return; }
 
                     var pedido = busca.get('order_id');
-                    if (!pedido) return;          // nada comprado, nada a recusar
+                    if (!pedido) {
+                      // Sem pedido nao ha o que aceitar nem o que recusar: o
+                      // widget nao monta botao. Em vez de deixar o cartao
+                      // vazio, a pagina diz por que.
+                      var aviso = document.querySelector('.sem-pedido');
+                      if (aviso) aviso.hidden = false;
+                      return;
+                    }
 
                     var base = busca.get('vis_base');
                     if (ORIGENS.indexOf(base) === -1) base = PADRAO;

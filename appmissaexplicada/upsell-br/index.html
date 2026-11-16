@@ -81,30 +81,121 @@
 </head>
 <body>
 
-    <!-- 1. Barra de aviso fixa -->
-    <div class="warning-bar">
-        Por favor, não feche nem atualize esta página, podem ocorrer erros ao processar seu pagamento.
-    </div>
-
     <main class="page">
         <div class="container">
 
-            <!-- 2. Processando o pagamento -->
-            <p class="processing">Processando o pagamento<span class="dots"><span>.</span><span>.</span><span>.</span></span></p>
+            <!-- 1, 2 e 3. A barra fixa de aviso, o "Processando o
+                 pagamento..." e a barra de progresso sairam em 16/11/2026.
+                 O pagamento nao estava sendo processado: a compra ja foi
+                 aprovada antes de o comprador chegar aqui. O .page perdeu
+                 junto o padding-top que so existia por causa da barra. -->
 
-            <!-- 3. Barra de progresso -->
-            <section class="progress-block">
-                <div class="progress-track">
-                    <div class="progress-fill"><span class="progress-pct">90%</span></div>
-                </div>
-            </section>
+            <!-- 4. Headline. Era "Voce acabou de receber um presente
+                 especial, disponivel so nesta pagina.", que prometia presente
+                 numa pagina que vende. Agora diz o que a oferta e: um item a
+                 mais, opcional, somado a uma compra que ja esta fechada. -->
+            <h1 class="headline">Mais um item que você pode somar ao seu pedido</h1>
+            <p class="headline-sub">Sua compra já está confirmada. Este é um item opcional — inclua no mesmo pedido agora, ou siga sem ele.</p>
 
-            <!-- 4. Headline -->
-            <h1 class="headline">Você acabou de receber um presente especial, disponível só nesta página.</h1>
-
-            <!-- 5. Checkout VIS (widget de upsell — renderiza o botão de compra + recusa) -->
+            <!-- 5. Checkout da VIS, no mesmo desenho das irmas em ingles:
+                 um cartao com o preco, o botao de aprovar (montado pelo
+                 widget) e a recusa logo abaixo dele - as duas saidas no
+                 mesmo lugar, que e onde o comprador esta olhando. -->
             <section class="checkout">
-                <div id="vis-upsell"></div>
+                <p class="checkout-eyebrow">Item opcional</p>
+                <div class="checkout-card">
+
+                    <!-- PRECO. O widget da VIS nao recebe preco: o endpoint
+                         que ele chama antes de montar devolve so o estilo do
+                         botao. Entao esta linha e escrita a mao - e esta
+                         FALTANDO. Nao sei quanto custa o upsell 5, e preco
+                         deduzido nao se escreve em pagina de venda.
+                         >>> TROQUE PREENCHER_PRECO_BR PELO VALOR e o bloco
+                             aparece sozinho. Formato: R$ 29,90 <<<
+                         Enquanto for o marcador, o cartao mostra o botao sem
+                         preco, que e melhor do que mostrar um preco errado. -->
+                    <div class="price" hidden>
+                        <p class="price-value">PREENCHER_PRECO_BR</p>
+                        <p class="price-note">Pagamento único &middot; acesso imediato</p>
+                    </div>
+
+                    <div id="vis-upsell"></div>
+
+                    <!-- RECUSAR. O widget so monta o "Nao, obrigado" dele
+                         quando a URL traz vis_next=1; sem isso a pagina nao
+                         daria caminho nenhum para dizer nao. Este link vai
+                         para o MESMO endereco que o widget usaria. Nao chama,
+                         nao redefine e nao embrulha nada do widget. -->
+                    <p class="decline" hidden>
+                        <a id="recusar" href="#">Não, obrigado — quero seguir sem este item</a>
+                    </p>
+
+                    <!-- Sem order_id na URL o widget nao monta botao nenhum.
+                         Em vez de deixar o cartao vazio, a pagina diz por que. -->
+                    <p class="sem-pedido" hidden>
+                        Abra esta oferta pelo link que chegou logo depois da sua compra —
+                        é esse link que carrega o seu pedido; sem ele não há o que incluir.
+                    </p>
+                </div>
+
+                <script>
+                  (function () {
+                    // Os mesmos enderecos que o widget aceita em vis_base. O
+                    // padrao daqui e visplatform.pro porque e o baseUrl que o
+                    // init desta pagina passa - a recusa tem de cair onde a
+                    // compra cai.
+                    var ORIGENS = ['https://vis.semeardigital.com.br',
+                                   'https://visplatform.pro',
+                                   'https://www.visplatform.pro'];
+                    var PADRAO = 'https://visplatform.pro';
+                    var UPSELL = 5;
+
+                    // O preco so aparece quando alguem trocar o marcador.
+                    var preco = document.querySelector('.price-value');
+                    if (preco && preco.textContent.indexOf('PREENCHER') === -1) {
+                      document.querySelector('.price').hidden = false;
+                    }
+
+                    var bloco = document.querySelector('.decline');
+                    var link = document.getElementById('recusar');
+                    if (!bloco || !link) return;
+
+                    var busca;
+                    try { busca = new URLSearchParams(location.search); }
+                    catch (e) { return; }
+
+                    var pedido = busca.get('order_id');
+                    if (!pedido) {
+                      var aviso = document.querySelector('.sem-pedido');
+                      if (aviso) aviso.hidden = false;
+                      return;
+                    }
+
+                    var base = busca.get('vis_base');
+                    if (ORIGENS.indexOf(base) === -1) base = PADRAO;
+
+                    link.href = base + '/checkout/upsell/' +
+                                encodeURIComponent(pedido) +
+                                '?recusar=' + encodeURIComponent(UPSELL);
+                    bloco.hidden = false;
+
+                    // Se o widget montar a recusa dele (vis_next=1 na URL),
+                    // esconde a nossa, para nao ficarem duas na tela.
+                    var host = document.getElementById('vis-upsell');
+                    if (!host) return;
+                    var confere = function () {
+                      if (!host.querySelector('a[href*="recusar="]')) return false;
+                      bloco.hidden = true;
+                      return true;
+                    };
+                    if (confere()) return;
+                    var obs = new MutationObserver(function () {
+                      if (confere()) obs.disconnect();
+                    });
+                    obs.observe(host, { childList: true, subtree: true });
+                    setTimeout(function () { obs.disconnect(); }, 20000);
+                  })();
+                </script>
             </section>
 
             <!-- 6. Linha de destaque (valor) -->
