@@ -36,28 +36,8 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* --------------------------------------------------------------------------
-   1. Barra de aviso fixa — grande e forte, como a barra vermelha da ref.
-   -------------------------------------------------------------------------- */
-.warning-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    background: var(--burgundy);
-    color: #fff;
-    text-align: center;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.05rem;      /* ~17px, sobe no desktop */
-    font-weight: 700;
-    line-height: 1.35;
-    padding: 12px 16px;
-    box-shadow: 0 2px 14px rgba(139, 29, 29, 0.28);
-}
-
 .page {
-    padding: 92px 20px 44px; /* espaço da barra fixa */
+    padding: 36px 20px 44px;
 }
 
 .container {
@@ -357,8 +337,7 @@ body {
    Desktop — texto ainda maior, no espírito da referência.
    -------------------------------------------------------------------------- */
 @media (min-width: 640px) {
-    .warning-bar { font-size: 1.2rem; padding: 14px 18px; }
-    .page { padding-top: 100px; }
+    .page { padding-top: 44px; }
     .processing { font-size: 1.4rem; }
     .headline { font-size: 2.6rem; }
     .highlight { font-size: 1.85rem; }
@@ -401,4 +380,22 @@ body {
 @media (max-width: 420px) {
     .price-value { font-size: 2rem; }
     .price-note { font-size: 0.72rem; letter-spacing: 0.05em; }
+}
+
+/* O "/month" colado no valor: menor que o numero, mas do mesmo tom - tem de
+   ser lido junto, nunca como letra miuda. */
+.price-period {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+/* As condicoes da assinatura. Nao e letra miuda de propósito: fica legivel,
+   porque cobrar todo mes sem o comprador ter entendido e o caminho curto
+   para o estorno. */
+.price-terms {
+    margin-top: 10px;
+    font-size: 0.86rem;
+    line-height: 1.45;
+    color: var(--ink-soft);
 }

@@ -26,8 +26,10 @@
   oferta > Botoes), buscado pelo numero da oferta - o codigo colado aqui nao
   muda. Nao envolver, nao renomear, nao reimplementar o widget.
 
-  PRECO: $7.90 USD, escrito a mao no HTML (bloco .price, dentro do cartao do
-  checkout) porque o widget da VIS nao recebe preco - o endpoint /botao
+  PRECO: $7.90 USD POR MES, assinatura sem prazo - a pagina diz isso com
+  todas as letras, no valor (/month) e numa linha de condicoes legivel,
+  nao em letra miuda. Escrito a mao no HTML (bloco .price, dentro do
+  cartao do checkout) porque o widget da VIS nao recebe preco - o endpoint /botao
   devolve so o estilo do botao. SE MUDAR NO PAINEL DA VIS, MUDE NO HTML.
   O valor veio das vendas reais da VIS de 12/11/2026 (produto 111, "APP THE MASS EXPLAINED"
   da VIS, R$ 44,35 convertidos pela taxa 5,6151 que o produto de frente
@@ -117,10 +119,10 @@
 </head>
 <body>
 
-    <!-- 1. Fixed warning bar -->
-    <div class="warning-bar">
-        Please don't close or refresh this page — errors may occur while processing your payment.
-    </div>
+    <!-- 1. A barra fixa de aviso saiu em 16/11/2026, a pedido do Mateus.
+         Os numeros dos blocos abaixo seguem como estavam, para o diff nao
+         virar ruido. O .page perdeu junto o padding-top que existia so
+         para dar espaco a ela. -->
 
     <main class="page">
         <div class="container">
@@ -155,10 +157,12 @@
                          >>> SE O PRECO MUDAR NO PAINEL DA VIS, MUDE AQUI <<<
                          Pagina anunciando um valor e checkout cobrando outro
                          e o pior defeito que esta pagina pode ter.
-                         Valor de hoje: $7.90 USD (produto 111, "APP THE MASS EXPLAINED" da VIS). -->
+                         Valor de hoje: $7.90 USD POR MES, assinatura sem
+                         prazo (produto 111, "APP THE MASS EXPLAINED" da VIS). -->
                     <div class="price">
-                        <p class="price-value">$7.90 USD</p>
-                        <p class="price-note">One-time payment &middot; Instant access</p>
+                        <p class="price-value">$7.90 USD<span class="price-period">/month</span></p>
+                        <p class="price-note">Monthly subscription &middot; instant access</p>
+                        <p class="price-terms">You will be charged $7.90 USD every month, with no end date, until you cancel.</p>
                     </div>
 
                     <div id="vis-upsell"></div>

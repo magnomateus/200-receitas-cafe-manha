@@ -35,28 +35,8 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* --------------------------------------------------------------------------
-   1. Barra de aviso fixa — grande e forte, como a barra vermelha da ref.
-   -------------------------------------------------------------------------- */
-.warning-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    background: var(--burgundy);
-    color: #fff;
-    text-align: center;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.05rem;      /* ~17px, sobe no desktop */
-    font-weight: 700;
-    line-height: 1.35;
-    padding: 12px 16px;
-    box-shadow: 0 2px 14px rgba(139, 29, 29, 0.28);
-}
-
 .page {
-    padding: 92px 20px 44px; /* espaço da barra fixa */
+    padding: 36px 20px 44px;
 }
 
 .container {
@@ -275,8 +255,7 @@ body {
    Desktop — texto ainda maior, no espírito da referência.
    -------------------------------------------------------------------------- */
 @media (min-width: 640px) {
-    .warning-bar { font-size: 1.2rem; padding: 14px 18px; }
-    .page { padding-top: 100px; }
+    .page { padding-top: 44px; }
     .processing { font-size: 1.4rem; }
     .headline { font-size: 2.6rem; }
     .highlight { font-size: 1.85rem; }
