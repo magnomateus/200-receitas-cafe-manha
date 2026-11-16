@@ -399,3 +399,31 @@ body {
     line-height: 1.45;
     color: var(--ink-soft);
 }
+
+/* --------------------------------------------------------------------------
+   RECUSAR. Visivel e legivel de proposito: 16px, peso 600, cor de texto
+   comum. Fica abaixo do cartao e sem o destaque do aprovar - secundario,
+   que e o papel dele, mas nunca escondido. Alvo de toque de 44px.
+   -------------------------------------------------------------------------- */
+.decline {
+    margin-top: 18px;
+    text-align: center;
+}
+
+.decline a {
+    display: inline-block;
+    min-height: 44px;
+    padding: 11px 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--ink-soft);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.decline a:hover,
+.decline a:focus {
+    color: var(--ink);
+}

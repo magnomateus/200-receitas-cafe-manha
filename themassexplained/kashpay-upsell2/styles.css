@@ -263,23 +263,6 @@ body {
     .product-cover { max-width: 340px; }
 }
 
-/* ============================================================
-   MOSTRAR SO O BOTAO DE APROVAR
-
-   A pagina dispara a compra sozinha (ver o autoclick no fim do
-   <body>). Deixar um botao de recusa visivel ao lado so convida
-   o testador a clicar no errado.
-
-   O widget da VIS poe data-vis-upsell SO no botao de aprovar, e
-   um "No thanks" aparece se o painel configurar um. Entao a regra
-   esconde todo botao ou link dentro do #vis-upsell que nao leve
-   esse atributo - inclusive os que ainda nem existem.
-   ============================================================ */
-#vis-upsell button:not([data-vis-upsell]),
-#vis-upsell a {
-    display: none !important;
-}
-
 /* --------------------------------------------------------------------------
    PRECO. Dentro do cartao, logo acima do botao do widget: o widget da VIS
    nao mostra valor nenhum, entao sem esta linha o visitante clicaria em
@@ -313,4 +296,32 @@ body {
 @media (max-width: 420px) {
     .price-value { font-size: 2rem; }
     .price-note { font-size: 0.72rem; letter-spacing: 0.05em; }
+}
+
+/* --------------------------------------------------------------------------
+   RECUSAR. Visivel e legivel de proposito: 16px, peso 600, cor de texto
+   comum. Fica abaixo do cartao e sem o destaque do aprovar - secundario,
+   que e o papel dele, mas nunca escondido. Alvo de toque de 44px.
+   -------------------------------------------------------------------------- */
+.decline {
+    margin-top: 18px;
+    text-align: center;
+}
+
+.decline a {
+    display: inline-block;
+    min-height: 44px;
+    padding: 11px 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--ink-soft);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.decline a:hover,
+.decline a:focus {
+    color: var(--ink);
 }

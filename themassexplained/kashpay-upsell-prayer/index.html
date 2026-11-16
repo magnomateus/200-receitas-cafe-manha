@@ -19,6 +19,12 @@
   (Funis > oferta > Botoes), buscado pelo numero da oferta - o codigo colado
   aqui nao muda. Nao envolver, nao renomear, nao reimplementar o widget.
 
+  RECUSAR: a pagina tem o seu proprio link de "No thanks", abaixo do cartao.
+  O widget so monta o dele quando a URL traz vis_next=1 (followFunnel), e
+  sem esse parametro nao havia caminho nenhum para o comprador dizer nao.
+  O link aponta para o MESMO endereco que o widget usaria. Se o widget
+  montar o dele, o nosso se esconde sozinho - nao ficam dois.
+
   PRECO: $49.90 USD, escrito a mao no HTML (bloco .price, dentro do cartao do
   checkout) porque o widget da VIS nao recebe preco - o endpoint /botao
   devolve so o estilo do botao. SE MUDAR NO PAINEL DA VIS, MUDE NO HTML.
@@ -182,9 +188,74 @@
                     <div id="vis-upsell"></div>
                     <script src="https://vis.semeardigital.com.br/js/vis-upsell.js"></script>
                     <script>
-                      VISUpsell.init({ upsellId: 7 }).mount('#vis-upsell');
+                      VISUpsell.init({ upsellId: 7, locale: 'en' }).mount('#vis-upsell');
                     </script>
                 </div>
+
+                <!-- ========================================================
+                     RECUSAR. O widget so monta o "No thanks" dele quando a
+                     URL traz vis_next=1; sem isso a pagina nao dava caminho
+                     nenhum para dizer nao. Este link vai para o MESMO
+                     endereco que o widget usaria - a pagina da VIS que
+                     registra a recusa e segue o funil. Nao chama, nao
+                     redefine e nao embrulha nada do widget.
+
+                     Nasce escondido e o script abaixo o mostra: sem order_id
+                     na URL nao existe compra para recusar (e o widget nem
+                     monta botao de aprovar), entao um link ali so levaria a
+                     um erro.
+                     ======================================================== -->
+                <p class="decline" hidden>
+                    <a id="recusar" href="#">No thanks, I'll skip this offer</a>
+                </p>
+
+                <script>
+                  (function () {
+                    // Os mesmos enderecos que o widget aceita em vis_base,
+                    // e o mesmo padrao, para a recusa cair onde a compra caiu.
+                    var ORIGENS = ['https://vis.semeardigital.com.br',
+                                   'https://visplatform.pro',
+                                   'https://www.visplatform.pro'];
+                    var PADRAO = 'https://vis.semeardigital.com.br';
+                    var UPSELL = 7;
+
+                    var bloco = document.querySelector('.decline');
+                    var link = document.getElementById('recusar');
+                    if (!bloco || !link) return;
+
+                    var busca;
+                    try { busca = new URLSearchParams(location.search); }
+                    catch (e) { return; }
+
+                    var pedido = busca.get('order_id');
+                    if (!pedido) return;          // nada comprado, nada a recusar
+
+                    var base = busca.get('vis_base');
+                    if (ORIGENS.indexOf(base) === -1) base = PADRAO;
+
+                    link.href = base + '/checkout/upsell/' +
+                                encodeURIComponent(pedido) +
+                                '?recusar=' + encodeURIComponent(UPSELL);
+                    bloco.hidden = false;
+
+                    // Se o widget montar a recusa dele (vis_next=1 na URL),
+                    // esconde a nossa, para nao ficarem duas na tela. O link
+                    // dele sempre leva "recusar=" no href.
+                    var host = document.getElementById('vis-upsell');
+                    if (!host) return;
+                    var confere = function () {
+                      if (!host.querySelector('a[href*="recusar="]')) return false;
+                      bloco.hidden = true;
+                      return true;
+                    };
+                    if (confere()) return;
+                    var obs = new MutationObserver(function () {
+                      if (confere()) obs.disconnect();
+                    });
+                    obs.observe(host, { childList: true, subtree: true });
+                    setTimeout(function () { obs.disconnect(); }, 20000);
+                  })();
+                </script>
             </section>
 
             <!-- 6. Highlight line (value) — "the essential guide" pattern -->
