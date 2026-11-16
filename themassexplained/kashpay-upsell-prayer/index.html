@@ -161,7 +161,7 @@
                  pagina que vende. Agora diz o que a oferta e: um item a mais,
                  opcional, somado a uma compra que ja esta fechada. -->
             <h1 class="headline">One more item you can add to your order</h1>
-            <p class="headline-sub">Your purchase is already confirmed. This is an optional extra — add it to the same order now, or skip it and keep only what you bought.</p>
+            <p class="headline-sub">Your purchase is already confirmed. This is an optional extra — add it to the same order now, as a separate charge, or skip it and keep only what you bought.</p>
 
             <!-- 5. Checkout da VIS. Como na Kashpay e ao contrario da Hotmart,
                  nao ha iframe: o widget monta o botao no DOM desta pagina. -->
@@ -185,6 +185,14 @@
                         <p class="price-value">$49.90 USD</p>
                         <p class="price-note">One-time payment &middot; Instant access</p>
                     </div>
+
+                    <!-- COBRANCA NOVA. "Adicionar ao mesmo pedido" pode soar
+                         como se nada fosse cobrado de novo; aqui esta dito que
+                         sera. Fica entre o preco e o botao, que e onde a decisao
+                         acontece, e FORA do bloco .price - que na BR fica
+                         escondido enquanto o preco for marcador, e este aviso
+                         tem de aparecer de qualquer jeito. -->
+                    <p class="aviso-cobranca">Adding this creates a <strong>new, separate charge of $49.90 USD</strong> on the same card you just used. It does not change the order you already paid for.</p>
 
                     <div id="vis-upsell"></div>
                     <script src="https://vis.semeardigital.com.br/js/vis-upsell.js"></script>

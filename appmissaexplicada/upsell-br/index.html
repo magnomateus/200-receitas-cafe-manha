@@ -95,7 +95,7 @@
                  numa pagina que vende. Agora diz o que a oferta e: um item a
                  mais, opcional, somado a uma compra que ja esta fechada. -->
             <h1 class="headline">Mais um item que você pode somar ao seu pedido</h1>
-            <p class="headline-sub">Sua compra já está confirmada. Este é um item opcional — inclua no mesmo pedido agora, ou siga sem ele.</p>
+            <p class="headline-sub">Sua compra já está confirmada. Este é um item opcional — inclua no mesmo pedido agora, com uma cobrança nova, ou siga sem ele.</p>
 
             <!-- 5. Checkout da VIS, no mesmo desenho das irmas em ingles:
                  um cartao com o preco, o botao de aprovar (montado pelo
@@ -118,6 +118,14 @@
                         <p class="price-value">PREENCHER_PRECO_BR</p>
                         <p class="price-note">Pagamento único &middot; acesso imediato</p>
                     </div>
+
+                    <!-- COBRANCA NOVA. "Adicionar ao mesmo pedido" pode soar
+                         como se nada fosse cobrado de novo; aqui esta dito que
+                         sera. Fica entre o preco e o botao, que e onde a decisao
+                         acontece, e FORA do bloco .price - que na BR fica
+                         escondido enquanto o preco for marcador, e este aviso
+                         tem de aparecer de qualquer jeito. -->
+                    <p class="aviso-cobranca">Incluir este item gera uma <strong>cobrança nova, separada</strong>, no mesmo cartão que você acabou de usar. Não altera o pedido que você já pagou.</p>
 
                     <div id="vis-upsell"></div>
 

@@ -250,3 +250,21 @@ body {
     .price-value { font-size: 2rem; }
     .price-note { font-size: 0.72rem; letter-spacing: 0.05em; }
 }
+
+/* --------------------------------------------------------------------------
+   AVISO DE COBRANCA NOVA. Nao e letra miuda: 0,95rem e cor de texto comum.
+   Quem descobre a segunda cobranca depois pede estorno.
+   -------------------------------------------------------------------------- */
+.aviso-cobranca {
+    margin: 0 0 14px;
+    padding: 0 6px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    text-align: center;
+}
+
+.aviso-cobranca strong {
+    color: var(--ink);
+    font-weight: 700;
+}

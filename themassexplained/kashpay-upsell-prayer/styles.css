@@ -304,3 +304,21 @@ body {
     border: 1px dashed var(--line);
     border-radius: 10px;
 }
+
+/* --------------------------------------------------------------------------
+   AVISO DE COBRANCA NOVA. Nao e letra miuda: 0,95rem e cor de texto comum.
+   Quem descobre a segunda cobranca depois pede estorno.
+   -------------------------------------------------------------------------- */
+.aviso-cobranca {
+    margin: 0 0 14px;
+    padding: 0 6px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    text-align: center;
+}
+
+.aviso-cobranca strong {
+    color: var(--ink);
+    font-weight: 700;
+}
