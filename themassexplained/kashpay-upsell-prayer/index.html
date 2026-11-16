@@ -189,7 +189,7 @@
                     <div id="vis-upsell"></div>
                     <script src="https://vis.semeardigital.com.br/js/vis-upsell.js"></script>
                     <script>
-                      VISUpsell.init({ upsellId: 7, locale: 'en' }).mount('#vis-upsell');
+                      VISUpsell.init({ upsellId: 7, locale: 'en', buttonText: 'GET IT NOW' }).mount('#vis-upsell');
                     </script>
 
                     <!-- ====================================================
@@ -203,9 +203,14 @@
                          o widget usaria - a pagina da VIS que registra a recusa
                          e segue o funil. Nao chama, nao redefine e nao embrulha
                          nada do widget.
+
+                         O texto e a cor sao COPIA do painel da VIS
+                         (Funis > oferta > Botoes > Recusar). O painel
+                         nao alcanca este link, porque ele e da pagina.
+                         MUDOU LA, MUDA AQUI.
                          ==================================================== -->
                     <p class="decline" hidden>
-                        <a id="recusar" href="#">No thanks, I'll skip this offer</a>
+                        <a id="recusar" href="#">I DON'T WANT THIS OFFER</a>
                     </p>
 
                     <!-- SEM PEDIDO NA URL. E este o motivo de "o botao nao
