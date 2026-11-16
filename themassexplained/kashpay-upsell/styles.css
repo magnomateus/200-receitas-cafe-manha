@@ -487,3 +487,25 @@ body {
 }
 
 .botao-cancelar:hover { color: var(--ink); }
+
+/* --------------------------------------------------------------------------
+   COMO CANCELAR. Logo abaixo do aviso de cobranca, no mesmo tom: quem le
+   "todo mes ate voce cancelar" pergunta na hora como se cancela, e a
+   resposta tem de estar ali, nao num rodape.
+   -------------------------------------------------------------------------- */
+.como-cancelar {
+    margin: -8px 0 14px;
+    padding: 0 6px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    text-align: center;
+}
+
+.como-cancelar a {
+    color: var(--burgundy);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    word-break: break-word;
+}
