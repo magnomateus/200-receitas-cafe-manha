@@ -219,6 +219,17 @@
                          aparecer" quando se abre a rota na mao: o widget da VIS
                          so monta botao com order_id, e ate aqui o cartao ficava
                          vazio sem dizer por que. -->
+                    <!-- CONFIRMACAO DO PAGAMENTO. Aparece no lugar dos
+                         botoes quando o comprador clica no verde, e so
+                         depois do "sim" o clique chega ao handler da VIS.
+                         O script esta logo abaixo, junto com o da recusa. -->
+                    <div class="confirmar" hidden>
+                        <p class="confirmar-pergunta">Confirm this payment?</p>
+                        <p class="confirmar-detalhe"><strong>$19.90 USD</strong> will be charged now to the same card you just used.</p>
+                        <button type="button" class="botao-confirmar" id="confirmar-sim">Yes, confirm payment</button>
+                        <button type="button" class="botao-cancelar" id="confirmar-nao">Cancel</button>
+                    </div>
+
                     <p class="sem-pedido" hidden>
                         Open this offer from the link you received right after your purchase —
                         that link carries your order, and without it there is nothing to add.
@@ -277,6 +288,64 @@
                     });
                     obs.observe(host, { childList: true, subtree: true });
                     setTimeout(function () { obs.disconnect(); }, 20000);
+                  })();
+                </script>
+
+                <script>
+                  (function () {
+                    // CONFIRMACAO ANTES DE COBRAR.
+                    //
+                    // Listener de CAPTURA no host: roda antes do handler que a
+                    // VIS registrou no botao. Enquanto nao houver "sim", segura
+                    // o clique. No "sim", levanta a trava e dispara .click() no
+                    // proprio botao da VIS - quem cobra continua sendo ele.
+                    // Nada do widget e redefinido, renomeado ou embrulhado.
+                    //
+                    // Se este script nao rodar, o botao volta a ser o de antes:
+                    // uma falha aqui nunca impede a compra, so deixa de perguntar.
+                    var host = document.getElementById('vis-upsell');
+                    var painel = document.querySelector('.confirmar');
+                    var sim = document.getElementById('confirmar-sim');
+                    var nao = document.getElementById('confirmar-nao');
+                    var recusa = document.querySelector('.decline');
+                    if (!host || !painel || !sim || !nao) return;
+
+                    var liberado = false;
+                    var recusaEstava = false;
+
+                    function fechar() {
+                      painel.hidden = true;
+                      host.hidden = false;
+                      if (recusa && recusaEstava) recusa.hidden = false;
+                    }
+
+                    host.addEventListener('click', function (e) {
+                      if (liberado) return;
+                      var alvo = e.target;
+                      var botao = alvo && alvo.closest ? alvo.closest('button') : null;
+                      if (!botao || !host.contains(botao)) return;
+                      e.preventDefault();
+                      e.stopPropagation();
+                      recusaEstava = !!(recusa && !recusa.hidden);
+                      painel.hidden = false;
+                      host.hidden = true;
+                      if (recusa) recusa.hidden = true;
+                      try { sim.focus(); } catch (err) { /* sem foco, tudo bem */ }
+                    }, true);
+
+                    sim.addEventListener('click', function () {
+                      var botao = host.querySelector('button');
+                      // o host volta ANTES do clique: e dentro dele que a VIS
+                      // escreve "processando" e o resultado
+                      painel.hidden = true;
+                      host.hidden = false;
+                      if (recusa && recusaEstava) recusa.hidden = false;
+                      if (!botao) return;
+                      liberado = true;
+                      try { botao.click(); } finally { liberado = false; }
+                    });
+
+                    nao.addEventListener('click', fechar);
                   })();
                 </script>
             </section>

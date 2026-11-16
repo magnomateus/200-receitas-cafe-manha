@@ -322,3 +322,66 @@ body {
     color: var(--ink);
     font-weight: 700;
 }
+
+/* --------------------------------------------------------------------------
+   CONFIRMACAO DO PAGAMENTO. Ocupa o lugar dos botoes, para o comprador nao
+   ter duas coisas para clicar ao mesmo tempo.
+   -------------------------------------------------------------------------- */
+.confirmar {
+    padding: 4px 2px 2px;
+    text-align: center;
+}
+
+.confirmar-pergunta {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--burgundy);
+    margin-bottom: 6px;
+}
+
+.confirmar-detalhe {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+}
+
+.confirmar-detalhe strong { color: var(--ink); font-weight: 700; }
+
+.botao-confirmar,
+.botao-cancelar {
+    display: block;
+    width: 100%;
+    min-height: 44px;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.02rem;
+    font-weight: 800;
+    line-height: 1.25;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.botao-confirmar {
+    padding: 14px 18px;
+    background: #16a34a;
+    color: #fff;
+    box-shadow: 0 6px 16px rgba(22, 163, 74, 0.28);
+}
+
+.botao-confirmar:hover { background: #12833c; }
+
+.botao-cancelar {
+    margin-top: 10px;
+    padding: 12px 18px;
+    background: transparent;
+    color: var(--ink-soft);
+    text-decoration: underline;
+    text-transform: none;
+    font-weight: 600;
+    box-shadow: none;
+}
+
+.botao-cancelar:hover { color: var(--ink); }
