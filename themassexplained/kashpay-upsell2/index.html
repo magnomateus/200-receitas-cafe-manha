@@ -23,6 +23,15 @@
   (Funis > oferta > Botoes), buscado pelo numero da oferta - o codigo colado
   aqui nao muda. Nao envolver, nao renomear, nao reimplementar o widget.
 
+  PRECO: $19.90 USD, escrito a mao no HTML (bloco .price, dentro do cartao do
+  checkout) porque o widget da VIS nao recebe preco - o endpoint /botao
+  devolve so o estilo do botao. SE MUDAR NO PAINEL DA VIS, MUDE NO HTML.
+  O valor veio das vendas reais da VIS de 12/11/2026 (produto 109, "Liturgical Seasons"
+  da VIS, R$ 111,71 convertidos pela taxa 5,6151 que o produto de frente
+  fixa). O numero e DEDUZIDO, nao veio do painel: o Mateus mandou
+  coloca-lo em 16/11/2026 sem conferir valor por valor. Conferir no
+  painel antes de mandar trafego para esta pagina.
+
   SEM AUTOCLICK desde 16/11/2026, a pedido do Mateus - saiu de todas as
   paginas do repositorio. Esta pagina nao clica em nada sozinha: quem aprova
   e quem esta na frente dela. O bloco ficava no fim do <body>; o git guarda,
@@ -150,6 +159,20 @@
                          O visual do botao vem do painel da VIS (Funis > oferta >
                          Botoes), buscado pelo numero da oferta - nao se mexe aqui.
                          Nao envolver, nao renomear, nao reimplementar. -->
+                    <!-- PRECO - escrito a mao, de proposito.
+                         O widget da VIS nao recebe preco: o endpoint que ele
+                         chama antes de montar (/api/orders/<id>/upsell/6/botao)
+                         devolve so o estilo do botao. Logo, esta linha NAO se
+                         atualiza sozinha.
+                         >>> SE O PRECO MUDAR NO PAINEL DA VIS, MUDE AQUI <<<
+                         Pagina anunciando um valor e checkout cobrando outro
+                         e o pior defeito que esta pagina pode ter.
+                         Valor de hoje: $19.90 USD (produto 109, "Liturgical Seasons" da VIS). -->
+                    <div class="price">
+                        <p class="price-value">$19.90 USD</p>
+                        <p class="price-note">One-time payment &middot; Instant access</p>
+                    </div>
+
                     <div id="vis-upsell"></div>
                     <script src="https://vis.semeardigital.com.br/js/vis-upsell.js"></script>
                     <script>
