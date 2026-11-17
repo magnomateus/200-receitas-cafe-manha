@@ -13,6 +13,12 @@ Cópia de `/150-dinamicas-natal/` (que rodava em
 repo e continua na ggcheckout, com os preços antigos.** Se as duas rodarem ao
 mesmo tempo, vão divergir em silêncio — decidir qual fica.
 
+**2026-11-16:** `receitinhaspratodahora.shop` vai expirar, e as rotas dele
+passaram a responder em `educationworld.site` por fallback no nginx. A copia
+antiga agora atende em `educationworld.site/150-dinamicas-natal/` — **o mesmo
+dominio desta**, com os preços antigos. Decidir qual fica ficou mais urgente.
+Ver `deploy/MIGRACAO-educationworld.md`.
+
 Ficaram de fora da cópia, porque nada as referencia (conferido por grep em
 html/css/js): `static/vsl.mp4` (23 MB), `images/capa-produto.png`,
 `upsell/capa-produto.png` e `test-popup.html`. A VSL que a página usa é um

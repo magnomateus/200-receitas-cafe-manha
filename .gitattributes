@@ -1,0 +1,3 @@
+# Script de shell precisa de LF mesmo no Windows: com CRLF o sh falha
+# com "$'\r': command not found" e nao roda.
+*.sh text eol=lf
