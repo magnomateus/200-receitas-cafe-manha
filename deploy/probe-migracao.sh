@@ -125,6 +125,39 @@ else
   echo "AINDA HA ROTA PENDENTE"
 fi
 
+# ---------------------------------------------------------------------------
+# POR QUE esta faltando. Quando falta tudo, a causa e uma de duas - e elas se
+# resolvem de formas diferentes, entao vale distinguir:
+#
+#   /200-receitas/ e pasta deste repo, dentro de educationworld/ (que ja e a
+#   raiz do vhost novo). Depende SO do `git pull`.
+#
+#   /jogos/ mora na raiz do repo, FORA de educationworld/. Depende SO do
+#   fallback @receitinhas no nginx.
+#
+# Logo: 200-receitas 404 -> falta o pull. 200-receitas 200 e jogos 404 ->
+# o pull foi feito e falta o nginx.
+# ---------------------------------------------------------------------------
+if [ "$falta" -gt 0 ]; then
+  c200=$(curl -s -o /dev/null -w '%{http_code}' -m 20 "$NOVO/200-receitas/")
+  cjog=$(curl -s -o /dev/null -w '%{http_code}' -m 20 "$NOVO/jogos/")
+  echo
+  echo "--- por que esta faltando ---"
+  if [ "$c200" != "200" ]; then
+    echo "  /200-receitas/ da $c200: o servidor ainda NAO fez o git pull."
+    echo "    cd /var/www/html/200-receitas-cafe-manha && git pull"
+  elif [ "$cjog" != "200" ]; then
+    echo "  /200-receitas/ da 200, entao o git pull foi feito."
+    echo "  /jogos/ da $cjog, entao o fallback NAO esta de pe: ou o vhost"
+    echo "  nao foi editado, ou foi editado e nao houve reload."
+    echo "    grep -n receitinhas /etc/nginx/sites-available/educationworld.site"
+    echo "    nginx -t && systemctl reload nginx"
+  else
+    echo "  /200-receitas/ e /jogos/ respondem: pull e fallback estao de pe."
+    echo "  O que falta e rota a rota - olhar as linhas FALTA acima."
+  fi
+fi
+
 # A raiz e um caso a parte: receitinha/ = 200 Receitas, educationworld/ = Libras.
 # A pagina do 200 Receitas foi para /200-receitas/ (decidido em 2026-11-16).
 echo
@@ -137,9 +170,12 @@ printf '  %-3s  %s\n' "$(curl -s -o /dev/null -w '%{http_code}' -m 20 "$NOVO/200
 echo
 echo "--- o DNS do dominio antigo aponta para onde? ---"
 echo "  esperado enquanto nao for renovado: 2.57.91.92 (parking da Hostinger)"
-ip=$(getent hosts receitinhaspratodahora.shop 2>/dev/null | awk '{print $1}' | head -1)
-if [ -z "$ip" ]; then
-  ip=$(nslookup receitinhaspratodahora.shop 2>/dev/null | awk '/^Address/{a=$2} END{print a}')
-fi
-[ -z "$ip" ] && ip="(nao deu para resolver aqui)"
+# Tres tentativas porque o ambiente varia: dig no servidor, getent no Linux,
+# nslookup no Windows. O filtro de IPv4 descarta linha de CNAME. E no nslookup
+# a leitura so comeca depois do "Name:" - sem isso o que sai e o IP do
+# RESOLVEDOR (127.0.0.53 no Ubuntu), nao a resposta.
+ip=$(dig +short receitinhaspratodahora.shop A 2>/dev/null | grep -E '^[0-9]+(\.[0-9]+){3}$' | head -1)
+[ -z "$ip" ] && ip=$(getent hosts receitinhaspratodahora.shop 2>/dev/null | awk '{print $1}' | head -1)
+[ -z "$ip" ] && ip=$(nslookup receitinhaspratodahora.shop 2>/dev/null | awk '/^Name:/{f=1} f && /^Address:/{print $2; exit}')
+[ -z "$ip" ] && ip="(nao resolve: sem DNS nenhum, nem o parking)"
 echo "  agora: $ip"

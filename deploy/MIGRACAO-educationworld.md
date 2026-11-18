@@ -271,6 +271,25 @@ a location de igualdade exata, e cai no `location /` - onde nao ha `sub_filter`.
 Esta assim desde sempre. Por isso **nao replicar esse bloco**: o fallback simples
 entrega exatamente o mesmo comportamento de hoje.
 
+**3. A raiz do `/missa-explicada/` ja da 404 no dominio ANTIGO.** Medido com o
+Host forcado contra o Titan, em 2026-11-18:
+
+| Rota | antigo | novo |
+|---|---|---|
+| `/missa-explicada/` | **404** | 404 |
+| `/missa-explicada/entregavel/` | **404** | 404 |
+| `/missa-explicada/obrigado/` | 200 | 404 |
+| `/missa-explicada/upsell/` | 200 | 404 |
+
+Quem responde naquele prefixo, sob aquele dominio, e so o arquivo estatico das
+subpastas - a raiz do app nao atende ali. Duas consequencias: o bloco do `alias`
+na parte 2 serve para as subrotas, e **nao e para esperar** que
+`educationworld.site/missa-explicada/` abra o app. Nao abria no dominio antigo
+tampouco, entao isso nao e regressao da migracao. O app de verdade continua nos
+dominios dele, que este trabalho nao toca. Se a ideia for abrir o app por este
+dominio novo, isso e outro trabalho: passa por `APP_URL` e pelo dominio
+cadastrado no app, nao por nginx.
+
 ## Exposicao que o fallback herda
 
 A raiz do repo tem arquivos internos que **ja eram publicos** no receitinha
