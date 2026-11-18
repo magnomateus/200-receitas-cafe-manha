@@ -1,0 +1,70 @@
+# /etc/nginx/sites-available/receitinhaspratodahora.shop
+#
+# SUBSTITUI o vhost antigo depois que o dominio voltar e o DNS apontar de novo
+# para o Titan (206.189.219.208). Nao serve mais arquivo nenhum: so manda todo
+# mundo para educationworld.site, no mesmo caminho.
+#
+# Para que serve: link salvo, e-mail de entrega antigo, anuncio ainda rodando e
+# resultado de busca continuam funcionando. Enquanto o dominio estiver no
+# parking da Hostinger, nada disso funciona - e nenhuma config no servidor
+# resolve, porque o DNS nem chega aqui.
+#
+# ORDEM DE APLICACAO, que importa:
+#   1. educationworld.site ja com o fallback e os 4 blocos funcionando
+#      (confirmar com `sh deploy/probe-migracao.sh`: FALTANDO 0)
+#   2. so depois trocar este vhost
+# Invertendo, o 301 joga o visitante num 404 do dominio novo.
+#
+# Aplicar:
+#   cp /etc/nginx/sites-available/receitinhaspratodahora.shop ~/receitinha-vhost-antigo.bak
+#   cp deploy/receitinhaspratodahora.shop.301.nginx \
+#      /etc/nginx/sites-available/receitinhaspratodahora.shop
+#   nginx -t && systemctl reload nginx
+#
+# CERTIFICADO: enquanto o DNS apontou para o parking, o certbot nao conseguiu
+# renovar. Se o `nginx -t` reclamar do certificado, ou se o navegador acusar
+# certificado vencido, emita de novo DEPOIS de o DNS voltar:
+#   certbot --nginx -d receitinhaspratodahora.shop -d www.receitinhaspratodahora.shop
+# Para testar sem gastar tentativa no limite da Let's Encrypt:
+#   certbot certonly --nginx -d receitinhaspratodahora.shop --dry-run
+# (`--dry-run` nao funciona no modo `run`, que e o padrao de `certbot --nginx`.)
+
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    server_name receitinhaspratodahora.shop www.receitinhaspratodahora.shop;
+
+    ssl_certificate /etc/letsencrypt/live/receitinhaspratodahora.shop/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/receitinhaspratodahora.shop/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+    # A unica rota que MUDOU de endereco: a pagina do 200 Receitas era a raiz
+    # deste dominio e virou sub-rota, porque a raiz do educationworld.site ja
+    # e a pagina de Libras, com pixel proprio.
+    location = / {
+        return 301 https://educationworld.site/200-receitas/;
+    }
+
+    # Todo o resto mantem exatamente o mesmo caminho. $request_uri preserva a
+    # query string inteira - que aqui NAO e detalhe: e nela que vem order_id,
+    # vis_base, inline_token, utm_* e o sck que atribui a venda. Sem isso o
+    # upsell abre sem pedido e a venda chega sem origem.
+    location / {
+        return 301 https://educationworld.site$request_uri;
+    }
+}
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name receitinhaspratodahora.shop www.receitinhaspratodahora.shop;
+
+    location = / {
+        return 301 https://educationworld.site/200-receitas/;
+    }
+
+    location / {
+        return 301 https://educationworld.site$request_uri;
+    }
+}

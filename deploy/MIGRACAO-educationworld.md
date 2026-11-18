@@ -28,6 +28,11 @@ anuncio ainda rodando **chega no lugar certo**. Sem isso, todo link antigo morre
 na pagina de parking - e replicar as rotas no dominio novo nao salva ninguem que
 so tem o link velho.
 
+Esse vhost de 301 ja esta escrito e pronto para copiar:
+`deploy/receitinhaspratodahora.shop.301.nginx`. **Aplicar so depois** de o
+`probe-migracao.sh` dar `FALTANDO: 0` - invertendo a ordem, o 301 joga o
+visitante num 404 do dominio novo.
+
 **O que esta fora do ar agora:** as 64 rotas. Entre elas os dois Corpus Christi
 (`/corpus-christi/` e `/corpus-christi-es/`), que **nao existem em nenhum outro
 dominio** - no painel da VIS sao as ofertas 45 (15 campanhas) e 58 (6 campanhas).
