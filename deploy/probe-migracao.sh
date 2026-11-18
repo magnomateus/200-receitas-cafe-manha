@@ -7,26 +7,35 @@
 # compara o conteudo byte a byte (sha256). Nao basta dar 200: uma pagina
 # servida da pasta errada tambem da 200.
 #
-#   IGUAL      os dois dominios devolvem exatamente os mesmos bytes
+#   IGUAL      os dois devolvem exatamente os mesmos bytes
 #   DIFERENTE  os dois responderam, mas o conteudo nao e o mesmo
 #   FALTA      o dominio novo nao tem essa rota  <- e o que falta corrigir
-#   SO-NOVO    o antigo caiu (dominio expirado) e o novo responde
+#   SO-NOVO    o vhost antigo nao responde mais e o novo responde
 #
-# Rode ANTES de deixar o dominio expirar, para a coluna do antigo existir.
+# IMPORTANTE: o DNS de receitinhaspratodahora.shop JA saiu do Titan
+# (2026-11-18 passou a resolver para 2.57.91.92, parking "Your domain is
+# expired"). Por isso o gabarito e medido FORCANDO o Host contra o IP do
+# Titan: o vhost antigo continua lá e responde 200. Se o vhost for removido
+# do servidor, o gabarito se perde e este script deixa de servir.
 #
-# A lista de rotas saiu de `git ls-files` (so o que o servidor realmente tem:
-# pasta local nao comitada da 404 no ar e nao entra aqui).
+# A lista tem 64 rotas. As de pasta saem de `git ls-files` (so o que o
+# servidor tem: pasta local nao comitada da 404 no ar). As TRES ultimas
+# rotas de pagina - /corpus-christi/, /corpus-christi-es/ e /eucaristia/ -
+# NAO estao neste repo: moram em /var/www/html/ e so apareceram quando o
+# vhost foi lido. Nenhum comando de git as encontraria.
 VELHO="https://receitinhaspratodahora.shop"
 NOVO="https://educationworld.site"
+IP_TITAN="206.189.219.208"
 
 ok=0; falta=0; difere=0
-pega() { curl -s -m 25 -o "$2" -w "%{http_code}" "$1" 2>/dev/null; }
+pega_velho() { curl -s -m 25 --resolve "receitinhaspratodahora.shop:443:$IP_TITAN" -o "$2" -w "%{http_code}" "$1" 2>/dev/null; }
+pega_novo()  { curl -s -m 25 -o "$2" -w "%{http_code}" "$1" 2>/dev/null; }
 
 while read -r r; do
   [ -z "$r" ] && continue
   a=$(mktemp); b=$(mktemp)
-  ca=$(pega "$VELHO$r" "$a")
-  cb=$(pega "$NOVO$r" "$b")
+  ca=$(pega_velho "$VELHO$r" "$a")
+  cb=$(pega_novo  "$NOVO$r"  "$b")
   ha=$(sha256sum "$a" 2>/dev/null | cut -c1-16)
   hb=$(sha256sum "$b" 2>/dev/null | cut -c1-16)
 
@@ -98,6 +107,9 @@ done <<'ROTAS_FIM'
 /themassexplained/lamesseexpliquee/
 /themassexplained/misaexplicada/
 /videopack/
+/corpus-christi/
+/corpus-christi-es/
+/eucaristia/
 /control/horta.js
 /control/huerta.js
 /control/mx.js
@@ -117,10 +129,17 @@ fi
 # A pagina do 200 Receitas foi para /200-receitas/ (decidido em 2026-11-16).
 echo
 echo "--- raiz (tratada a parte, nao e para ser igual) ---"
-for par in "$VELHO/|200 Receitas (o que sai do ar com o dominio)" \
-           "$NOVO/|Libras EN (fica como esta)" \
-           "$NOVO/200-receitas/|destino do 200 Receitas" \
-           "$NOVO/200-receitas/styles.css|asset da copia"; do
-  u=$(echo "$par" | cut -d'|' -f1); d=$(echo "$par" | cut -d'|' -f2)
-  printf '  %-3s  %-55s %s\n' "$(curl -s -o /dev/null -w '%{http_code}' -m 20 "$u")" "$u" "$d"
-done
+printf '  %-3s  %s\n' "$(curl -s -o /dev/null -w '%{http_code}' -m 20 --resolve "receitinhaspratodahora.shop:443:$IP_TITAN" "$VELHO/")" "$VELHO/  (200 Receitas, so no vhost antigo)"
+printf '  %-3s  %s\n' "$(curl -s -o /dev/null -w '%{http_code}' -m 20 "$NOVO/")" "$NOVO/  (Libras EN, fica como esta)"
+printf '  %-3s  %s\n' "$(curl -s -o /dev/null -w '%{http_code}' -m 20 "$NOVO/200-receitas/")" "$NOVO/200-receitas/  (destino do 200 Receitas)"
+printf '  %-3s  %s\n' "$(curl -s -o /dev/null -w '%{http_code}' -m 20 "$NOVO/200-receitas/styles.css")" "$NOVO/200-receitas/styles.css  (asset da copia)"
+
+echo
+echo "--- o DNS do dominio antigo aponta para onde? ---"
+echo "  esperado enquanto nao for renovado: 2.57.91.92 (parking da Hostinger)"
+ip=$(getent hosts receitinhaspratodahora.shop 2>/dev/null | awk '{print $1}' | head -1)
+if [ -z "$ip" ]; then
+  ip=$(nslookup receitinhaspratodahora.shop 2>/dev/null | awk '/^Address/{a=$2} END{print a}')
+fi
+[ -z "$ip" ] && ip="(nao deu para resolver aqui)"
+echo "  agora: $ip"
