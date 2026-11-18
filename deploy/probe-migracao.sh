@@ -9,8 +9,13 @@
 #
 #   IGUAL      os dois devolvem exatamente os mesmos bytes
 #   DIFERENTE  os dois responderam, mas o conteudo nao e o mesmo
+#   PARIDADE   os dois devolvem o MESMO codigo que nao e 200 - 404 nos dois,
+#              por exemplo. NAO e pendencia: o dominio novo esta fiel ao
+#              antigo, e e isso que se queria. /missa-explicada/ e assim.
 #   FALTA      o dominio novo nao tem essa rota  <- e o que falta corrigir
 #   SO-NOVO    o vhost antigo nao responde mais e o novo responde
+#   ERRO-REDE  o curl nao completou (codigo 000). Nao e rota faltando, e
+#              falha transitoria. Rode de novo antes de investigar.
 #
 # IMPORTANTE: o DNS de receitinhaspratodahora.shop JA saiu do Titan
 # (2026-11-18 passou a resolver para 2.57.91.92, parking "Your domain is
@@ -27,9 +32,11 @@ VELHO="https://receitinhaspratodahora.shop"
 NOVO="https://educationworld.site"
 IP_TITAN="206.189.219.208"
 
-ok=0; falta=0; difere=0
-pega_velho() { curl -s -m 25 --resolve "receitinhaspratodahora.shop:443:$IP_TITAN" -o "$2" -w "%{http_code}" "$1" 2>/dev/null; }
-pega_novo()  { curl -s -m 25 -o "$2" -w "%{http_code}" "$1" 2>/dev/null; }
+ok=0; falta=0; difere=0; rede=0
+# --retry cobre a falha transitoria: numa rodada /150-dinamicas-natal/ deu 000
+# e na medicao seguinte deu 200 com os mesmos 23706 bytes do dominio antigo.
+pega_velho() { curl -s -m 25 --retry 2 --retry-delay 1 --resolve "receitinhaspratodahora.shop:443:$IP_TITAN" -o "$2" -w "%{http_code}" "$1" 2>/dev/null; }
+pega_novo()  { curl -s -m 25 --retry 2 --retry-delay 1 -o "$2" -w "%{http_code}" "$1" 2>/dev/null; }
 
 while read -r r; do
   [ -z "$r" ] && continue
@@ -39,7 +46,13 @@ while read -r r; do
   ha=$(sha256sum "$a" 2>/dev/null | cut -c1-16)
   hb=$(sha256sum "$b" 2>/dev/null | cut -c1-16)
 
-  if [ "$cb" != "200" ]; then
+  if [ "$ca" = "000" ] || [ "$cb" = "000" ]; then
+    printf 'ERRO-REDE  %-3s -> %-3s  %s   (curl nao completou; rode de novo)\n' "$ca" "$cb" "$r"
+    rede=$((rede+1))
+  elif [ "$ca" = "$cb" ] && [ "$cb" != "200" ]; then
+    printf 'PARIDADE   %-3s -> %-3s  %s   (mesmo codigo nos dois; fiel)\n' "$ca" "$cb" "$r"
+    ok=$((ok+1))
+  elif [ "$cb" != "200" ]; then
     printf 'FALTA      %-3s -> %-3s  %s\n' "$ca" "$cb" "$r"; falta=$((falta+1))
   elif [ "$ca" != "200" ]; then
     printf 'SO-NOVO    %-3s -> %-3s  %s\n' "$ca" "$cb" "$r"; ok=$((ok+1))
@@ -118,9 +131,11 @@ done <<'ROTAS_FIM'
 ROTAS_FIM
 
 echo
-echo "iguais/ok: $ok   diferentes: $difere   FALTANDO: $falta"
-if [ "$falta" -eq 0 ] && [ "$difere" -eq 0 ]; then
+echo "iguais/ok: $ok   diferentes: $difere   FALTANDO: $falta   erro de rede: $rede"
+if [ "$falta" -eq 0 ] && [ "$difere" -eq 0 ] && [ "$rede" -eq 0 ]; then
   echo "MIGRACAO COMPLETA"
+elif [ "$falta" -eq 0 ] && [ "$difere" -eq 0 ]; then
+  echo "SO ERRO DE REDE - rode de novo, nao ha rota pendente"
 else
   echo "AINDA HA ROTA PENDENTE"
 fi

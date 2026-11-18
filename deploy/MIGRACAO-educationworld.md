@@ -350,6 +350,44 @@ dominios dele, que este trabalho nao toca. Se a ideia for abrir o app por este
 dominio novo, isso e outro trabalho: passa por `APP_URL` e pelo dominio
 cadastrado no app, nao por nginx.
 
+**4. O meu `^~ /missa-explicada` engolia `/missa-explicada-br/`, `-en/` e
+`-ital/`.** Erro meu, pego pelo probe na primeira rodada com o vhost aplicado:
+58 IGUAL, 0 DIFERENTE, e essas tres com `200 -> 404`.
+
+Causa: `location ^~ /prefixo` casa por **prefixo de texto**, nao por segmento
+de caminho. `/missa-explicada-br/` comeca com `/missa-explicada`, entao caia no
+bloco do app e era mandada para `alias /var/www/missa-explicada/public` +
+`-br/` - diretorio que nao existe. Sao pastas deste repo, nada a ver com o
+app: so compartilham as letras do inicio.
+
+No vhost antigo isso funcionava **por acidente**: o `@missa` de la nao
+declarava raiz, herdava a do server (que era justo a raiz do repo), e o pedido
+que nao casava o `rewrite` acabava servido de lá. O conserto faz isso de
+proposito:
+
+```nginx
+location @missa {
+    root /var/www/html/200-receitas-cafe-manha;
+    rewrite /missa-explicada/(.*)$ /missa-explicada/index.php?/$1 last;
+    try_files $uri $uri/ =404;
+}
+```
+
+O `rewrite` roda na fase de rewrite e o `try_files` na de conteudo, entao
+pedido do app de verdade sai pelo rewrite e nunca chega no try_files. E o
+regex de assets DENTRO do bloco do app ganhou `try_files $uri @missa`, pelo
+mesmo motivo do regex do nivel do server: sem isso as tres paginas voltariam,
+mas sem CSS.
+
+Vale para qualquer pasta futura que comece com `missa-explicada`: funciona
+sozinha, sem bloco novo.
+
+**Licao para o resto do arquivo:** `^~ /corpus-christi` engole
+`/corpus-christi-es/` do mesmo jeito. So nao quebrou porque existe um `^~
+/corpus-christi-es` mais longo, e prefixo mais longo ganha. Se um dia nascer
+`/corpus-christi-xx/`, quebra calado - e o sintoma e sempre o mesmo: 404 numa
+rota cujo vizinho funciona.
+
 ## Exposicao que o fallback herda
 
 A raiz do repo tem arquivos internos que **ja eram publicos** no receitinha

@@ -201,12 +201,40 @@ server {
         location ~* \.(js|css|png|jpg|jpeg|webp|gif|ico|svg|woff2)$ {
             expires 1y;
             add_header Cache-Control "public, immutable";
+            # Mesmo motivo do try_files do regex de assets do nivel do server:
+            # asset que o alias nao tem precisa chegar ao fallback, senao a
+            # pagina carrega crua. Ver o comentario do @missa.
+            try_files $uri @missa;
         }
         location ~ /\.(?!well-known).* { deny all; }
     }
 
+    # ATENCAO AO QUE ESTE BLOCO FAZ, porque ja me pegou uma vez.
+    #
+    # `location ^~ /missa-explicada` casa por PREFIXO DE TEXTO, nao por
+    # segmento de caminho. Entao ele engole tambem /missa-explicada-br/,
+    # /missa-explicada-en/ e /missa-explicada-ital/ - que sao pastas DESTE
+    # repo, nada a ver com o app, e so compartilham as letras do inicio.
+    # Engolidas, elas iam para o alias do app (/var/www/missa-explicada/
+    # public-br/, que nao existe) e davam 404. Medido: davam 200 no dominio
+    # antigo e 404 aqui.
+    #
+    # O `root` abaixo e o que conserta: quem cai no @missa SEM casar o
+    # rewrite nao e do app, e e procurado na raiz do repo. O rewrite roda na
+    # fase de rewrite e o try_files na fase de conteudo, entao requisicao do
+    # app de verdade (/missa-explicada/<algo>) sai pelo rewrite e nunca
+    # chega no try_files.
+    #
+    # Essa e, alias, a mesma solucao que o vhost antigo tinha por acidente:
+    # la o @missa tambem nao declarava raiz, e herdava a do server - que era
+    # justamente a raiz do repo.
+    #
+    # Vale para QUALQUER pasta nova que comece com "missa-explicada": ela
+    # passa a funcionar sozinha, sem bloco novo.
     location @missa {
+        root /var/www/html/200-receitas-cafe-manha;
         rewrite /missa-explicada/(.*)$ /missa-explicada/index.php?/$1 last;
+        try_files $uri $uri/ =404;
     }
 
     listen [::]:443 ssl; # managed by Certbot
