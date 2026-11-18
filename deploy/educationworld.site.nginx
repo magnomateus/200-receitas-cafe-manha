@@ -1,0 +1,240 @@
+# /etc/nginx/sites-available/educationworld.site
+#
+# Arquivo COMPLETO, para substituir o atual. Feito a partir do que o servidor
+# tinha em 2026-11-18 (`cat -n`), com as rotas do receitinhaspratodahora.shop
+# herdadas por fallback, sem duplicar arquivo nenhum.
+#
+# APLICAR:
+#   cp /etc/nginx/sites-available/educationworld.site ~/educationworld.site.bak
+#   cp /var/www/html/200-receitas-cafe-manha/deploy/educationworld.site.nginx \
+#      /etc/nginx/sites-available/educationworld.site
+#   nginx -t && systemctl reload nginx
+#   sh /var/www/html/200-receitas-cafe-manha/deploy/probe-migracao.sh
+#
+# VOLTAR ATRAS (qualquer coisa estranha, sem pensar duas vezes):
+#   cp ~/educationworld.site.bak /etc/nginx/sites-available/educationworld.site
+#   nginx -t && systemctl reload nginx
+#
+# ---------------------------------------------------------------------------
+# O QUE MUDOU em relacao ao arquivo que estava no servidor
+# ---------------------------------------------------------------------------
+# 1. `location /` ganhou `@receitinhas` no lugar do `=404`. E so isso que faz
+#    as 61 rotas do repo aparecerem neste dominio.
+#
+# 2. O regex de assets ganhou `try_files $uri @receitinhas`. SEM isso, toda
+#    pagina herdada carregaria sem CSS, sem JS e sem imagem: regex vence
+#    prefixo simples no nginx, entao os assets nunca chegariam ao fallback.
+#    Era a armadilha mais cara deste vhost.
+#
+# 3. Bloco novo `location ~ \.php$`. O repo tem 3 arquivos .php, todos em
+#    videopack/. Sem um handler, `GET /videopack/vp-config.php` devolveria o
+#    ARQUIVO como texto - e dentro dele estao $DASH_KEY, $IP_SALT e $__secret.
+#    O fallback sozinho vazaria esses segredos. Com o bloco, o PHP executa
+#    (como no dominio antigo) e o fonte nunca sai.
+#
+# 4. Bloco novo de deny para `.md`, `.bat`, `.sh` e afins. A raiz do repo tem
+#    README, DOCUMENTO_REQUISITOS, BLUEPRINT, start-server.bat e a pasta
+#    deploy/ inteira - inclusive este arquivo e o runbook, que citam caminhos
+#    do servidor. No dominio antigo isso ja era publico; aqui nao precisa ser.
+#    `.txt` ficou FORA da lista de proposito: existem 9 robots.txt no repo.
+#    Se algum dia uma pagina precisar servir um .md, tire a extensao da lista.
+#
+# 5. Quatro blocos `^~` para as rotas que NAO moram neste repo:
+#    /corpus-christi, /corpus-christi-es, /eucaristia (em /var/www/html) e
+#    /missa-explicada (alias para /var/www/missa-explicada/public).
+#
+# 6. O deny de dotfile subiu para antes do regex de assets. Como estava, um
+#    arquivo oculto terminado em .css ou .js era pego pelo regex de assets
+#    primeiro e escapava do deny. Buraco estreito, mas de graca para fechar.
+#
+# NAO mudou: a raiz (`educationworld/`, pagina de Libras), os dois `include
+# snippets/`, o gzip, os `listen`/SSL do certbot e o server da porta 80.
+#
+# ---------------------------------------------------------------------------
+# TRES COISAS PARA SABER ANTES DE APLICAR
+# ---------------------------------------------------------------------------
+# a) `^~` PULA TODAS AS LOCATIONS REGEX - inclusive o deny de dotfile do nivel
+#    do server. Por isso os quatro blocos `^~` repetem o deny DENTRO. Sem essa
+#    repeticao, reabre o `.git` publico que voce fechou em 2026-09-25. Qualquer
+#    bloco `^~` novo neste vhost tem de levar o deny tambem.
+#
+# b) A SINTAXE E A ESTRUTURA deste arquivo foram validadas com `nginx -t` de um
+#    nginx 1.26.3 de verdade. O COMPORTAMENTO em execucao nao: nao consegui
+#    subir um nginx aqui para medir. O unico ponto onde isso importa e o
+#    `try_files $uri $uri/ =404` do `@receitinhas`, que faz checagem de
+#    diretorio numa raiz diferente da do `location /`.
+#
+#    SINTOMA se der errado: 500 em rota de pasta, e no
+#    /var/log/nginx/error.log a frase `rewrite or internal redirection cycle`.
+#    CONSERTO: troque a linha do `@receitinhas` por esta, que so testa arquivo
+#    e portanto nao pode ciclar:
+#
+#        try_files ${uri}index.html $uri/index.html $uri =404;
+#
+#    Custo dessa forma: `/jogos` sem barra no fim deixa de dar 301 para
+#    `/jogos/` (medido: o dominio antigo da 301). Sem a barra, link relativo
+#    dentro da pagina quebra. Por isso ela e o plano B, nao o plano A.
+#
+# c) Os dois `include snippets/` eu nao li - nao estao neste repo. Se o
+#    `nginx -t` acusar `duplicate location`, um deles ja define uma das rotas
+#    que eu acrescentei; nesse caso me mostre o snippet. E se algo em
+#    /videopack/ ou nas rotas de membros/secret-agent sair do normal depois do
+#    reload, suspeite da ordem entre os regex deles e os meus - os includes
+#    ficaram no mesmo lugar de antes justamente para nao mudar essa ordem.
+
+server {
+    server_name educationworld.site www.educationworld.site;
+
+    root /var/www/html/200-receitas-cafe-manha/educationworld;
+    index index.html;
+
+    gzip on;
+    gzip_types text/css application/javascript image/svg+xml;
+    gzip_min_length 1024;
+
+    include snippets/educationworld-members.conf;
+    include snippets/educationworld-secret-agent.conf;
+
+    # --- bloqueios primeiro -------------------------------------------------
+    # Fecha .git, .env e qualquer oculto. A raiz do repo TEM .git: este deny e
+    # o que impede baixar o repositorio inteiro por aqui.
+    location ~ /\.(?!well-known).* { deny all; }
+
+    # Documentacao interna e script que o fallback passaria a servir.
+    location ~* \.(md|bat|sh|py|log|bak|ini|yml|yaml|zip|gz|tar)$ { deny all; }
+
+    # --- php ----------------------------------------------------------------
+    # Os unicos .php do repo estao em videopack/ (dashboard, track, vp-config).
+    # O `root` aponta para a raiz do repo porque nao existe .php dentro de
+    # educationworld/. O `try_files $uri =404` barra path-info do tipo
+    # /foto.jpg/x.php, que faria o fpm executar o arquivo errado.
+    location ~ \.php$ {
+        root /var/www/html/200-receitas-cafe-manha;
+        try_files $uri =404;
+        fastcgi_pass unix:/run/php/php8.4-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $request_filename;
+        include fastcgi_params;
+    }
+
+    # --- assets -------------------------------------------------------------
+    # O try_files aqui e obrigatorio: sem ele os assets das rotas herdadas dao
+    # 404 e as paginas carregam cruas. Quem vem pelo fallback sai sem header
+    # de cache - exatamente como hoje no dominio antigo, que nao tem regex de
+    # assets nenhum.
+    location ~* \.(js|css|png|jpg|jpeg|webp|gif|ico|svg|woff2)$ {
+        expires 30d;
+        add_header Cache-Control "public, immutable";
+        try_files $uri @receitinhas;
+    }
+
+    # --- paginas ------------------------------------------------------------
+    location / { try_files $uri $uri/ @receitinhas; }
+
+    # Tudo que nao existe em educationworld/ e procurado na raiz do repo.
+    # `index.php` entra na lista por causa de /videopack/dashboard/, que no
+    # dominio antigo era servido pelo `index index.html index.htm index.php`.
+    location @receitinhas {
+        root /var/www/html/200-receitas-cafe-manha;
+        index index.html index.php;
+        try_files $uri $uri/ =404;
+    }
+
+    # --- rotas que nao moram neste repo -------------------------------------
+    # Estas tres estao soltas em /var/www/html/, sem versionamento e sem
+    # backup. Trazendo-as para o repo, estes blocos podem ser apagados: o
+    # fallback passa a cobri-las, e o `^~` (com o risco do item (a)) sai junto.
+    location ^~ /corpus-christi {
+        root /var/www/html;
+        index index.html;
+        try_files $uri $uri/ /corpus-christi/index.html;
+        location ~* \.(js|css|png|jpg|jpeg|webp|gif|ico|svg|woff2|avif)$ {
+            expires 1y;
+            add_header Cache-Control "public, immutable";
+        }
+        location ~ /\.(?!well-known).* { deny all; }
+    }
+
+    location ^~ /corpus-christi-es {
+        root /var/www/html;
+        index index.html;
+        try_files $uri $uri/ /corpus-christi-es/index.html;
+        location ~* \.(js|css|png|jpg|jpeg|webp|gif|ico|svg|woff2|avif)$ {
+            expires 1y;
+            add_header Cache-Control "public, immutable";
+        }
+        location ~ /\.(?!well-known).* { deny all; }
+    }
+
+    location = /eucaristia { return 301 /eucaristia/; }
+
+    location ^~ /eucaristia {
+        root /var/www/html;
+        index index.html;
+        try_files $uri $uri/ /eucaristia/index.html;
+        location ~* \.(js|css|png|jpg|jpeg|webp|gif|ico|svg|woff2|avif)$ {
+            expires 1y;
+            add_header Cache-Control "public, immutable";
+        }
+        location ~ /\.(?!well-known).* { deny all; }
+    }
+
+    # O app, que mora fora do /var/www/html. Este bloco NAO e opcional, por
+    # dois motivos. Primeiro: /missa-explicada/upsell/ do servidor DIFERE do
+    # que esta no repo, e /gracias-latam/ nao existe no repo - sem o bloco, o
+    # fallback serviria calado um upsell desatualizado. Segundo: a pasta
+    # missa-explicada/entregavel/pdfs/ do repo tem os PDFs entregaveis, que
+    # hoje ficam escondidos atras deste alias; sem o bloco eles viram download
+    # publico.
+    # Medido em 2026-11-18: a RAIZ /missa-explicada/ ja da 404 no dominio
+    # antigo. Quem responde ali e so o estatico das subpastas. Nao espere o
+    # app abrir por este dominio.
+    location ^~ /missa-explicada {
+        alias /var/www/missa-explicada/public;
+        index index.html index.php;
+        try_files $uri $uri/ @missa;
+        location ~ \.php$ {
+            fastcgi_pass unix:/run/php/php8.4-fpm.sock;
+            fastcgi_param SCRIPT_FILENAME $request_filename;
+            include fastcgi_params;
+        }
+        location ~* \.(js|css|png|jpg|jpeg|webp|gif|ico|svg|woff2)$ {
+            expires 1y;
+            add_header Cache-Control "public, immutable";
+        }
+        location ~ /\.(?!well-known).* { deny all; }
+    }
+
+    location @missa {
+        rewrite /missa-explicada/(.*)$ /missa-explicada/index.php?/$1 last;
+    }
+
+    listen [::]:443 ssl; # managed by Certbot
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/educationworld.site/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/educationworld.site/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+    if ($host = www.educationworld.site) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = educationworld.site) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    listen 80;
+    listen [::]:80;
+    server_name educationworld.site www.educationworld.site;
+    return 404; # managed by Certbot
+
+
+
+
+}

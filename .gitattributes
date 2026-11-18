@@ -1,3 +1,8 @@
 # Script de shell precisa de LF mesmo no Windows: com CRLF o sh falha
 # com "$'\r': command not found" e nao roda.
 *.sh text eol=lf
+
+# Config de nginx tambem: um CR no fim da linha pode entrar no valor da
+# diretiva - um "root /var/www/html;" com CR colado no caminho. Mesmo motivo
+# do *.sh: o arquivo e escrito aqui no Windows e lido no Linux.
+*.nginx text eol=lf

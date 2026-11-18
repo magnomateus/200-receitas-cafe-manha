@@ -69,6 +69,30 @@ da para resolver com um 301 de uma para a outra sem decidir qual vale.
 - `deploy/probe-migracao.sh` - verificador das 64 rotas. Mede o gabarito
   **forcando o Host contra o IP do Titan**, ja que o DNS antigo saiu.
 
+## Nao edite a mao: o arquivo pronto
+
+Em 2026-11-18 o vhost do educationworld.site foi lido (`cat -n`, 51 linhas) e o
+arquivo COMPLETO de substituicao esta em
+`deploy/educationworld.site.nginx`. Ele ja tem as 3 edicoes da parte 1, os 4
+blocos da parte 2 e mais duas coisas que so apareceram ao ler o arquivo de
+verdade (bloco de PHP e deny de documentacao - ver a secao de achados abaixo).
+
+```bash
+cp /etc/nginx/sites-available/educationworld.site ~/educationworld.site.bak
+cp /var/www/html/200-receitas-cafe-manha/deploy/educationworld.site.nginx    /etc/nginx/sites-available/educationworld.site
+nginx -t && systemctl reload nginx
+sh /var/www/html/200-receitas-cafe-manha/deploy/probe-migracao.sh
+```
+
+Esse arquivo passou no `nginx -t` de um nginx 1.26.3 de verdade - sintaxe,
+ordem dos regex, `index` dentro de location nomeada, locations aninhadas nos
+blocos `^~` e o `alias` com PHP, tudo aceito. O comportamento em execucao nao
+foi medido; o cabecalho do arquivo diz qual e o unico ponto sensivel, qual e o
+sintoma e qual e a linha de conserto.
+
+As duas secoes abaixo continuam valendo como explicacao de CADA edicao - e
+sao o que usar se um dia o vhost mudar e o arquivo pronto nao servir mais.
+
 ## nginx, parte 1: o fallback (3 edicoes)
 
 Arquivo: `/etc/nginx/sites-available/educationworld.site`
@@ -246,6 +270,42 @@ Compara as 64 rotas byte a byte. **Nao basta dar 200: pasta errada tambem da
 
 O script tambem imprime para onde o DNS antigo aponta, para voce ver quando a
 renovacao na Hostinger surtir efeito.
+
+## Dois achados ao ler o vhost novo (2026-11-18)
+
+**1. O fallback sozinho vazaria segredo.** O repo tem 3 arquivos `.php`, todos
+em `videopack/`:
+
+| Arquivo | |
+|---|---|
+| `videopack/vp-config.php` | contem `$DASH_KEY`, `$IP_SALT`, `$__secret` |
+| `videopack/track.php` | endpoint de tracking |
+| `videopack/dashboard/index.php` | painel, protegido pela DASH_KEY |
+
+O vhost do educationworld **nao tem handler de PHP** - o do receitinha tem, no
+nivel do server. Sem acrescentar um, `GET /videopack/vp-config.php` passaria
+pelo `location /`, cairia no fallback, o arquivo existiria na raiz do repo e o
+nginx o entregaria **como texto**: a chave do painel e o salt de IP, legiveis
+por qualquer um. Esse e o achado mais serio desta rodada, e nao aparecia em
+nenhuma medicao de rota - as 64 rotas do probe sao paginas, nenhuma e `.php`.
+O bloco `location ~ \.php$` do arquivo pronto resolve: o PHP executa, como no
+dominio antigo, e o fonte nunca sai.
+
+**2. O `^~ /missa-explicada` tambem e protecao, nao so compatibilidade.** O
+repo tem `missa-explicada/entregavel/pdfs/` com os PDFs entregaveis (5 deles
+com nome acentuado). No dominio antigo essa pasta fica escondida atras do
+`alias`, e `/missa-explicada/entregavel/` da 404 - medido. Sem o bloco, o
+fallback serviria esses PDFs como download publico no dominio novo. Ou seja: o
+bloco evita de uma vez servir upsell desatualizado E entregar o produto de
+graca.
+
+Os `.md` e `.bat` da raiz do repo (`README`, `DOCUMENTO_REQUISITOS`,
+`BLUEPRINT`, `start-server.bat`) e a pasta `deploy/` inteira entram na mesma
+conta: no dominio antigo ja eram publicos, mas o dominio novo e o que vai
+receber trafego pago, e `deploy/` agora tem o runbook e o vhost, que citam
+caminhos do servidor, IP e socket. Por isso o arquivo pronto ja vem com o deny
+desses arquivos - e com `.txt` deliberadamente FORA da lista, porque existem 9
+`robots.txt` no repo.
 
 ## Correcoes ao que eu tinha dito antes
 
