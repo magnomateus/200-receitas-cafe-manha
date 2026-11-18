@@ -1,10 +1,48 @@
 # Migracao: receitinhaspratodahora.shop -> educationworld.site
 
+## FEITO: MIGRACAO COMPLETA no servidor (2026-11-18 16:09)
+
+As 64 rotas respondem em `educationworld.site` com os **mesmos bytes** do vhost
+antigo. Medido no Titan depois do `git pull` do commit `d0c8d6d` e do reload:
+
+```
+iguais/ok: 64   diferentes: 0   FALTANDO: 0   erro de rede: 0
+MIGRACAO COMPLETA
+```
+
+Duas rotas aparecem como `PARIDADE 404 -> 404` e isso esta certo:
+`/missa-explicada/` e `/missa-explicada/entregavel/` ja davam 404 no dominio
+antigo. Fidelidade, nao pendencia - ver a correcao 3 mais abaixo.
+
+O que isso fecha de duvida:
+
+- O `try_files` com checagem de diretorio do `@receitinhas` **nao cicla**. Era o
+  unico comportamento que eu nao tinha conseguido medir antes de aplicar. O
+  plano B documentado no cabecalho do vhost nao foi necessario.
+- O `nginx -t` nao acusou `duplicate location`: nenhum dos dois
+  `include snippets/` colide com os blocos acrescentados.
+- `/videopack/` continua respondendo 200 - o bloco `~ \.php$` novo nao quebrou
+  o dashboard. E `GET /videopack/vp-config.php` devolve **200 com 0 bytes**
+  (medido): o PHP executa e o fonte nao sai. Era o risco mais caro do fallback.
+- `/.git/config` e `/README.md` dao **403** (medido). O deny de dotfile e o de
+  documentacao estao de pe.
+
+Mas a mesma medicao achou um furo que eu deixei - ver a correcao 5.
+
+**O que ainda NAO esta resolvido:** o DNS do dominio antigo. Replicar as rotas
+no dominio novo nao salva quem tem link velho salvo - para isso falta o 301, e
+o 301 depende do DNS voltar. Ver a secao seguinte.
+
 ## URGENTE: o dominio JA saiu do ar (2026-11-18)
 
-`receitinhaspratodahora.shop` **deixou de apontar para o Titan**. Hoje resolve
-para `2.57.91.92`, que devolve uma pagina de parking com o titulo
-`Your domain is expired`. A mudanca de DNS foi registrada hoje as 00:53 UTC.
+`receitinhaspratodahora.shop` **deixou de apontar para o Titan**. A mudanca de
+DNS foi registrada em 2026-11-18 as 00:53 UTC: de manha resolvia para
+`2.57.91.92`, uma pagina de parking com o titulo `Your domain is expired`.
+
+**As 16:09 do mesmo dia piorou: nao resolve para nada.** Nem para o parking -
+nenhum registro A. Enquanto estiver assim, NADA configurado no servidor alcanca
+quem clica num link antigo: a consulta de DNS nem chega ao Titan. Qualquer
+conserto aqui e inutil ate o DNS voltar.
 
 O vhost continua intacto no servidor e responde normalmente quando se forca o
 Host contra o IP do Titan - ou seja, **nada foi perdido no servidor**, so o DNS
@@ -387,6 +425,45 @@ sozinha, sem bloco novo.
 /corpus-christi-es` mais longo, e prefixo mais longo ganha. Se um dia nascer
 `/corpus-christi-xx/`, quebra calado - e o sintoma e sempre o mesmo: 404 numa
 rota cujo vizinho funciona.
+
+### Correcao 5: o deny por extensao deixou `.nginx` de fora (2026-11-18)
+
+Depois de aplicar, fui conferir o que o fallback estava servindo. Resultado
+medido nos dois dominios:
+
+| URL | dominio antigo | educationworld |
+|---|---|---|
+| `/deploy/MIGRACAO-educationworld.md` | 200 / 18533 | **403** |
+| `/deploy/probe-migracao.sh` | 200 / 8553 | **403** |
+| `/deploy/educationworld.site.nginx` | 200 / 12287 | **200 / 12287** |
+| `/deploy/receitinhaspratodahora.shop.301.nginx` | 200 / 2959 | **200 / 2959** |
+
+O `.md` e o `.sh` fecharam. Os dois `.nginx` **nao**: a extensao nao estava na
+lista do deny. Eu acrescentei `*.nginx` ao `.gitattributes` (por causa do CRLF)
+e nao acrescentei ao deny - os dois arquivos nasceram no mesmo commit.
+
+O que vazava: o caminho do socket do php-fpm, os caminhos absolutos no servidor,
+o IP do Titan e o raciocinio de seguranca inteiro, que diz onde estao os
+segredos. Nao e credencial, mas e mapa.
+
+**Nao e regressao desta migracao** - no dominio antigo os quatro arquivos eram
+publicos. Mas o item 4 das mudancas do vhost existia exatamente para nao herdar
+isso, e por isso conta como falha minha, nao como heranca.
+
+**Conserto** (no vhost, ja commitado): `.nginx` e `.conf` entraram na lista, e
+foi acrescentado `location ^~ /deploy/ { deny all; }`. O deny por prefixo e que
+resolve de verdade - uma lista de extensoes sempre esquece a extensao que ainda
+nao existe. A barra final de `/deploy/` importa: `^~` casa por TEXTO, entao
+`^~ /deploy` sem barra pegaria tambem uma futura `/deployment-algo/`. Mesma
+armadilha da correcao 4.
+
+**Conferir depois do reload:**
+
+```sh
+curl -s -o /dev/null -w '%{http_code}
+' https://educationworld.site/deploy/educationworld.site.nginx
+# esperado: 403
+```
 
 ## Exposicao que o fallback herda
 

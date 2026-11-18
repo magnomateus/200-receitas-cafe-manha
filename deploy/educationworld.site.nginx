@@ -38,6 +38,9 @@
 #    do servidor. No dominio antigo isso ja era publico; aqui nao precisa ser.
 #    `.txt` ficou FORA da lista de proposito: existem 9 robots.txt no repo.
 #    Se algum dia uma pagina precisar servir um .md, tire a extensao da lista.
+#    A lista por extensao ERROU na primeira versao: deixou `.nginx` de fora e
+#    este arquivo ficou publico por algumas horas (ver o bloco `^~ /deploy/`).
+#    Licao: deny por extensao esquece a extensao nova; deny por prefixo nao.
 #
 # 5. Quatro blocos `^~` para as rotas que NAO moram neste repo:
 #    /corpus-christi, /corpus-christi-es, /eucaristia (em /var/www/html) e
@@ -58,22 +61,23 @@
 #    repeticao, reabre o `.git` publico que voce fechou em 2026-09-25. Qualquer
 #    bloco `^~` novo neste vhost tem de levar o deny tambem.
 #
-# b) A SINTAXE E A ESTRUTURA deste arquivo foram validadas com `nginx -t` de um
-#    nginx 1.26.3 de verdade. O COMPORTAMENTO em execucao nao: nao consegui
-#    subir um nginx aqui para medir. O unico ponto onde isso importa e o
-#    `try_files $uri $uri/ =404` do `@receitinhas`, que faz checagem de
-#    diretorio numa raiz diferente da do `location /`.
+# b) MEDIDO EM PRODUCAO, 2026-11-18 16:09: este arquivo esta no ar no Titan e o
+#    probe deu 64 rotas identicas, 0 diferentes, 0 faltando. Nenhum 500, nenhum
+#    `rewrite or internal redirection cycle`.
 #
-#    SINTOMA se der errado: 500 em rota de pasta, e no
-#    /var/log/nginx/error.log a frase `rewrite or internal redirection cycle`.
-#    CONSERTO: troque a linha do `@receitinhas` por esta, que so testa arquivo
-#    e portanto nao pode ciclar:
+#    Isso fecha a unica duvida que restava: o `try_files $uri $uri/ =404` do
+#    `@receitinhas` faz checagem de DIRETORIO numa raiz diferente da do
+#    `location /`, e eu nao tinha conseguido subir um nginx para medir se isso
+#    ciclava. Nao cicla. A forma com checagem de diretorio e a definitiva.
+#
+#    O plano B fica registrado so para o caso de alguem mexer nas raizes depois
+#    e o sintoma aparecer (500 em rota de pasta + a frase do ciclo no
+#    /var/log/nginx/error.log). Seria trocar a linha do `@receitinhas` por:
 #
 #        try_files ${uri}index.html $uri/index.html $uri =404;
 #
-#    Custo dessa forma: `/jogos` sem barra no fim deixa de dar 301 para
-#    `/jogos/` (medido: o dominio antigo da 301). Sem a barra, link relativo
-#    dentro da pagina quebra. Por isso ela e o plano B, nao o plano A.
+#    Custo: `/jogos` sem barra no fim deixa de dar 301 para `/jogos/` (medido:
+#    o dominio antigo da 301), e ai link relativo dentro da pagina quebra.
 #
 # c) Os dois `include snippets/` eu nao li - nao estao neste repo. Se o
 #    `nginx -t` acusar `duplicate location`, um deles ja define uma das rotas
@@ -101,7 +105,18 @@ server {
     location ~ /\.(?!well-known).* { deny all; }
 
     # Documentacao interna e script que o fallback passaria a servir.
-    location ~* \.(md|bat|sh|py|log|bak|ini|yml|yaml|zip|gz|tar)$ { deny all; }
+    location ~* \.(md|bat|sh|py|log|bak|ini|yml|yaml|zip|gz|tar|nginx|conf)$ { deny all; }
+
+    # E a pasta deploy/ INTEIRA, por prefixo em vez de por extensao.
+    # MEDIDO em 2026-11-18, depois de aplicar: com o deny so por extensao,
+    # GET /deploy/educationworld.site.nginx devolvia 200 e os 12287 bytes deste
+    # arquivo - o socket do php-fpm, os caminhos do servidor, o IP do Titan e o
+    # raciocinio inteiro de seguranca daqui. `.nginx` nao estava na lista; o
+    # .gitattributes tinha a extensao, o deny nao. Por PREFIXO, qualquer arquivo
+    # que entre em deploy/ daqui para frente ja nasce fechado, com qualquer
+    # extensao - e e por isso que este bloco existe alem da lista acima.
+    # A barra final importa: sem ela, `^~ /deploy` tambem pegaria /deployment*.
+    location ^~ /deploy/ { deny all; }
 
     # --- php ----------------------------------------------------------------
     # Os unicos .php do repo estao em videopack/ (dashboard, track, vp-config).
