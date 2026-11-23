@@ -50,34 +50,98 @@
       .widget-clip .consent-cover { display: none; }
     </style>
 
-    <!-- PRECO, escrito a mao. Precisa ser a mao por dois motivos somados:
-         o iframe da Hotmart e cross-origin (nao da para ler o valor por JS)
-         e, nesta pagina, o widget esta RECORTADO para mostrar so o botao
-         (--clip-top acima), entao o preco que a Hotmart imprime dentro dele
-         cai FORA do recorte e fica invisivel.
+    <!-- A OFERTA (nome, preco, o que vem dentro). Escrita a mao por
+         necessidade: o iframe da Hotmart e cross-origin, nao da para ler nada
+         de dentro dele por JS, e nesta pagina o widget ainda esta RECORTADO
+         para mostrar so o botao (--clip-top acima) - o preco que a Hotmart
+         imprime dentro dele cai FORA do recorte e fica invisivel.
 
-         O desenho e o mesmo do .price de appmissaexplicada/upsell-br/, mas
-         fica INLINE e nao no styles.css: os styles.css das pastas de idioma
-         sao copias byte a byte uns dos outros, e mexer so no ingles faria
-         eles divergirem em silencio. Mesmo motivo do recorte acima.
+         Primeira versao mostrava so o numero, solto. Nao servia: preco sem o
+         nome do produto e sem o que vem dentro nao e oferta, e um numero. O
+         cartao agora responde as tres perguntas na ordem em que elas aparecem
+         na cabeca de quem le: o que e, quanto custa, o que vem dentro.
+
+         NAO repete "available only on this page": a headline (secao 4) ja diz
+         isso. Repetir a duas linhas de distancia enfraquece as duas.
+
+         O recorte do widget e autocontido (height + overflow hidden +
+         margin-top negativo no filho), entao conteudo acima dele nao desloca
+         o botao. Conferido antes de escrever isto.
+
+         Fica INLINE e nao no styles.css: os styles.css das pastas de idioma
+         sao copias byte a byte uns dos outros (conferido por sha256), e mexer
+         so no ingles faria eles divergirem em silencio. Mesmo motivo do
+         recorte acima.
 
          O valor usa PONTO decimal e prefixo "US$" porque a pagina e lang="en"
          e as irmas em ingles ja escrevem assim ("today you pay US$ 0"). -->
     <style>
-      .price {
+      .offer {
         text-align: center;
-        padding: 16px 10px 14px;
-        border-bottom: 1px solid var(--line);
-        margin-bottom: 14px;
+        padding: 18px 14px 16px;
+      }
+      .offer-name {
+        margin: 0 0 2px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 1.08rem;
+        letter-spacing: 0.01em;
+        color: var(--ink);
+      }
+      .offer-sub {
+        margin: 0 0 14px;
+        font-size: 0.9rem;
+        color: var(--ink-soft);
       }
       .price-value {
+        margin: 0;
         font-family: 'Montserrat', sans-serif;
         font-weight: 800;
-        font-size: 2.4rem;
-        line-height: 1.05;
+        font-size: 2.9rem;
+        line-height: 1;
         color: var(--burgundy);
       }
-      @media (max-width: 420px) { .price-value { font-size: 2rem; } }
+      .price-terms {
+        margin: 8px 0 0;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        font-size: 0.74rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+      }
+      /* O que vem dentro: as 5 estacoes que a propria pagina ja lista mais
+         abaixo, trazidas para ao lado do preco - e ali que a pessoa decide se
+         o valor vale, e para isso ela precisa ver o que esta comprando. */
+      .includes {
+        margin: 16px auto 0;
+        padding: 0;
+        max-width: 22em;
+        text-align: left;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 7px 16px;
+      }
+      .includes li {
+        list-style: none;
+        position: relative;
+        padding-left: 1.35em;
+        font-size: 0.92rem;
+        color: var(--ink-soft);
+      }
+      .includes li::before {
+        content: "\2713";
+        position: absolute;
+        left: 0;
+        color: var(--gold);
+        font-weight: 700;
+      }
+      .includes li:last-child { grid-column: 1 / -1; }
+      @media (max-width: 420px) {
+        .price-value { font-size: 2.4rem; }
+        .includes { grid-template-columns: 1fr; max-width: 14em; }
+      }
+      .offer { border-bottom: 1px solid var(--line); margin-bottom: 16px; }
     </style>
 
     <!-- Google Fonts — Montserrat (titles) + Roboto (body) -->
@@ -164,8 +228,20 @@
                 <p class="checkout-eyebrow">Your exclusive offer</p>
                 <div class="checkout-card">
 
-                    <div class="price">
+                    <div class="offer">
+                        <p class="offer-name">Liturgical Seasons</p>
+                        <p class="offer-sub">The complete guide to the liturgical year</p>
+
                         <p class="price-value">US$ 29.90</p>
+                        <p class="price-terms">Instant access</p>
+
+                    <ul class="includes">
+                        <li>Advent</li>
+                        <li>Christmas</li>
+                        <li>Lent</li>
+                        <li>Easter</li>
+                        <li>Ordinary Time</li>
+                    </ul>
                     </div>
 
                     <div class="widget-clip">
