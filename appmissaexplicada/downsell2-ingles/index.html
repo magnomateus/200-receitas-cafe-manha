@@ -27,6 +27,33 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css">
 
+    <!-- PRECO, escrito a mao. O iframe da Hotmart e cross-origin: nao da
+         para ler de dentro dele por JS, nem para contar com o que ele mostra.
+         E esta pagina promete desconto, entao o valor tem de estar legivel na
+         propria pagina.
+
+         Aqui o .price NAO leva a borda de baixo que ele tem no upsell 2: la
+         ele fica dentro de um .checkout-card e a borda separa preco do botao;
+         aqui o checkout e uma secao sem cartao, e a borda ficaria solta.
+
+         Fica INLINE e nao no styles.css porque os styles.css das pastas de
+         idioma sao copias byte a byte uns dos outros, e mexer so no ingles
+         faria eles divergirem em silencio.
+
+         O valor usa PONTO decimal e prefixo "US$" porque a pagina e lang="en"
+         e as irmas em ingles ja escrevem assim ("today you pay US$ 0"). -->
+    <style>
+      .price { text-align: center; margin: 0 0 16px; }
+      .price-value {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 800;
+        font-size: 2.4rem;
+        line-height: 1.05;
+        color: var(--burgundy);
+      }
+      @media (max-width: 420px) { .price-value { font-size: 2rem; } }
+    </style>
+
     <!-- Google Fonts — Montserrat (titles) + Roboto (body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -98,6 +125,11 @@
 
             <!-- 3. Hotmart checkout (salesFunnel: 1-click button + "no, thanks") -->
             <section class="checkout">
+
+                <div class="price">
+                    <p class="price-value">US$ 19.90</p>
+                </div>
+
                 <div id="hotmart-sales-funnel"></div>
                 <p class="checkout-hint" id="checkout-hint">Loading your offer…</p>
             </section>
