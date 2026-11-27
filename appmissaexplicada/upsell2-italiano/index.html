@@ -28,32 +28,58 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css">
 
-    <!-- Recorte do widget: mostrar SO o botao de aprovar, igual ao
-         upsell2-ingles (decisao do dono em 27/11/2026: no upsell fica so o
-         aprovar; a recusa aparece no downsell, que nao tem recorte).
+    <!-- Recorte: mostrar o botao de aprovar E a recusa, igual ao
+         upsell2-ingles.
 
-         O styles.css desta pasta traz --clip-top: 150px e --clip-height: 185px,
-         que mostram o botao E a recusa - e ainda cortam 4px do topo do botao.
+         JANELA: de 132 a 335 (--clip-top 132 + --clip-height 203).
 
-         >>> OS DOIS NUMEROS VIERAM DA MEDICAO FEITA NO WIDGET EM INGLES (botao
-             de y=146 a y=185 contados do topo do iframe). O widget ITALIANO
-             NAO foi medido: o iframe e cross-origin e so monta dentro do funil
-             da Hotmart, entao nao da para fotografar daqui nem local. Se o
-             botao italiano estiver em outra altura - texto mais longo pode
-             empurrar ele para baixo -, a janela mostra a faixa errada. O
-             conserto e mexer nestes dois numeros, e so neles. TESTE ESTA
-             PAGINA NO FUNIL REAL antes de mandar trafego. <<<
+           132  inicio da janela: 14px de folga acima do botao. O styles.css
+                usa 150, que fica 4px ABAIXO do topo do botao e cortava ele em
+                cima - esse era o defeito que este bloco nasceu para consertar.
+           146  topo do botao
+           185  fim do botao
+           212  inicio da linha de consentimento, tampada pelo .consent-cover
+           274  fim da tampa
+           335  fim da janela, e e ate ali que mora a recusa. E o mesmo fim que
+                o styles.css usa (150+185), cujo comentario diz que aquela
+                janela mostra "o botao + o No gracias". Esta janela cobre tudo
+                o que aquela cobria, mais os 18px de cima que faltavam.
 
-         O .consent-cover desta pagina fica display:none porque com 67px de
-         janela a linha de consentimento nem aparece.
+         TAMPA: --cover-top e contado do topo da JANELA, nao do iframe (o
+         .consent-cover e position:absolute dentro do .widget-clip). O
+         styles.css usa 62 a partir de 150, ou seja o iframe de 212 a 274.
+         Como aqui a janela comeca em 132, a tampa precisa de 212-132 = 80 para
+         cobrir exatamente a mesma faixa; em 62 ela subiria 18px e comeria o fim
+         do botao. Os dois numeros andam juntos: quem mexer em --clip-top tem de
+         refazer --cover-top = 212 - (--clip-top).
+
+         NAO existe aqui a regra `.consent-cover { display: none }`: ela servia
+         a janela curta de 67px, em que a linha de consentimento nem chegava a
+         aparecer. Com a janela esticada ela aparece, e a tampa e necessaria.
+
+         >>> AJUSTE AO VIVO: se sobrar coisa embaixo da recusa, diminua
+             --clip-height; se a recusa aparecer cortada, aumente. O 335 e
+             DEDUZIDO do styles.css, nao medido a pixel. <<<
+
+         >>> AS MEDIDAS DO BOTAO VIERAM DO WIDGET EM INGLES (y=146 a y=185 do
+             topo do iframe). O widget ITALIANO nao foi medido: o iframe e
+             cross-origin e so monta dentro do funil da Hotmart, entao nao da
+             para fotografar nem daqui nem local. Se o botao italiano estiver
+             em outra altura - texto mais longo pode empurrar ele para baixo -,
+             a janela mostra a faixa errada. TESTE ESTA PAGINA NO FUNIL REAL
+             antes de mandar trafego. A janela esticada perdoa mais que a curta
+             de 67px, mas nao perdoa tudo. <<<
 
          Fica aqui no HTML e nao no styles.css porque os styles.css das pastas
          de idioma sao copias byte a byte uns dos outros.
 
          Ao clicar, o .revealed do styles.css abre o widget inteiro. -->
     <style>
-      .widget-clip { --clip-top: 132px; --clip-height: 67px; }
-      .widget-clip .consent-cover { display: none; }
+      .widget-clip {
+        --clip-top: 132px;
+        --clip-height: 203px;
+        --cover-top: 80px;
+      }
     </style>
 
     <!-- A OFERTA (nome, preco, cosa include). Escrita a mao por necessidade:

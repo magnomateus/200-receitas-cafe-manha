@@ -28,30 +28,42 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css">
 
-    <!-- Recorte: mostrar SO o botao de aprovar.
+    <!-- Recorte: mostrar o botao de aprovar E a recusa.
 
          Os numeros do BOTAO foram medidos, nao estimados: fotografei a area do
          iframe e varri os pixels atras do verde. Ele fica de y=146 a y=185
          contados do topo do iframe (39px de altura), igual no desktop e no
          iPhone - por isso um recorte so serve para as duas larguras.
 
-         JANELA: de 132 a 199 (--clip-top 132 + --clip-height 67). Cabe o botao
-         (146..185) e mais nada: a linha de consentimento do widget comeca em
-         212, ja fora da janela. O styles.css usa --clip-top: 150px, que fica
-         4px ABAIXO do topo do botao - era isso que cortava ele em cima, e e o
-         motivo de este bloco existir.
+         JANELA: de 132 a 335 (--clip-top 132 + --clip-height 203).
 
-         HISTORICO, para ninguem refazer o caminho: em 27/11/2026 esta janela
-         chegou a ser esticada para 132..335 (--clip-height 203, --cover-top 80)
-         para mostrar tambem a recusa, e foi desfeita no mesmo dia por decisao
-         do dono - no UPSELL fica so o aprovar; a recusa aparece no DOWNSELL,
-         que nao tem recorte nenhum e monta o widget inteiro.
+           132  inicio da janela: 14px de folga acima do botao. O styles.css
+                usa 150, que fica 4px ABAIXO do topo do botao e cortava ele em
+                cima - esse era o defeito que este bloco nasceu para consertar.
+           146  topo do botao
+           185  fim do botao
+           212  inicio da linha de consentimento, tampada pelo .consent-cover
+           274  fim da tampa
+           335  fim da janela, e e ate ali que mora a recusa. E o mesmo fim que
+                o styles.css usa (150+185), cujo comentario diz que aquela
+                janela mostra "o botao + o No gracias". Esta janela cobre tudo
+                o que aquela cobria, mais os 18px de cima que faltavam.
 
-         O .consent-cover volta a display:none junto com a janela curta: com
-         67px a linha de consentimento nem chega a aparecer, e a tampa (que e
-         position:absolute contada do topo da JANELA, nao do iframe) so
-         atrapalharia. Os dois andam juntos - se um dia a janela esticar de
-         novo, a tampa tem de voltar, com --cover-top = 212 - (--clip-top).
+         TAMPA: --cover-top e contado do topo da JANELA, nao do iframe (o
+         .consent-cover e position:absolute dentro do .widget-clip). O
+         styles.css usa 62 a partir de 150, ou seja o iframe de 212 a 274.
+         Como aqui a janela comeca em 132, a tampa precisa de 212-132 = 80 para
+         cobrir exatamente a mesma faixa; em 62 ela subiria 18px e comeria o fim
+         do botao. Os dois numeros andam juntos: quem mexer em --clip-top tem de
+         refazer --cover-top = 212 - (--clip-top).
+
+         NAO existe aqui a regra `.consent-cover { display: none }`: ela servia
+         a janela curta de 67px, em que a linha de consentimento nem chegava a
+         aparecer. Com a janela esticada ela aparece, e a tampa e necessaria.
+
+         >>> AJUSTE AO VIVO: se sobrar coisa embaixo da recusa, diminua
+             --clip-height; se a recusa aparecer cortada, aumente. O 335 e
+             DEDUZIDO do styles.css, nao medido a pixel. <<<
 
          Fica aqui no HTML e nao no styles.css porque os styles.css das pastas
          de idioma sao copias byte a byte uns dos outros, e mexer so no ingles
@@ -60,15 +72,18 @@
          Ao clicar, o .revealed do styles.css abre o widget inteiro - e assim
          que o comprador ve o processamento depois do clique. -->
     <style>
-      .widget-clip { --clip-top: 132px; --clip-height: 67px; }
-      .widget-clip .consent-cover { display: none; }
+      .widget-clip {
+        --clip-top: 132px;
+        --clip-height: 203px;
+        --cover-top: 80px;
+      }
     </style>
 
     <!-- A OFERTA (nome, preco, o que vem dentro). Escrita a mao por
          necessidade: o iframe da Hotmart e cross-origin, nao da para ler nada
-         de dentro dele por JS, e nesta pagina o widget esta RECORTADO
-         para mostrar so o botao (--clip-top acima) - o preco que a Hotmart
-         imprime dentro dele cai FORA do recorte e fica invisivel.
+         de dentro dele por JS, e o widget esta RECORTADO
+         (--clip-top acima): a janela mostra o botao E a recusa, e o preco que
+         a Hotmart imprime fica ACIMA dela, fora do recorte.
 
          Primeira versao mostrava so o numero, solto. Nao servia: preco sem o
          nome do produto e sem o que vem dentro nao e oferta, e um numero. O
