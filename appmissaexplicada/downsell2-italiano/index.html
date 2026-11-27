@@ -27,6 +27,133 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css">
 
+    <!-- A OFERTA (nome, prezzo pieno barrato, prezzo di oggi, risparmio,
+         cosa include). Escrita a mao por necessidade: o iframe da Hotmart e
+         cross-origin e nao da para ler nada de dentro dele por JS.
+
+         Numa pagina que promete "sconto speciale", um numero sozinho nao
+         mostra desconto nenhum, porque nao ha com o que comparar. O preco
+         barrado e o preco do upsell 2 (a MESMA oferta, recusada na tela
+         anterior): e o valor que a pessoa acabou de ver.
+
+         O risparmio e aritmetica dos dois: 8.90 - 6.90 = 2.00, que da 22%.
+
+         NAO repete "valido solo su questa pagina": a headline ja diz isso.
+
+         Aqui o cartao NAO leva borda de baixo: no upsell 2 ele fica dentro de
+         um .checkout-card e a borda separa oferta e botao; aqui o checkout e
+         uma secao sem cartao, e a borda ficaria solta.
+
+         Fica INLINE e nao no styles.css: os styles.css das pastas de idioma
+         sao copias byte a byte uns dos outros (conferido por sha256), e mexer
+         so no italiano faria eles divergirem em silencio.
+
+         O valor usa PONTO decimal e prefixo "US$" porque e assim que as irmas
+         em italiano ja escrevem ("oggi paghi US$ 0" no downsell 1).
+
+         >>> PRECO ASSUMIDO: 8.90 no upsell e 6.90 no downsell, os mesmos da
+             versao em ingles, porque e o mesmo produto no mesmo passo do
+             funil. Se a oferta italiana da Hotmart cobra outro valor, troque
+             aqui - e o unico numero desta pagina que nao saiu de medicao. <<<
+
+         Era 29.90/19.90 ate 27/11/2026, quando o ingles baixou para 8.90/6.90.
+         O numero daqui acompanha o de la pelo mesmo motivo que foi escolhido na
+         primeira vez: mesmo produto, mesmo passo do funil.
+
+         O fecho deste comentario estava FALTANDO: sem ele o bloco engolia o
+         <style> seguinte e todo o CSS do cartao ficava morto. E nao se escreve
+         o par `--` + `>` aqui dentro para explicar isso: ele FECHA o
+         comentario na hora, o que derrubou a primeira tentativa deste mesmo
+         conserto. -->
+    <style>
+      .offer {
+        text-align: center;
+        padding: 18px 14px 16px;
+      }
+      .offer-name {
+        margin: 0 0 2px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 1.08rem;
+        letter-spacing: 0.01em;
+        color: var(--ink);
+      }
+      .offer-sub {
+        margin: 0 0 14px;
+        font-size: 0.9rem;
+        color: var(--ink-soft);
+      }
+      .price-value {
+        margin: 0;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 800;
+        font-size: 2.9rem;
+        line-height: 1;
+        color: var(--burgundy);
+      }
+      .price-terms {
+        margin: 8px 0 0;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        font-size: 0.74rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+      }
+      /* O que vem dentro: os 5 tempos liturgicos que a propria pagina ja lista
+         mais abaixo, trazidos para ao lado do preco - e ali que a pessoa decide
+         se o valor vale, e para isso ela precisa ver o que esta comprando. */
+      .includes {
+        margin: 16px auto 0;
+        padding: 0;
+        max-width: 22em;
+        text-align: left;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 7px 16px;
+      }
+      .includes li {
+        list-style: none;
+        position: relative;
+        padding-left: 1.35em;
+        font-size: 0.92rem;
+        color: var(--ink-soft);
+      }
+      .includes li::before {
+        content: "\2713";
+        position: absolute;
+        left: 0;
+        color: var(--gold);
+        font-weight: 700;
+      }
+      .includes li:last-child { grid-column: 1 / -1; }
+      @media (max-width: 420px) {
+        .price-value { font-size: 2.4rem; }
+        .includes { grid-template-columns: 1fr; max-width: 14em; }
+      }
+      .offer { padding-top: 4px; margin-bottom: 18px; }
+      .price-was {
+        margin: 0 0 2px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        font-size: 1.15rem;
+        color: var(--ink-faint);
+        text-decoration: line-through;
+      }
+      .price-save {
+        display: inline-block;
+        margin: 12px 0 0;
+        padding: 6px 14px;
+        border-radius: 999px;
+        background: var(--burgundy);
+        color: var(--cream);
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 0.82rem;
+        letter-spacing: 0.02em;
+      }
+    </style>
+
     <!-- Google Fonts — Montserrat (titles) + Roboto (body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -98,6 +225,25 @@
 
             <!-- 3. Hotmart checkout (salesFunnel: 1-click button + "no, thanks") -->
             <section class="checkout">
+
+                <div class="offer">
+                    <p class="offer-name">Tempi Liturgici</p>
+                    <p class="offer-sub">La guida completa all'anno liturgico</p>
+
+                    <p class="price-was">US$ 8.90</p>
+                    <p class="price-value">US$ 6.90</p>
+                    <p class="price-terms">Accesso immediato</p>
+                    <p class="price-save">Risparmi US$ 2.00 &middot; 22% di sconto</p>
+
+                    <ul class="includes">
+                        <li>Avvento</li>
+                        <li>Natale</li>
+                        <li>Quaresima</li>
+                        <li>Pasqua</li>
+                        <li>Tempo Ordinario</li>
+                    </ul>
+                </div>
+
                 <div id="hotmart-sales-funnel"></div>
                 <p class="checkout-hint" id="checkout-hint">Caricamento della tua offerta…</p>
             </section>
