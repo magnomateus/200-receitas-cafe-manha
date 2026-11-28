@@ -101,17 +101,27 @@
          sao copias byte a byte uns dos outros (conferido por sha256), e mexer
          so no italiano faria eles divergirem em silencio.
 
-         O valor usa PONTO decimal e prefixo "US$" porque e assim que as irmas
-         em italiano ja escrevem ("oggi paghi US$ 0" no downsell 1).
+         MOEDA: EURO, e so no italiano. Instrucao do dono em 28/11/2026:
+         17,90 EUR no upsell 2 e 14,90 EUR no downsell. O ingles ficou em dolar
+         (29.90 e 19.90), entao as duas versoes NAO sao mais uma conversao da
+         outra - sao duas ofertas, cada uma com a sua moeda. Nao tente
+         "acertar" uma pela outra.
 
-         >>> PRECO ASSUMIDO: 8.90 no upsell e 6.90 no downsell, os mesmos da
-             versao em ingles, porque e o mesmo produto no mesmo passo do
-             funil. Se a oferta italiana da Hotmart cobra outro valor, troque
-             aqui - e o unico numero desta pagina que nao saiu de medicao. <<<
+         FORMATO: virgula decimal e simbolo DEPOIS do numero ("17,90 EUR" com o
+         sinal de euro), que e como se escreve preco em italiano. As paginas
+         irmas em italiano escrevem "oggi paghi US$ 0" com ponto, porque foram
+         copiadas do ingles sem traduzir o numero; aqui o valor e em euro e
+         segue a escrita do idioma. Se preferir uniformidade com as irmas, o
+         que muda e o FORMATO, nunca o valor.
 
-         Era 29.90/19.90 ate 27/11/2026, quando o ingles baixou para 8.90/6.90.
-         O numero daqui acompanha o de la pelo mesmo motivo que foi escolhido na
-         primeira vez: mesmo produto, mesmo passo do funil.
+         >>> CONFIRA NA HOTMART que a oferta italiana cobra em EURO. Esta pagina
+             AFIRMA euro; se o checkout cobrar em dolar, o comprador le um valor
+             e paga outro, e descobre isso na pior hora possivel. Nao da para
+             medir daqui: o iframe e cross-origin e so monta dentro do funil. <<<
+
+         Historico: estas paginas nasceram sem preco escrito nenhum; em
+         27/11/2026 ganharam 8.90/6.90 em dolar, herdados do ingles; em
+         28/11/2026 viraram 17,90/14,90 em euro, por instrucao do dono.
 
          O fecho deste comentario estava FALTANDO: sem ele o bloco engolia o
          <style> seguinte e todo o CSS do cartao ficava morto. E nao se escreve
@@ -275,7 +285,7 @@
                         <p class="offer-name">Tempi Liturgici</p>
                         <p class="offer-sub">La guida completa all'anno liturgico</p>
 
-                        <p class="price-value">US$ 8.90</p>
+                        <p class="price-value">17,90 €</p>
                         <p class="price-terms">Accesso immediato</p>
 
                         <ul class="includes">
